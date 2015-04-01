@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E5E5E5"
+    android:orientation="vertical"
+
+    >
+
+    <LinearLayout
+        android:id="@+id/topo"
+        android:layout_width="match_parent"
+        android:layout_height="33sp"
+        android:background="@color/huntVisionAzul"
+        android:orientation="horizontal" />
+
+    <LinearLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottom"
+        android:layout_below="@+id/topo"
+        android:orientation="horizontal" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="30dp">
+
+        <ImageView android:layout_marginTop="10dp"
+            android:id="@+id/imgLogo"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/logo_hunt_vision_260px" />
+
+        <TextView
+            android:id="@+id/lblUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imgLogo"
+            android:layout_marginBottom="5sp"
+            android:layout_marginTop="20dp"
+            android:text="Usuário:"
+            android:textColor="@color/huntVisionAzul"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/edtUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lblUsuario"
+            android:singleLine="true" />
+
+        <TextView
+            android:id="@+id/lblSenha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lblUsuario"
+            android:layout_marginBottom="5sp"
+            android:layout_marginTop="50dp"
+            android:text="Senha:"
+            android:textColor="@color/huntVisionAzul"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/edtSenha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lblSenha"
+            android:password="true"
+            android:singleLine="true" />
+
+        <Button
+            android:id="@+id/autenticar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="false"
+            android:layout_below="@+id/edtSenha"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="30dp"
+            android:background="@color/huntVisionAzul"
+            android:padding="10dp"
+            android:text="Entrar"
+            android:textColor="#FFF"
+            android:textSize="22dp" />
+
+        <Button
+            android:id="@+id/btnEsqueciSenha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/autenticar"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:background="@color/transparent"
+            android:text="Esqueci a senha"
+            android:textColor="@color/huntVisionCinza" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/bottom"
+        android:layout_width="match_parent"
+        android:layout_height="33sp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/huntVisionLaranja"
+        android:orientation="horizontal" />
+
+</RelativeLayout>

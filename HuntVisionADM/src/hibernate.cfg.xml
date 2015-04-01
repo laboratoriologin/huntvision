@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+
+	<session-factory>
+
+		<property name="current_session_context_class">thread</property>
+
+		<property name="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</property>
+		<property name="hibernate.connection.datasource">java:/comp/env/jdbc/bdHuntVision</property>
+		<property name="hibernate.query.substitutions">true 1, false 0</property>
+		<property name="hibernate.show_sql">true</property>
+		<mapping class="com.login.huntvision.model.Cliente" />
+		<mapping class="com.login.huntvision.model.ItemLocal" />
+		<mapping class="com.login.huntvision.model.GrupoUsuario" />
+		<mapping class="com.login.huntvision.model.Imagem" />
+		<mapping class="com.login.huntvision.model.Item" />
+		<mapping class="com.login.huntvision.model.Local" />
+		<mapping class="com.login.huntvision.model.Usuario" />
+		<mapping class="com.login.huntvision.model.Menu" />
+		<mapping class="com.login.huntvision.model.Permissao" />
+		<mapping class="com.login.huntvision.model.Questionario" />
+		<mapping class="com.login.huntvision.model.Resposta" />
+		<mapping class="com.login.huntvision.model.TipoQuestionario" />
+		<mapping class="com.login.huntvision.model.VistoriaResposta" />
+		<mapping class="com.login.huntvision.model.Vistoria" />
+	</session-factory>
+
+</hibernate-configuration>
+	
+	

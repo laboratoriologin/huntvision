@@ -1,0 +1,196 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="login.com.huntvision.ConfigActivity">
+
+
+    <RelativeLayout
+        android:id="@+id/topo"
+        android:layout_width="match_parent"
+        android:layout_height="33sp"
+        android:background="@color/huntVisionAzul">
+
+        <Button
+            android:id="@+id/btnVoltar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+
+            android:layout_marginLeft="25dp"
+            android:background="@drawable/botao_seta_voltar" />
+
+        <ImageView
+            android:id="@+id/imgCliente"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/btnVoltar"
+            android:background="@drawable/icone_cliente" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@+id/imgCliente"
+            android:text="Cliente"
+            android:textColor="#FFF"
+            android:textSize="18dp" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="false"
+        android:id="@+id/rlBk"
+        android:layout_centerInParent="true"
+        android:background="@color/huntVisionCinza"
+        android:layout_alignParentRight="false">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:layout_alignParentRight="true"
+
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentStart="false">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="false"
+                android:textColor="#FFF"
+                android:textStyle="bold"
+                android:id="@+id/lblUsuario"
+                android:text="Usuario:"
+                android:gravity="right"
+                android:layout_alignParentStart="true"
+                android:layout_toLeftOf="@+id/txtUsuario"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="80dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+
+                android:id="@+id/txtUsuario"
+                android:textColor="#FFF"
+                android:textStyle="bold"
+
+                android:text="Ricardo"
+                android:layout_alignParentLeft="false"
+                android:layout_alignParentStart="false"
+                android:layout_alignParentEnd="false"
+
+                android:layout_centerHorizontal="true"
+                android:gravity="right"
+                android:layout_marginRight="15dp" />
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FFF"
+            android:id="@+id/rlConteudo"
+            android:layout_alignBottom="@+id/rlBk"
+            android:layout_marginTop="20sp"
+            android:layout_marginRight="10sp"
+            android:layout_marginLeft="10sp"
+            android:layout_marginBottom="10sp"
+            android:padding="20sp"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:gravity="left"
+                android:layout_marginBottom="5dp"
+                android:textStyle="bold"
+                android:id="@+id/txtTituloConfig"
+                android:textColor="@color/huntVisionCinza"
+                android:text="Configurações de conta"
+
+                android:layout_below="@+id/rlConteudo"
+
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="E-mail cadastrado:"
+                android:textSize="16dp"
+                android:layout_below="@+id/txtTituloConfig"
+                android:id="@+id/txtEmailCadastrado"
+                android:textColor="@color/huntVisionAzul"
+                android:textStyle="bold"
+                android:layout_marginBottom="15dp"
+                />
+
+
+                />
+
+
+            <RelativeLayout
+                android:id="@+id/rlCampoEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/huntVisionCinza"
+                android:layout_marginBottom="15dp"
+                android:layout_below="@+id/txtEmailCadastrado">
+
+                <EditText
+                    android:id="@+id/edtEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:height="20sp"
+                    android:background="#FFF"
+                    android:layout_margin="1dp"
+                    />
+
+
+
+
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/btnMudarSenha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Solicitar mudança de senha"
+                android:textColor="@color/huntVisionCinza"
+                android:background="@color/transparent"
+                android:layout_below="@+id/rlCampoEmail"
+                />
+            <Button
+
+                android:id="@+id/btnSair"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/huntVisionLaranja"
+                android:textSize="22dp"
+                android:textColor="#FFF"
+                android:text="Sair"
+                android:padding="10dp"
+                android:drawableRight="@drawable/icone_sair"
+                android:visibility="visible"
+
+                android:layout_margin="25dp"
+                android:layout_alignParentEnd="false"
+                android:layout_alignParentBottom="false"
+                android:layout_below="@+id/btnMudarSenha"
+                android:layout_alignParentStart="false" />
+
+        </RelativeLayout>
+
+
+
+    </RelativeLayout>
+
+
+</LinearLayout>

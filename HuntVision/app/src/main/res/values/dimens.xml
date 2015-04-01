@@ -1,0 +1,11 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="altura_imagem">96dp</dimen>
+    <dimen name="largura_imagem">78dp</dimen>
+    <dimen name="top_bar_height">44dp</dimen>
+    <dimen name="tob_bar_height_small">33dp</dimen>
+    <dimen name="top_bar_font_height">18sp</dimen>
+    <dimen name="img_huntvision_home">130dp</dimen>
+</resources>

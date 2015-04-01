@@ -1,0 +1,110 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:id="@+id/topo"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/tob_bar_height_small"
+        android:background="@color/huntVisionAzul"
+        android:orientation="horizontal">
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/wrapper_superior"
+        android:layout_below="@+id/topo"
+        android:layout_centerHorizontal="true">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="@dimen/img_huntvision_home"
+            android:layout_height="@dimen/img_huntvision_home"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:adjustViewBounds="true"
+            android:background="@drawable/logo_hunt_vision_260px" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/wrapper_superior"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/wrapper_inferior"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnQRCODE"
+            android:layout_width="@dimen/largura_imagem"
+            android:layout_height="@dimen/altura_imagem"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:onClick="goQRcode"
+            android:background="@drawable/bt_home_ler_codigo" />
+
+        <Button
+            android:id="@+id/btnCliente"
+            android:layout_width="@dimen/largura_imagem"
+            android:layout_height="@dimen/altura_imagem"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:background="@drawable/bt_home_cliente"
+            android:onClick="loadCliente" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/wrapper_inferior"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btConfig"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnServidor"
+            android:layout_width="@dimen/largura_imagem"
+            android:layout_height="@dimen/altura_imagem"
+            android:layout_marginBottom="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:background="@drawable/bt_home_concluir_visita"
+            android:onClick="goPendentes" />
+
+        <Button
+            android:id="@+id/btSobre"
+            android:layout_width="@dimen/largura_imagem"
+            android:layout_height="@dimen/altura_imagem"
+            android:layout_marginBottom="@dimen/activity_horizontal_margin"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:background="@drawable/bt_home_sobre"
+            android:onClick="goSobre" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btConfig"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bottom"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/activity_vertical_margin"
+        android:onClick="goSincronizacao"
+        android:background="@drawable/bt_configuracoes" />
+
+
+    <RelativeLayout
+        android:id="@+id/bottom"
+        android:layout_width="match_parent"
+        android:layout_height="33sp"
+
+        android:layout_alignParentBottom="true"
+        android:background="@color/huntVisionLaranja" />
+
+
+</RelativeLayout>

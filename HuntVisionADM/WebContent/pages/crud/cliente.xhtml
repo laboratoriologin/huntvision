@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition template="/resources/templates/templateCRUD.xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+	<ui:param name="mbean" value="${clienteFaces}" />
+	<ui:param name="mbeanModel" value="${clienteFaces.crudModel}" />
+	<ui:param name="mbeanPesquisaModel"
+		value="${clienteFaces.crudPesquisaModel}" />
+	<ui:param name="reload" value="true" />
+
+	<ui:define name="cadastro">
+		<h:panelGrid columns="1" style="width:50%">
+
+			<p:outputLabel for="nome" value="Nome" />
+			<p:inputText id="nome" required="true"
+				requiredMessage="Nome Campo obrigatório" maxlength="50"
+				value="#{mbeanModel.nome}" style="width: 95%" />
+
+			<p:outputLabel for="email" value="E-mail" />
+			<p:inputText id="email" value="#{mbeanModel.email}"
+				style="width: 95%" validatorMessage="E-mail inválido">
+				<f:validateRegex
+					pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+			</p:inputText>
+
+		</h:panelGrid>
+
+		<h:panelGrid columns="2" styleClass="coluna50">
+
+			<p:outputLabel for="cnpj" value="CNPJ" />
+			<p:outputLabel for="telefone" value="Telefone" />
+
+			<p:inputText id="cnpj" required="true"
+				requiredMessage="CNPJ campo obrigatório" maxlength="50"
+				value="#{mbeanModel.cnpj}" styleClass="coluna95" />
+
+			<p:inputText id="telefone" required="true"
+				requiredMessage="Telefone Campo obrigatório" maxlength="10"
+				value="#{mbeanModel.telefone}" styleClass="coluna90" />
+
+		</h:panelGrid>
+
+		<h:panelGrid styleClass="coluna50">
+
+			<p:outputLabel for="endereco" value="Endereço" />
+			<p:inputText id="endereco" required="true"
+				requiredMessage="Endereco campo obrigatório" maxlength="50"
+				value="#{mbeanModel.endereco}" styleClass="coluna95" />
+
+		</h:panelGrid>
+
+		<h:panelGrid columns="2" styleClass="coluna50">
+
+
+			<p:outputLabel for="bairro" value="Bairro" />
+			<p:outputLabel for="cidade" value="Cidade" />
+
+			<p:inputText id="bairro" required="true"
+				requiredMessage="Bairro campo obrigatório" maxlength="50"
+				value="#{mbeanModel.bairro}" styleClass="coluna95" />
+
+			<p:inputText id="cidade" required="true"
+				requiredMessage="Cidade campo obrigatório" maxlength="50"
+				value="#{mbeanModel.cidade}" styleClass="coluna90" />
+
+
+			<p:outputLabel for="cep" value="CEP" />
+			<p:outputLabel for="estado" value="Estado" />
+
+			<p:inputMask mask="99999999" id="cep" required="true"
+				requiredMessage="CEP campo
+				obrigatório" maxlength="8"
+				value="#{mbeanModel.cep}" styleClass="coluna95" />
+
+			<p:inputText id="estado" required="true"
+				requiredMessage="Estado campo obrigatório" maxlength="50"
+				value="#{mbeanModel.estado}" styleClass="coluna90" />
+
+
+			<p:outputLabel for="pais" value="Pais" />
+			<h:panelGroup />
+			<p:inputText id="pais" required="true"
+				requiredMessage="Bairro campo obrigatório" maxlength="50"
+				value="#{mbeanModel.pais}" styleClass="coluna50" />
+
+		</h:panelGrid>
+
+	</ui:define>
+
+
+
+
+
+	<ui:define name="pesquisaCampos">
+
+		<h:panelGrid columns="1" style="width:50%">
+
+			<p:outputLabel for="descricaoPesquisa" value="Nome" />
+			<p:inputText id="descricaoPesquisa"
+				value="#{mbeanPesquisaModel.nome}" styleClass="coluna90" />
+
+		</h:panelGrid>
+
+	</ui:define>
+
+	<ui:define name="colunasTabela">
+
+		<p:column headerText="Nome">
+			<h:outputText value="#{linha.nome}" />
+		</p:column>
+
+	</ui:define>
+
+</ui:composition>
+
+
+

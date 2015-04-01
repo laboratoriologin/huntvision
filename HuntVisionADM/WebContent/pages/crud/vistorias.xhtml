@@ -1,0 +1,62 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+	<ui:param name="mbean" value="${vistoriaFaces}" />
+	<ui:param name="mbeanModel" value="${vistoriaFaces.crudModel}" />
+	<ui:param name="mbeanPesquisaModel"
+		value="${vistoriaFaces.crudPesquisaModel}" />
+	<ui:param name="reload" value="true" />
+
+
+
+<h:panelGrid>
+		<p:tabView>
+			<p:tab title="Clientes" >
+				<p:dataTable id="gridPesquisa" rendered="true"
+					emptyMessage="Nenhum registro encontrado" style="width: 100%"
+					paginator="true" paginatorAlwaysVisible="false" rows="10"
+					value="#{mbean.lstCliente}" var="linha" widgetVar="dtPesquisa">
+
+					<p:column headerText="Descrição">
+						<h:outputText value="#{linha.nome}" />
+					</p:column>
+
+
+					<p:column headerText="QrCode" styleClass="coluna5">
+
+						<div align="center">
+
+							<p:commandLink icon="qr_code" id="clImpressao"
+								action="#{mbean.geraQrCodeRelatorio}"
+								oncomplete="printRelatorio();">
+								<h:graphicImage value="../resources/images/6118_32x32.png"
+									style="border: 0px" />
+								<f:setPropertyActionListener target="#{mbean.cliente}"
+									value="#{linha}" />
+
+							</p:commandLink>
+
+						</div>
+
+					</p:column>
+
+
+				</p:dataTable>
+			</p:tab>
+		</p:tabView>
+
+	</h:panelGrid>
+	
+	<script>
+	
+		function printRelatorio() {
+			
+			window.open('relatorio/vistoriaImpressao.xhtml', '_blank');	
+			
+		}
+	
+	</script>
+	
+</ui:composition>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/rlConteudo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignBottom="@+id/rlBk"
+        android:background="#FFF"
+        android:padding="10dp"
+        tools:context="login.com.huntvision.QuestionarioActivity">
+
+        <TextView
+            android:id="@+id/lblTituloPergunta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lblTituloClienteLocal"
+            android:text="1- Atividades de manutenção elétrica foram realizadas há quanto tempo?"
+            android:textColor="@color/huntVisionAzul"
+            android:textSize="16dp" />
+
+        <RadioGroup
+            android:id="@+id/rgpResposta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lblTituloPergunta"
+            android:background="#FFF">
+
+            <requestFocus />
+
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/lblObservacoes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rgpResposta"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:text="Observações:"
+            android:textColor="@color/huntVisionAzul"
+            android:textIsSelectable="true"
+            android:textSize="16dp" />
+
+        <EditText
+            android:id="@+id/edtObservacoes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentStart="false"
+            android:layout_below="@+id/lblObservacoes"
+
+            android:background="@drawable/orange_border"
+            android:inputType="textMultiLine"
+            android:minHeight="50dp" />
+
+        <TextView android:id="@+id/lbCapturarImagem"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent" android:padding="5dp"
+            android:layout_height="wrap_content"  android:gravity="center_horizontal" android:text="Capturar imagem" android:textColor="@android:color/white"
+            android:layout_below="@+id/edtObservacoes" android:background="@color/huntVisionAzul"/>
+
+        <LinearLayout android:id="@+id/btsImagens"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lbCapturarImagem"
+            android:orientation="horizontal"
+            android:weightSum="2" android:layout_marginTop="1dp">
+
+            <Button
+                android:id="@+id/btnCapturarImagem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/huntVisionAzul"
+                android:drawableRight="@drawable/icone_capturar_imagem"
+                android:padding="10dp"
+                android:text="Tirar foto"
+                android:textColor="#FFF"
+                android:textSize="22dp" />
+
+            <LinearLayout
+                android:layout_width="1dp"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/btnCapturarImagemAcervo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/huntVisionAzul"
+                android:drawableRight="@drawable/icone_capturar_imagem"
+                android:padding="10dp"
+                android:text="Acervo"
+                android:textColor="#FFF"
+                android:textSize="22dp" />
+
+        </LinearLayout>
+
+        <TextView android:id="@+id/lbImagemCapturada"
+            android:layout_marginTop="5dp" android:visibility="gone"
+            android:layout_width="match_parent" android:padding="5dp"
+            android:layout_height="wrap_content"  android:gravity="center_horizontal" android:text="Imagem capturada:" android:textColor="@android:color/white"
+            android:layout_below="@+id/btsImagens" android:background="@color/huntVisionAzul"/>
+
+
+        <ImageView android:id="@+id/imageView" android:layout_below="@+id/lbImagemCapturada"
+            android:layout_width="match_parent" android:layout_marginTop="10dp"
+            android:layout_height="200dp" android:adjustViewBounds="true"/>
+
+    </RelativeLayout>
+
+</ScrollView>
