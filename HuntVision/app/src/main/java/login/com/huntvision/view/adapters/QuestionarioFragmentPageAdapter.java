@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
 import java.util.List;
 
@@ -13,7 +14,7 @@ import login.com.huntvision.view.fragments.QuestionarioFragment;
 /**
  * Created by login on 20/03/15.
  */
-public class QuestionarioFragmentPageAdapter extends FragmentPagerAdapter {
+public class QuestionarioFragmentPageAdapter extends FragmentStatePagerAdapter {
 
     private List<Questionario> lstQuestionario;
 

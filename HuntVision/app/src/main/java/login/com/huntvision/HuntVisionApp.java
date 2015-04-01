@@ -120,5 +120,33 @@ public class HuntVisionApp extends Application {
 
     }
 
+    public File getTmpDataFolder() {
+
+        File dataDir = null;
+
+        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+
+            dataDir = new File(Environment.getExternalStorageDirectory(), "huntvision_temp");
+
+            if (!dataDir.isDirectory()) {
+
+                dataDir.mkdirs();
+
+            }
+
+        }
+
+
+        if (!dataDir.isDirectory()) {
+
+            dataDir = this.getFilesDir();
+
+        }
+
+
+        return dataDir;
+
+    }
+
 
 }

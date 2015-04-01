@@ -76,8 +76,7 @@ public class QuestionarioActivity extends FragmentActivity {
     private Local objLocal;
     private Item objItem;
     private boolean acervo = false;
-    private Bitmap[] bitmaps;
-    private InputStream[] streams;
+    private String[] caminhosImagens;
 
     private DatabaseHelper databaseHelper;
 
@@ -102,6 +101,7 @@ public class QuestionarioActivity extends FragmentActivity {
     void init() {
 
         txtUsuario.setText(getUsuario().getNome());
+
         objCliente = (Cliente) getIntent().getSerializableExtra("cliente");
 
         objLocal = (Local) getIntent().getSerializableExtra("local");
@@ -110,7 +110,7 @@ public class QuestionarioActivity extends FragmentActivity {
 
         TextView titulo = (TextView) findViewById(R.id.lblTituloClienteLocal);
 
-        titulo.setText(objCliente.getNome() + " - " +objItem.getDescricao());
+        titulo.setText(objCliente.getNome() + " - " + objItem.getDescricao());
 
         QueryBuilder<Questionario, String> builder = getHelper().getQuestionarioRuntimeDAO().queryBuilder();
 
@@ -141,43 +141,26 @@ public class QuestionarioActivity extends FragmentActivity {
 
         questionarioAdapter = new QuestionarioFragmentPageAdapter(getSupportFragmentManager(), lstQuestionario);
 
-        bitmaps = new Bitmap[lstQuestionario.size()];
-
-        streams = new InputStream[lstQuestionario.size()];
+        caminhosImagens = new String[lstQuestionario.size()];
 
         viewPager.setAdapter(questionarioAdapter);
 
 
     }
+
     public Usuario getUsuario() {
-        Usuario usuario =  ((HuntVisionApp) getApplication()).getUsuario();
+        Usuario usuario = ((HuntVisionApp) getApplication()).getUsuario();
         return getHelper().getUsuarioRuntimeDAO().queryForId(usuario.getId());
     }
-    public InputStream rotateImage(Bitmap fotoUpload, ImageView imagemUpload) {
 
-        Matrix matrix = new Matrix();
-
-        matrix.postRotate(90);
-
-        fotoUpload = Bitmap.createBitmap(fotoUpload, 0, 0, fotoUpload.getWidth(), fotoUpload.getHeight(), matrix, true);
-
-        imagemUpload.setImageBitmap(fotoUpload);
-
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-
-        fotoUpload.compress(Bitmap.CompressFormat.PNG, 0 /* ignored for PNG */, bos);
-
-        return new ByteArrayInputStream(bos.toByteArray());
-
-    }
 
     public void openCamera(Questionario questionario) {
         acervo = false;
 
         ContentValues values = new ContentValues();
-        values.put(MediaStore.Images.Media.TITLE, "New Picture");
-        values.put(MediaStore.Images.Media.DESCRIPTION, "From your Camera");
-        selectedImage = getContentResolver().insert( MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+        values.put(MediaStore.Images.Media.TITLE, "Nova foto");
+        values.put(MediaStore.Images.Media.DESCRIPTION, "de sua câmera");
+        selectedImage = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, selectedImage);
         startActivityForResult(intent, lstQuestionario.indexOf(questionario));
@@ -201,24 +184,15 @@ public class QuestionarioActivity extends FragmentActivity {
 
         if (selectedImage != null) {
 
-            InputStream inputStream = null;
-
             try {
 
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImage);
 
-                inputStream = getContentResolver().openInputStream(selectedImage);
+                String imageName = "huntvision_resposta_" + System.currentTimeMillis() + ".jpg";
 
-                ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                createImageTmp(imageName, bitmap);
 
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 100 , bos);
-
-                bitmaps[requestCode] = bitmap;
-
-                byte[] bitmapdata = bos.toByteArray();
-
-                streams[requestCode] = new ByteArrayInputStream(bitmapdata);
-
+                caminhosImagens[requestCode] = imageName;
 
             } catch (Exception e) {
 
@@ -237,7 +211,7 @@ public class QuestionarioActivity extends FragmentActivity {
 
                 selectedImage = data.getData();
 
-            } else if(data!=null) {
+            } else if (data != null) {
 
                 selectedImage = null;
 
@@ -245,16 +219,11 @@ public class QuestionarioActivity extends FragmentActivity {
 
                 Bitmap bitmap = (Bitmap) extras.get("data");
 
-                ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                String imageName = "huntvision_resposta_" + System.currentTimeMillis() + ".jpg";
 
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 100 , bos);
+                createImageTmp(imageName, bitmap);
 
-                bitmaps[requestCode] = bitmap;
-
-                byte[] bitmapdata = bos.toByteArray();
-
-                streams[requestCode] = new ByteArrayInputStream(bitmapdata);
-
+                caminhosImagens[requestCode] = imageName;
 
             }
 
@@ -281,9 +250,7 @@ public class QuestionarioActivity extends FragmentActivity {
 
         vistoria.setItemId(objItem.getId());
 
-        HuntVisionApp app = (HuntVisionApp) getApplication();
-
-        vistoria.setUsuarioId(app.getUsuario().getId());
+        vistoria.setUsuarioId(getApp().getUsuario().getId());
 
         vistoria.setRespostas(new ArrayList<VistoriaResposta>());
 
@@ -305,7 +272,7 @@ public class QuestionarioActivity extends FragmentActivity {
 
                     vistoriaResposta.setObservacao(questionario.getObservacao());
 
-                    vistoriaResposta.setImagem(createImage(questionario));
+                    vistoriaResposta.setImagem(caminhosImagens[lstQuestionario.indexOf(questionario)]);
 
                     getHelper().getVistoriaRespostaRuntimeDAO().create(vistoriaResposta);
 
@@ -317,9 +284,35 @@ public class QuestionarioActivity extends FragmentActivity {
 
         }
 
-        Toast.makeText(this,"Pronto! Questionário respondido e salvo com sucesso",Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Pronto! Questionário respondido e salvo com sucesso", Toast.LENGTH_LONG).show();
 
         finish();
+
+    }
+
+    private void cleanTmpDirectory() {
+
+        for (int i = 0; i < caminhosImagens.length; i++) {
+
+            if (!TextUtils.isEmpty(caminhosImagens[i])) {
+
+                File file = new File(getApp().getTmpDataFolder() + "/" + caminhosImagens[i]);
+
+                if (file.exists()) {
+
+                    file.renameTo(new File(getApp().getDataFolder() + "/" + caminhosImagens[i]));
+
+                }
+
+            }
+
+        }
+
+        for (File file : getApp().getTmpDataFolder().listFiles()) {
+
+            file.delete();
+
+        }
 
     }
 
@@ -357,29 +350,17 @@ public class QuestionarioActivity extends FragmentActivity {
 
     }
 
-    private String createImage(Questionario questionario) {
-
-        int index = lstQuestionario.indexOf(questionario);
-
-        if(getImage(questionario) == null) {
-            return null;
-        }
-
-        String imageName = "huntvision_resposta_" + System.currentTimeMillis() + ".jpg";
+    private void createImageTmp(String imageName, Bitmap bitmap) {
 
         try {
 
-            InputStream stream = getStream(questionario);
-
-            HuntVisionApp app = (HuntVisionApp) getApplication();
-
-            File folder = app.getDataFolder();
+            File folder = getApp().getTmpDataFolder();
 
             File file = new File(folder, imageName);
 
             BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(file));
 
-            getImage(questionario).compress(Bitmap.CompressFormat.JPEG, 50, bos);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 50, bos);
 
             bos.flush();
 
@@ -389,11 +370,7 @@ public class QuestionarioActivity extends FragmentActivity {
 
             e.printStackTrace();
 
-            return null;
-
         }
-
-        return imageName;
 
     }
 
@@ -414,6 +391,7 @@ public class QuestionarioActivity extends FragmentActivity {
     protected void onDestroy() {
         super.onDestroy();
         OpenHelperManager.releaseHelper();
+        cleanTmpDirectory();
     }
 
     DatabaseHelper getHelper() {
@@ -428,18 +406,24 @@ public class QuestionarioActivity extends FragmentActivity {
 
         int position = lstQuestionario.indexOf(questionario);
 
-        return bitmaps[position];
+        String caminhoImagem = caminhosImagens[position];
+
+        HuntVisionApp app = (HuntVisionApp) getApplication();
+
+        File imgFile = new File(app.getTmpDataFolder() + "/" + caminhoImagem);
+
+        if (imgFile.exists()) {
+
+            return BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+
+        }
+
+        return null;
 
     }
 
-
-    public InputStream getStream(Questionario questionario) {
-
-        int position = lstQuestionario.indexOf(questionario);
-
-        return streams[position];
-
+    private HuntVisionApp getApp() {
+        return (HuntVisionApp) getApplication();
     }
-
 
 }
