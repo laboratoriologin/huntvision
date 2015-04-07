@@ -70,7 +70,15 @@ public class VistoriaAdapter extends BaseAdapter {
 
         if (vistoria.getFlagSincronizado() == 1) {
 
-            status.setText("Status: Enviado");
+            if (vistoria.getPendenteImagem() == 0) {
+
+                status.setText("Status: Enviado");
+
+            } else {
+
+                status.setText("Status: Imagens pendentes de envio");
+
+            }
 
         } else {
 

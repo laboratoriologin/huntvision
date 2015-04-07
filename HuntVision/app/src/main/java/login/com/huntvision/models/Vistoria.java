@@ -31,6 +31,9 @@ public class Vistoria extends Base {
     @DatabaseField
     private String itemId;
 
+    @DatabaseField
+    private Integer pendenteImagem = 0;
+
     private Cliente cliente;
 
     @DatabaseField
@@ -124,5 +127,13 @@ public class Vistoria extends Base {
 
     public void setRespostas(List<VistoriaResposta> respostas) {
         this.respostas = respostas;
+    }
+
+    public Integer getPendenteImagem() {
+        return pendenteImagem;
+    }
+
+    public void setPendenteImagem(Integer pendenteImagem) {
+        this.pendenteImagem = pendenteImagem;
     }
 }

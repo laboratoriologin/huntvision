@@ -76,7 +76,7 @@ public class ServerResponse {
 
     @SuppressWarnings("static-access")
     public Boolean isOK() {
-        return this.SC_OK == this.statusCode || this.SC_CREATED == this.statusCode;
+        return this.statusCode >=200 && this.statusCode <300;
     }
 
     public String getMsgErro() {

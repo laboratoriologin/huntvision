@@ -73,7 +73,7 @@ public class VistoriaPendenteActivity extends DefaultActivity {
     }
 
     @AfterViews
-    void init(){
+    void init() {
         txtUsuario.setText(getUsuario().getNome());
     }
 
@@ -152,7 +152,7 @@ public class VistoriaPendenteActivity extends DefaultActivity {
 
         for (Vistoria vistoria : vistoriaAdapter.getVistoriasFiltered()) {
 
-            if (vistoria.getFlagSincronizado() == 0) {
+            if (vistoria.getFlagSincronizado() == 0 || vistoria.getPendenteImagem() == 1) {
 
                 vistoriasToSend.add(vistoria);
 
@@ -179,6 +179,14 @@ public class VistoriaPendenteActivity extends DefaultActivity {
         if (positionToSend < vistoriasToSend.size()) {
 
             final Vistoria vistoria = vistoriasToSend.get(positionToSend);
+
+            if (vistoria.getFlagSincronizado() == 1 && vistoria.getPendenteImagem() == 1) {
+
+                postImagens(vistoria, getImagens(vistoria));
+
+                return;
+
+            }
 
             new VistoriaRequest(new ResponseListener() {
 
@@ -223,7 +231,7 @@ public class VistoriaPendenteActivity extends DefaultActivity {
 
     }
 
-    private void postImagens(Vistoria vistoria,List<InputStreamWrapper> imagens) {
+    private void postImagens(final Vistoria vistoria, List<InputStreamWrapper> imagens) {
 
         new VistoriaRequest(new ResponseListener() {
 
@@ -232,11 +240,24 @@ public class VistoriaPendenteActivity extends DefaultActivity {
 
                 positionToSend++;
 
+                if (serverResponse.isOK()) {
+
+                    vistoria.setPendenteImagem(0);
+
+                } else {
+
+                    vistoria.setPendenteImagem(1);
+
+                }
+
+                getHelper().getVistoriaRuntimeDAO().update(vistoria);
+
+
                 enviarVistoria();
 
             }
 
-        }).post(new Vistoria(),imagens);
+        }).post(new Vistoria(), imagens);
 
     }
 

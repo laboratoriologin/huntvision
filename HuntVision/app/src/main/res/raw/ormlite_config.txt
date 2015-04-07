@@ -130,6 +130,7 @@ fieldName=clienteId;
 fieldName=data;
 fieldName=usuarioId;
 fieldName=itemId;
+fieldName=imagemPendente;
 
 ################################################
 
