@@ -19,7 +19,7 @@
 					paginator="true" paginatorAlwaysVisible="false" rows="10"
 					value="#{mbean.lstCliente}" var="linha" widgetVar="dtPesquisa">
 
-					<p:column headerText="Descrição" styleClass="coluna80">
+					<p:column headerText="Descrição" styleClass="coluna70">
 						<h:outputText value="#{linha.nome}" />
 					</p:column>
 					
@@ -34,9 +34,19 @@
 						</div>
 
 					</p:column>
+					
+						<p:column headerText="Baixar documento" styleClass="coluna10">
+
+						<div align="center">
+	
+							<h:outputLink onclick="baixar('#{linha.id}');">Baixar documento</h:outputLink>
+
+						</div>
+
+					</p:column>
 
 
-					<p:column headerText="QrCode" styleClass="coluna10">
+					<p:column headerText="Gerar Relatório" styleClass="coluna10">
 
 						<div align="center">
 
@@ -65,6 +75,12 @@
 		function printRelatorio() {
 
 			window.open('relatorio/vistoriaImpressao.xhtml', '_blank');
+
+		}
+		
+		function baixar(cliente) {
+
+			window.open('/HuntVisionADM/word_document?cliente_id=' + cliente, '_blank');
 
 		}
 	</script>

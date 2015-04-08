@@ -125,6 +125,13 @@ public final class Vistoria extends TSActiveRecordAb<Vistoria> {
 	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
+	
+	public List<Vistoria> findAllByCliente() {
+		
+		return find("from Vistoria where cliente.id = ?", null, cliente.getId());
+		
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

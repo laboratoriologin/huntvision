@@ -9,7 +9,6 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
 import javax.faces.model.SelectItem;
 
 import br.com.topsys.util.TSUtil;
@@ -17,12 +16,10 @@ import br.com.topsys.web.util.TSFacesUtil;
 
 import com.login.huntvision.model.Cliente;
 import com.login.huntvision.model.GeradorQRCode;
-import com.login.huntvision.model.Local;
 import com.login.huntvision.model.Vistoria;
 import com.login.huntvision.model.VistoriaResposta;
 import com.login.huntvision.util.EmailUtil;
 import com.login.huntvision.util.Utilitarios;
-import com.sun.corba.se.impl.javax.rmi.CORBA.Util;
 
 /**
  * @author Ricardo
@@ -114,6 +111,7 @@ public class VistoriaFaces extends CrudFaces<Vistoria> {
 
 				}
 			}
+		
 		}
 
 	}

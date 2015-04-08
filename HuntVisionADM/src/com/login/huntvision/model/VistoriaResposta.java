@@ -1,5 +1,7 @@
 package com.login.huntvision.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -90,6 +92,12 @@ public final class VistoriaResposta extends TSActiveRecordAb<VistoriaResposta> {
 	 */
 	public void setVistoria(Vistoria vistoria) {
 		this.vistoria = vistoria;
+	}
+	
+	public List<VistoriaResposta> findAllByVistoria() {
+		
+		return find("from VistoriaResposta where vistoria.id = ?", null, vistoria.getId());
+		
 	}
 
 	/* (non-Javadoc)
