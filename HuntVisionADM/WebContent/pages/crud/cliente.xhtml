@@ -87,6 +87,16 @@
 				value="#{mbeanModel.pais}" styleClass="coluna50" />
 
 		</h:panelGrid>
+		
+		<p:fieldset legend="Logo do cliente" style="width:95%">
+
+				<p:fileUpload id="uploadArquivo" label="Adicionar Imagem" fileUploadListener="#{mbean.uploadMidias}" auto="true" multiple="false" allowTypes="/(\.|\/)(|jpe?g|png)$/" process="@this" style="width: 95%" />
+
+				<br />
+				<p:outputPanel autoUpdate="true">
+					<img src="/arquivos_huntvision/#{mbeanModel.imagem}" style="max-height: 95px; max-width: 245px" alt="Logomarca" />
+				</p:outputPanel>
+			</p:fieldset>
 
 	</ui:define>
 

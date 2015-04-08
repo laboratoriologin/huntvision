@@ -4,6 +4,8 @@ import java.text.Normalizer;
 import java.util.Calendar;
 import java.util.List;
 
+import com.login.huntvision.model.Cliente;
+
 import br.com.topsys.exception.TSApplicationException;
 import br.com.topsys.util.TSCryptoUtil;
 import br.com.topsys.util.TSUtil;
@@ -74,6 +76,21 @@ public final class Utilitarios {
 		}
 
 		return "Inativo";
+	}
+	
+	public static String getVistoriaEmailMessage(Cliente cliente, String url) {
+		
+		StringBuilder email = new StringBuilder();
+		
+		email.append("Prezado(a) ")
+			 .append(cliente.getNome())
+			 .append(", <br/>")
+			 .append("O resultado da vistoria pode ser encontrado clicando <a href='")
+			 .append(url)
+			 .append("'>aqui</a>");
+		
+		return email.toString();
+		
 	}
 
 

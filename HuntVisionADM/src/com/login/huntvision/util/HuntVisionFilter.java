@@ -36,7 +36,8 @@ public class HuntVisionFilter implements Filter {
 		if (uri != null) {
 			uri = uri.substring(uri.lastIndexOf("/"), uri.length());
 		}
-		if ((!TSUtil.isEmpty(r.getSession().getAttribute(Constantes.USUARIO_CONECTADO))) || uri.equals("/login.xhtml")) {
+		if ((!TSUtil.isEmpty(r.getSession().getAttribute(Constantes.USUARIO_CONECTADO))) || uri.equals("/login.xhtml")
+				|| uri.equals("/vistoriaImpressao.xhtml")) {
 			
 			chain.doFilter(request, response);
 			

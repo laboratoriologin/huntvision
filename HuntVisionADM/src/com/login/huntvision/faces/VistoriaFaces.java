@@ -12,11 +12,17 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.model.SelectItem;
 
+import br.com.topsys.util.TSUtil;
+import br.com.topsys.web.util.TSFacesUtil;
+
 import com.login.huntvision.model.Cliente;
 import com.login.huntvision.model.GeradorQRCode;
 import com.login.huntvision.model.Local;
 import com.login.huntvision.model.Vistoria;
 import com.login.huntvision.model.VistoriaResposta;
+import com.login.huntvision.util.EmailUtil;
+import com.login.huntvision.util.Utilitarios;
+import com.sun.corba.se.impl.javax.rmi.CORBA.Util;
 
 /**
  * @author Ricardo
@@ -31,28 +37,117 @@ public class VistoriaFaces extends CrudFaces<Vistoria> {
 	private String txtCode;
 	private List<SelectItem> comboGeradorQRCode;
 	private Cliente cliente;
-
-	/**
-	 * @return the cliente
-	 */
-	public Cliente getCliente() {
-		return cliente;
-	}
-
-	/**
-	 * @param cliente
-	 *            the cliente to set
-	 */
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
-
 	private GeradorQRCode itemSelecionado;
-
 	private List<Vistoria> lstVistoria;
 	private List<Vistoria> lstVistoriaTratada;
 	private List<VistoriaResposta> lstVistoriaResposta;
 	private List<VistoriaResposta> lstVistoriaRespostaTratada;
+
+	@PostConstruct
+	protected void init() {
+	
+		this.itemSelecionado = new GeradorQRCode();
+		
+		this.clearFields();
+
+		setFieldOrdem("descricao");
+		lstCliente = new ArrayList<Cliente>();
+		lstCliente = (new Cliente().findAll("nome"));
+
+		String clienteId = TSFacesUtil.getRequestParameter("cliente_id");
+
+		if (clienteId != null && TSUtil.isNumeric(clienteId)) {
+
+			Long id = Long.valueOf(clienteId);
+
+			this.cliente = new Cliente();
+
+			this.cliente.setId(id);
+
+			this.cliente = this.cliente.getById();
+			
+		}
+
+		this.getCrudModel().setCliente(cliente);
+		// loadCliente();
+		
+		geraQrCodeRelatorio();
+
+		
+
+	}
+
+	@Override
+	public String limparPesquisa() {
+		String retorno = super.limparPesquisa();
+		this.txtCode = "";
+		return retorno;
+	}
+
+	public void loadCliente() {
+
+		lstCliente = new Cliente().findAll();
+
+	}
+
+	public void geraQrCodeRelatorio() {
+
+		lstVistoria = new Vistoria().findAll();
+		lstVistoriaRespostaTratada = new ArrayList<VistoriaResposta>();
+		lstVistoriaResposta = new VistoriaResposta().findAll();
+		lstVistoriaRespostaTratada = new ArrayList<VistoriaResposta>();
+		lstVistoriaTratada = new ArrayList<Vistoria>();
+
+		for (Vistoria vistoria : lstVistoria) {
+
+			if (vistoria.getCliente().equals(cliente)) {
+
+				lstVistoriaTratada.add(vistoria);
+
+				for (VistoriaResposta objVistoriaResposta : lstVistoriaResposta) {
+
+					if (objVistoriaResposta.getVistoria().equals(vistoria)) {
+
+						lstVistoriaRespostaTratada.add(objVistoriaResposta);
+
+					}
+
+				}
+			}
+		}
+
+	}
+	
+	public String enviarEmail() {
+		
+		String url = TSFacesUtil.getRequest().getRequestURL().toString();
+		
+		url = url.replaceAll("dashboard.xhtml", "relatorio/vistoriaImpressao.xhtml");
+		
+		url = url + "?cliente_id=" + cliente.getId();
+		
+		EmailUtil.enviar(cliente.getEmail(), Utilitarios.getVistoriaEmailMessage(cliente, url));
+		
+		this.addInfoMessage("E-mail enviado com sucesso!");
+		
+		return null;
+		
+	}
+
+	/**
+	 * @return the lstVistoriaTratada
+	 */
+	public List<Vistoria> getLstVistoriaTratada() {
+		return lstVistoriaTratada;
+	}
+
+	/**
+	 * @param lstVistoriaTratada
+	 *            the lstVistoriaTratada to set
+	 */
+	public void setLstVistoriaTratada(List<Vistoria> lstVistoriaTratada) {
+		this.lstVistoriaTratada = lstVistoriaTratada;
+	}
 
 	/**
 	 * @return the lstVistoriaRespostaTratada
@@ -65,8 +160,7 @@ public class VistoriaFaces extends CrudFaces<Vistoria> {
 	 * @param lstVistoriaRespostaTratada
 	 *            the lstVistoriaRespostaTratada to set
 	 */
-	public void setLstVistoriaRespostaTratada(
-			List<VistoriaResposta> lstVistoriaRespostaTratada) {
+	public void setLstVistoriaRespostaTratada(List<VistoriaResposta> lstVistoriaRespostaTratada) {
 		this.lstVistoriaRespostaTratada = lstVistoriaRespostaTratada;
 	}
 
@@ -81,8 +175,7 @@ public class VistoriaFaces extends CrudFaces<Vistoria> {
 	 * @param lstVistoriaResposta
 	 *            the lstVistoriaResposta to set
 	 */
-	public void setLstVistoriaResposta(
-			List<VistoriaResposta> lstVistoriaResposta) {
+	public void setLstVistoriaResposta(List<VistoriaResposta> lstVistoriaResposta) {
 		this.lstVistoriaResposta = lstVistoriaResposta;
 	}
 
@@ -135,19 +228,19 @@ public class VistoriaFaces extends CrudFaces<Vistoria> {
 		this.itemSelecionado = itemSelecionado;
 	}
 
-	@PostConstruct
-	protected void init() {
-		this.itemSelecionado = new GeradorQRCode();
-		this.clearFields();
+	/**
+	 * @return the cliente
+	 */
+	public Cliente getCliente() {
+		return cliente;
+	}
 
-		setFieldOrdem("descricao");
-		lstCliente = new ArrayList<Cliente>();
-		lstCliente = (new Cliente().findAll("nome"));
-		this.getCrudModel().setCliente(cliente);
-		// loadCliente();
-
-		geraQrCodeRelatorio();
-
+	/**
+	 * @param cliente
+	 *            the cliente to set
+	 */
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 
 	/**
@@ -163,32 +256,6 @@ public class VistoriaFaces extends CrudFaces<Vistoria> {
 	 */
 	public void setComboLocal(List<SelectItem> comboLocal) {
 		this.comboLocal = comboLocal;
-	}
-
-	@Override
-	protected String detail() {
-		super.detail();
-
-		return null;
-	}
-
-	@Override
-	protected void prePersist() {
-	}
-
-	@Override
-	protected void posPersist() {
-	}
-
-	@Override
-	public String limparPesquisa() {
-		String retorno = super.limparPesquisa();
-		this.txtCode = "";
-		return retorno;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
 	}
 
 	/**
@@ -220,58 +287,5 @@ public class VistoriaFaces extends CrudFaces<Vistoria> {
 	public void setComboGeradorQRCode(List<SelectItem> comboGeradorQRCode) {
 		this.comboGeradorQRCode = comboGeradorQRCode;
 	}
-
-	public void loadCliente() {
-
-		lstCliente = new Cliente().findAll();
-
-	}
-
-	public void geraQrCodeRelatorio() {
-
-		lstVistoria = new Vistoria().findAll();
-		lstVistoriaRespostaTratada = new ArrayList<VistoriaResposta>();
-		lstVistoriaResposta = new VistoriaResposta().findAll();
-		lstVistoriaRespostaTratada = new ArrayList<VistoriaResposta>();
-		lstVistoriaTratada = new ArrayList<Vistoria>();
-
-		for (Vistoria vistoria : lstVistoria) {
-
-			if (vistoria.getCliente().equals(cliente)) {
-
-				lstVistoriaTratada.add(vistoria);
-			
-				for (VistoriaResposta objVistoriaResposta : lstVistoriaResposta) {
-
-					if (objVistoriaResposta.getVistoria().equals(vistoria)) {
-
-						lstVistoriaRespostaTratada.add(objVistoriaResposta);
-
-					}
-
-				}
-			}
-		}
-
-	}
-
-	/**
-	 * @return the lstVistoriaTratada
-	 */
-	public List<Vistoria> getLstVistoriaTratada() {
-		return lstVistoriaTratada;
-	}
-
-	/**
-	 * @param lstVistoriaTratada
-	 *            the lstVistoriaTratada to set
-	 */
-	public void setLstVistoriaTratada(List<Vistoria> lstVistoriaTratada) {
-		this.lstVistoriaTratada = lstVistoriaTratada;
-	}
-
-	/**
-	 * 
-	 */
 
 }

@@ -11,24 +11,36 @@
 
 
 
-<h:panelGrid>
+	<h:panelGrid>
 		<p:tabView>
-			<p:tab title="Clientes" >
+			<p:tab title="Clientes">
 				<p:dataTable id="gridPesquisa" rendered="true"
 					emptyMessage="Nenhum registro encontrado" style="width: 100%"
 					paginator="true" paginatorAlwaysVisible="false" rows="10"
 					value="#{mbean.lstCliente}" var="linha" widgetVar="dtPesquisa">
 
-					<p:column headerText="Descrição">
+					<p:column headerText="Descrição" styleClass="coluna80">
 						<h:outputText value="#{linha.nome}" />
 					</p:column>
-
-
-					<p:column headerText="QrCode" styleClass="coluna5">
+					
+					<p:column headerText="Enviar e-mail" styleClass="coluna10">
 
 						<div align="center">
 
-							<p:commandLink icon="qr_code" id="clImpressao"
+							<p:commandLink value="Enviar e-mail para cliente" action="#{mbean.enviarEmail}">
+								<f:setPropertyActionListener target="#{mbean.cliente}" value="#{linha}" />
+							</p:commandLink>
+
+						</div>
+
+					</p:column>
+
+
+					<p:column headerText="QrCode" styleClass="coluna10">
+
+						<div align="center">
+
+							<p:commandLink id="clImpressao"
 								action="#{mbean.geraQrCodeRelatorio}"
 								oncomplete="printRelatorio();">
 								<h:graphicImage value="../resources/images/6118_32x32.png"
@@ -48,15 +60,13 @@
 		</p:tabView>
 
 	</h:panelGrid>
-	
+
 	<script>
-	
 		function printRelatorio() {
-			
-			window.open('relatorio/vistoriaImpressao.xhtml', '_blank');	
-			
+
+			window.open('relatorio/vistoriaImpressao.xhtml', '_blank');
+
 		}
-	
 	</script>
-	
+
 </ui:composition>

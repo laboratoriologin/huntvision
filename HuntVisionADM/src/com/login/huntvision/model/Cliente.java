@@ -10,15 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
-
-
 import br.com.topsys.database.hibernate.TSActiveRecordAb;
-
-
 
 @Entity
 @Table(name = "clientes")
-public final class Cliente extends TSActiveRecordAb<Cliente> { 
+public final class Cliente extends TSActiveRecordAb<Cliente> {
 
 	/**
 	 * 
@@ -28,7 +24,7 @@ public final class Cliente extends TSActiveRecordAb<Cliente> {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -49,7 +45,7 @@ public final class Cliente extends TSActiveRecordAb<Cliente> {
 	}
 
 	public void setBairro(String bairro) {
-		this.bairro=bairro;
+		this.bairro = bairro;
 	}
 
 	@Column(name = "cep")
@@ -60,7 +56,7 @@ public final class Cliente extends TSActiveRecordAb<Cliente> {
 	}
 
 	public void setCep(String cep) {
-		this.cep=cep;
+		this.cep = cep;
 	}
 
 	@Column(name = "cidade")
@@ -71,7 +67,7 @@ public final class Cliente extends TSActiveRecordAb<Cliente> {
 	}
 
 	public void setCidade(String cidade) {
-		this.cidade=cidade;
+		this.cidade = cidade;
 	}
 
 	@Column(name = "cnpj")
@@ -82,7 +78,7 @@ public final class Cliente extends TSActiveRecordAb<Cliente> {
 	}
 
 	public void setCnpj(String cnpj) {
-		this.cnpj=cnpj;
+		this.cnpj = cnpj;
 	}
 
 	@Column(name = "email")
@@ -93,7 +89,7 @@ public final class Cliente extends TSActiveRecordAb<Cliente> {
 	}
 
 	public void setEmail(String email) {
-		this.email=email;
+		this.email = email;
 	}
 
 	@Column(name = "endereco")
@@ -104,7 +100,7 @@ public final class Cliente extends TSActiveRecordAb<Cliente> {
 	}
 
 	public void setEndereco(String endereco) {
-		this.endereco=endereco;
+		this.endereco = endereco;
 	}
 
 	@Column(name = "estado")
@@ -115,7 +111,7 @@ public final class Cliente extends TSActiveRecordAb<Cliente> {
 	}
 
 	public void setEstado(String estado) {
-		this.estado=estado;
+		this.estado = estado;
 	}
 
 	@Column(name = "nome")
@@ -126,7 +122,7 @@ public final class Cliente extends TSActiveRecordAb<Cliente> {
 	}
 
 	public void setNome(String nome) {
-		this.nome=nome;
+		this.nome = nome;
 	}
 
 	@Column(name = "pais")
@@ -137,7 +133,7 @@ public final class Cliente extends TSActiveRecordAb<Cliente> {
 	}
 
 	public void setPais(String pais) {
-		this.pais=pais;
+		this.pais = pais;
 	}
 
 	@Column(name = "telefone")
@@ -148,16 +144,30 @@ public final class Cliente extends TSActiveRecordAb<Cliente> {
 	}
 
 	public void setTelefone(String telefone) {
-		this.telefone=telefone;
+		this.telefone = telefone;
 	}
 
-	public Cliente(){}
+	@Column(name = "imagem")
+	private String imagem;
 
-	public Cliente(String id){
+	public String getImagem() {
+		return imagem;
+	}
+
+	public void setImagem(String imagem) {
+		this.imagem = imagem;
+	}
+
+	public Cliente() {
+	}
+
+	public Cliente(String id) {
 		this.id = Long.valueOf(id);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -168,7 +178,9 @@ public final class Cliente extends TSActiveRecordAb<Cliente> {
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -188,6 +200,4 @@ public final class Cliente extends TSActiveRecordAb<Cliente> {
 		return true;
 	}
 
-	
-	
 }
