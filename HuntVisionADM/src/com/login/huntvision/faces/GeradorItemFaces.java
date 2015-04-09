@@ -15,7 +15,6 @@ import br.com.topsys.exception.TSApplicationException;
 import br.com.topsys.web.faces.TSMainFaces;
 
 import com.login.huntvision.model.Cliente;
-
 import com.login.huntvision.model.Imagem;
 import com.login.huntvision.model.Item;
 import com.login.huntvision.model.ItemLocal;
@@ -29,8 +28,8 @@ import com.login.huntvision.model.TipoQuestionario;
  *
  */
 @ViewScoped
-@ManagedBean(name = "localFaces")
-public class LocalFaces extends CrudFaces<Local> {
+@ManagedBean(name = "geradorFaces")
+public class GeradorItemFaces extends CrudFaces<Local> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -45,8 +44,12 @@ public class LocalFaces extends CrudFaces<Local> {
 		this.comboCliente = super.initCombo(new Cliente().findByModel("nome"),
 				"id", "nome");
 		
-		
+		this.comboLocal = super.initCombo(new Local().findByModel("nomeLocal"),
+				"id", "nomeLocal");
 		getCrudModel().setCliente(new Cliente());
+
+		this.comboItem = super.initCombo(new Item().findByModel("descricao"),
+				"id", "descricao");
 
 		setFieldOrdem("nomeLocal");
 	}
@@ -91,12 +94,15 @@ public class LocalFaces extends CrudFaces<Local> {
 	}
 
 	@Override
-	protected void prePersist() {
-		
+	protected String insert() throws TSApplicationException {
+		return super.update();//a tela eh sempre um update pois o local eh selecionado no combo
+	}
 	
-
-		getCrudModel().setItensLocais(new ArrayList<ItemLocal>());
-
+	@Override
+	protected void prePersist() {
+		super.detail();
+		getCrudModel().getItensLocais().clear();
+		
 		ItemLocal itemLocal = null;
 
 		for (String id : selectedOptions) {

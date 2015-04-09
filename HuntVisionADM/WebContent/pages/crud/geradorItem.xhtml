@@ -5,10 +5,10 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core">
 
-	<ui:param name="mbean" value="${localFaces}" />
-	<ui:param name="mbeanModel" value="${localFaces.crudModel}" />
+	<ui:param name="mbean" value="${geradorFaces}" />
+	<ui:param name="mbeanModel" value="${geradorFaces.crudModel}" />
 	<ui:param name="mbeanPesquisaModel"
-		value="${localFaces.crudPesquisaModel}" />
+		value="${geradorFaces.crudPesquisaModel}" />
 	<ui:param name="reload" value="true" />
 
 	<ui:define name="cadastro">
@@ -22,14 +22,19 @@
 				<f:selectItems value="#{mbean.comboCliente}" />
 			</p:selectOneMenu>
 
-			<p:outputLabel for="nome" value="Local" />
-			<p:inputText id="nome" required="true"
-				requiredMessage="Nome Campo obrigatório" maxlength="50"
-				value="#{mbeanModel.nomeLocal}" styleClass="coluna50" />
+
+			<p:outputLabel for="local" value="Local" />
+			<p:selectOneMenu id="local" value="#{mbeanModel.id}" required="true"
+				requiredMessage="Campo cliente obrigatório" style="width:55%">
+				<f:selectItem itemLabel="Não Selecionado" itemValue="" />
+				<f:selectItems value="#{mbean.comboLocal}" />
+			</p:selectOneMenu>
+
 
 
 			<p:outputLabel for="itens" value="Itens" />
-			<p:selectManyMenu id="itens" style="height:200px;width:50%" value="#{mbean.selectedOptions}" showCheckbox="true">
+			<p:selectManyMenu id="itens" style="height:200px;width:50%"
+				value="#{mbean.selectedOptions}" showCheckbox="true">
 				<f:selectItems value="#{mbean.comboItem}" var="item"
 					itemLabel="#{item.descricao}" itemValue="#{item.id}" />
 			</p:selectManyMenu>
