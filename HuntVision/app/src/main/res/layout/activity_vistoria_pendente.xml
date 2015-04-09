@@ -14,8 +14,8 @@
 
         <Button
             android:id="@+id/btnVoltar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/top_bar_font_height"
+            android:layout_height="@dimen/top_bar_font_height"
             android:layout_centerVertical="true"
             android:background="@drawable/botao_seta_voltar"
             android:layout_marginLeft="10dp"
@@ -23,8 +23,8 @@
 
         <ImageView
             android:id="@+id/imgCliente"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/top_bar_font_height"
+            android:layout_height="@dimen/top_bar_font_height"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/btnVoltar"
             android:background="@drawable/icone_concluir_visita" android:onClick="onBackPressed"/>
@@ -41,8 +41,8 @@
 
         <Button
             android:id="@+id/enviarVistoriasPendentes"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/top_bar_font_height"
+            android:layout_height="@dimen/top_bar_font_height"
             android:layout_centerVertical="true"
             android:background="@drawable/icone_concluir_visita"
             android:layout_marginRight="10dp"

@@ -15,8 +15,8 @@
 
         <Button
             android:id="@+id/btnVoltar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/top_bar_font_height"
+            android:layout_height="@dimen/top_bar_font_height"
             android:layout_centerVertical="true"
             android:onClick="backPressed"
             android:layout_marginLeft="10dp"
@@ -25,8 +25,8 @@
         <ImageView
             android:onClick="backPressed"
             android:id="@+id/imgCliente"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/top_bar_font_height"
+            android:layout_height="@dimen/top_bar_font_height"
             android:layout_centerVertical="true"
             android:layout_marginLeft="5dp"
             android:layout_toRightOf="@+id/btnVoltar"
@@ -41,7 +41,7 @@
             android:layout_toRightOf="@+id/imgCliente"
             android:text="Cliente"
             android:textColor="#FFF"
-            android:textSize="18dp" />
+            android:textSize="@dimen/top_bar_font_height" />
 
         <Button
             android:id="@+id/salvarQuestionario"

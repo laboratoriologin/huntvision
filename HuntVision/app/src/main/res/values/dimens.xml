@@ -6,6 +6,6 @@
     <dimen name="largura_imagem">78dp</dimen>
     <dimen name="top_bar_height">44dp</dimen>
     <dimen name="tob_bar_height_small">33dp</dimen>
-    <dimen name="top_bar_font_height">18sp</dimen>
+    <dimen name="top_bar_font_height">22sp</dimen>
     <dimen name="img_huntvision_home">130dp</dimen>
 </resources>

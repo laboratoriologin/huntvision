@@ -9,22 +9,21 @@
     <RelativeLayout
         android:id="@+id/topo"
         android:layout_width="match_parent"
-        android:layout_height="33sp"
+        android:layout_height="@dimen/top_bar_height"
         android:background="@color/huntVisionAzul">
 
         <Button
             android:id="@+id/btnVoltar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/top_bar_font_height"
+            android:layout_height="@dimen/top_bar_font_height"
             android:layout_centerVertical="true"
-
-            android:layout_marginLeft="25dp"
+            android:layout_marginLeft="10dp"
             android:background="@drawable/botao_seta_voltar" />
 
         <ImageView
             android:id="@+id/imgCliente"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/top_bar_font_height"
+            android:layout_height="@dimen/top_bar_font_height"
             android:layout_centerVertical="true"
             android:layout_marginLeft="5dp"
             android:layout_toRightOf="@+id/btnVoltar"
@@ -39,7 +38,7 @@
             android:layout_toRightOf="@+id/imgCliente"
             android:text="Cliente"
             android:textColor="#FFF"
-            android:textSize="18dp" />
+            android:textSize="@dimen/top_bar_font_height" />
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"

@@ -1,36 +1,27 @@
 package login.com.huntvision;
 
-import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
-import android.view.WindowManager;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 import login.com.huntvision.models.Cliente;
 import login.com.huntvision.models.Imagem;
 import login.com.huntvision.models.Item;
 import login.com.huntvision.models.ItemLocal;
+import login.com.huntvision.models.Local;
 import login.com.huntvision.models.Questionario;
 import login.com.huntvision.models.Resposta;
 import login.com.huntvision.models.ServerResponse;
 import login.com.huntvision.models.TipoQuestionario;
 import login.com.huntvision.models.Usuario;
-import login.com.huntvision.models.Local;
 import login.com.huntvision.network.ClienteRequest;
 import login.com.huntvision.network.ImagemRequest;
 import login.com.huntvision.network.ItemLocalRequest;
@@ -41,9 +32,7 @@ import login.com.huntvision.network.RespostaRequest;
 import login.com.huntvision.network.TipoQuestionarioRequest;
 import login.com.huntvision.network.UsuarioRequest;
 import login.com.huntvision.network.http.ResponseListener;
-import login.com.huntvision.utils.Constantes;
 import login.com.huntvision.utils.JsonUtil;
-import login.com.huntvision.utils.Utilitarios;
 
 
 @EActivity(R.layout.activity_sincronizacao)
@@ -57,8 +46,6 @@ public class SincronizacaoActivity extends DefaultActivity {
         super.onCreate(icicle);
 
         setContentView(R.layout.activity_sincronizacao);
-
-        this.sincronizarUsuario(null);
 
     }
 

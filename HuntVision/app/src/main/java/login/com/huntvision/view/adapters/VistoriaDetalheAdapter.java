@@ -78,7 +78,12 @@ public class VistoriaDetalheAdapter extends BaseAdapter {
 
             if(imgFile.exists()){
 
-                Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+                BitmapFactory.Options options =  new BitmapFactory.Options();
+                options.inJustDecodeBounds = false;
+                options.inPreferredConfig = Bitmap.Config.RGB_565;
+                options.inDither = true;
+                options.inSampleSize = 4;
+                Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath(),options);
 
                 imagem.setImageBitmap(myBitmap);
 
