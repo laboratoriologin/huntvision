@@ -4,6 +4,7 @@
 package com.login.huntvision.servlet;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
@@ -19,7 +20,6 @@ import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
-import org.apache.poi.xwpf.usermodel.XWPFTableCell.XWPFVertAlign;
 
 import br.com.topsys.util.TSUtil;
 
@@ -56,17 +56,17 @@ public class WordDocumentServlet extends HttpServlet {
 
 	private void exec(HttpServletRequest request, HttpServletResponse response) {
 
-		String parameter = request.getParameter("cliente_id");
+		String parameter = request.getParameter("vistoria_id");
 
 		if (TSUtil.isNumeric(parameter)) {
 
-			Cliente cliente = new Cliente(parameter);
+			Vistoria vistoria = new Vistoria(parameter);
 
-			cliente = cliente.getById();
+			vistoria = vistoria.getById();
 
-			if (cliente != null) {
+			if (vistoria != null) {
 
-				generateDocument(cliente, response);
+				generateDocument(vistoria, response);
 
 			}
 
@@ -74,7 +74,7 @@ public class WordDocumentServlet extends HttpServlet {
 
 	}
 
-	private void generateDocument(Cliente cliente, HttpServletResponse response) {
+	private void generateDocument(Vistoria vistoria, HttpServletResponse response) {
 
 		try {
 
@@ -85,84 +85,78 @@ public class WordDocumentServlet extends HttpServlet {
 			paragraph.setAlignment(ParagraphAlignment.CENTER);
 
 			XWPFRun run = paragraph.createRun();
-
-			run.addPicture(new FileInputStream(Constantes.CAMINHO_ARQUIVO + "logo.jpg"), XWPFDocument.PICTURE_TYPE_JPEG, "logo.jpg", Units.toEMU(200), Units.toEMU(200));
-
-			run.addBreak();
-			run.addBreak();
 			
+			try {
+
+				run.addPicture(new FileInputStream(Constantes.CAMINHO_ARQUIVO + "logo.jpg"), XWPFDocument.PICTURE_TYPE_JPEG, "logo.jpg", Units.toEMU(200), Units.toEMU(200));
+			
+			}catch(FileNotFoundException ex) {
+				//
+			}
+
+			run.addBreak();
+			run.addBreak();
+
 			run.setBold(true);
 
-			run.setText(cliente.getNome());
-			
+			run.setText(vistoria.getCliente().getNome());
+
 			run.addBreak();
 			run.addBreak();
-			
-			run.setText("Endereço: " + cliente.getEndereco());
+
+			run.setText("Endereço: " + vistoria.getCliente().getEndereco());
 			run.addBreak();
-			run.setText("E-mail: " + cliente.getEmail());
+			run.setText("E-mail: " + vistoria.getCliente().getEmail());
 			run.addBreak();
-			run.setText("Telefone:" + cliente.getTelefone());
+			run.setText("Telefone:" + vistoria.getCliente().getTelefone());
 			run.addBreak();
-			
-			Vistoria vistoria = new Vistoria();
 
-			vistoria.setCliente(cliente);
+			paragraph = doc.createParagraph();
 
-			List<Vistoria> vistorias = vistoria.findAllByCliente();
+			run = paragraph.createRun();
 
-			VistoriaResposta vistoriaRespostaTmp = null;
+			run.setBold(true);
 
-			for (Vistoria objVistoria : vistorias) {
-				
-				paragraph = doc.createParagraph();
+			run.setText("Vistoria feita em " + vistoria.getData());
 
-				run = paragraph.createRun();
+			run.addBreak();
+			run.addBreak();
 
-				run.setBold(true);
-				
-				run.setText("Vistoria feita em " + objVistoria.getData());
+			run = paragraph.createRun();
 
+			VistoriaResposta vistoriaRespostaTmp = new VistoriaResposta();
+
+			vistoriaRespostaTmp.setVistoria(vistoria);
+
+			vistoria.setVistoriaRespostas(vistoriaRespostaTmp.findAllByVistoria());
+
+			for (VistoriaResposta vistoriaResposta : vistoria.getVistoriaRespostas()) {
+
+				run.setText(vistoriaResposta.getResposta().getQuestionario().getPergunta());
 				run.addBreak();
+				run.setText(vistoriaResposta.getResposta().getDescricao());
 				run.addBreak();
 
-				run = paragraph.createRun();
-				
-				vistoriaRespostaTmp = new VistoriaResposta();
+				if (!TSUtil.isEmpty(vistoriaResposta.getImagem())) {
 
-				vistoriaRespostaTmp.setVistoria(objVistoria);
+					try {
 
-				objVistoria.setVistoriaRespostas(vistoriaRespostaTmp.findAllByVistoria());
+						run.addPicture(new FileInputStream(Constantes.CAMINHO_ARQUIVO + vistoriaResposta.getImagem()), XWPFDocument.PICTURE_TYPE_JPEG, vistoriaResposta.getImagem(), Units.toEMU(200), Units.toEMU(200));
+						run.addBreak();
 
-				for (VistoriaResposta vistoriaResposta : objVistoria.getVistoriaRespostas()) {
-
-					run.setText(vistoriaResposta.getResposta().getQuestionario().getPergunta());
-					run.addBreak();
-					run.setText(vistoriaResposta.getResposta().getDescricao());
-					run.addBreak();
-
-					if (!TSUtil.isEmpty(vistoriaResposta.getImagem())) {
-
-						try {
-
-							run.addPicture(new FileInputStream(Constantes.CAMINHO_ARQUIVO + vistoriaResposta.getImagem()), XWPFDocument.PICTURE_TYPE_JPEG, vistoriaResposta.getImagem(), Units.toEMU(200), Units.toEMU(200));
-							run.addBreak();
-
-						} catch (Exception ex) {
-							// n achou imagem
-						}
-
+					} catch (Exception ex) {
+						// n achou imagem
 					}
-					
-					run.addBreak(BreakType.TEXT_WRAPPING);
 
 				}
-				
+
+				run.addBreak(BreakType.TEXT_WRAPPING);
+
 			}
 
 			response.setContentType("application/msword");
 
-			response.setHeader("Content-Disposition", "attachment;filename=\"" + cliente.getNome().replaceAll("\\W", "_") + ".doc\"");
+			response.setHeader("Content-Disposition", "attachment;filename=\"" + vistoria.getCliente().getNome().replaceAll("\\W", "_") + ".doc\"");
 
 			doc.write(response.getOutputStream());
 

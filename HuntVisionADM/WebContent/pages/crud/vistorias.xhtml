@@ -13,59 +13,87 @@
 
 	<h:panelGrid>
 		<p:tabView>
-			<p:tab title="Clientes">
-				<p:dataTable id="gridPesquisa" rendered="true"
-					emptyMessage="Nenhum registro encontrado" style="width: 100%"
-					paginator="true" paginatorAlwaysVisible="false" rows="10"
-					value="#{mbean.lstCliente}" var="linha" widgetVar="dtPesquisa">
+			<p:tab title="Vistorias">
 
-					<p:column headerText="Descrição" styleClass="coluna70">
-						<h:outputText value="#{linha.nome}" />
-					</p:column>
-					
-					<p:column headerText="Enviar e-mail" styleClass="coluna10">
+				<h:form>
+					<h:panelGrid>
 
-						<div align="center">
-
-							<p:commandLink value="Enviar e-mail para cliente" action="#{mbean.enviarEmail}">
-								<f:setPropertyActionListener target="#{mbean.cliente}" value="#{linha}" />
-							</p:commandLink>
-
-						</div>
-
-					</p:column>
-					
-						<p:column headerText="Baixar documento" styleClass="coluna10">
-
-						<div align="center">
-	
-							<h:outputLink onclick="baixar('#{linha.id}');">Baixar documento</h:outputLink>
-
-						</div>
-
-					</p:column>
+						<p:fieldset legend="Filtro">
 
 
-					<p:column headerText="Gerar Relatório" styleClass="coluna10">
 
-						<div align="center">
+							<h:panelGrid styleClass="coluna100">
+								<h:outputText value="Cliente" />
+								<p:inputText 
+									value="#{mbean.cliente.nome}" styleClass="coluna50" />
 
-							<p:commandLink id="clImpressao"
-								action="#{mbean.geraQrCodeRelatorio}"
-								oncomplete="printRelatorio();">
-								<h:graphicImage value="../resources/images/6118_32x32.png"
-									style="border: 0px" />
-								<f:setPropertyActionListener target="#{mbean.cliente}"
-									value="#{linha}" />
-
-							</p:commandLink>
-
-						</div>
-
-					</p:column>
+								<p:commandButton value="Pesquisar" icon="ui-icon-search"
+									action="#{mbean.findEvent}" update="gridPesquisa" />
+							</h:panelGrid>
 
 
-				</p:dataTable>
+						</p:fieldset>
+
+						<p:dataTable id="gridPesquisa" rendered="true"
+							emptyMessage="Nenhum registro encontrado" style="width: 100%"
+							paginator="true" paginatorAlwaysVisible="false" rows="10"
+							value="#{mbean.lstVistoria}" var="linha" widgetVar="dtPesquisa">
+
+							<p:column headerText="Cliente" styleClass="coluna60">
+								<h:outputText value="#{linha.cliente.nome}" />
+							</p:column>
+
+							<p:column headerText="Data" styleClass="coluna10">
+								<h:outputText value="#{linha.data}" />
+							</p:column>
+
+							<p:column headerText="Enviar e-mail" styleClass="coluna10">
+
+								<div align="center">
+
+									<p:commandLink value="Enviar e-mail para cliente"
+										action="#{mbean.enviarEmail}">
+										<f:setPropertyActionListener target="#{mbean.crudModel}"
+											value="#{linha}" />
+									</p:commandLink>
+
+								</div>
+
+							</p:column>
+
+							<p:column headerText="Baixar documento" styleClass="coluna10">
+
+								<div align="center">
+
+									<h:outputLink onclick="baixar('#{linha.id}');">Baixar documento</h:outputLink>
+
+								</div>
+
+							</p:column>
+
+
+							<p:column headerText="Gerar Relatório" styleClass="coluna10">
+
+								<div align="center">
+
+									<p:commandLink id="clImpressao"
+										action="#{mbean.geraQrCodeRelatorio}"
+										oncomplete="printRelatorio();">
+										<h:graphicImage value="../resources/images/6118_32x32.png"
+											style="border: 0px" />
+										<f:setPropertyActionListener target="#{mbean.crudModel}"
+											value="#{linha}" />
+
+									</p:commandLink>
+
+								</div>
+
+							</p:column>
+
+
+						</p:dataTable>
+					</h:panelGrid>
+				</h:form>
 			</p:tab>
 		</p:tabView>
 
@@ -77,10 +105,11 @@
 			window.open('relatorio/vistoriaImpressao.xhtml', '_blank');
 
 		}
-		
-		function baixar(cliente) {
 
-			window.open('/HuntVisionADM/word_document?cliente_id=' + cliente, '_blank');
+		function baixar(vistoria) {
+
+			window.open('/HuntVisionADM/word_document?vistoria_id=' + vistoria,
+					'_blank');
 
 		}
 	</script>

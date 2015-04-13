@@ -11,7 +11,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 
 import br.com.topsys.database.hibernate.TSActiveRecordAb;
 
@@ -120,18 +119,29 @@ public final class Vistoria extends TSActiveRecordAb<Vistoria> {
 		this.vistoriaRespostas = vistoriaRespostas;
 	}
 
+	public Vistoria(String id) {
+		super();
+		this.id = Long.valueOf(id);
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
-	
+
 	public List<Vistoria> findAllByCliente() {
-		
+
 		return find("from Vistoria where cliente.id = ?", null, cliente.getId());
-		
+
 	}
-	
+
+	public List<Vistoria> findAllByNomeCliente() {
+
+		return find("from Vistoria where lower(cliente.nome) like ?", null, "%" + cliente.getNome().toLowerCase() + "%");
+
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

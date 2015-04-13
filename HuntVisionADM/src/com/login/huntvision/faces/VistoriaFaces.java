@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.login.huntvision.faces;
 
 import java.util.ArrayList;
@@ -36,41 +33,37 @@ public class VistoriaFaces extends CrudFaces<Vistoria> {
 	private Cliente cliente;
 	private GeradorQRCode itemSelecionado;
 	private List<Vistoria> lstVistoria;
-	private List<Vistoria> lstVistoriaTratada;
-	private List<VistoriaResposta> lstVistoriaResposta;
 	private List<VistoriaResposta> lstVistoriaRespostaTratada;
 
+	@Override
 	@PostConstruct
-	protected void init() {
-	
+	protected void clearFields() {
+
+		super.clearFields();
+
+		this.cliente = new Cliente();
+
 		this.itemSelecionado = new GeradorQRCode();
-		
-		this.clearFields();
 
 		setFieldOrdem("descricao");
 		lstCliente = new ArrayList<Cliente>();
 		lstCliente = (new Cliente().findAll("nome"));
 
-		String clienteId = TSFacesUtil.getRequestParameter("cliente_id");
+		String vistoriaId = TSFacesUtil.getRequestParameter("vistoria_id");
 
-		if (clienteId != null && TSUtil.isNumeric(clienteId)) {
+		if (vistoriaId != null && TSUtil.isNumeric(vistoriaId)) {
 
-			Long id = Long.valueOf(clienteId);
+			Long id = Long.valueOf(vistoriaId);
 
-			this.cliente = new Cliente();
+			this.setCrudModel(new Vistoria());
 
-			this.cliente.setId(id);
+			this.getCrudModel().setId(id);
 
-			this.cliente = this.cliente.getById();
-			
+			this.setCrudModel(this.getCrudModel().getById());
+
+			geraQrCodeRelatorio();
+
 		}
-
-		this.getCrudModel().setCliente(cliente);
-		// loadCliente();
-		
-		geraQrCodeRelatorio();
-
-		
 
 	}
 
@@ -81,154 +74,89 @@ public class VistoriaFaces extends CrudFaces<Vistoria> {
 		return retorno;
 	}
 
-	public void loadCliente() {
+	@Override
+	public String find() {
 
-		lstCliente = new Cliente().findAll();
+		Vistoria vistoria = new Vistoria();
 
-	}
-
-	public void geraQrCodeRelatorio() {
-
-		lstVistoria = new Vistoria().findAll();
-		lstVistoriaRespostaTratada = new ArrayList<VistoriaResposta>();
-		lstVistoriaResposta = new VistoriaResposta().findAll();
-		lstVistoriaRespostaTratada = new ArrayList<VistoriaResposta>();
-		lstVistoriaTratada = new ArrayList<Vistoria>();
-
-		for (Vistoria vistoria : lstVistoria) {
-
-			if (vistoria.getCliente().equals(cliente)) {
-
-				lstVistoriaTratada.add(vistoria);
-
-				for (VistoriaResposta objVistoriaResposta : lstVistoriaResposta) {
-
-					if (objVistoriaResposta.getVistoria().equals(vistoria)) {
-
-						lstVistoriaRespostaTratada.add(objVistoriaResposta);
-
-					}
-
-				}
-			}
-		
+		if (TSUtil.isEmpty(this.cliente.getNome())) {
+			this.cliente.setNome("");
 		}
 
-	}
-	
-	public String enviarEmail() {
-		
-		String url = TSFacesUtil.getRequest().getRequestURL().toString();
-		
-		url = url.replaceAll("dashboard.xhtml", "relatorio/vistoriaImpressao.xhtml");
-		
-		url = url + "?cliente_id=" + cliente.getId();
-		
-		EmailUtil.enviar(cliente.getEmail(), Utilitarios.getVistoriaEmailMessage(cliente, url));
-		
-		this.addInfoMessage("E-mail enviado com sucesso!");
-		
+		vistoria.setCliente(this.cliente);
+
+		lstVistoria = vistoria.findAllByNomeCliente();
+
+		TSFacesUtil.gerarResultadoLista(lstVistoria);
+
 		return null;
-		
+
 	}
 
-	/**
-	 * @return the lstVistoriaTratada
-	 */
-	public List<Vistoria> getLstVistoriaTratada() {
-		return lstVistoriaTratada;
+	public String geraQrCodeRelatorio() {
+
+		this.setCrudModel(this.getCrudModel().getById());
+
+		VistoriaResposta resposta = new VistoriaResposta();
+
+		resposta.setVistoria(this.getCrudModel());
+
+		this.lstVistoriaRespostaTratada = resposta.findAllByVistoria();
+
+		return null;
+
 	}
 
-	/**
-	 * @param lstVistoriaTratada
-	 *            the lstVistoriaTratada to set
-	 */
-	public void setLstVistoriaTratada(List<Vistoria> lstVistoriaTratada) {
-		this.lstVistoriaTratada = lstVistoriaTratada;
+	public String enviarEmail() {
+
+		String url = TSFacesUtil.getRequest().getRequestURL().toString();
+
+		url = url.replaceAll("dashboard.xhtml", "relatorio/vistoriaImpressao.xhtml");
+
+		url = url + "?vistoria_id=" + getCrudModel().getId();
+
+		EmailUtil.enviar(cliente.getEmail(), Utilitarios.getVistoriaEmailMessage(cliente, url));
+
+		this.addInfoMessage("E-mail enviado com sucesso!");
+
+		return null;
+
 	}
 
-	/**
-	 * @return the lstVistoriaRespostaTratada
-	 */
 	public List<VistoriaResposta> getLstVistoriaRespostaTratada() {
 		return lstVistoriaRespostaTratada;
 	}
 
-	/**
-	 * @param lstVistoriaRespostaTratada
-	 *            the lstVistoriaRespostaTratada to set
-	 */
 	public void setLstVistoriaRespostaTratada(List<VistoriaResposta> lstVistoriaRespostaTratada) {
 		this.lstVistoriaRespostaTratada = lstVistoriaRespostaTratada;
 	}
 
-	/**
-	 * @return the lstVistoriaResposta
-	 */
-	public List<VistoriaResposta> getLstVistoriaResposta() {
-		return lstVistoriaResposta;
-	}
-
-	/**
-	 * @param lstVistoriaResposta
-	 *            the lstVistoriaResposta to set
-	 */
-	public void setLstVistoriaResposta(List<VistoriaResposta> lstVistoriaResposta) {
-		this.lstVistoriaResposta = lstVistoriaResposta;
-	}
-
-	/**
-	 * @return the lstVistoria
-	 */
 	public List<Vistoria> getLstVistoria() {
 		return lstVistoria;
 	}
 
-	/**
-	 * @param lstVistoria
-	 *            the lstVistoria to set
-	 */
 	public void setLstVistoria(List<Vistoria> lstVistoria) {
 		this.lstVistoria = lstVistoria;
 	}
 
 	private List<Cliente> lstCliente;
 
-	/**
-	 * @return the lstCliente
-	 */
 	public List<Cliente> getLstCliente() {
 		return lstCliente;
 	}
 
-	/**
-	 * @param lstCliente
-	 *            the lstCliente to set
-	 */
 	public void setLstCliente(List<Cliente> lstCliente) {
 		this.lstCliente = lstCliente;
 	}
 
-	private Vistoria vistoria;
-
-	/**
-	 * @return the itemSelecionado
-	 */
 	public GeradorQRCode getGeradorQRCodeSelecionado() {
 		return itemSelecionado;
 	}
 
-	/**
-	 * @param itemSelecionado
-	 *            the itemSelecionado to set
-	 */
 	public void setGeradorQRCodeSelecionado(GeradorQRCode itemSelecionado) {
 		this.itemSelecionado = itemSelecionado;
 	}
 
-	/**
-	 * @return the cliente
-	 */
 	public Cliente getCliente() {
 		return cliente;
 	}
@@ -271,9 +199,6 @@ public class VistoriaFaces extends CrudFaces<Vistoria> {
 		this.txtCode = txtCode;
 	}
 
-	/**
-	 * @return the comboGeradorQRCode
-	 */
 	public List<SelectItem> getComboGeradorQRCode() {
 		return comboGeradorQRCode;
 	}
