@@ -8,6 +8,11 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.model.SelectItem;
 
+import org.primefaces.model.map.DefaultMapModel;
+import org.primefaces.model.map.LatLng;
+import org.primefaces.model.map.MapModel;
+import org.primefaces.model.map.Marker;
+
 import br.com.topsys.util.TSUtil;
 import br.com.topsys.web.util.TSFacesUtil;
 
@@ -18,15 +23,11 @@ import com.login.huntvision.model.VistoriaResposta;
 import com.login.huntvision.util.EmailUtil;
 import com.login.huntvision.util.Utilitarios;
 
-/**
- * @author Ricardo
- *
- */
+@SuppressWarnings("serial")
 @SessionScoped
 @ManagedBean(name = "vistoriaFaces")
 public class VistoriaFaces extends CrudFaces<Vistoria> {
 
-	private static final long serialVersionUID = 1L;
 	private List<SelectItem> comboLocal;
 	private String txtCode;
 	private List<SelectItem> comboGeradorQRCode;
@@ -34,6 +35,7 @@ public class VistoriaFaces extends CrudFaces<Vistoria> {
 	private GeradorQRCode itemSelecionado;
 	private List<Vistoria> lstVistoria;
 	private List<VistoriaResposta> lstVistoriaRespostaTratada;
+	private MapModel mapModel;
 
 	@Override
 	@PostConstruct
@@ -53,17 +55,15 @@ public class VistoriaFaces extends CrudFaces<Vistoria> {
 
 		if (vistoriaId != null && TSUtil.isNumeric(vistoriaId)) {
 
-			Long id = Long.valueOf(vistoriaId);
-
-			this.setCrudModel(new Vistoria());
-
-			this.getCrudModel().setId(id);
+			this.setCrudModel(new Vistoria(vistoriaId));
 
 			this.setCrudModel(this.getCrudModel().getById());
 
 			geraQrCodeRelatorio();
 
 		}
+
+		this.mapModel = new DefaultMapModel();
 
 	}
 
@@ -80,7 +80,9 @@ public class VistoriaFaces extends CrudFaces<Vistoria> {
 		Vistoria vistoria = new Vistoria();
 
 		if (TSUtil.isEmpty(this.cliente.getNome())) {
+
 			this.cliente.setNome("");
+
 		}
 
 		vistoria.setCliente(this.cliente);
@@ -88,6 +90,18 @@ public class VistoriaFaces extends CrudFaces<Vistoria> {
 		lstVistoria = vistoria.findAllByNomeCliente();
 
 		TSFacesUtil.gerarResultadoLista(lstVistoria);
+
+		return null;
+
+	}
+
+	public String marcarMapa() {
+
+		LatLng coord = new LatLng(getCrudModel().getLatitude(), getCrudModel().getLongitude());
+
+		mapModel.getMarkers().clear();
+
+		mapModel.addOverlay(new Marker(coord, getCrudModel().getCliente().getNome()));
 
 		return null;
 
@@ -209,6 +223,14 @@ public class VistoriaFaces extends CrudFaces<Vistoria> {
 	 */
 	public void setComboGeradorQRCode(List<SelectItem> comboGeradorQRCode) {
 		this.comboGeradorQRCode = comboGeradorQRCode;
+	}
+
+	public MapModel getMapModel() {
+		return mapModel;
+	}
+
+	public void setMapModel(MapModel mapModel) {
+		this.mapModel = mapModel;
 	}
 
 }

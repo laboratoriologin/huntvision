@@ -18,10 +18,6 @@ import br.com.topsys.database.hibernate.TSActiveRecordAb;
 @Table(name = "vistorias")
 public final class Vistoria extends TSActiveRecordAb<Vistoria> {
 
-	/**
-	 * 
-	 */
-	private static long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -36,6 +32,9 @@ public final class Vistoria extends TSActiveRecordAb<Vistoria> {
 
 	@OneToMany(mappedBy = "vistoria")
 	private List<VistoriaResposta> vistoriaRespostas;
+
+	private Double latitude;
+	private Double longitude;
 
 	/**
 	 * @return the usuario
@@ -140,6 +139,22 @@ public final class Vistoria extends TSActiveRecordAb<Vistoria> {
 
 		return find("from Vistoria where lower(cliente.nome) like ?", null, "%" + cliente.getNome().toLowerCase() + "%");
 
+	}
+
+	public Double getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(Double latitude) {
+		this.latitude = latitude;
+	}
+
+	public Double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(Double longitude) {
+		this.longitude = longitude;
 	}
 
 	@Override
