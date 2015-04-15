@@ -1,32 +1,21 @@
 package login.com.huntvision;
 
+import android.app.AlertDialog;
 import android.content.ContentValues;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Matrix;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.text.Editable;
 import android.text.TextUtils;
-import android.text.TextWatcher;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,17 +27,9 @@ import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-import java.net.URLConnection;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -65,7 +46,6 @@ import login.com.huntvision.models.Usuario;
 import login.com.huntvision.models.Vistoria;
 import login.com.huntvision.models.VistoriaResposta;
 import login.com.huntvision.view.adapters.QuestionarioFragmentPageAdapter;
-import login.com.huntvision.view.fragments.QuestionarioFragment;
 
 @EActivity(R.layout.activity_questionario)
 public class QuestionarioActivity extends FragmentActivity {
@@ -240,6 +220,14 @@ public class QuestionarioActivity extends FragmentActivity {
 
         }
 
+        if (!getApp().getChanged()) {
+
+            Toast.makeText(this, "Não foi possível obter sua localização atual, procure um local aberto!", Toast.LENGTH_LONG).show();
+
+            return;
+
+        }
+
         Vistoria vistoria = new Vistoria();
 
         vistoria.setData(new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
@@ -253,6 +241,10 @@ public class QuestionarioActivity extends FragmentActivity {
         vistoria.setUsuarioId(getApp().getUsuario().getId());
 
         vistoria.setRespostas(new ArrayList<VistoriaResposta>());
+
+        vistoria.setLatitude(getApp().getLatitude());
+
+        vistoria.setLongitude(getApp().getLongitude());
 
         getHelper().getVistoriaRuntimeDAO().create(vistoria);
 

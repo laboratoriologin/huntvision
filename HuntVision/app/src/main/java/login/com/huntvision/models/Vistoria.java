@@ -34,6 +34,12 @@ public class Vistoria extends Base {
     @DatabaseField
     private Integer pendenteImagem = 0;
 
+    @DatabaseField
+    private Double latitude = 0D;
+
+    @DatabaseField
+    private Double longitude = 0D;
+
     private Cliente cliente;
 
     @DatabaseField
@@ -135,5 +141,21 @@ public class Vistoria extends Base {
 
     public void setPendenteImagem(Integer pendenteImagem) {
         this.pendenteImagem = pendenteImagem;
+    }
+
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
     }
 }

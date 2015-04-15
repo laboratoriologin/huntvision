@@ -37,6 +37,10 @@ public class VistoriaRequest extends ObjectRequest<Vistoria> {
             nameValuePairs.add(new BasicNameValuePair("data", vistoria.getData()));
         }
 
+        nameValuePairs.add(new BasicNameValuePair("latitude", vistoria.getLatitude().toString()));
+
+        nameValuePairs.add(new BasicNameValuePair("longitude", vistoria.getLongitude().toString()));
+
 
         if (vistoria.getRespostas() != null) {
 
