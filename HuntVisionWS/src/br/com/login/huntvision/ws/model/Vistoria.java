@@ -17,6 +17,12 @@ public final class Vistoria extends RestModel {
 	@FormParam("data")
 	private String data;
 
+	@FormParam("latitude")
+	private Double latitude;
+
+	@FormParam("longitude")
+	private Double longitude;
+
 	@FormParam("cliente")
 	private Cliente cliente;
 
@@ -71,6 +77,22 @@ public final class Vistoria extends RestModel {
 
 	public void setRespostas(List<VistoriaResposta> respostas) {
 		this.respostas = respostas;
+	}
+
+	public Double getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(Double latitude) {
+		this.latitude = latitude;
+	}
+
+	public Double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(Double longitude) {
+		this.longitude = longitude;
 	}
 
 }

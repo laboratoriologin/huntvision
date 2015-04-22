@@ -1,7 +1,12 @@
 package login.com.huntvision;
 
 import android.app.Application;
+import android.content.Context;
 import android.content.SharedPreferences;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.os.Bundle;
 import android.os.Environment;
 import android.widget.TabHost;
 
@@ -17,13 +22,15 @@ import java.io.File;
 import login.com.huntvision.models.Usuario;
 import login.com.huntvision.utils.Constantes;
 
-/**
- * Created by Ricardo on 16/01/2015.
- */
-public class HuntVisionApp extends Application {
+public class HuntVisionApp extends Application implements LocationListener {
 
     private TabHost mTabHost;
     private String keyHuntVision;
+    private LocationManager locationManager;
+    private Double latitude = -12.875836;
+    private Double longitude = -38.308309;
+
+    private Boolean isChanged = false;
 
     @Override
     public void onCreate() {
@@ -46,6 +53,18 @@ public class HuntVisionApp extends Application {
                 .build();
 
         ImageLoader.getInstance().init(config);
+
+
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+
+        if (locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER) != null) {
+            latitude = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER).getLatitude();
+            longitude = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER).getLongitude();
+            isChanged = true;
+        }
+
     }
 
     @Override
@@ -148,5 +167,45 @@ public class HuntVisionApp extends Application {
 
     }
 
+    public Double getLatitude() {
+        return latitude;
+    }
 
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+        this.latitude = location.getLatitude();
+        this.longitude = location.getLongitude();
+        isChanged = true;
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+
+    }
+
+    public Boolean getChanged() {
+        return isChanged;
+    }
 }
