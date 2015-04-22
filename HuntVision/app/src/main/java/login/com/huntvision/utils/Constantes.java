@@ -8,21 +8,7 @@ public final class Constantes {
     public static final String IMAGE_CACHE = "thumbs";
     public static final String KEY_SERVLET = "5Mu1tL0g1N";
     public static final String SHARED_PREFS = "prefs";
-    public static final String URL = "http://10.0.0.135:8080/HuntVisionADM/servlet";
 
-    // public static final String URL = "http://177.1.212.50:9004/HuntVisionADM/servlet";
-    // public static final String URL_IMG = "http://177.1.212.50:9004/arquivos_cardapio/";
-    public static final String URL_HUNTVISION = URL + "/cardapio_app?empresa=";
-    public static final String URL_CHAVE_HUNTVISION_EMPRESA = URL + "/key_cardapio_empresa?empresa=";
-    public static final String URL_SOBRE_RESTAURANTE = URL + "/html?empresa=";
-
-    //	public static final String URL = "http://177.1.212.50:9004/HuntVisionADM/servlet";
-//	public static final String URL_IMG = "http://177.1.212.50:9004/arquivos_cardapio/";
-//	public static final String URL_WS = "http://177.1.212.50:9004/HuntVisionWS";
-    public static final String URL_ITEM_HUNTVISION = URL + "/item_cardapio_app?";
-    public static final String URL_ADD_CONTA = URL + "/conta_app?";
-    public static final String URL_CHK_CONTA_ABERTA = URL + "/check_conta_aberta_app?";
-    public static final String URL_IMG = "http://10.0.0.135:8080/arquivos_cardapio/";
     public static final String URL_WS = "http://177.1.212.50:9004/HuntVisionWS";
     //public static final String URL_WS = "http://10.0.0.109:8080/HuntVisionWS";
     public static final String KEYMOBILE = "123";
