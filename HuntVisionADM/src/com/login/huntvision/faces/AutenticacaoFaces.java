@@ -11,6 +11,7 @@ import com.login.huntvision.model.Permissao;
 import com.login.huntvision.model.Usuario;
 import com.login.huntvision.util.Constantes;
 import com.login.huntvision.util.EmailUtil;
+import com.login.huntvision.util.GeneratePassword;
 import com.login.huntvision.util.HuntVisionUtil;
 import com.login.huntvision.util.UsuarioUtil;
 import com.login.huntvision.util.Utilitarios;
@@ -111,7 +112,7 @@ public class AutenticacaoFaces extends TSMainFaces {
 
 		try {
 
-			String novaSenha = Utilitarios.gerarSenha();
+			String novaSenha = GeneratePassword.generatePassword();
 
 			usuarioLembrarSenha.setSenha(Utilitarios.gerarHash(novaSenha));
 
