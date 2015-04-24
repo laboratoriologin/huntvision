@@ -20,6 +20,7 @@ import com.login.huntvision.model.Cliente;
 import com.login.huntvision.model.GeradorQRCode;
 import com.login.huntvision.model.Vistoria;
 import com.login.huntvision.model.VistoriaResposta;
+import com.login.huntvision.util.Constantes;
 import com.login.huntvision.util.EmailUtil;
 import com.login.huntvision.util.Utilitarios;
 
@@ -36,6 +37,7 @@ public class VistoriaFaces extends CrudFaces<Vistoria> {
 	private List<Vistoria> lstVistoria;
 	private List<VistoriaResposta> lstVistoriaRespostaTratada;
 	private MapModel mapModel;
+	
 
 	@Override
 	@PostConstruct
@@ -64,7 +66,7 @@ public class VistoriaFaces extends CrudFaces<Vistoria> {
 		}
 
 		this.mapModel = new DefaultMapModel();
-
+	
 	}
 
 	@Override
@@ -94,6 +96,8 @@ public class VistoriaFaces extends CrudFaces<Vistoria> {
 		return null;
 
 	}
+	
+
 
 	public String marcarMapa() {
 
@@ -129,7 +133,7 @@ public class VistoriaFaces extends CrudFaces<Vistoria> {
 
 		url = url + "?vistoria_id=" + getCrudModel().getId();
 
-		EmailUtil.enviar(cliente.getEmail(), Utilitarios.getVistoriaEmailMessage(cliente, url));
+		EmailUtil.enviar(getCrudModel().getCliente().getEmail(), Utilitarios.getVistoriaEmailMessage(getCrudModel().getCliente(), url));
 
 		this.addInfoMessage("E-mail enviado com sucesso!");
 

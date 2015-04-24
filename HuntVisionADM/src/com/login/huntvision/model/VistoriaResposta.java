@@ -29,6 +29,24 @@ public final class VistoriaResposta extends TSActiveRecordAb<VistoriaResposta> {
 	@Column(name = "imagem")
 	private String imagem;
 	
+	
+	@Column(name = "observacao")
+	private String observacao;
+	
+	/**
+	 * @return the observacao
+	 */
+	public String getObservacao() {
+		return observacao;
+	}
+
+	/**
+	 * @param observacao the observacao to set
+	 */
+	public void setObservacao(String observacao) {
+		this.observacao = observacao;
+	}
+
 	/**
 	 * @return the imagem
 	 */
@@ -110,6 +128,8 @@ public final class VistoriaResposta extends TSActiveRecordAb<VistoriaResposta> {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((imagem == null) ? 0 : imagem.hashCode());
 		result = prime * result
+				+ ((observacao == null) ? 0 : observacao.hashCode());
+		result = prime * result
 				+ ((resposta == null) ? 0 : resposta.hashCode());
 		result = prime * result
 				+ ((vistoria == null) ? 0 : vistoria.hashCode());
@@ -137,6 +157,11 @@ public final class VistoriaResposta extends TSActiveRecordAb<VistoriaResposta> {
 			if (other.imagem != null)
 				return false;
 		} else if (!imagem.equals(other.imagem))
+			return false;
+		if (observacao == null) {
+			if (other.observacao != null)
+				return false;
+		} else if (!observacao.equals(other.observacao))
 			return false;
 		if (resposta == null) {
 			if (other.resposta != null)

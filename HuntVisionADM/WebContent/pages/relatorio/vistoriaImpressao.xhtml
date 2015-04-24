@@ -34,13 +34,11 @@
 			style="text-align: center; padding: 10px;" align="center">
 
 			<thead>
-				<td><img width="30%"
-					src="../../resources/images/logo_hunt_vision_260px.png" alt="" /></td>
-
-				<td><img width="40%" src="../../resources/images/marca_GG.png"
-					alt="" /></td>
-
-
+			<td><img  width="80%" src="/arquivos_huntvision/#{mbean.crudModel.cliente.imagem}"  alt="" /></td>
+			
+			<td><img  width="20%" src="../../resources/images/logoGold.jpg"  alt="" /></td>
+			<td><img width="30%" src="../../resources/images/logo_hunt_vision_260px.png"  alt="" /></td>
+			
 			</thead>
 			<tr>
 				<td><b>Cliente:</b> #{mbean.crudModel.cliente.nome} <br></br>
@@ -49,6 +47,7 @@
 				<td><b>Endereço:</b> #{mbean.crudModel.cliente.endereco} | <b>E-mail:</b>
 					#{mbean.crudModel.cliente.email} | <b>CNPJ:</b> #{mbean.crudModel.cliente.cnpj} | <b>Telefone:</b>
 					#{mbean.crudModel.cliente.telefone} | <b>Telefone:</b> #{mbean.crudModel.cliente.cep}</td>
+			<td></td>
 			</tr>
 		</table>
 
@@ -57,19 +56,25 @@
 			<thead style="font-weight: bold;">
 				<td>Pergunta</td>
 				<td>Resposta</td>
+				<td>Observação</td>
 				<td>Imagem</td>
 			</thead>
 			<ui:repeat var="linha" value="#{mbean.lstVistoriaRespostaTratada}">
 				<tr>
 					<td><p>
 							<h:outputText value="#{linha.resposta.questionario.pergunta}" />
-						</p></td>
+						</p>
+						</td>
 					<td>
 						<p>
 							<h:outputText value="#{linha.resposta.descricao}" />
 						</p>
 					</td>
-
+					<td>
+						<p>
+							<h:outputText value="#{linha.observacao}" />
+						</p>
+					</td>
 					<td>
 						<p>
 							<img width="300px" style="max-height:200px" src="/arquivos_huntvision/#{linha.imagem}"></img>
