@@ -60,13 +60,5 @@ public final class UsuarioUtil {
     	return TSCryptoUtil.gerarHash(senha, "MD5");
     }
 
-    public static Usuario usuarioAutenticado(Usuario model) {
-    	
-    	model.setSenha(getSenhaCriptografada(model.getSenha()));    	
-		
-        return model.getByModel();
-            
-    } 
-
     
 }

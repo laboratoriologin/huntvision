@@ -9,10 +9,12 @@
     <facet type="android" name="Android">
       <configuration>
         <option name="SELECTED_BUILD_VARIANT" value="debug" />
+        <option name="SELECTED_TEST_ARTIFACT" value="_android_test_" />
         <option name="ASSEMBLE_TASK_NAME" value="assembleDebug" />
         <option name="COMPILE_JAVA_TASK_NAME" value="compileDebugSources" />
-        <option name="ASSEMBLE_TEST_TASK_NAME" value="assembleDebugTest" />
         <option name="SOURCE_GEN_TASK_NAME" value="generateDebugSources" />
+        <option name="ASSEMBLE_TEST_TASK_NAME" value="assembleDebugTest" />
+        <option name="COMPILE_JAVA_TEST_TASK_NAME" value="compileDebugTestSources" />
         <option name="TEST_SOURCE_GEN_TASK_NAME" value="generateDebugTestSources" />
         <option name="ALLOW_USER_CONFIGURATION" value="false" />
         <option name="MANIFEST_FILE_RELATIVE_PATH" value="/src/main/AndroidManifest.xml" />
@@ -93,13 +95,12 @@
     <orderEntry type="library" exported="" name="android-integration" level="project" />
     <orderEntry type="library" exported="" name="ormlite-core-4.43" level="project" />
     <orderEntry type="library" exported="" name="appcompat-v7-21.0.3" level="project" />
-    <orderEntry type="library" exported="" name="xstream-1.4.4" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-21.0.3" level="project" />
     <orderEntry type="library" exported="" name="httpcore-4.0.1" level="project" />
+    <orderEntry type="library" exported="" name="xstream-1.4.4" level="project" />
     <orderEntry type="library" exported="" name="androidannotations-api-3.2" level="project" />
     <orderEntry type="library" exported="" name="ormlite-android-4.43" level="project" />
     <orderEntry type="library" exported="" name="httpmime-4.0" level="project" />
     <orderEntry type="library" exported="" name="universal-image-loader-1.9.3" level="project" />
   </component>
 </module>
-
