@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import com.login.huntvision.model.Cliente;
+import com.login.huntvision.model.Usuario;
 
 import br.com.topsys.exception.TSApplicationException;
 import br.com.topsys.util.TSCryptoUtil;
@@ -93,5 +94,20 @@ public final class Utilitarios {
 		
 	}
 
+	public static String getNovaSenhaEmailMessage(Usuario usuario) {
+		
+		StringBuilder email = new StringBuilder();
+		
+		email.append("Prezado(a) ")
+			 .append(usuario.getNome())
+			 .append(", <br/>")
+			 .append("A sua nova senha é: <br/>")
+			 .append(usuario.getSenha());
+		
+		return email.toString();
+		
+	}
+
+	
 
 }

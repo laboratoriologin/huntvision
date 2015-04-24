@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
 	<title>HuntVision</title>
-	<link type="text/css" rel="stylesheet" href="#{request.contextPath}/resources/css/geral.css" />
+	<link type="text/css" rel="stylesheet"
+		href="#{request.contextPath}/resources/css/geral.css" />
 	<link rel="shortcut icon" href="imagens/favicon.ico" />
 </h:head>
 
@@ -19,28 +23,49 @@
 
 		<p:layoutUnit position="center">
 			<h:form id="formLogin" prependId="false">
-				<p:growl id="msgLogin" globalOnly="false" showDetail="true" showSummary="false" />
+				<p:growl id="msgLogin" autoUpdate="true" globalOnly="false"
+					showDetail="true" showSummary="false" />
 				<br />
 				<br />
 				<div align="center">
 
-					<p:panel id="panelLogin" header="HuntVision - Painel de Controle" style="width: 280px; text-align: left">
+					<p:panel id="panelLogin" header="HuntVision - Painel de Controle"
+						style="width: 280px; text-align: left">
 
-                      		<p:graphicImage value="../resources/images/logo_hunt_vision_260px.png" />
-						    <h:panelGrid style="width: 245px;" columns="2" columnClasses="coluna30, coluna70">
+						<p:graphicImage
+							value="../resources/images/logo_hunt_vision_260px.png" />
+						<h:panelGrid style="width: 245px;" columns="2"
+							columnClasses="coluna30, coluna70">
 							<p:outputLabel for="login" value="Login:" />
-							<p:inputText id="login" value="#{autenticacaoFaces.usuario.login}" style="width: 100%;" required="true" requiredMessage="Usuário: Obrigatório" />
+							<p:inputText id="login"
+								value="#{autenticacaoFaces.usuario.login}" style="width: 100%;"
+								required="true" requiredMessage="Usuário: Obrigatório" />
 							<p:outputLabel for="senha" value="Senha:" />
-							<p:password id="senha" value="#{autenticacaoFaces.usuario.senha}" feedback="false" style="width: 100%;" required="true" requiredMessage="Senha: Obrigatório" />
+							<p:password id="senha" value="#{autenticacaoFaces.usuario.senha}"
+								feedback="false" style="width: 100%;" required="true"
+								requiredMessage="Senha: Obrigatório" />
 
 						</h:panelGrid>
-						<br/>
+						<br />
 
 
 						<div align="right" style="width: 100%">
-							<p:commandButton ajax="false" title="Acessar o HuntVision" id="btnAcessar" value="Autenticar" style="height: 35px;width: 135px" icon="cadeado" action="#{autenticacaoFaces.login}" />
+							<p:commandButton ajax="false" title="Acessar o HuntVision"
+								id="btnAcessar" value="Autenticar"
+								style="height: 35px;width: 135px" icon="cadeado"
+								action="#{autenticacaoFaces.login}" />
+						</div>
+						<br />
+						<div style="float:right">
+							<h:outputLink value="#" onclick="dlgNovaSenha.show()">Esqueci a senha</h:outputLink>
+						</div>
+						<div style="float:right; width:5px"> | </div>
+						
+						<div style="float:right">
+							<h:outputLink value="#" onclick="dlgAlterarSenha.show()">Alterar senha</h:outputLink>
 						</div>
 
+						<br/><br/>
 
 					</p:panel>
 
@@ -49,13 +74,85 @@
 		</p:layoutUnit>
 
 		<p:layoutUnit position="south" size="35">
-			<h:panelGrid columns="1" width="100%" style="height: 100%" columnClasses="colunaInformativo100">
+			<h:panelGrid columns="1" width="100%" style="height: 100%"
+				columnClasses="colunaInformativo100">
 				<h:column>
 					<h:outputText value="HuntVision" />
 				</h:column>
 			</h:panelGrid>
 		</p:layoutUnit>
 	</p:layout>
+
+	<p:dialog header="Nova senha" position="center" modal="true"
+		appendTo="@(body)" width="400" height="300" widgetVar="dlgNovaSenha">
+
+		<h:form prependId="false">
+
+			<h:panelGrid styleClass="coluna100">
+
+				<h:outputText value="Login" />
+				<p:inputText required="true" label="Login" value="#{autenticacaoFaces.usuarioLembrarSenha.login}"
+					styleClass="coluna100" />
+				<h:outputText value="E-mail" />
+				<p:inputText required="true" label="E-mail" value="#{autenticacaoFaces.usuarioLembrarSenha.email}"
+					styleClass="coluna100" />
+
+			</h:panelGrid>
+
+			<div align="right" style="width: 100%">
+				<p:commandButton title="Enviar nova senha" id="btnNovaSenha"
+					value="Enviar nova senha" style="width: 150px"
+					icon="ui-icon-locked" action="#{autenticacaoFaces.lembrarSenha}" />
+			</div>
+
+		</h:form>
+
+	</p:dialog>
+	
+	<p:dialog header="Alterar senha" position="center" modal="true"
+		appendTo="@(body)" width="400" height="300" widgetVar="dlgAlterarSenha">
+
+		<h:form prependId="false">
+
+			<h:panelGrid styleClass="coluna100">
+
+				<h:outputText value="Login" />
+				<p:inputText required="true" label="Login" value="#{autenticacaoFaces.usuarioNovaSenha.login}"
+					styleClass="coluna100" />
+				
+				<h:outputText value="Senha atual" />
+				<p:password required="true" label="Senha" value="#{autenticacaoFaces.usuarioNovaSenha.senha}"
+					styleClass="coluna100" />
+				
+				<h:outputText value="Nova senha" />
+				<p:password required="true" label="Nova senha" value="#{autenticacaoFaces.usuarioNovaSenha.novaSenha}"
+					styleClass="coluna100" />
+					
+					<h:outputText value="Confirme nova senha" />
+				<p:password required="true" label="Confirmação de senha" value="#{autenticacaoFaces.usuarioNovaSenha.confirmaSenha}"
+					styleClass="coluna100" />
+
+			</h:panelGrid>
+
+			<div align="right" style="width: 100%">
+				<p:commandButton title="Alterar Senha" id="btnAlterarSenha"
+					value="Alterar Senha" style="width: 150px"
+					icon="ui-icon-locked" action="#{autenticacaoFaces.alterarSenha}" />
+			</div>
+
+		</h:form>
+
+	</p:dialog>
+	
+
+	<p:ajaxStatus onstart="statusDialog.show();"
+		onsuccess="statusDialog.hide();" onerror="statusDialog.hide();"
+		oncomplete="statusDialog.hide();" />
+
+	<p:dialog modal="true" widgetVar="statusDialog" header="Processando..."
+		draggable="false" closable="false" resizable="false">
+		<p:graphicImage value="../resources/images/ajaxloadingbar.gif" />
+	</p:dialog>
 
 </h:body>
 

@@ -17,7 +17,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import org.hibernate.annotations.Cascade;
 
-
 import br.com.topsys.database.hibernate.TSActiveRecordAb;
 import br.com.topsys.util.TSUtil;
 
@@ -36,7 +35,7 @@ public class Usuario extends TSActiveRecordAb<Usuario> {
 
 	@Column(name = "login")
 	private String login;
-	
+
 	@Column(name = "senha")
 	private String senha;
 
@@ -46,7 +45,7 @@ public class Usuario extends TSActiveRecordAb<Usuario> {
 	@ManyToOne
 	@JoinColumn(name = "grupo_usuario_id")
 	private GrupoUsuario grupoUsuario;
-	
+
 	@Column(name = "celular")
 	private String celular;
 
@@ -55,6 +54,9 @@ public class Usuario extends TSActiveRecordAb<Usuario> {
 
 	@Transient
 	private String confirmaSenha;
+
+	@Transient
+	private String novaSenha;
 
 	public Usuario() {
 
@@ -108,9 +110,6 @@ public class Usuario extends TSActiveRecordAb<Usuario> {
 		this.grupoUsuario = grupoUsuario;
 	}
 
-
-	
-
 	public String getCelular() {
 		return celular;
 	}
@@ -127,7 +126,6 @@ public class Usuario extends TSActiveRecordAb<Usuario> {
 		this.email = email;
 	}
 
-
 	public String getConfirmaSenha() {
 		return confirmaSenha;
 	}
@@ -138,6 +136,14 @@ public class Usuario extends TSActiveRecordAb<Usuario> {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public String getNovaSenha() {
+		return novaSenha;
+	}
+
+	public void setNovaSenha(String novaSenha) {
+		this.novaSenha = novaSenha;
 	}
 
 	@Override
@@ -195,7 +201,7 @@ public class Usuario extends TSActiveRecordAb<Usuario> {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-				if (login == null) {
+		if (login == null) {
 			if (other.login != null)
 				return false;
 		} else if (!login.equals(other.login))
@@ -205,11 +211,11 @@ public class Usuario extends TSActiveRecordAb<Usuario> {
 				return false;
 		} else if (!nome.equals(other.nome))
 			return false;
-			if (senha == null) {
+		if (senha == null) {
 			if (other.senha != null)
 				return false;
 		} else if (!senha.equals(other.senha))
 			return false;
-			return true;
+		return true;
 	}
 }
