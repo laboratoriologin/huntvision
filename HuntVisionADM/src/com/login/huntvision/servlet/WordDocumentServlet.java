@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.poi.util.Units;
+import org.apache.poi.xwpf.usermodel.Borders;
 import org.apache.poi.xwpf.usermodel.BreakType;
 import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
@@ -131,7 +132,16 @@ public class WordDocumentServlet extends HttpServlet {
 			vistoria.setVistoriaRespostas(vistoriaRespostaTmp.findAllByVistoria());
 
 			for (VistoriaResposta vistoriaResposta : vistoria.getVistoriaRespostas()) {
+			
+				paragraph = doc.createParagraph();
 
+				run = paragraph.createRun();
+				paragraph.setBorderBottom(Borders.DOUBLE);
+				paragraph.setBorderTop(Borders.DOUBLE);
+				paragraph.setBorderRight(Borders.DOUBLE);
+				paragraph.setBorderLeft(Borders.DOUBLE);
+				paragraph.setBorderBetween(Borders.SINGLE);
+				
 				run.setText(vistoriaResposta.getResposta().getQuestionario().getPergunta());
 				run.addBreak();
 				run.setText(vistoriaResposta.getResposta().getDescricao());
