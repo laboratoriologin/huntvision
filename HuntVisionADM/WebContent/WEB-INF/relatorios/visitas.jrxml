@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="visitas" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="645a2150-75db-4a1b-9464-f24b8808620b">
 	<property name="ireport.zoom" value="2.0"/>
-	<property name="ireport.x" value="223"/>
+	<property name="ireport.x" value="150"/>
 	<property name="ireport.y" value="78"/>
 	<parameter name="VISTORIA_ID" class="java.lang.Long">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
@@ -96,21 +96,21 @@ C.ENDERECO, C.EMAIL, C.CNPJ, C.TELEFONE, C.CEP
 	<columnHeader>
 		<band height="25">
 			<staticText>
-				<reportElement x="20" y="8" width="200" height="10" uuid="b9a79e52-18da-457f-9b03-d91d54d0a734"/>
+				<reportElement x="20" y="7" width="200" height="12" uuid="b9a79e52-18da-457f-9b03-d91d54d0a734"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
 				<text><![CDATA[Pergunta]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="311" y="8" width="78" height="10" uuid="744a9b50-9157-4e3e-9da7-e3aeeade1c63"/>
+				<reportElement x="311" y="7" width="78" height="12" uuid="744a9b50-9157-4e3e-9da7-e3aeeade1c63"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
 				<text><![CDATA[Observação]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="396" y="8" width="140" height="10" uuid="6df0ca52-cf57-4d5b-a3db-fe2adb5e2b0e"/>
+				<reportElement x="396" y="7" width="140" height="12" uuid="6df0ca52-cf57-4d5b-a3db-fe2adb5e2b0e"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
@@ -135,7 +135,7 @@ C.ENDERECO, C.EMAIL, C.CNPJ, C.TELEFONE, C.CEP
 				<reportElement x="542" y="5" width="1" height="16" forecolor="#999999" uuid="3ffa714e-f72e-4503-83e2-0c369bc0bd90"/>
 			</line>
 			<staticText>
-				<reportElement x="227" y="8" width="78" height="10" uuid="6e79edd9-ecc0-42dc-bdce-c8f55792c90c"/>
+				<reportElement x="227" y="7" width="78" height="12" uuid="6e79edd9-ecc0-42dc-bdce-c8f55792c90c"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
