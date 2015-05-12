@@ -450,6 +450,42 @@ img.right {
          
 }
 
+.ic-word {
+    height:40px !important;  
+    width:40px !important;  
+    background-image: url(../images/icone_baixar_documento_adm_huntvision.png) !important;    
+    top:25% !important;
+    left:20% !important;
+         
+}
+
+.ic-relatorio {
+    height:40px !important;  
+    width:40px !important;  
+    background-image: url(../images/icone_gerar_relatorio_adm_huntvision.png) !important;    
+    top:25% !important;
+    left:20% !important;
+         
+}
+
+.ic-mapa {
+    height:40px !important;  
+    width:40px !important;  
+    background-image: url(../images/icone_ver_mapa_adm_huntvision.png) !important;    
+    top:25% !important;
+    left:20% !important;
+         
+}
+
+.ic-email {
+    height:40px !important;  
+    width:40px !important;  
+    background-image: url(../images/icone_email_adm_huntvision.png) !important;    
+    top:25% !important;
+    left:20% !important;
+         
+}
+
 .historico {
     height:20px !important;  
     width:20px !important;  

@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
@@ -50,59 +51,59 @@
 							<p:column headerText="Localização" styleClass="coluna10">
 
 								<div align="center">
-
-									<p:commandLink action="#{mbean.marcarMapa}" value="Ver no mapa" oncomplete="dlgMapa.show();" update="@parent:@parent:@parent:@parent:@parent:@parent:opMapa">
+									<p:commandButton action="#{mbean.marcarMapa}"
+										oncomplete="dlgMapa.show();" icon="ic-mapa" style="height: 45px;width: 45px"
+										update="@parent:@parent:@parent:@parent:@parent:@parent:opMapa">
 										<f:setPropertyActionListener target="#{mbean.crudModel}"
 											value="#{linha}" />
-									</p:commandLink>
+									</p:commandButton>
+								</div>
+
+							</p:column>
+
+
+							<p:column headerText="Enviar e-mail" styleClass="coluna10">
+
+								<div align="center">
+
+									<p:commandButton action="#{mbean.enviarEmail}" id="btEmail"
+										style="height: 45px;width: 45px" icon="ic-email">
+										<f:setPropertyActionListener target="#{mbean.crudModel}"
+											value="#{linha}" />
+									</p:commandButton>
+								</div>
+
+							</p:column>
+
+							<p:column headerText="Baixar documento" styleClass="coluna10">
+
+								<div align="center">
+
+									<p:commandButton type="button" id="btWord"
+										onclick="baixar('#{linha.id}');"
+										style="height: 45px;width: 45px" icon="ic-word" />
 
 								</div>
-								
-								</p:column>
 
 
-								<p:column headerText="Enviar e-mail" styleClass="coluna10">
 
-									<div align="center">
-
-										<p:commandLink value="Enviar e-mail para cliente"
-											action="#{mbean.enviarEmail}">
-											<f:setPropertyActionListener target="#{mbean.crudModel}"
-												value="#{linha}" />
-										</p:commandLink>
-
-									</div>
-
-								</p:column>
-
-								<p:column headerText="Baixar documento" styleClass="coluna10">
-
-									<div align="center">
-
-										<h:outputLink onclick="baixar('#{linha.id}');">Baixar documento</h:outputLink>
-
-									</div>
-
-								</p:column>
+							</p:column>
 
 
-								<p:column headerText="Gerar Relatório" styleClass="coluna10">
+							<p:column headerText="Gerar Relatório" styleClass="coluna10">
 
-									<div align="center">
+								<div align="center">
 
-										<p:commandLink id="clImpressao"
-											action="#{mbean.geraQrCodeRelatorio}"
-											oncomplete="printRelatorio();">
-											<h:graphicImage value="../resources/images/6118_32x32.png"
-												style="border: 0px" />
-											<f:setPropertyActionListener target="#{mbean.crudModel}"
-												value="#{linha}" />
+									<p:commandButton action="#{mbean.geraQrCodeRelatorio}"
+										id="btRelatorio" oncomplete="printRelatorio();"
+										style="height: 45px;width: 45px" icon="ic-relatorio">
+										<f:setPropertyActionListener target="#{mbean.crudModel}"
+											value="#{linha}" />
+									</p:commandButton>
 
-										</p:commandLink>
+								</div>
 
-									</div>
-
-								</p:column>
+							</p:column>
 						</p:dataTable>
 					</h:panelGrid>
 
@@ -115,8 +116,9 @@
 
 			<p:outputPanel id="opMapa">
 
-				<p:gmap model="#{mbean.mapModel}" center="#{mbean.crudModel.latitude}, #{mbean.crudModel.longitude}" zoom="15" type="HYBRID"
-					style="width:100%;height:590px" />
+				<p:gmap model="#{mbean.mapModel}"
+					center="#{mbean.crudModel.latitude}, #{mbean.crudModel.longitude}"
+					zoom="15" type="HYBRID" style="width:100%;height:590px" />
 
 			</p:outputPanel>
 
