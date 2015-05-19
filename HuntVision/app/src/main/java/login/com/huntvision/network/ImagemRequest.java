@@ -17,8 +17,8 @@ import login.com.huntvision.network.http.ResponseListener;
  */
 public  class ImagemRequest extends ObjectRequest<Imagem> {
 
-    public ImagemRequest(ResponseListener listener) {
-        super(listener);
+    public ImagemRequest(String url ,ResponseListener listener) {
+        super(url , listener);
     }
 
     @Override

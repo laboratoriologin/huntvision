@@ -91,7 +91,17 @@ public class HuntVisionApp extends Application implements LocationListener {
     public void setKeyHuntVision(String keyHuntVision) {
         this.keyHuntVision = keyHuntVision;
         SharedPreferences.Editor editor = getSharedPreferences(Constantes.SHARED_PREFS, 0).edit();
-        editor.putString(Constantes.KEY_HUNTVISION, this.keyHuntVision);
+        editor.putString(Constantes.KEY_HUNTVISION, this.keyHuntVision).commit();
+    }
+
+    public String getUrlWS() {
+           return getSharedPreferences(Constantes.SHARED_PREFS, 0).getString(Constantes.KEY_WS, null);
+
+    }
+
+    public void setUrlWS(String urlWS) {
+        SharedPreferences.Editor editor = getSharedPreferences(Constantes.SHARED_PREFS, 0).edit();
+        editor.putString(Constantes.KEY_WS, urlWS).commit();
     }
 
     public void setUsuario(Usuario usuario) {

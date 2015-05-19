@@ -17,8 +17,8 @@ import login.com.huntvision.network.http.ResponseListener;
  */
 public abstract class GrupoUsuarioRequest extends ObjectRequest<GrupoUsuario> {
 
-    public GrupoUsuarioRequest(ResponseListener listener) {
-        super(listener);
+    public GrupoUsuarioRequest(String url, ResponseListener listener) {
+        super(url,listener);
     }
 
     @Override

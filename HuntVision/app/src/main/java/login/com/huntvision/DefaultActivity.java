@@ -1,5 +1,6 @@
 package login.com.huntvision;
 
+import android.content.SharedPreferences;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.TabHost;
@@ -10,6 +11,7 @@ import java.io.File;
 
 import login.com.huntvision.managers.sqlite.DatabaseHelper;
 import login.com.huntvision.models.Usuario;
+import login.com.huntvision.utils.Constantes;
 
 /**
  * Created by Ricardo on 16/01/2015.
@@ -28,7 +30,15 @@ public class DefaultActivity extends OrmLiteBaseActivity<DatabaseHelper> {
         ((HuntVisionApp) getApplication()).setTabHost(mTabHost);
     }
 
-   public String getKeyHuntVision() {
+   public String getUrlWS() {
+        return ((HuntVisionApp) getApplication()).getUrlWS();
+    }
+
+    public void setUrlWS(String urlWS) {
+        ((HuntVisionApp) getApplication()).setUrlWS(urlWS);
+    }
+
+    public String getKeyHuntVision() {
         return ((HuntVisionApp) getApplication()).getKeyHuntVision();
     }
 

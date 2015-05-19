@@ -18,8 +18,8 @@ import login.com.huntvision.utils.Constantes;
  */
 public class VistoriaRequest extends ObjectRequest<Vistoria> {
 
-    public VistoriaRequest(ResponseListener listener) {
-        super(listener);
+    public VistoriaRequest(String url,ResponseListener listener) {
+        super(url,listener);
     }
 
     @Override
@@ -65,7 +65,7 @@ public class VistoriaRequest extends ObjectRequest<Vistoria> {
     @Override
     protected String getUrlPostMultiFormData(Vistoria object) {
 
-        return Constantes.URL_WS + "/" + object.getServiceName() + "/imagens";
+        return url + "/" + object.getServiceName() + "/imagens";
     }
 
     @Override

@@ -86,7 +86,7 @@ public class ConfigActivity extends DefaultActivity {
             }
 
           if (Utilitarios.hasConnection(this)) {
-                new UsuarioRequest(new ResponseListener() {
+                new UsuarioRequest(getUrlWS(), new ResponseListener() {
 
 
                     @Override

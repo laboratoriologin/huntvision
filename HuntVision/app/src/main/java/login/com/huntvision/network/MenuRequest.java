@@ -17,8 +17,8 @@ import login.com.huntvision.network.http.ResponseListener;
  */
 public abstract class MenuRequest extends ObjectRequest<Menu> {
 
-    public MenuRequest(ResponseListener listener) {
-        super(listener);
+    public MenuRequest(String url ,ResponseListener listener) {
+        super(url ,listener);
     }
 
     @Override

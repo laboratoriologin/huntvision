@@ -188,7 +188,7 @@ public class VistoriaPendenteActivity extends DefaultActivity {
 
             }
 
-            new VistoriaRequest(new ResponseListener() {
+            new VistoriaRequest(getUrlWS(), new ResponseListener() {
 
                 @Override
                 public void onResult(ServerResponse serverResponse) {
@@ -233,7 +233,7 @@ public class VistoriaPendenteActivity extends DefaultActivity {
 
     private void postImagens(final Vistoria vistoria, List<InputStreamWrapper> imagens) {
 
-        new VistoriaRequest(new ResponseListener() {
+        new VistoriaRequest(getUrlWS() ,new ResponseListener() {
 
             @Override
             public void onResult(ServerResponse serverResponse) {
