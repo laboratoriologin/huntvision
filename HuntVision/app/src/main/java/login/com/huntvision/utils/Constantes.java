@@ -9,7 +9,7 @@ public final class Constantes {
     public static final String KEY_SERVLET = "5Mu1tL0g1N";
     public static final String SHARED_PREFS = "prefs";
 
-    public static final String URL_WS = "http://177.1.212.50:9004/HuntVisionWS";
+    public static final String URL_WS = "http://177.1.212.50:9002/HuntVisionWS";
     //public static final String URL_WS = "http://10.0.0.109:8080/HuntVisionWS";
     public static final String KEYMOBILE = "123";
     public static final String ID_CATEGORIA_HUNTVISION = "id";
