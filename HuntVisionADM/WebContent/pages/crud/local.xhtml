@@ -54,7 +54,14 @@
 	</ui:define>
 
 	<ui:define name="colunasTabela">
+	<p:column headerText="Cliente">
+		
+		<h:outputText value="#{linha.cliente.nome}" />
+		
+		</p:column>
 		<p:column headerText="Local">
+		
+		
 			<h:outputText value="#{linha.nomeLocal}" />
 
 		</p:column>
