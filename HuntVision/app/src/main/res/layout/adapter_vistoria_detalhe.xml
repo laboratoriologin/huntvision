@@ -26,9 +26,19 @@
         android:textSize="16sp"
         android:textStyle="italic|bold" />
 
-    <ImageView android:id="@+id/adapter_vistoria_detalhe_imagem"
-        android:layout_width="match_parent" android:layout_below="@+id/adapter_vistoria_detalhe_resposta"
-        android:padding="10dp"
-        android:layout_height="200dp" android:visibility="gone" />
+    <TextView
+        android:id="@+id/lbImagens"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/adapter_vistoria_detalhe_resposta"
+        android:layout_marginTop="5dp"
+        android:gravity="center_horizontal|right"
+        android:padding="5dp"
+        android:text="0 Fotos"
+        android:textColor="@color/huntVisionAzul"
+        android:textStyle="italic" />
+
+
 
 </RelativeLayout>

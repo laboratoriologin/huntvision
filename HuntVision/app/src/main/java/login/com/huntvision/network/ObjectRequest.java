@@ -18,7 +18,10 @@ import login.com.huntvision.utils.Constantes;
  */
 public abstract class ObjectRequest<T extends Base> extends HttpTask {
 
-    public ObjectRequest(ResponseListener listener) {
+    protected String url;
+
+    public ObjectRequest(String urlBase, ResponseListener listener) {
+        this.url = urlBase;
         this.listener = listener;
     }
 
@@ -65,31 +68,31 @@ public abstract class ObjectRequest<T extends Base> extends HttpTask {
 
     protected String getUrlPost(T object) {
 
-        return Constantes.URL_WS + "/" + object.getServiceName();
+        return url + "/" + object.getServiceName();
 
     }
 
     protected String getUrlPostMultiFormData(T object) {
 
-        return Constantes.URL_WS + "/" + object.getServiceName();
+        return url + "/" + object.getServiceName();
 
     }
 
     protected String getUrlPut(T object) {
 
-        return Constantes.URL_WS + "/" + object.getServiceName() + "/" + (object.getId() == null ? "" : object.getId());
+        return url + "/" + object.getServiceName() + "/" + (object.getId() == null ? "" : object.getId());
 
     }
 
     protected String  getUrlGet(T object) {
 
-        return Constantes.URL_WS + "/" + object.getServiceName() + "/" + (object.getId() == null ? "" : object.getId());
+        return url + "/" + object.getServiceName() + "/" + (object.getId() == null ? "" : object.getId());
 
     }
 
     protected String  getUrlGetAll(T object) {
 
-        return Constantes.URL_WS + "/" + object.getServiceName();
+        return url + "/" + object.getServiceName();
 
     }
 

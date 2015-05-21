@@ -20,8 +20,8 @@ import login.com.huntvision.utils.Constantes;
  */
 public class UsuarioRequest extends ObjectRequest<Usuario> {
 
-    public UsuarioRequest(ResponseListener listener) {
-        super(listener);
+    public UsuarioRequest(String url, ResponseListener listener) {
+        super(url , listener);
     }
 
     @Override
@@ -58,9 +58,9 @@ public class UsuarioRequest extends ObjectRequest<Usuario> {
 
     public void getByLogin(Usuario usuario) {
 
-        String url = Constantes.URL_WS + "/" + usuario.getServiceName() + "/login/" + usuario.getLogin();
+        String urlLogin = url + "/" + usuario.getServiceName() + "/login/" + usuario.getLogin();
 
-        ServerRequest serverRequest = new ServerRequest(ServerRequest.GET, url, createParameters(usuario));
+        ServerRequest serverRequest = new ServerRequest(ServerRequest.GET, urlLogin, createParameters(usuario));
 
         this.execute(serverRequest);
     }
@@ -68,9 +68,9 @@ public class UsuarioRequest extends ObjectRequest<Usuario> {
 
         public void getLembrarSenha(Usuario usuario) {
 
-        String url = Constantes.URL_WS + "/" + usuario.getServiceName() + "/lembrar_senha/" + usuario.getLogin();
+        String urlLembrarSenha = url + "/" + usuario.getServiceName() + "/lembrar_senha/" + usuario.getLogin();
 
-        ServerRequest serverRequest = new ServerRequest(ServerRequest.GET, url, createParameters(usuario));
+        ServerRequest serverRequest = new ServerRequest(ServerRequest.GET, urlLembrarSenha, createParameters(usuario));
 
         this.execute(serverRequest);
     }

@@ -18,8 +18,8 @@ import login.com.huntvision.network.http.ResponseListener;
  */
 public abstract class PermissaoRequest extends ObjectRequest<Permissao> {
 
-    public PermissaoRequest(ResponseListener listener) {
-        super(listener);
+    public PermissaoRequest(String url , ResponseListener listener) {
+        super(url , listener);
     }
 
     @Override

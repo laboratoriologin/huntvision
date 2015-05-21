@@ -17,8 +17,8 @@ import login.com.huntvision.network.http.ResponseListener;
  */
 public  class RespostaRequest extends ObjectRequest<Resposta> {
 
-    public RespostaRequest(ResponseListener listener) {
-        super(listener);
+    public RespostaRequest( String url , ResponseListener listener) {
+        super(url, listener);
     }
 
     @Override

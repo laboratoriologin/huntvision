@@ -2,36 +2,33 @@ package login.com.huntvision.models;
 
 import com.j256.ormlite.field.DatabaseField;
 
+import java.io.Serializable;
+
 /**
  * Created by Ricardo on 19/01/2015.
  */
 @SuppressWarnings("serial")
 
-public class Imagem extends Base {
+public class Imagem implements Serializable {
 
-    @DatabaseField(id = true)
-    private String id;
+    @DatabaseField(generatedId = true)
+    private Long id;
 
     @DatabaseField
     private String caminho;
 
     @DatabaseField
-    private String legenda;
+    private String vistoriaRespostaId;
 
-    private String serviceName;
-
-    public Imagem() {
-
-        setServiceName("imagens");
-    }
-
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+
+    public void setId(Long id) {
         this.id = id;
     }
+
 
     public String getCaminho() {
         return caminho;
@@ -41,19 +38,11 @@ public class Imagem extends Base {
         this.caminho = caminho;
     }
 
-    public String getLegenda() {
-        return legenda;
+    public String getVistoriaRespostaId() {
+        return vistoriaRespostaId;
     }
 
-    public void setLegenda(String legenda) {
-        this.legenda = legenda;
-    }
-
-    public String getServiceName() {
-        return serviceName;
-    }
-
-    public void setServiceName(String serviceName) {
-        this.serviceName = serviceName;
+    public void setVistoriaRespostaId(String vistoriaRespostaId) {
+        this.vistoriaRespostaId = vistoriaRespostaId;
     }
 }

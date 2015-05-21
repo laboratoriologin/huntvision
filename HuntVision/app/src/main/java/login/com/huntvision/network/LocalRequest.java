@@ -17,8 +17,8 @@ import login.com.huntvision.network.http.ResponseListener;
  */
 public  class LocalRequest extends ObjectRequest<Local> {
 
-    public LocalRequest(ResponseListener listener) {
-        super(listener);
+    public LocalRequest(String url , ResponseListener listener) {
+        super(url , listener);
     }
 
     @Override

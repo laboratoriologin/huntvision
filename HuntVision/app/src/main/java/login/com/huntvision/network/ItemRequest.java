@@ -17,8 +17,8 @@ import login.com.huntvision.network.http.ResponseListener;
  */
 public  class ItemRequest extends ObjectRequest<Item> {
 
-    public ItemRequest(ResponseListener listener) {
-        super(listener);
+    public ItemRequest(String url ,ResponseListener listener) {
+        super(url , listener);
     }
 
     @Override

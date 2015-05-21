@@ -18,8 +18,8 @@ import login.com.huntvision.utils.Constantes;
  */
 public class VistoriaRequest extends ObjectRequest<Vistoria> {
 
-    public VistoriaRequest(ResponseListener listener) {
-        super(listener);
+    public VistoriaRequest(String url, ResponseListener listener) {
+        super(url, listener);
     }
 
     @Override
@@ -50,9 +50,19 @@ public class VistoriaRequest extends ObjectRequest<Vistoria> {
 
                 nameValuePairs.add(new BasicNameValuePair("respostas[" + i + "].vistoria", vistoria.getId().toString()));
 
-                nameValuePairs.add(new BasicNameValuePair("respostas[" + i + "].imagem", vistoria.getRespostas().get(i).getImagem()));
-
                 nameValuePairs.add(new BasicNameValuePair("respostas[" + i + "].observacao", vistoria.getRespostas().get(i).getObservacao()));
+
+                if (vistoria.getRespostas().get(i).getImagens() != null && !vistoria.getRespostas().get(i).getImagens().isEmpty()) {
+
+                    nameValuePairs.add(new BasicNameValuePair("respostas[" + i + "].imagem", vistoria.getRespostas().get(i).getImagens().get(0).getCaminho()));
+
+                    for (int j = 0; j < vistoria.getRespostas().get(i).getImagens().size(); j++) {
+
+                        nameValuePairs.add(new BasicNameValuePair("respostas[" + i + "].imagens[" + j + "].caminho", vistoria.getRespostas().get(i).getImagens().get(j).getCaminho()));
+
+                    }
+
+                }
 
             }
 
@@ -65,7 +75,7 @@ public class VistoriaRequest extends ObjectRequest<Vistoria> {
     @Override
     protected String getUrlPostMultiFormData(Vistoria object) {
 
-        return Constantes.URL_WS + "/" + object.getServiceName() + "/imagens";
+        return url + "/" + object.getServiceName() + "/imagens";
     }
 
     @Override

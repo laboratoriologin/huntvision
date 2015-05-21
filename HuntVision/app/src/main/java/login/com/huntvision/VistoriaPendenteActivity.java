@@ -33,12 +33,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import login.com.huntvision.models.Cliente;
+import login.com.huntvision.models.Imagem;
 import login.com.huntvision.models.ServerResponse;
 import login.com.huntvision.models.Vistoria;
 import login.com.huntvision.models.VistoriaResposta;
 import login.com.huntvision.network.VistoriaRequest;
 import login.com.huntvision.network.http.InputStreamWrapper;
 import login.com.huntvision.network.http.ResponseListener;
+import login.com.huntvision.utils.Constantes;
 import login.com.huntvision.view.adapters.ClienteAdapter;
 import login.com.huntvision.view.adapters.VistoriaAdapter;
 
@@ -88,11 +90,18 @@ public class VistoriaPendenteActivity extends DefaultActivity {
 
         QueryBuilder<Cliente, String> queryBuilderCliente = getHelper().getClienteRuntimeDAO().queryBuilder();
 
+        QueryBuilder<Imagem, String> builderImagem = getHelper().getImagemRuntimeDAO().queryBuilder();
+
         for (Vistoria vistoria : vistorias) {
 
             try {
 
                 vistoria.setRespostas(getHelper().getVistoriaRespostaRuntimeDAO().query(queryBuilder.where().eq("vistoriaId", vistoria.getId()).prepare()));
+
+                for(VistoriaResposta resposta : vistoria.getRespostas()) {
+                    builderImagem.where().eq("vistoriaRespostaId", resposta.getId());
+                    resposta.setImagens(builderImagem.query());
+                }
 
                 vistoria.setCliente(getHelper().getClienteRuntimeDAO().queryForFirst(queryBuilderCliente.where().eq("id", vistoria.getClienteId()).prepare()));
 
@@ -188,7 +197,7 @@ public class VistoriaPendenteActivity extends DefaultActivity {
 
             }
 
-            new VistoriaRequest(new ResponseListener() {
+            new VistoriaRequest(getUrlWS(), new ResponseListener() {
 
                 @Override
                 public void onResult(ServerResponse serverResponse) {
@@ -233,7 +242,7 @@ public class VistoriaPendenteActivity extends DefaultActivity {
 
     private void postImagens(final Vistoria vistoria, List<InputStreamWrapper> imagens) {
 
-        new VistoriaRequest(new ResponseListener() {
+        new VistoriaRequest(getUrlWS() ,new ResponseListener() {
 
             @Override
             public void onResult(ServerResponse serverResponse) {
@@ -269,15 +278,15 @@ public class VistoriaPendenteActivity extends DefaultActivity {
 
         for (VistoriaResposta vistoriaResposta : vistoria.getRespostas()) {
 
-            if (!TextUtils.isEmpty(vistoriaResposta.getImagem())) {
+            for(Imagem caminhoImagem : vistoriaResposta.getImagens()) {
 
-                File imgFile = new File(getDataFolder() + "/" + vistoriaResposta.getImagem());
+                File imgFile = new File(getDataFolder() + "/"  + caminhoImagem.getCaminho());
 
                 if (imgFile.exists()) {
 
                     imagem = new InputStreamWrapper();
 
-                    imagem.setFilename(vistoriaResposta.getImagem());
+                    imagem.setFilename(caminhoImagem.getCaminho());
 
                     try {
 

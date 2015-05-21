@@ -47,10 +47,9 @@ public class Questionario extends Base {
     @DatabaseField
     private String observacao;
 
-    private List<Imagem> imagems;
+    private List<String> caminhosImagens;
 
     private List<Resposta> respostas;
-
 
 
     @Override
@@ -121,14 +120,6 @@ public class Questionario extends Base {
         this.usuarioId = usuarioId;
     }
 
-    public List<Imagem> getImagems() {
-        return imagems;
-    }
-
-    public void setImagems(List<Imagem> imagems) {
-        this.imagems = imagems;
-    }
-
     public List<Resposta> getRespostas() {
         return respostas;
     }
@@ -143,6 +134,14 @@ public class Questionario extends Base {
 
     public void setObservacao(String observacao) {
         this.observacao = observacao;
+    }
+
+    public List<String> getCaminhosImagens() {
+        return caminhosImagens;
+    }
+
+    public void setCaminhosImagens(List<String> caminhosImagens) {
+        this.caminhosImagens = caminhosImagens;
     }
 
     @Override

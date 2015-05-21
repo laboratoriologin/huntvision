@@ -17,8 +17,6 @@ public class ServiceApplication extends Application {
 
  		this.singletons.add(new GrupoUsuarioService());
 
- 		this.singletons.add(new ImagensService());
-
  		this.singletons.add(new ItemService());
 
  		this.singletons.add(new LocaisService());

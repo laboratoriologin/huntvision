@@ -36,27 +36,12 @@ public class QuestionarioFragment extends Fragment {
 
         final Questionario questionario = (Questionario) getArguments().getSerializable(ARG_OBJECT);
 
-        Bitmap bitmap = ((QuestionarioActivity) getActivity()).getImage(questionario);
+        TextView qtdImagens = (TextView) getView().findViewById(R.id.lbImagens);
 
-        ImageView image = (ImageView) getView().findViewById(R.id.imageView);
-
-        TextView textView = (TextView) getView().findViewById(R.id.lbImagemCapturada);
-
-        image.setVisibility(View.GONE);
-
-        textView.setVisibility(View.GONE);
-
-        if(bitmap!=null) {
-
-            image.setVisibility(View.VISIBLE);
-
-            textView.setVisibility(View.VISIBLE);
-
-            image.setImageBitmap(bitmap);
-
-        }
+        qtdImagens.setText(questionario.getCaminhosImagens().size() + " foto(s)");
 
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -147,6 +132,19 @@ public class QuestionarioFragment extends Fragment {
                 ((QuestionarioActivity) getActivity()).openAcervo(questionario);
 
             }
+        });
+
+        rootView.findViewById(R.id.lbImagens).setClickable(true);
+
+        rootView.findViewById(R.id.lbImagens).setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                ((QuestionarioActivity) getActivity()).showImages(questionario);
+
+            }
+
         });
 
 

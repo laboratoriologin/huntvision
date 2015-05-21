@@ -351,55 +351,6 @@ public final class JsonUtil {
 
     }
 
-
-
-
-    public static List<Imagem> imagemsFromJsonObject(JSONObject jsonObject) {
-
-        Imagem imagem = null;
-
-        JSONObject jsonImagem = null;
-
-        List<Imagem> imagems = new ArrayList<Imagem>();
-
-        try {
-
-            for (int i = 0; i < Utilitarios.getAlwaysJsonArray(jsonObject, "").length(); i++) {
-
-                jsonImagem = Utilitarios.getAlwaysJsonArray(jsonObject, "").getJSONObject(i);
-
-                if (jsonImagem.has("imagens")) {
-
-                    jsonImagem = jsonImagem.getJSONObject("imagens");
-
-                    imagem = new Imagem();
-
-                    imagem.setId(jsonImagem.getString("id"));
-
-                    imagem.setLegenda(jsonImagem.has("legenda") ? jsonImagem.getString("legenda") : "");
-
-                    imagem.setCaminho(jsonImagem.has("caminho") ? jsonImagem.getString("caminho") : "");
-
-
-                    imagems.add(imagem);
-
-                }
-
-            }
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return imagems;
-
-    }
-
-
-
-
     public static List<Resposta> respostasFromJsonObject(JSONObject jsonObject) {
 
         Resposta resposta = null;

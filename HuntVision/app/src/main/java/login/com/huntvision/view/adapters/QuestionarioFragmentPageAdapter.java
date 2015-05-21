@@ -14,7 +14,7 @@ import login.com.huntvision.view.fragments.QuestionarioFragment;
 /**
  * Created by login on 20/03/15.
  */
-public class QuestionarioFragmentPageAdapter extends FragmentStatePagerAdapter {
+public class QuestionarioFragmentPageAdapter extends FragmentPagerAdapter {
 
     private List<Questionario> lstQuestionario;
 

@@ -15,8 +15,8 @@ import login.com.huntvision.network.http.ResponseListener;
  */
 public class TipoQuestionarioRequest extends ObjectRequest<TipoQuestionario> {
 
-    public TipoQuestionarioRequest(ResponseListener listener) {
-        super(listener);
+    public TipoQuestionarioRequest(String url,ResponseListener listener) {
+        super( url , listener);
     }
 
     @Override

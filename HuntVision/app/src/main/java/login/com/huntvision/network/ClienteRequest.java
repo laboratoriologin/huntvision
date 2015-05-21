@@ -21,8 +21,8 @@ import login.com.huntvision.utils.Constantes;
  */
 public class ClienteRequest extends ObjectRequest<Cliente> {
 
-    public ClienteRequest(ResponseListener listener) {
-        super(listener);
+    public ClienteRequest(String url,ResponseListener listener) {
+        super(url,listener);
     }
 
     @Override

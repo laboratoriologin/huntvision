@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#E5E5E5"
-    android:orientation="vertical"
+    android:orientation="vertical" android:animateLayoutChanges="true"
 
     >
 
@@ -37,11 +37,58 @@
             android:layout_centerVertical="true"
             android:layout_marginTop="30dp"
             android:background="@color/huntVisionAzul"
-            android:onClick="sincronizar"
             android:padding="10dp"
             android:text="Sincronizar"
             android:textColor="#FFF"
             android:textSize="22dp" />
+
+
+        <Button
+            android:id="@+id/btnGeraChave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="false"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="30dp"
+            android:layout_below="@+id/sincronizarUsuario"
+            android:background="@color/huntVisionAzul"
+
+            android:padding="10dp"
+            android:text="Gera chave"
+            android:textColor="#FFF"
+            android:textSize="22dp" />
+
+        <RelativeLayout
+            android:id="@+id/rlGeraChave"
+            android:layout_width="match_parent"
+            android:layout_height="88dp"
+            android:layout_below="@+id/sincronizarUsuario"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp"
+            android:visibility="invisible"
+            >
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="38dp"
+                android:hint="Insira a chave"
+                android:id="@+id/txtChave"/>
+
+            <Button
+                android:id="@+id/btnAcessar"
+                android:layout_width="130dp"
+                android:layout_height="39dp"
+
+                android:layout_centerVertical="true"
+                android:layout_below="@+id/txtChave"
+                android:background="@color/huntVisionAzul"
+                android:padding="10dp"
+                android:text="Acessar"
+                android:textColor="#FFF"
+              />
+
+            </RelativeLayout>
+
 
 
     </RelativeLayout>
@@ -56,4 +103,35 @@
 
     </LinearLayout>
 
+    <RelativeLayout
+        android:id="@+id/rlConexao"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/huntVisionCinza"
+        android:alpha="0.8"
+        android:visibility="invisible"
+        >
+
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spConexao"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+
+            android:clickable="true" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Alterar"
+            android:textColor="@android:color/white"
+            android:layout_below="@+id/spConexao"
+            android:background="@color/huntVisionAzul"
+            android:id="@+id/selecionarUrl"
+            android:padding="10dp"/>
+
+
+    </RelativeLayout>
 </RelativeLayout>
