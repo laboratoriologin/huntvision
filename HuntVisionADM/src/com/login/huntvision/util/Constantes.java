@@ -1,18 +1,5 @@
 package com.login.huntvision.util;
 
-import java.util.Properties;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import javax.mail.Folder;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.NoSuchProviderException;
-import javax.mail.Session;
-import javax.mail.Store;
-import javax.mail.URLName;
-
-import com.sun.mail.pop3.POP3SSLStore;
 
 public class Constantes {
 
@@ -29,7 +16,7 @@ public class Constantes {
 	public static final Long TIPO_MIDIA_FOTO = 1L;
 	public static final Long TIPO_MIDIA_VIDEO = 2L;
 	public static final String CAMINHO_ARQUIVO = "E:\\arquivos_huntvision\\";
-	// public static final String CAMINHO_ARQUIVO = "/Users/login/teste/";
+	//public static final String CAMINHO_ARQUIVO = "/Users/login/teste/";
 	public static final String URL_YOUTUBE = "http://www.youtube.com/v/";
 	public static final Long TIPO_BANNER_ROTATIVO = 1L;
 	public static final Long TIPO_BANNER_INFERIOR = 2L;
