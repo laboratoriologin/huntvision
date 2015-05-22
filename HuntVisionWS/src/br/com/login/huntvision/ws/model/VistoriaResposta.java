@@ -1,7 +1,11 @@
 package br.com.login.huntvision.ws.model;
 
+import java.util.List;
+
 import javax.ws.rs.FormParam;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import org.jboss.resteasy.annotations.Form;
 
 @SuppressWarnings("serial")
 @XmlRootElement(name = "vistorias_respostas")
@@ -18,9 +22,12 @@ public final class VistoriaResposta extends RestModel {
 
 	@FormParam("vistoria")
 	private Vistoria vistoria;
-	
+
 	@FormParam("observacao")
 	private String observacao;
+
+	@Form(prefix = "imagens")
+	private List<Imagem> imagens;
 
 	public VistoriaResposta() {
 	}
@@ -69,12 +76,19 @@ public final class VistoriaResposta extends RestModel {
 	}
 
 	/**
-	 * @param observacao the observacao to set
+	 * @param observacao
+	 *            the observacao to set
 	 */
 	public void setObservacao(String observacao) {
 		this.observacao = observacao;
 	}
-	
-	
+
+	public List<Imagem> getImagens() {
+		return imagens;
+	}
+
+	public void setImagens(List<Imagem> imagens) {
+		this.imagens = imagens;
+	}
 
 }

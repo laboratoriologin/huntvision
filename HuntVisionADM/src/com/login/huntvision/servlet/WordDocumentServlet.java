@@ -257,6 +257,7 @@ public class WordDocumentServlet extends HttpServlet {
 		String jasper = request.getServletContext().getRealPath(WEB_INF + File.separator + RELATORIOS + File.separator + "visitas.jasper");
 
 		try {
+			
 			jasperUtil.gerarRelatorioDOC(response, nomeOrcamento, jasper, parametros);
 			
 		} catch (Exception e) {

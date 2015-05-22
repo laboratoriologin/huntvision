@@ -57,18 +57,26 @@
             android:inputType="textMultiLine"
             android:minHeight="50dp" />
 
-        <TextView android:id="@+id/lbCapturarImagem"
+        <TextView
+            android:id="@+id/lbCapturarImagem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/edtObservacoes"
             android:layout_marginTop="5dp"
-            android:layout_width="match_parent" android:padding="5dp"
-            android:layout_height="wrap_content"  android:gravity="center_horizontal" android:text="Capturar imagem" android:textColor="@android:color/white"
-            android:layout_below="@+id/edtObservacoes" android:background="@color/huntVisionAzul"/>
+            android:background="@color/huntVisionAzul"
+            android:gravity="center_horizontal"
+            android:padding="5dp"
+            android:text="Capturar imagem"
+            android:textColor="@android:color/white" />
 
-        <LinearLayout android:id="@+id/btsImagens"
+        <LinearLayout
+            android:id="@+id/btsImagens"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/lbCapturarImagem"
+            android:layout_marginTop="1dp"
             android:orientation="horizontal"
-            android:weightSum="2" android:layout_marginTop="1dp">
+            android:weightSum="2">
 
             <Button
                 android:id="@+id/btnCapturarImagem"
@@ -86,7 +94,7 @@
                 android:layout_width="1dp"
                 android:layout_height="wrap_content" />
 
-            <Button android:visibility="gone"
+            <Button
                 android:id="@+id/btnCapturarImagemAcervo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -96,20 +104,23 @@
                 android:padding="10dp"
                 android:text="Acervo"
                 android:textColor="#FFF"
-                android:textSize="22dp" />
+                android:textSize="22dp"
+                android:visibility="gone" />
 
         </LinearLayout>
 
-        <TextView android:id="@+id/lbImagemCapturada"
-            android:layout_marginTop="5dp" android:visibility="gone"
-            android:layout_width="match_parent" android:padding="5dp"
-            android:layout_height="wrap_content"  android:gravity="center_horizontal" android:text="Imagem capturada:" android:textColor="@android:color/white"
-            android:layout_below="@+id/btsImagens" android:background="@color/huntVisionAzul"/>
-
-
-        <ImageView android:id="@+id/imageView" android:layout_below="@+id/lbImagemCapturada"
-            android:layout_width="match_parent" android:layout_marginTop="10dp"
-            android:layout_height="200dp" android:adjustViewBounds="true"/>
+        <TextView
+            android:id="@+id/lbImagens"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/btsImagens"
+            android:layout_marginTop="5dp"
+            android:gravity="center_horizontal|right"
+            android:padding="5dp"
+            android:text="0 Fotos"
+            android:textColor="@color/huntVisionAzul"
+            android:textStyle="italic" />
 
     </RelativeLayout>
 

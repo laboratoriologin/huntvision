@@ -12,9 +12,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import login.com.huntvision.R;
+import login.com.huntvision.VistoriaPendenteDetalheActivity;
+import login.com.huntvision.models.Imagem;
+import login.com.huntvision.models.Questionario;
 import login.com.huntvision.models.Vistoria;
 import login.com.huntvision.models.VistoriaResposta;
 
@@ -27,12 +31,15 @@ public class VistoriaDetalheAdapter extends BaseAdapter {
     private List<VistoriaResposta> respostas;
     private LayoutInflater mInflater;
     private String imgPath;
+    private VistoriaPendenteDetalheActivity activity;
 
-    public VistoriaDetalheAdapter(List<VistoriaResposta> respostas, Context context,String imgPath) {
+    public VistoriaDetalheAdapter(List<VistoriaResposta> respostas, VistoriaPendenteDetalheActivity activity,String imgPath) {
 
         this.respostas = respostas;
 
-        mInflater = LayoutInflater.from(context);
+        mInflater = LayoutInflater.from(activity);
+
+        this.activity = activity;
 
         this.imgPath = imgPath;
 
@@ -62,34 +69,39 @@ public class VistoriaDetalheAdapter extends BaseAdapter {
 
         TextView resposta  = (TextView) convertView.findViewById(R.id.adapter_vistoria_detalhe_resposta);
 
-        ImageView imagem = (ImageView) convertView.findViewById(R.id.adapter_vistoria_detalhe_imagem);
+        TextView qtdFoto  = (TextView) convertView.findViewById(R.id.lbImagens);
 
-        VistoriaResposta vistoriaResposta = (VistoriaResposta) getItem(position);
+        final VistoriaResposta vistoriaResposta = (VistoriaResposta) getItem(position);
 
         pergunta.setText(vistoriaResposta.getResposta().getQuestionario().getPergunta());
 
         resposta.setText(vistoriaResposta.getResposta().getDescricao());
 
-        if(!TextUtils.isEmpty(vistoriaResposta.getImagem())) {
+        qtdFoto.setText(vistoriaResposta.getImagens().size() + " foto(s)");
 
-            imagem.setVisibility(View.VISIBLE);
+        qtdFoto.setClickable(vistoriaResposta.getImagens().size() > 0);
 
-            File imgFile = new  File(imgPath + "/" + vistoriaResposta.getImagem());
+        qtdFoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-            if(imgFile.exists()){
+                Questionario questionario = new Questionario();
 
-                BitmapFactory.Options options =  new BitmapFactory.Options();
-                options.inJustDecodeBounds = false;
-                options.inPreferredConfig = Bitmap.Config.RGB_565;
-                options.inDither = true;
-                options.inSampleSize = 4;
-                Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath(),options);
+                questionario.setCaminhosImagens(new ArrayList<String>());
 
-                imagem.setImageBitmap(myBitmap);
+                questionario.setPergunta(vistoriaResposta.getResposta().getQuestionario().getPergunta());
+
+                for (Imagem imagem : vistoriaResposta.getImagens()) {
+
+                    questionario.getCaminhosImagens().add(imagem.getCaminho());
+
+                }
+
+                activity.showImages(questionario);
 
             }
 
-        }
+        });
 
         return convertView;
 

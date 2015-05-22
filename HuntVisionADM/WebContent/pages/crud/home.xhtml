@@ -1,0 +1,34 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+	<ui:param name="mbean" value="${homeFaces}" />
+
+
+	<h:form prependId="false">
+		<h:panelGrid id="pgTabView">
+			<p:tabView id="tabView">
+				<p:tab title="Relatório Analítico" id="tabHome">
+
+
+
+
+					<h:panelGrid columns="2" columnClasses="left,right"
+						style="width:100%">
+						<p:chart  type="line" model="#{mbean.animatedModel1}"
+							style="width:400px;" />
+						<p:chart type="bar" model="#{mbean.animatedModel2}"
+							style="width:400px;" />
+					</h:panelGrid>
+				</p:tab>
+			</p:tabView>
+		</h:panelGrid>
+
+
+
+	</h:form>
+
+
+
+</ui:composition>

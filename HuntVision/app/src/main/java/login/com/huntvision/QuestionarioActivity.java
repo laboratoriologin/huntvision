@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -38,6 +39,7 @@ import java.util.List;
 
 import login.com.huntvision.managers.sqlite.DatabaseHelper;
 import login.com.huntvision.models.Cliente;
+import login.com.huntvision.models.Imagem;
 import login.com.huntvision.models.Item;
 import login.com.huntvision.models.Local;
 import login.com.huntvision.models.Questionario;
@@ -45,6 +47,7 @@ import login.com.huntvision.models.Resposta;
 import login.com.huntvision.models.Usuario;
 import login.com.huntvision.models.Vistoria;
 import login.com.huntvision.models.VistoriaResposta;
+import login.com.huntvision.utils.Constantes;
 import login.com.huntvision.view.adapters.QuestionarioFragmentPageAdapter;
 
 @EActivity(R.layout.activity_questionario)
@@ -56,7 +59,6 @@ public class QuestionarioActivity extends FragmentActivity {
     private Local objLocal;
     private Item objItem;
     private boolean acervo = false;
-    private String[] caminhosImagens;
 
     private DatabaseHelper databaseHelper;
 
@@ -111,6 +113,8 @@ public class QuestionarioActivity extends FragmentActivity {
 
                 questionario.setRespostas(getHelper().getRespostaRuntimeDAO().query(respostaBuilder.prepare()));
 
+                questionario.setCaminhosImagens(new ArrayList<String>());
+
             }
 
         } catch (SQLException e) {
@@ -121,10 +125,20 @@ public class QuestionarioActivity extends FragmentActivity {
 
         questionarioAdapter = new QuestionarioFragmentPageAdapter(getSupportFragmentManager(), lstQuestionario);
 
-        caminhosImagens = new String[lstQuestionario.size()];
-
         viewPager.setAdapter(questionarioAdapter);
 
+
+    }
+
+    public void showImages(Questionario questionario) {
+
+        Intent intent = new Intent(this, GaleriaActivity_.class);
+
+        intent.putExtra("questionario", questionario);
+
+        intent.putExtra("path", getApp().getTmpDataFolder().getAbsolutePath());
+
+        startActivity(intent);
 
     }
 
@@ -172,7 +186,9 @@ public class QuestionarioActivity extends FragmentActivity {
 
                 createImageTmp(imageName, bitmap);
 
-                caminhosImagens[requestCode] = imageName;
+                lstQuestionario.get(requestCode).getCaminhosImagens().add(imageName);
+
+                questionarioAdapter.notifyDataSetChanged();
 
             } catch (Exception e) {
 
@@ -203,7 +219,7 @@ public class QuestionarioActivity extends FragmentActivity {
 
                 createImageTmp(imageName, bitmap);
 
-                caminhosImagens[requestCode] = imageName;
+                lstQuestionario.get(requestCode).getCaminhosImagens().add(imageName);
 
             }
 
@@ -250,6 +266,8 @@ public class QuestionarioActivity extends FragmentActivity {
 
         VistoriaResposta vistoriaResposta = null;
 
+        Imagem imagem = null;
+
         for (Questionario questionario : lstQuestionario) {
 
             for (Resposta resposta : questionario.getRespostas()) {
@@ -258,15 +276,39 @@ public class QuestionarioActivity extends FragmentActivity {
 
                     vistoriaResposta = new VistoriaResposta();
 
+                    vistoriaResposta.setId(String.valueOf(System.currentTimeMillis()));
+
                     vistoriaResposta.setRespostaId(resposta.getId());
 
                     vistoriaResposta.setVistoriaId(vistoria.getId().toString());
 
                     vistoriaResposta.setObservacao(questionario.getObservacao());
 
-                    vistoriaResposta.setImagem(caminhosImagens[lstQuestionario.indexOf(questionario)]);
+                    vistoriaResposta.setImagens(new ArrayList<Imagem>());
+
+                    if (questionario.getCaminhosImagens() != null) {
+
+                        for (String caminho : questionario.getCaminhosImagens()) {
+
+                            imagem = new Imagem();
+
+                            imagem.setCaminho(caminho);
+
+                            vistoriaResposta.getImagens().add(imagem);
+
+                        }
+
+                    }
 
                     getHelper().getVistoriaRespostaRuntimeDAO().create(vistoriaResposta);
+
+                    for (Imagem imagemToSave : vistoriaResposta.getImagens()) {
+
+                        imagemToSave.setVistoriaRespostaId(vistoriaResposta.getId());
+
+                        getHelper().getImagemRuntimeDAO().create(imagemToSave);
+
+                    }
 
                     break;
 
@@ -284,15 +326,19 @@ public class QuestionarioActivity extends FragmentActivity {
 
     private void cleanTmpDirectory() {
 
-        for (int i = 0; i < caminhosImagens.length; i++) {
+        for (Questionario questionario : lstQuestionario) {
 
-            if (!TextUtils.isEmpty(caminhosImagens[i])) {
+            for (int i = 0; i < questionario.getCaminhosImagens().size(); i++) {
 
-                File file = new File(getApp().getTmpDataFolder() + "/" + caminhosImagens[i]);
+                if (!TextUtils.isEmpty(questionario.getCaminhosImagens().get(i))) {
 
-                if (file.exists()) {
+                    File file = new File(getApp().getTmpDataFolder() + "/" + questionario.getCaminhosImagens().get(i));
 
-                    file.renameTo(new File(getApp().getDataFolder() + "/" + caminhosImagens[i]));
+                    if (file.exists()) {
+
+                        file.renameTo(new File(getApp().getDataFolder() + "/" + questionario.getCaminhosImagens().get(i)));
+
+                    }
 
                 }
 
@@ -352,7 +398,29 @@ public class QuestionarioActivity extends FragmentActivity {
 
             BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(file));
 
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 50, bos);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bos);
+
+            int originalWidth = bitmap.getWidth();
+
+            int originalHeight = bitmap.getHeight();
+
+            bos.flush();
+
+            bos.close();
+
+            int factor = originalWidth / 480;
+
+            if(factor == 0) {
+                factor = 1;
+            }
+
+            Bitmap reduzida = decodeSampledBitmapFromUri(file.getAbsolutePath(), originalWidth, originalWidth / factor, originalHeight, originalHeight / factor);
+
+            File fileSample = new File(folder, imageName);
+
+            bos = new BufferedOutputStream(new FileOutputStream(fileSample));
+
+            reduzida.compress(Bitmap.CompressFormat.JPEG, 100, bos);
 
             bos.flush();
 
@@ -394,28 +462,41 @@ public class QuestionarioActivity extends FragmentActivity {
         return lstQuestionario.get(lstQuestionario.indexOf(questionario));
     }
 
-    public Bitmap getImage(Questionario questionario) {
-
-        int position = lstQuestionario.indexOf(questionario);
-
-        String caminhoImagem = caminhosImagens[position];
-
-        HuntVisionApp app = (HuntVisionApp) getApplication();
-
-        File imgFile = new File(app.getTmpDataFolder() + "/" + caminhoImagem);
-
-        if (imgFile.exists()) {
-
-            return BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-
-        }
-
-        return null;
-
-    }
 
     private HuntVisionApp getApp() {
         return (HuntVisionApp) getApplication();
     }
 
+    public Bitmap decodeSampledBitmapFromUri(String path, int originalWidth, int reqWidth, int originalHeight, int reqHeight) {
+
+        if (reqWidth > originalWidth)
+            reqWidth = originalWidth;
+
+        int inSampleSize = 1;
+        while (originalWidth / 2 > reqWidth) {
+            originalWidth /= 2;
+            originalHeight /= 2;
+            inSampleSize *= 2;
+        }
+
+
+// Decode with inSampleSize
+        float desiredScale = (float) reqWidth / originalWidth;
+
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = false;
+        options.inDither = false;
+        options.inSampleSize = inSampleSize;
+        options.inScaled = false;
+        options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+        Bitmap sampledSrcBitmap = BitmapFactory.decodeFile(path, options);
+
+// Resize
+        Matrix matrix = new Matrix();
+        matrix.postScale(desiredScale, desiredScale);
+        Bitmap scaledBitmap = Bitmap.createBitmap(sampledSrcBitmap, 0, 0, sampledSrcBitmap.getWidth(), sampledSrcBitmap.getHeight(), matrix, true);
+
+        return scaledBitmap;
+
+    }
 }

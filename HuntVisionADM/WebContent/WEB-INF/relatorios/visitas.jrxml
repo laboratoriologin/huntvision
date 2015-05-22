@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="visitas" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="645a2150-75db-4a1b-9464-f24b8808620b">
-	<property name="ireport.zoom" value="2.0"/>
-	<property name="ireport.x" value="288"/>
-	<property name="ireport.y" value="110"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="VISTORIA_ID" class="java.lang.Long">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<parameter name="CAMINHO_IMAGEM" class="java.lang.String">
 		<defaultValueExpression><![CDATA["/Users/login/teste/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["/Users/login/Documents/dev/repositorio_git/huntvision/HuntVisionADM/WebContent/WEB-INF/relatorios/"]]></defaultValueExpression>
 	</parameter>
 	<queryString>
 		<![CDATA[SELECT VR.OBSERVACAO, C.NOME AS CLIENTE, C.IMAGEM AS IMAGEM_CLIENTE, R.DESCRICAO AS RESPOSTA, Q.PERGUNTA AS PERGUNTA, VR.IMAGEM,
@@ -198,4 +201,19 @@ C.ENDERECO, C.EMAIL, C.CNPJ, C.TELEFONE, C.CEP
 			</line>
 		</band>
 	</detail>
+	<summary>
+		<band height="29">
+			<subreport>
+				<reportElement x="-19" y="0" width="555" height="25" uuid="e46f19cf-f1b7-437b-ba92-30290df19a15"/>
+				<subreportParameter name="VISTORIA_ID">
+					<subreportParameterExpression><![CDATA[$P{VISTORIA_ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="CAMINHO_IMAGEM">
+					<subreportParameterExpression><![CDATA[$P{CAMINHO_IMAGEM}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "vistorias_imagens_subreport.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</summary>
 </jasperReport>

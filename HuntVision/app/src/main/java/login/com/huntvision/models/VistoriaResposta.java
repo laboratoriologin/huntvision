@@ -6,6 +6,7 @@ package login.com.huntvision.models;
 
 import com.j256.ormlite.field.DatabaseField;
 
+import java.util.List;
 
 
 @SuppressWarnings("serial")
@@ -26,8 +27,7 @@ public class VistoriaResposta extends Base {
     @DatabaseField
     private String observacao;
 
-    @DatabaseField
-    private String imagem;
+    private List<Imagem> imagens;
 
     private Resposta resposta;
 
@@ -85,12 +85,12 @@ public class VistoriaResposta extends Base {
         this.vistoria = vistoria;
     }
 
-    public String getImagem() {
-        return imagem;
+    public List<Imagem> getImagens() {
+        return imagens;
     }
 
-    public void setImagem(String imagem) {
-        this.imagem = imagem;
+    public void setImagens(List<Imagem> imagens) {
+        this.imagens = imagens;
     }
 
     public String getObservacao() {

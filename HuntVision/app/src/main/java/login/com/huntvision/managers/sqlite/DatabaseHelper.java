@@ -169,13 +169,6 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         return vistoriaRespostaRuntimeDAO;
     }
 
-    public RuntimeExceptionDao<TipoQuestionario, String> getTipoQuestionarioRuntimeDAO() {
-        if (tipoQuestionarioRuntimeDAO == null) {
-            tipoQuestionarioRuntimeDAO = getRuntimeExceptionDao(TipoQuestionario.class);
-        }
-        return tipoQuestionarioRuntimeDAO;
-    }
-
 
     public RuntimeExceptionDao<Imagem, String> getImagemRuntimeDAO() {
         if (imagemRuntimeDAO == null) {
@@ -184,6 +177,12 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         return imagemRuntimeDAO;
     }
 
+    public RuntimeExceptionDao<TipoQuestionario, String> getTipoQuestionarioRuntimeDAO() {
+        if (tipoQuestionarioRuntimeDAO == null) {
+            tipoQuestionarioRuntimeDAO = getRuntimeExceptionDao(TipoQuestionario.class);
+        }
+        return tipoQuestionarioRuntimeDAO;
+    }
 
     public RuntimeExceptionDao<Resposta, String> getRespostaRuntimeDAO() {
         if (respostaRuntimeDAO == null) {

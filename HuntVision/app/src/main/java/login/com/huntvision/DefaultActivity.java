@@ -59,6 +59,10 @@ public class DefaultActivity extends OrmLiteBaseActivity<DatabaseHelper> {
        return  ((HuntVisionApp) getApplication()).getDataFolder();
     }
 
+    public File getTmpDataFolder() {
+        return  ((HuntVisionApp) getApplication()).getTmpDataFolder();
+    }
+
 
     public void onBackPressed(View view) {
 

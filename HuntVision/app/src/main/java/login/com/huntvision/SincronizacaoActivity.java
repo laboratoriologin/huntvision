@@ -1,12 +1,9 @@
 package login.com.huntvision;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,7 +23,6 @@ import java.util.List;
 
 import login.com.huntvision.models.Cliente;
 import login.com.huntvision.models.Conexao;
-import login.com.huntvision.models.Imagem;
 import login.com.huntvision.models.Item;
 import login.com.huntvision.models.ItemLocal;
 import login.com.huntvision.models.Local;
@@ -36,7 +32,6 @@ import login.com.huntvision.models.ServerResponse;
 import login.com.huntvision.models.TipoQuestionario;
 import login.com.huntvision.models.Usuario;
 import login.com.huntvision.network.ClienteRequest;
-import login.com.huntvision.network.ImagemRequest;
 import login.com.huntvision.network.ItemLocalRequest;
 import login.com.huntvision.network.ItemRequest;
 import login.com.huntvision.network.LocalRequest;
@@ -393,49 +388,6 @@ import login.com.huntvision.utils.JsonUtil;
     }
 
 
-    private void sincronizarImagens() {
-
-        new ImagemRequest(getUrlWS(), new ResponseListener() {
-
-            @Override
-            public void onResult(ServerResponse serverResponse) {
-
-                if (serverResponse.isOK()) {
-
-                    try {
-
-                        getHelper().getImagemRuntimeDAO().deleteBuilder().delete();
-
-                    } catch (SQLException e) {
-
-                        e.printStackTrace();
-
-                    }
-
-                    for (Imagem imagem : JsonUtil.imagemsFromJsonObject((JSONObject) serverResponse.getReturnObject())) {
-
-                        getHelper().getImagemRuntimeDAO().create(imagem);
-
-                    }
-
-
-
-                } else {
-
-                    progressDialog.dismiss();
-
-                    Toast.makeText(SincronizacaoActivity.this, "Ocorreu um erro, tente novamente", Toast.LENGTH_LONG).show();
-
-                }
-
-            }
-
-        }).getAll(new Imagem());
-
-
-    }
-
-
     private void sincronizarRespostas() {
 
         progressDialog.setMessage("Finalizando sincronização...");
@@ -497,6 +449,12 @@ import login.com.huntvision.utils.JsonUtil;
         objConexao = new Conexao();
         objConexao.setId("2");
         objConexao.setUrl(Constantes.URL_WS_OTIMIZE);
+
+        conexaos.add(objConexao);
+
+        objConexao = new Conexao();
+        objConexao.setId("3");
+        objConexao.setUrl(Constantes.URL_WS_LOCAL);
 
         conexaos.add(objConexao);
 

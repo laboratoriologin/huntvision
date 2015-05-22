@@ -2,9 +2,24 @@ package com.login.huntvision.faces;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Properties;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.mail.Folder;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.NoSuchProviderException;
+import javax.mail.Session;
+import javax.mail.Store;
+import javax.mail.URLName;
+
+import br.com.topsys.exception.TSApplicationException;
+import br.com.topsys.util.TSUtil;
+import br.com.topsys.web.faces.TSMainFaces;
+import br.com.topsys.web.util.TSFacesUtil;
 
 import com.login.huntvision.model.Menu;
 import com.login.huntvision.model.Permissao;
@@ -15,11 +30,7 @@ import com.login.huntvision.util.GeneratePassword;
 import com.login.huntvision.util.HuntVisionUtil;
 import com.login.huntvision.util.UsuarioUtil;
 import com.login.huntvision.util.Utilitarios;
-
-import br.com.topsys.exception.TSApplicationException;
-import br.com.topsys.util.TSUtil;
-import br.com.topsys.web.faces.TSMainFaces;
-import br.com.topsys.web.util.TSFacesUtil;
+import com.sun.mail.pop3.POP3SSLStore;
 
 @SessionScoped
 @ManagedBean(name = "autenticacaoFaces")
@@ -42,7 +53,6 @@ public class AutenticacaoFaces extends TSMainFaces {
 		setTabAtiva(new Integer(0));
 
 		setNomeTela("Área de Trabalho");
-
 	}
 
 	protected void clearFields() {
@@ -96,6 +106,10 @@ public class AutenticacaoFaces extends TSMainFaces {
 
 		TSFacesUtil.addObjectInSession(Constantes.USUARIO_CONECTADO, usuario);
 		carregarMenu();
+		
+		setTela("crud/home.xhtml");
+		
+		setNomeTela("Home");
 
 		return SUCESSO;
 	}
@@ -141,7 +155,7 @@ public class AutenticacaoFaces extends TSMainFaces {
 		}
 
 		usuarioNovaSenha.setSenha(Utilitarios.gerarHash(usuarioNovaSenha.getSenha()));
-		
+
 		String novaSenha = usuarioNovaSenha.getNovaSenha();
 
 		usuarioNovaSenha = usuarioNovaSenha.getByModel();
@@ -245,5 +259,5 @@ public class AutenticacaoFaces extends TSMainFaces {
 	public void setUsuarioNovaSenha(Usuario usuarioNovaSenha) {
 		this.usuarioNovaSenha = usuarioNovaSenha;
 	}
-
+	
 }

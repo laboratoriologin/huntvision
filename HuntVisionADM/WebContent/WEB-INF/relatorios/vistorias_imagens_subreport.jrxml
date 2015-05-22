@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="vistorias_imagens_subreport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1469e4f9-a293-4f01-8ebd-61fd38a312f9">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="VISTORIA_ID" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CAMINHO_IMAGEM" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT VRI.CAMINHO,Q.PERGUNTA FROM VISTORIAS_RESPOSTAS_IMAGENS VRI, VISTORIAS_RESPOSTAS VR, RESPOSTAS R, QUESTIONARIOS Q
+WHERE VRI.VISTORIA_RESPOSTA_ID = VR.ID AND VR.RESPOSTA_ID = R.ID AND R.ID_QUESTIONARIO = Q.ID AND VR.VISTORIA_ID = $P{VISTORIA_ID} ORDER BY VR.ID
+]]>
+	</queryString>
+	<field name="CAMINHO" class="java.lang.String"/>
+	<field name="PERGUNTA" class="java.lang.String"/>
+	<group name="pergunta" keepTogether="true">
+		<groupExpression><![CDATA[$F{PERGUNTA}]]></groupExpression>
+		<groupHeader>
+			<band height="24">
+				<textField>
+					<reportElement x="0" y="1" width="555" height="20" uuid="b00d51c9-df84-4870-be49-7b42fb282a98"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{PERGUNTA}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="0" y="0" width="555" height="1" uuid="5b5d5765-f2b1-468d-9117-e512dc6c4280"/>
+				</line>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="20">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="20" uuid="da917ebd-8099-4d6e-9a4a-108cb31a2626"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[ANEXO]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="0" width="555" height="1" uuid="6158bf1c-b67d-40cf-8860-f23d5f731ecd"/>
+			</line>
+		</band>
+	</title>
+	<detail>
+		<band height="135">
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="0" y="7" width="555" height="120" uuid="335be4d3-f17e-411e-9504-26e8eb8ff239"/>
+				<imageExpression><![CDATA[$P{CAMINHO_IMAGEM} + $F{CAMINHO}]]></imageExpression>
+			</image>
+		</band>
+	</detail>
+</jasperReport>

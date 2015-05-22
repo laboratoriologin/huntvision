@@ -1,5 +1,6 @@
 package login.com.huntvision;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -16,6 +17,7 @@ import org.androidannotations.annotations.ViewById;
 
 import java.sql.SQLException;
 
+import login.com.huntvision.models.Imagem;
 import login.com.huntvision.models.Item;
 import login.com.huntvision.models.Questionario;
 import login.com.huntvision.models.Resposta;
@@ -50,15 +52,17 @@ public class VistoriaPendenteDetalheActivity extends DefaultActivity {
 
             vistoria.setRespostas(getHelper().getVistoriaRespostaRuntimeDAO().query(builder.prepare()));
 
-            QueryBuilder<Resposta, String> respostaQueryBuilder = null;
+            QueryBuilder<Resposta, String> respostaQueryBuilder = getHelper().getRespostaRuntimeDAO().queryBuilder();
 
-            QueryBuilder<Questionario, String> questionarioQueryBuilder = null;
+            QueryBuilder<Questionario, String> questionarioQueryBuilder = getHelper().getQuestionarioRuntimeDAO().queryBuilder();
+
+            QueryBuilder<Imagem, String> builderImagem = getHelper().getImagemRuntimeDAO().queryBuilder();
 
             for (VistoriaResposta resposta : vistoria.getRespostas()) {
 
-                respostaQueryBuilder = getHelper().getRespostaRuntimeDAO().queryBuilder();
+                builderImagem.where().eq("vistoriaRespostaId", resposta.getId());
 
-                questionarioQueryBuilder = getHelper().getQuestionarioRuntimeDAO().queryBuilder();
+                resposta.setImagens(builderImagem.query());
 
                 respostaQueryBuilder.where().eq("id", resposta.getRespostaId());
 
@@ -67,7 +71,6 @@ public class VistoriaPendenteDetalheActivity extends DefaultActivity {
                 questionarioQueryBuilder.where().eq("id", resposta.getResposta().getQuestionarioId());
 
                 resposta.getResposta().setQuestionario(getHelper().getQuestionarioRuntimeDAO().queryForFirst(questionarioQueryBuilder.prepare()));
-
             }
 
         } catch (SQLException e) {
@@ -123,13 +126,13 @@ public class VistoriaPendenteDetalheActivity extends DefaultActivity {
 
             builder.delete();
 
-            DeleteBuilder<Vistoria,Long> deleteBuilderVistoria = getHelper().getVistoriaRuntimeDAO().deleteBuilder();
+            DeleteBuilder<Vistoria, Long> deleteBuilderVistoria = getHelper().getVistoriaRuntimeDAO().deleteBuilder();
 
-            deleteBuilderVistoria.where().eq("id",vistoria.getId());
+            deleteBuilderVistoria.where().eq("id", vistoria.getId());
 
             deleteBuilderVistoria.delete();
 
-            Toast.makeText(this,"Vistoria excluída com sucesso",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Vistoria excluída com sucesso", Toast.LENGTH_SHORT).show();
 
             finish();
 
@@ -141,6 +144,18 @@ public class VistoriaPendenteDetalheActivity extends DefaultActivity {
 
     public void backPressed(View view) {
         super.onBackPressed();
+    }
+
+    public void showImages(Questionario questionario) {
+
+        Intent intent = new Intent(this, GaleriaActivity_.class);
+
+        intent.putExtra("questionario", questionario);
+
+        intent.putExtra("path", getDataFolder().getAbsolutePath());
+
+        startActivity(intent);
+
     }
 
 }
