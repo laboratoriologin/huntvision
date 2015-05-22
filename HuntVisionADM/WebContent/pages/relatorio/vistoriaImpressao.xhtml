@@ -34,20 +34,25 @@
 			style="text-align: center; padding: 10px;" align="center">
 
 			<thead>
-			<td><img  width="80%" src="/arquivos_huntvision/#{mbean.crudModel.cliente.imagem}"  alt="" /></td>
-			
-			<td><img  width="20%" src="../../resources/images/logoGold.jpg"  alt="" /></td>
-			<td><img width="30%" src="../../resources/images/logo_hunt_vision_260px.png"  alt="" /></td>
-			
+				<td><img width="80%"
+					src="/arquivos_huntvision/#{mbean.crudModel.cliente.imagem}" alt="" /></td>
+
+				<td><img width="20%" src="../../resources/images/logoGold.jpg"
+					alt="" /></td>
+				<td><img width="30%"
+					src="../../resources/images/logo_hunt_vision_260px.png" alt="" /></td>
+
 			</thead>
 			<tr>
 				<td><b>Cliente:</b> #{mbean.crudModel.cliente.nome} <br></br>
-					#{mbean.crudModel.cliente.cidade} / #{mbean.crudModel.cliente.estado} /
-					#{mbean.crudModel.cliente.pais}</td>
+					#{mbean.crudModel.cliente.cidade} /
+					#{mbean.crudModel.cliente.estado} / #{mbean.crudModel.cliente.pais}</td>
 				<td><b>Endereço:</b> #{mbean.crudModel.cliente.endereco} | <b>E-mail:</b>
-					#{mbean.crudModel.cliente.email} | <b>CNPJ:</b> #{mbean.crudModel.cliente.cnpj} | <b>Telefone:</b>
-					#{mbean.crudModel.cliente.telefone} | <b>Telefone:</b> #{mbean.crudModel.cliente.cep}</td>
-			<td></td>
+					#{mbean.crudModel.cliente.email} | <b>CNPJ:</b>
+					#{mbean.crudModel.cliente.cnpj} | <b>Telefone:</b>
+					#{mbean.crudModel.cliente.telefone} | <b>Telefone:</b>
+					#{mbean.crudModel.cliente.cep}</td>
+				<td></td>
 			</tr>
 		</table>
 
@@ -63,8 +68,7 @@
 				<tr>
 					<td><p>
 							<h:outputText value="#{linha.resposta.questionario.pergunta}" />
-						</p>
-						</td>
+						</p></td>
 					<td>
 						<p>
 							<h:outputText value="#{linha.resposta.descricao}" />
@@ -77,12 +81,44 @@
 					</td>
 					<td>
 						<p>
-							<img width="300px" style="max-height:200px" src="/arquivos_huntvision/#{linha.imagem}"></img>
+							<img width="300px" style="max-height: 200px"
+								src="/arquivos_huntvision/#{linha.imagem}"></img>
 						</p>
 					</td>
 				</tr>
 			</ui:repeat>
 		</table>
+
+		<div align="center">
+
+			<h1>ANEXO</h1>
+
+		</div>
+
+		<table border="1" width="95%"
+			style="text-align: center; padding: 10px;" align="center">
+
+			<ui:repeat var="linha" value="#{mbean.lstVistoriaRespostaTratada}">
+
+				<tr>
+					<td><h:outputText style="text-align: center; padding: 10px; font-weight:bold;"
+							value="#{linha.resposta.questionario.pergunta}" /></td>
+				</tr>
+
+				<ui:repeat value="#{linha.imagens}" var="imagem">
+					<tr>
+						<td><img width="300px" style="max-height: 200px; margin:5px;"
+							src="/arquivos_huntvision/#{imagem.caminho}"></img></td>
+					</tr>
+
+				</ui:repeat>
+
+			</ui:repeat>
+
+
+		</table>
+
+
 	</h:body>
 
 </f:view>

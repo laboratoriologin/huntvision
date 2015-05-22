@@ -20,6 +20,7 @@ import com.login.huntvision.model.Cliente;
 import com.login.huntvision.model.GeradorQRCode;
 import com.login.huntvision.model.Vistoria;
 import com.login.huntvision.model.VistoriaResposta;
+import com.login.huntvision.model.VistoriaRespostaImagem;
 import com.login.huntvision.util.Constantes;
 import com.login.huntvision.util.EmailUtil;
 import com.login.huntvision.util.Utilitarios;
@@ -120,7 +121,8 @@ public class VistoriaFaces extends CrudFaces<Vistoria> {
 		resposta.setVistoria(this.getCrudModel());
 
 		this.lstVistoriaRespostaTratada = resposta.findAllByVistoria();
-
+	
+		
 		return null;
 
 	}

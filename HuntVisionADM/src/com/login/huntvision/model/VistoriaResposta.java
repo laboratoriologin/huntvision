@@ -2,37 +2,42 @@ package com.login.huntvision.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
+
+import org.hibernate.annotations.Cascade;
 
 import br.com.topsys.database.hibernate.TSActiveRecordAb;
 
 @Entity
 @Table(name = "vistorias_respostas")
-public final class VistoriaResposta extends TSActiveRecordAb<VistoriaResposta> { 
-	
+public final class VistoriaResposta extends TSActiveRecordAb<VistoriaResposta> {
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	
-	
+
 	@Column(name = "imagem")
 	private String imagem;
-	
-	
+
 	@Column(name = "observacao")
 	private String observacao;
-	
+
+	@Cascade(org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
+	@OneToMany(mappedBy = "vistoriaResposta", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private List<VistoriaRespostaImagem> imagens;
+
 	/**
 	 * @return the observacao
 	 */
@@ -41,7 +46,8 @@ public final class VistoriaResposta extends TSActiveRecordAb<VistoriaResposta> {
 	}
 
 	/**
-	 * @param observacao the observacao to set
+	 * @param observacao
+	 *            the observacao to set
 	 */
 	public void setObservacao(String observacao) {
 		this.observacao = observacao;
@@ -55,7 +61,8 @@ public final class VistoriaResposta extends TSActiveRecordAb<VistoriaResposta> {
 	}
 
 	/**
-	 * @param imagem the imagem to set
+	 * @param imagem
+	 *            the imagem to set
 	 */
 	public void setImagem(String imagem) {
 		this.imagem = imagem;
@@ -64,8 +71,7 @@ public final class VistoriaResposta extends TSActiveRecordAb<VistoriaResposta> {
 	@ManyToOne
 	@JoinColumn(name = "resposta_id")
 	private Resposta resposta;
-	
-	
+
 	@ManyToOne
 	@JoinColumn(name = "vistoria_id")
 	private Vistoria vistoria;
@@ -78,7 +84,8 @@ public final class VistoriaResposta extends TSActiveRecordAb<VistoriaResposta> {
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(Long id) {
 		this.id = id;
@@ -92,7 +99,8 @@ public final class VistoriaResposta extends TSActiveRecordAb<VistoriaResposta> {
 	}
 
 	/**
-	 * @param resposta the resposta to set
+	 * @param resposta
+	 *            the resposta to set
 	 */
 	public void setResposta(Resposta resposta) {
 		this.resposta = resposta;
@@ -106,19 +114,30 @@ public final class VistoriaResposta extends TSActiveRecordAb<VistoriaResposta> {
 	}
 
 	/**
-	 * @param vistoria the vistoria to set
+	 * @param vistoria
+	 *            the vistoria to set
 	 */
 	public void setVistoria(Vistoria vistoria) {
 		this.vistoria = vistoria;
 	}
-	
+
 	public List<VistoriaResposta> findAllByVistoria() {
-		
+
 		return find("from VistoriaResposta where vistoria.id = ?", null, vistoria.getId());
-		
+
 	}
 
-	/* (non-Javadoc)
+	public List<VistoriaRespostaImagem> getImagens() {
+		return imagens;
+	}
+
+	public void setImagens(List<VistoriaRespostaImagem> imagens) {
+		this.imagens = imagens;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -127,16 +146,15 @@ public final class VistoriaResposta extends TSActiveRecordAb<VistoriaResposta> {
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((imagem == null) ? 0 : imagem.hashCode());
-		result = prime * result
-				+ ((observacao == null) ? 0 : observacao.hashCode());
-		result = prime * result
-				+ ((resposta == null) ? 0 : resposta.hashCode());
-		result = prime * result
-				+ ((vistoria == null) ? 0 : vistoria.hashCode());
+		result = prime * result + ((observacao == null) ? 0 : observacao.hashCode());
+		result = prime * result + ((resposta == null) ? 0 : resposta.hashCode());
+		result = prime * result + ((vistoria == null) ? 0 : vistoria.hashCode());
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -175,9 +193,5 @@ public final class VistoriaResposta extends TSActiveRecordAb<VistoriaResposta> {
 			return false;
 		return true;
 	}
-	
 
-	
-
-	
 }
