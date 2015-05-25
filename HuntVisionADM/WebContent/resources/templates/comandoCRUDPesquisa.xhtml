@@ -2,7 +2,7 @@
 
 	<h:panelGrid columns="2" columnClasses="coluna10, coluna90" style="width:100%">
 
-		<p:commandButton value="Pesquisar" icon="pesquisar" action="#{mbean.findEvent}" onclick="dtPesquisa.getPaginator().setPage(0);" update="@form" style="height:28px; width: 140px;" />
+		<p:commandButton value="Pesquisar" icon="pesquisar" action="#{mbean.findEvent}" update="@form" style="height:28px; width: 140px;" />
 
 		<p:commandButton value="Nova Pesquisa" icon="novo" action="#{mbean.limparPesquisa}" update="@form" style="height:28px; width: 140px;" />
 

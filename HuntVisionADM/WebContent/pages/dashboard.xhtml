@@ -43,9 +43,9 @@
 		<p:growl id="growl" showDetail="true" showSummary="false"
 			sticky="false" autoUpdate="true" globalOnly="false" />
 
-		<p:ajaxStatus onstart="statusDialog.show();"
-			onsuccess="statusDialog.hide();" onerror="statusDialog.hide();"
-			oncomplete="statusDialog.hide();" />
+		<p:ajaxStatus onstart="PF('statusDialog').show();"
+			onsuccess="PF('statusDialog').hide();" onerror="PF('statusDialog').hide();"
+			oncomplete="PF('statusDialog').hide();" />
 
 		<p:dialog modal="true" widgetVar="statusDialog"
 			header="Processando..." draggable="false" closable="false"
