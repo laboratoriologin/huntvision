@@ -5,6 +5,8 @@ package com.login.huntvision.faces;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.TreeSet;
@@ -18,6 +20,7 @@ import org.apache.commons.collections.MapUtils;
 import org.primefaces.model.chart.Axis;
 import org.primefaces.model.chart.AxisType;
 import org.primefaces.model.chart.BarChartModel;
+import org.primefaces.model.chart.CategoryAxis;
 import org.primefaces.model.chart.ChartSeries;
 import org.primefaces.model.chart.LineChartModel;
 import org.primefaces.model.chart.LineChartSeries;
@@ -36,15 +39,15 @@ import com.login.huntvision.model.Vistoria;
 @ManagedBean(name = "homeFaces")
 public class HomeFaces extends TSMainFaces {
 
-	private LineChartModel animatedModel1;
-	private BarChartModel animatedModel2;
+	private LineChartModel chartUsuario;
+	private BarChartModel chartMensal;
 	private List<SelectItem> comboClientes;
 	private List<SelectItem> comboUsuarios;
 	private Vistoria vistoria;
 	private SimpleDateFormat dateFormatDiario = new SimpleDateFormat("dd/MM/yyyy");
 	private SimpleDateFormat dateFormatMensal = new SimpleDateFormat("MM/yyyy");
-	private HashMap<String, Integer> mapaQuantidadeDiaria;
 	private HashMap<String, Integer> mapaQuantidadeMensal;
+	private HashMap<String, Integer> mapaQuantidadeUsuario;
 	private List<Vistoria> vistorias;
 
 	@PostConstruct
@@ -57,86 +60,144 @@ public class HomeFaces extends TSMainFaces {
 		find();
 	}
 
-	public LineChartModel getAnimatedModel1() {
-		return animatedModel1;
-	}
-
-	public BarChartModel getAnimatedModel2() {
-		return animatedModel2;
-	}
-
 	@Override
 	protected String find() {
+
 		this.vistorias = this.vistoria.findAllByCliente("data");
+
 		createAnimatedModels();
+
 		return null;
+
 	}
 
 	private void createAnimatedModels() {
 
-		this.initCharts();
-		animatedModel1.setTitle("Total de visitas");
-		animatedModel1.setAnimate(true);
-		animatedModel1.setLegendPosition("se");
-		
+		this.initMaps();
 
-		animatedModel2 = initBarModel();
-		
+		this.initChartUsuario();
+
+		this.initChartMensal();
+
 	}
 
-	private BarChartModel initBarModel() {
-		BarChartModel model = new BarChartModel();
+	private void initChartUsuario() {
+
+		int maximo = 0;
 		
+		this.chartUsuario = new LineChartModel();
+
+		Usuario currentUsuario = null;
+
+		mapaQuantidadeUsuario = new HashMap<String, Integer>();
+
+		String mesAno = null;
+
+		Collections.sort(vistorias, new Comparator<Vistoria>() {
+
+			@Override
+			public int compare(Vistoria o1, Vistoria o2) {
+				return o1.getUsuario().compareTo(o2.getUsuario());
+			}
+		});
+
+		for (Vistoria vistoria : this.vistorias) {
+
+			try {
+
+				mesAno = dateFormatMensal.format(dateFormatDiario.parse(vistoria.getData()));
+
+			} catch (ParseException e) {
+
+				e.printStackTrace();
+
+			}
+
+			if (!vistoria.getUsuario().equals(currentUsuario)) {
+
+				if (!mapaQuantidadeUsuario.isEmpty()) {
+
+					ChartSeries usuarioChartSerie = new ChartSeries();
+
+					usuarioChartSerie.setLabel(currentUsuario.getNome());
+
+					for (String key : mapaQuantidadeUsuario.keySet()) {
+
+						usuarioChartSerie.set(key, mapaQuantidadeUsuario.get(key));
+						
+						if(mapaQuantidadeUsuario.get(key) > maximo) {
+							maximo = mapaQuantidadeUsuario.get(key);
+						}
+
+					}
+
+					this.chartUsuario.addSeries(usuarioChartSerie);
+
+				}
+
+				currentUsuario = vistoria.getUsuario();
+
+				mapaQuantidadeUsuario = new HashMap<String, Integer>();
+
+			}
+
+			if (!mapaQuantidadeUsuario.containsKey(mesAno)) {
+				mapaQuantidadeUsuario.put(mesAno, 0);
+			}
+
+			mapaQuantidadeUsuario.put(mesAno, mapaQuantidadeUsuario.get(mesAno) + 1);
+
+		}
+
+		chartUsuario.setTitle("Visitas por usuário");
+		chartUsuario.setLegendPosition("e");
+		chartUsuario.setShowPointLabels(true);
+		chartUsuario.getAxes().put(AxisType.X, new CategoryAxis("Data"));
+		Axis yAxis = chartUsuario.getAxis(AxisType.Y);
+		yAxis.setLabel("Visitas");
+		yAxis.setMin(0);
+		yAxis.setMax(maximo);
+
+	}
+
+	private void initChartMensal() {
+
+		chartMensal = new BarChartModel();
+
 		int maximo = 0;
 
 		ChartSeries series1 = new ChartSeries();
+
 		series1.setLabel("Visitas Realizadas por mês");
-		
-		for (String key :new TreeSet<String>(mapaQuantidadeMensal.keySet())) {
+
+		for (String key : new TreeSet<String>(mapaQuantidadeMensal.keySet())) {
 
 			series1.set(key, mapaQuantidadeMensal.get(key));
-			
-			if(mapaQuantidadeMensal.get(key) > maximo) {
-				maximo  = mapaQuantidadeMensal.get(key);
+
+			if (mapaQuantidadeMensal.get(key) > maximo) {
+				maximo = mapaQuantidadeMensal.get(key);
 			}
-			
-			
 
 		}
-		
-		model.addSeries(series1);
-		
-		model.setTitle("Barra de visitas mensal");
-		model.setAnimate(true);
-		model.setLegendPosition("ne");
-		Axis yAxis = model.getAxis(AxisType.Y);
+
+		chartMensal.addSeries(series1);
+
+		chartMensal.setTitle("Barra de visitas mensal");
+		chartMensal.setAnimate(true);
+		chartMensal.setLegendPosition("ne");
+		Axis yAxis = chartMensal.getAxis(AxisType.Y);
 		yAxis.setMin(0);
 		yAxis.setMax(maximo);
-		
 
-		return model;
 	}
 
-	private void initCharts() {
+	private void initMaps() {
 
-		this.animatedModel1 = new LineChartModel();
-
-		LineChartSeries series1 = new LineChartSeries();
-
-		series1.setLabel("Visitas por dia");
-
-		mapaQuantidadeDiaria = new HashMap<String, Integer>();
 		mapaQuantidadeMensal = new HashMap<String, Integer>();
 
 		String mesAno = null;
 
 		for (Vistoria vistoria : vistorias) {
-
-			if (!mapaQuantidadeDiaria.containsKey(vistoria.getData())) {
-				mapaQuantidadeDiaria.put(vistoria.getData(), 0);
-			}
-
-			mapaQuantidadeDiaria.put(vistoria.getData(), mapaQuantidadeDiaria.get(vistoria.getData()) + 1);
 
 			try {
 
@@ -154,14 +215,6 @@ public class HomeFaces extends TSMainFaces {
 			}
 
 		}
-
-		for (String key : mapaQuantidadeDiaria.keySet()) {
-
-			series1.set(key, mapaQuantidadeDiaria.get(key));
-
-		}
-
-		this.animatedModel1.addSeries(series1);
 
 	}
 
@@ -208,6 +261,22 @@ public class HomeFaces extends TSMainFaces {
 	 */
 	public void setComboClientes(List<SelectItem> comboClientes) {
 		this.comboClientes = comboClientes;
+	}
+
+	public LineChartModel getChartUsuario() {
+		return chartUsuario;
+	}
+
+	public void setChartUsuario(LineChartModel chartUsuario) {
+		this.chartUsuario = chartUsuario;
+	}
+
+	public BarChartModel getChartMensal() {
+		return chartMensal;
+	}
+
+	public void setChartMensal(BarChartModel chartMensal) {
+		this.chartMensal = chartMensal;
 	}
 
 }

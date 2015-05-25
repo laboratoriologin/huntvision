@@ -13,26 +13,27 @@
 
 					<p:fieldset legend="Filtro" toggleable="true">
 						<h:panelGrid columns="2">
-							<h:outputLabel value="Cliente"/>
-							<h:outputLabel value="Usuário"/>
+							<h:outputLabel value="Cliente" />
+							<h:outputLabel value="Usuário" />
 							<p:selectOneMenu value="#{mbean.vistoria.cliente.id}">
-								<f:selectItem itemLabel="Selecione" itemValue=""/>
-								<f:selectItems value="#{mbean.comboClientes}"/>
+								<f:selectItem itemLabel="Selecione" itemValue="" />
+								<f:selectItems value="#{mbean.comboClientes}" />
 							</p:selectOneMenu>
 							<p:selectOneMenu value="#{mbean.vistoria.usuario.id}">
-								<f:selectItem itemLabel="Selecione" itemValue=""/>
-								<f:selectItems value="#{mbean.comboUsuarios}"/>
+								<f:selectItem itemLabel="Selecione" itemValue="" />
+								<f:selectItems value="#{mbean.comboUsuarios}" />
 							</p:selectOneMenu>
-							<p:commandButton value="Pesquisar" ajax="false" action="#{mbean.findEvent}" icon="ui-icon-search"/>
+							<p:commandButton value="Pesquisar" ajax="false"
+								action="#{mbean.findEvent}" icon="ui-icon-search" />
 						</h:panelGrid>
 					</p:fieldset>
 
 
-					<h:panelGrid id="pgGraficos" columns="1"
-						style="width:100%">
-				
-						<p:chart type="bar" model="#{mbean.animatedModel2}"
-							style="width:800px;" />
+					<h:panelGrid id="pgGraficos" columns="1" style="width:100%">
+
+						<p:chart type="line" model="#{mbean.chartUsuario}" style="width:800px;" />
+
+						<p:chart type="bar" model="#{mbean.chartMensal}" style="width:800px;" />
 					</h:panelGrid>
 				</p:tab>
 			</p:tabView>
