@@ -23,7 +23,7 @@
 								<f:selectItem itemLabel="Selecione" itemValue=""/>
 								<f:selectItems value="#{mbean.comboUsuarios}"/>
 							</p:selectOneMenu>
-							<p:commandButton value="Pesquisar" update="pgGraficos" action="#{mbean.findEvent}" icon="ui-icon-search"/>
+							<p:commandButton value="Pesquisar" ajax="false" action="#{mbean.findEvent}" icon="ui-icon-search"/>
 						</h:panelGrid>
 					</p:fieldset>
 
