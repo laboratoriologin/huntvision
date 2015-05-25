@@ -44,9 +44,6 @@ public final class Questionario extends TSActiveRecordAb<Questionario> {
 	
 
 
-	@Cascade(org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
-	@OneToMany(mappedBy = "questionario", cascade = CascadeType.ALL)
-	private List<Imagem> imagens;
 	
 	
 	@Cascade(org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
@@ -176,8 +173,7 @@ public final class Questionario extends TSActiveRecordAb<Questionario> {
 		int result = 1;
 		result = prime * result + ((data == null) ? 0 : data.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((imagens == null) ? 0 : imagens.hashCode());
-		result = prime * result + ((item == null) ? 0 : item.hashCode());
+			result = prime * result + ((item == null) ? 0 : item.hashCode());
 		result = prime * result
 				+ ((pergunta == null) ? 0 : pergunta.hashCode());
 		result = prime * result
@@ -212,12 +208,7 @@ public final class Questionario extends TSActiveRecordAb<Questionario> {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (imagens == null) {
-			if (other.imagens != null)
-				return false;
-		} else if (!imagens.equals(other.imagens))
-			return false;
-		if (item == null) {
+				if (item == null) {
 			if (other.item != null)
 				return false;
 		} else if (!item.equals(other.item))
@@ -248,20 +239,6 @@ public final class Questionario extends TSActiveRecordAb<Questionario> {
 		} else if (!usuario.equals(other.usuario))
 			return false;
 		return true;
-	}
-
-	/**
-	 * @return the imagem
-	 */
-	public List<Imagem> getImagens() {
-		return imagens;
-	}
-
-	/**
-	 * @param imagem the imagem to set
-	 */
-	public void setImagens(List<Imagem> imagem) {
-		this.imagens = imagem;
 	}
 
 	

@@ -16,7 +16,7 @@ import org.primefaces.event.FileUploadEvent;
 
 import br.com.topsys.exception.TSApplicationException;
 
-import com.login.huntvision.model.Imagem;
+
 import com.login.huntvision.model.Item;
 import com.login.huntvision.model.Questionario;
 import com.login.huntvision.model.Resposta;
@@ -60,8 +60,7 @@ public class QuestionarioFaces extends CrudFaces<Questionario> {
 
 		super.limpar();
 		this.getCrudModel().setRespostas(new ArrayList<Resposta>());
-		this.getCrudModel().setImagens(new ArrayList<Imagem>());
-		this.getCrudModel().setStatus(Boolean.TRUE);
+			this.getCrudModel().setStatus(Boolean.TRUE);
 		getCrudModel().setTipoQuestionario(new TipoQuestionario());
 		getCrudModel().setItem(new Item());
 		return null;
@@ -77,10 +76,6 @@ public class QuestionarioFaces extends CrudFaces<Questionario> {
 
 	@Override
 	protected void prePersist() {
-
-		for (Imagem objImagem : getCrudModel().getImagens()) {
-			objImagem.setQuestionario(getCrudModel());
-		}
 
 		for (Resposta objResposta : getCrudModel().getRespostas()) {
 			objResposta.setQuestionario(getCrudModel());
@@ -166,14 +161,7 @@ public class QuestionarioFaces extends CrudFaces<Questionario> {
 		nomeArquivo += String.valueOf(now.get(Calendar.MILLISECOND));
 		nomeArquivo += "." + FilenameUtils.getExtension(event.getFile().getFileName());
 
-		Imagem objImagem = new Imagem();
-
-		objImagem.setLegenda("");
-
-		objImagem.setCaminho(nomeArquivo);
-
-		this.getCrudModel().getImagens().add(objImagem);
-
+	
 		HuntVisionUtil.criaArquivo(event.getFile(), Constantes.CAMINHO_ARQUIVO + nomeArquivo);
 
 	}

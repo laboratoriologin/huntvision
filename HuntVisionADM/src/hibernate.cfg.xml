@@ -16,7 +16,6 @@
 		<mapping class="com.login.huntvision.model.Cliente" />
 		<mapping class="com.login.huntvision.model.ItemLocal" />
 		<mapping class="com.login.huntvision.model.GrupoUsuario" />
-		<mapping class="com.login.huntvision.model.Imagem" />
 		<mapping class="com.login.huntvision.model.Item" />
 		<mapping class="com.login.huntvision.model.Local" />
 		<mapping class="com.login.huntvision.model.Usuario" />

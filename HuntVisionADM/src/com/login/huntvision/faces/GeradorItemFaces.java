@@ -15,7 +15,7 @@ import br.com.topsys.exception.TSApplicationException;
 import br.com.topsys.web.faces.TSMainFaces;
 
 import com.login.huntvision.model.Cliente;
-import com.login.huntvision.model.Imagem;
+
 import com.login.huntvision.model.Item;
 import com.login.huntvision.model.ItemLocal;
 import com.login.huntvision.model.GrupoUsuario;
