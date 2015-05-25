@@ -13,6 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import br.com.topsys.database.hibernate.TSActiveRecordAb;
+import br.com.topsys.util.TSUtil;
 
 @Entity
 @Table(name = "vistorias")
@@ -73,6 +74,10 @@ public final class Vistoria extends TSActiveRecordAb<Vistoria> {
 
 	}
 
+	public Vistoria(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
 	/**
 	 * @return the id
 	 */
@@ -129,10 +134,10 @@ public final class Vistoria extends TSActiveRecordAb<Vistoria> {
 	 * @see java.lang.Object#hashCode()
 	 */
 
-	public List<Vistoria> findAllByCliente() {
-
-		return find("from Vistoria where cliente.id = ?", null, cliente.getId());
-
+	public List<Vistoria> findAllByCliente(String order) {
+		
+		return find("from Vistoria where cliente.id = coalesce(?,cliente.id) and usuario.id = coalesce(?,usuario.id)", order, TSUtil.tratarLong(cliente.getId()), TSUtil.tratarLong(usuario.getId()));
+		
 	}
 
 	public List<Vistoria> findAllByNomeCliente() {

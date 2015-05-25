@@ -1,3 +1,4 @@
+
 /**
  * 
  */
@@ -240,7 +241,7 @@ public class WordDocumentServlet extends HttpServlet {
 		exec(request, response);
 	}
 
-	private void executeJasper(Vistoria vistoria,HttpServletRequest request, HttpServletResponse response) {
+	private void executeJasper(Vistoria vistoria, HttpServletRequest request, HttpServletResponse response) {
 
 		Map<String, Object> parametros = new HashMap<String, Object>();
 
@@ -253,17 +254,21 @@ public class WordDocumentServlet extends HttpServlet {
 		nomeOrcamento = nomeOrcamento.replace(" ", "_");
 
 		parametros.put("CAMINHO_IMAGEM", Constantes.CAMINHO_ARQUIVO);
-		
+
 		String jasper = request.getServletContext().getRealPath(WEB_INF + File.separator + RELATORIOS + File.separator + "visitas.jasper");
 
+		String subreportDir = request.getServletContext().getRealPath(WEB_INF + File.separator + RELATORIOS) + File.separator;
+
+		parametros.put("SUBREPORT_DIR", subreportDir);
+
 		try {
-			
+
 			jasperUtil.gerarRelatorioDOC(response, nomeOrcamento, jasper, parametros);
-			
+
 		} catch (Exception e) {
-			
+
 			e.printStackTrace();
-			
+
 		}
 
 	}

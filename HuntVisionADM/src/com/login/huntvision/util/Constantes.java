@@ -1,4 +1,8 @@
+
 package com.login.huntvision.util;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 public class Constantes {
@@ -15,21 +19,20 @@ public class Constantes {
 	public static final Long MENU_USUARIO = 3L;
 	public static final Long TIPO_MIDIA_FOTO = 1L;
 	public static final Long TIPO_MIDIA_VIDEO = 2L;
-
 	public static final String CAMINHO_ARQUIVO = "E:\\arquivos_huntvision\\";
-	// public static final String CAMINHO_ARQUIVO = "/Users/login/teste/";
-
+	//public static final String CAMINHO_ARQUIVO = "/Users/login/teste/";
 	public static final String URL_YOUTUBE = "http://www.youtube.com/v/";
 	public static final Long TIPO_BANNER_ROTATIVO = 1L;
 	public static final Long TIPO_BANNER_INFERIOR = 2L;
 	public static final Long TIPO_BANNER_LATERAL = 3L;
 
+	public static final String REMETENTE_CLIENTE = "vistoria@ggold.com.br";
 	public static final String REMETENTE = "laboratoriologin@gmail.com";
 	public static final String SMTP_GMAIL = "smtp.gmail.com";
 	public static final String PORTAL_GMAIL = "465";
 	public static final String SENHA_GMAIL = "l0g1n.s3n41";
-	public static final String ASSUNTO_EMAIL = "E-mail enviado pelo portal";
-
+	public static final String ASSUNTO_EMAIL = "Hunt Vision - Relatório de Vistoria - " + getDataAtual();
+ 
 	public static final String P12 = "CertificadoSemutDev.p12";
 	public static final String CHAVE_P12 = "L0G1n.L@b";
 
@@ -41,4 +44,14 @@ public class Constantes {
 
 	public static final int TIPO_AGENDA_SEMANAL = 2;
 	public static final int TIPO_AGENDA_MENSAL = 3;
+	
+	
+	public static String getDataAtual() {  
+		String data = new String();
+	    SimpleDateFormat sd = new SimpleDateFormat("dd/MM/yyyy");
+	    Date dataAtual = new Date(System.currentTimeMillis());
+	    data = sd.format(dataAtual);        
+	    return data;
+	}
 }
+

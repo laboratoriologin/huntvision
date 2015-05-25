@@ -11,15 +11,28 @@
 			<p:tabView id="tabView">
 				<p:tab title="Relatório Analítico" id="tabHome">
 
+					<p:fieldset legend="Filtro" toggleable="true">
+						<h:panelGrid columns="2">
+							<h:outputLabel value="Cliente"/>
+							<h:outputLabel value="Usuário"/>
+							<p:selectOneMenu value="#{mbean.vistoria.cliente.id}">
+								<f:selectItem itemLabel="Selecione" itemValue=""/>
+								<f:selectItems value="#{mbean.comboClientes}"/>
+							</p:selectOneMenu>
+							<p:selectOneMenu value="#{mbean.vistoria.usuario.id}">
+								<f:selectItem itemLabel="Selecione" itemValue=""/>
+								<f:selectItems value="#{mbean.comboUsuarios}"/>
+							</p:selectOneMenu>
+							<p:commandButton value="Pesquisar" update="pgGraficos" action="#{mbean.findEvent}" icon="ui-icon-search"/>
+						</h:panelGrid>
+					</p:fieldset>
 
 
-
-					<h:panelGrid columns="2" columnClasses="left,right"
+					<h:panelGrid id="pgGraficos" columns="1"
 						style="width:100%">
-						<p:chart  type="line" model="#{mbean.animatedModel1}"
-							style="width:400px;" />
+				
 						<p:chart type="bar" model="#{mbean.animatedModel2}"
-							style="width:400px;" />
+							style="width:800px;" />
 					</h:panelGrid>
 				</p:tab>
 			</p:tabView>
