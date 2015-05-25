@@ -78,7 +78,7 @@ public final class Utilitarios {
 		return "Inativo";
 	}
 
-	public static String getVistoriaEmailMessage(Cliente cliente, String url , String data) {
+	public static String getVistoriaEmailMessage(Cliente cliente, String url , String data, String imageContext) {
 
 		StringBuilder email = new StringBuilder();
 
@@ -106,9 +106,9 @@ public final class Utilitarios {
 
 		.append(" </style> ").append(" <title>Huntivision - Info Mail</title></head> ")
 
-		.append(" <body>	<div id='geral'>  <div id='linhaAzul'></div>  <div id='corpoEmail'>    <img src='../resources/images/logo_hunt_vision_260px.png' width='100' height='100'  alt=''/> ").append("   <div id='texto'>    <div class='textoCentralizado'> ").append(" <p>Prezado(a) &lt;Nome do Cliente&gt;,</p>  ")
+		.append(" <body>	<div id='geral'>  <div id='linhaAzul'></div>  <div id='corpoEmail'>    <img src='").append(imageContext).append("resources/images/logo_hunt_vision_260px.png' width='100' height='100'  alt=''/> ").append("   <div id='texto'>    <div class='textoCentralizado'> ").append(" <p>Prezado(a) ").append(cliente.getNome()).append("</p>  ")
 
-		.append(" 	<p>O resultado da vistoria realizada dia " +  data  + "  pode ser encontrado clicando no link abaixo ou se preferir acessar nossa página. </p> <p> Acesse o relatório clicando <a href='").append(url).append("'>aqui</a>'</p>  </div></div>  </div> ").append("  <div id='mensagemAntiSpan'> <div class='textoCentralizado'>  <p>Esta mensagem foi enviada para o e-mail que você cadastrou no sistema HuntVision. Caso prefira não mais receber esta mensagem solicite a remoção ao adimistrador do sistema.</p> ").append("   </div> <div id='linhaLaranja'></div> </div> ").append(" </body> ").append(" </html> ");
+		.append(" 	<p>O resultado da vistoria realizada dia " +  data  + "  pode ser encontrado clicando no link abaixo ou se preferir acessar nossa página. </p> <p> Acesse o relatório clicando <a href='").append(url).append("'>aqui</a></p>  </div></div>  </div> ").append("  <div id='mensagemAntiSpan'> <div class='textoCentralizado'>  <p>Esta mensagem foi enviada para o e-mail que você cadastrou no sistema HuntVision. Caso prefira não mais receber esta mensagem solicite a remoção ao administrador do sistema.</p> ").append("   </div> <div id='linhaLaranja'></div> </div> ").append(" </body> ").append(" </html> ");
 
 		return email.toString();
 

@@ -134,8 +134,12 @@ public class VistoriaFaces extends CrudFaces<Vistoria> {
 		url = url.replaceAll("dashboard.xhtml", "relatorio/vistoriaImpressao.xhtml");
 
 		url = url + "?vistoria_id=" + getCrudModel().getId();
+		
+		String context = TSFacesUtil.getRequest().getRequestURL().toString();
+		
+		context = context.replaceAll("pages/dashboard.xhtml", "");
 
-		EmailUtil.enviar(getCrudModel().getCliente().getEmail(), Utilitarios.getVistoriaEmailMessage(getCrudModel().getCliente(), url , getCrudModel().getData().toString()));
+		EmailUtil.enviar(getCrudModel().getCliente().getEmail(), Utilitarios.getVistoriaEmailMessage(getCrudModel().getCliente(), url , getCrudModel().getData().toString(),context));
 
 		this.addInfoMessage("E-mail enviado com sucesso!");
 
