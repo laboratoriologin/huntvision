@@ -1,0 +1,45 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+	<ui:param name="mbean" value="${homeUsuarioFaces}" />
+
+
+	<h:form prependId="false">
+		<h:panelGrid id="pgTabView">
+			<p:tabView id="tabView">
+				<p:tab title="Relatório Analítico" id="tabHome">
+
+					<p:fieldset legend="Filtro" toggleable="true">
+						<h:panelGrid columns="1">
+							<h:outputLabel value="Cliente" />
+							<p:selectOneMenu value="#{mbean.vistoria.cliente.id}">
+								<f:selectItem itemLabel="Selecione" itemValue="" />
+								<f:selectItems value="#{mbean.comboClientes}" />
+							</p:selectOneMenu>
+							<p:commandButton value="Pesquisar" ajax="false"
+								action="#{mbean.findEvent}" icon="ui-icon-search" />
+						</h:panelGrid>
+					</p:fieldset>
+
+
+					<h:panelGrid id="pgGraficos" columns="1" style="width:100%">
+
+						<p:chart type="line" model="#{mbean.chartUsuario}"
+							style="width:800px;" />
+
+						<p:chart type="bar" model="#{mbean.chartMensal}"
+							style="width:800px;" />
+					</h:panelGrid>
+				</p:tab>
+			</p:tabView>
+		</h:panelGrid>
+
+
+
+	</h:form>
+
+
+
+</ui:composition>

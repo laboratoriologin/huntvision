@@ -84,7 +84,7 @@ public class HomeFaces extends TSMainFaces {
 	private void initChartUsuario() {
 
 		int maximo = 0;
-		
+
 		this.chartUsuario = new LineChartModel();
 
 		Usuario currentUsuario = null;
@@ -121,11 +121,11 @@ public class HomeFaces extends TSMainFaces {
 
 					usuarioChartSerie.setLabel(currentUsuario.getNome());
 
-					for (String key : mapaQuantidadeUsuario.keySet()) {
+					for (String key : new TreeSet<String>(mapaQuantidadeUsuario.keySet())) {
 
 						usuarioChartSerie.set(key, mapaQuantidadeUsuario.get(key));
-						
-						if(mapaQuantidadeUsuario.get(key) > maximo) {
+
+						if (mapaQuantidadeUsuario.get(key) > maximo) {
 							maximo = mapaQuantidadeUsuario.get(key);
 						}
 
@@ -149,6 +149,28 @@ public class HomeFaces extends TSMainFaces {
 
 		}
 
+		
+		//adicionando ultimo usuario
+		if (!mapaQuantidadeUsuario.isEmpty()) {
+
+			ChartSeries usuarioChartSerie = new ChartSeries();
+
+			usuarioChartSerie.setLabel(currentUsuario.getNome());
+
+			for (String key : new TreeSet<String>(mapaQuantidadeUsuario.keySet())) {
+
+				usuarioChartSerie.set(key, mapaQuantidadeUsuario.get(key));
+
+				if (mapaQuantidadeUsuario.get(key) > maximo) {
+					maximo = mapaQuantidadeUsuario.get(key);
+				}
+
+			}
+
+			this.chartUsuario.addSeries(usuarioChartSerie);
+
+		}
+
 		chartUsuario.setTitle("Visitas por usuário");
 		chartUsuario.setLegendPosition("e");
 		chartUsuario.setShowPointLabels(true);
@@ -156,7 +178,7 @@ public class HomeFaces extends TSMainFaces {
 		Axis yAxis = chartUsuario.getAxis(AxisType.Y);
 		yAxis.setLabel("Visitas");
 		yAxis.setMin(0);
-		yAxis.setMax(maximo);
+		yAxis.setMax(maximo + 10);
 
 	}
 
@@ -187,7 +209,7 @@ public class HomeFaces extends TSMainFaces {
 		chartMensal.setLegendPosition("ne");
 		Axis yAxis = chartMensal.getAxis(AxisType.Y);
 		yAxis.setMin(0);
-		yAxis.setMax(maximo);
+		yAxis.setMax(maximo + 10);
 
 	}
 

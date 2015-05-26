@@ -107,7 +107,7 @@ public class AutenticacaoFaces extends TSMainFaces {
 		TSFacesUtil.addObjectInSession(Constantes.USUARIO_CONECTADO, usuario);
 		carregarMenu();
 		
-		setTela("crud/home.xhtml");
+		setTela("crud/homeUsuario.xhtml");
 		
 		setNomeTela("Home");
 
