@@ -28,10 +28,13 @@ public class EmailUtil {
 
 
 		Properties props = new Properties();
+		
+	    props.put("mail.transport.protocol", "smtp"); //define protocolo de envio como SMTP  
 		props.put("mail.smtp.auth", "true");
 		props.put("mail.smtp.starttls.enable", "true");
 		props.put("mail.smtp.host", "smtp.gmail.com");
 		props.put("mail.smtp.port", "587");
+		props.put("mail.smtp.user", "vistoria@ggold.com.br"); 
 
 		Session session = Session.getInstance(props, new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
@@ -46,7 +49,7 @@ public class EmailUtil {
 			// Setando o destinatário
 			msg.setRecipient(Message.RecipientType.TO, new InternetAddress(to));
 			// Setando a origem do email
-			msg.setFrom(new InternetAddress(Constantes.REMETENTE));
+		 	msg.setFrom(new InternetAddress("vistoria@ggold.com.br"));
 			// Setando o assunto
 			msg.setSubject(Constantes.ASSUNTO_EMAIL);
 			// Setando o conteúdo/corpo do email
