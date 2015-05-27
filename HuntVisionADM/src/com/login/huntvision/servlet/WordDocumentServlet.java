@@ -216,9 +216,9 @@ public class WordDocumentServlet extends HttpServlet {
 			//
 			// }
 
-			response.setContentType("application/msword");
+			response.setContentType("application/vnd.openxmlformats-officedocument.wordprocessingml.document");
 
-			response.setHeader("Content-Disposition", "attachment;filename=\"" + vistoria.getCliente().getNome().replaceAll("\\W", "_") + ".doc\"");
+			response.setHeader("Content-Disposition", "attachment;filename=\"" + vistoria.getCliente().getNome().replaceAll("\\W", "_") + ".docx\"");
 
 			doc.write(response.getOutputStream());
 

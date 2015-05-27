@@ -27,6 +27,7 @@
 		<mapping class="com.login.huntvision.model.VistoriaResposta" />
 		<mapping class="com.login.huntvision.model.Vistoria" />
 		<mapping class="com.login.huntvision.model.VistoriaRespostaImagem" />
+		<mapping class="com.login.huntvision.model.ConfiguracaoEmail" />
 	</session-factory>
 
 </hibernate-configuration>

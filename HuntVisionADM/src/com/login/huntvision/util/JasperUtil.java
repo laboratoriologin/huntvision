@@ -128,7 +128,7 @@ public class JasperUtil {
 
 			response.setContentType(MSWORD);
 
-			response.setHeader("Content-Disposition", "attachment;filename=\"" + nome + "\"");
+			response.setHeader("Content-Disposition", "attachment;filename=\"" + nome + ".doc\"");
 
 			try {
 				
