@@ -207,6 +207,7 @@ public class HomeFaces extends TSMainFaces {
 		chartMensal.setTitle("Barra de visitas mensal");
 		chartMensal.setAnimate(true);
 		chartMensal.setLegendPosition("ne");
+		chartMensal.getAxes().put(AxisType.X, new CategoryAxis("Data"));
 		Axis yAxis = chartMensal.getAxis(AxisType.Y);
 		yAxis.setMin(0);
 		yAxis.setMax(maximo + 10);

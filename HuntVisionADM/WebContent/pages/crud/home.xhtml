@@ -6,10 +6,10 @@
 	<ui:param name="mbean" value="${homeFaces}" />
 
 
-	<h:form prependId="false">
-		<h:panelGrid id="pgTabView">
-			<p:tabView id="tabView">
-				<p:tab title="Relatório Analítico" id="tabHome">
+	<h:form prependId="false"  style="width:90%">
+		<h:panelGrid id="pgTabView"  style="width:100%">
+			<p:tabView id="tabView"  style="width:100%">
+				<p:tab title="Relatório Analítico" id="tabHome"  style="width:100%">
 
 					<p:fieldset legend="Filtro" toggleable="true">
 						<h:panelGrid columns="2">
@@ -29,11 +29,13 @@
 					</p:fieldset>
 
 
-					<h:panelGrid id="pgGraficos" columns="1" style="width:100%">
+					<h:panelGrid id="pgGraficos" columns="2" style="width:100%">
+	<p:chart type="bar" model="#{mbean.chartMensal}"
+							style="width:500px;" />
+						<p:chart type="line" model="#{mbean.chartUsuario}"
+							style="width:500px;" />
 
-						<p:chart type="line" model="#{mbean.chartUsuario}" style="width:800px;" />
-
-						<p:chart type="bar" model="#{mbean.chartMensal}" style="width:800px;" />
+					
 					</h:panelGrid>
 				</p:tab>
 			</p:tabView>

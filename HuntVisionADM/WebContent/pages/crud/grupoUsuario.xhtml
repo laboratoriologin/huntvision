@@ -8,7 +8,7 @@
 
 	<ui:define name="cadastro">
 
-		<h:panelGrid columns="1" style="width:50%">
+		<h:panelGrid columns="1" style="width:80%">
 
 			<p:outputLabel for="descricao" value="Descrição" />
 			<p:inputText id="descricao" required="true" requiredMessage="Descrição Campo obrigatório" maxlength="50" value="#{mbeanModel.descricao}" styleClass="coluna50" />
@@ -19,26 +19,26 @@
 
 				<p:dataTable id="gridPermissao" emptyMessage="Nenhuma permissão adicionada" value="#{mbeanModel.permissoes}" var="permissao">
 
-					<p:column headerText="Menu" styleClass="coluna80">
+					<p:column headerText="Menu" styleClass="coluna60">
 						<p:selectOneMenu id="menu" value="#{permissao.menu.id}" required="true" requiredMessage="Menu: Campo obrigatório" style="width:100%">
 							<f:selectItem itemLabel="Não Selecionado" itemValue="" />
 							<f:selectItems value="#{mbean.comboMenus}" />
 						</p:selectOneMenu>
 					</p:column>
 
-					<p:column headerText="Inserir" style="text-align: center" styleClass="coluna5">
+					<p:column headerText="Inserir" style="text-align: center" styleClass="coluna10">
 						<p:selectBooleanCheckbox value="#{permissao.flagInserir}" />
 					</p:column>
 
-					<p:column headerText="Alterar" style="text-align: center" styleClass="coluna5">
+					<p:column headerText="Alterar" style="text-align: center" styleClass="coluna10">
 						<p:selectBooleanCheckbox value="#{permissao.flagAlterar}" />
 					</p:column>
 
-					<p:column headerText="Excluir" style="text-align: center" styleClass="coluna5">
+					<p:column headerText="Excluir" style="text-align: center" styleClass="coluna10">
 						<p:selectBooleanCheckbox value="#{permissao.flagExcluir}" />
 					</p:column>
 
-					<p:column headerText="Remover" style="text-align: center" styleClass="coluna5">
+					<p:column headerText="Remover" style="text-align: center" styleClass="coluna10">
 						<p:commandLink action="#{mbean.delPermissao}" process="@this">
 							<h:graphicImage value="../resources/images/delete16.png" style="border: 0px" />
 							<f:setPropertyActionListener target="#{mbean.permissaoSelecionada}" value="#{permissao}" />

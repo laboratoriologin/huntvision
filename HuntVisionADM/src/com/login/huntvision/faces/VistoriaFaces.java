@@ -17,6 +17,7 @@ import br.com.topsys.util.TSUtil;
 import br.com.topsys.web.util.TSFacesUtil;
 
 import com.login.huntvision.model.Cliente;
+import com.login.huntvision.model.ConfiguracaoEmail;
 import com.login.huntvision.model.GeradorQRCode;
 import com.login.huntvision.model.Vistoria;
 import com.login.huntvision.model.VistoriaResposta;
@@ -138,8 +139,10 @@ public class VistoriaFaces extends CrudFaces<Vistoria> {
 		String context = TSFacesUtil.getRequest().getRequestURL().toString();
 		
 		context = context.replaceAll("pages/dashboard.xhtml", "");
+		
+		ConfiguracaoEmail configuracao = new ConfiguracaoEmail().findAll().get(0);
 
-		EmailUtil.enviar(getCrudModel().getCliente().getEmail(), Utilitarios.getVistoriaEmailMessage(getCrudModel().getCliente(), url , getCrudModel().getData().toString(),context));
+		EmailUtil.enviar(getCrudModel().getCliente().getEmail(), Utilitarios.getVistoriaEmailMessage(getCrudModel().getCliente(), url , getCrudModel().getData().toString(),context), configuracao);
 
 		this.addInfoMessage("E-mail enviado com sucesso!");
 

@@ -5,36 +5,47 @@
 	xmlns:f="http://java.sun.com/jsf/core">
 
 	<ui:param name="mbean" value="${configuracaoEmailFaces}" />
-	<ui:param name="mbeanModel" value="${configuracaoEmailFaces.configuracaoEmail}" />
+	<ui:param name="mbeanModel"
+		value="${configuracaoEmailFaces.configuracaoEmail}" />
+
+	<p:tabView>
+		<p:tab title="Configuração E-mail">
+			<h:form>
+
+				<h:panelGrid columns="2" styleClass="coluna50">
 
 
-	<h:panelGrid columns="2" styleClass="coluna50">
+					<p:outputLabel for="remetente" value="Remetente" />
+					<p:outputLabel for="senha" value="Senha" />
+
+					<p:inputText id="remetente" required="true" label="Remetente"
+						maxlength="200" value="#{mbeanModel.remetente}"
+						styleClass="coluna95" />
+
+					<p:inputText id="senha" required="true" label="Senha"
+						maxlength="200" value="#{mbeanModel.senha}" styleClass="coluna90" />
 
 
-		<p:outputLabel for="remetente" value="Remetente" />
-		<p:outputLabel for="senha" value="Senha" />
+					<p:outputLabel for="smtp" value="SMTP" />
+					<p:outputLabel for="porta" value="Porta" />
 
-		<p:inputText id="remetente" required="true" label="Remetente"
-			maxlength="200" value="#{mbeanModel.remetente}" styleClass="coluna95" />
+					<p:inputText id="smtp" required="true" label="SMTP"
+						value="#{mbeanModel.smtp}" styleClass="coluna95" />
 
-		<p:inputText id="senha" required="true" label="Senha" maxlength="200"
-			value="#{mbeanModel.senha}" styleClass="coluna90" />
+					<p:inputText id="porta" required="true"
+						requiredMessage="Estado campo obrigatório"
+						value="#{mbeanModel.portaSmtp}" styleClass="coluna90" />
+
+					<p:commandButton id="btnAlterar" value="Alterar" icon="salvar"
+						action="#{mbean.updateEvent}"
+						style="height:28px; width: 110px; margin-left: 2px;" />
+				</h:panelGrid>
+			</h:form>
+		</p:tab>
+	</p:tabView>
 
 
-		<p:outputLabel for="smtp" value="SMTP" />
-		<p:outputLabel for="porta" value="Porta" />
 
-		<p:inputText id="smtp" required="true" label="SMTP"
-			value="#{mbeanModel.smtp}" styleClass="coluna95" />
-
-		<p:inputText id="porta" required="true"
-			requiredMessage="Estado campo obrigatório"
-			value="#{mbeanModel.porta}" styleClass="coluna90" />
-
-		<p:commandButton id="btnAlterar" value="Alterar" icon="salvar"
-			action="#{mbean.updateEvent}"
-			style="height:28px; width: 110px; margin-left: 2px;" />
-	</h:panelGrid>
 
 
 

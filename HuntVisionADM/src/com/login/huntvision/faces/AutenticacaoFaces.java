@@ -21,6 +21,7 @@ import br.com.topsys.util.TSUtil;
 import br.com.topsys.web.faces.TSMainFaces;
 import br.com.topsys.web.util.TSFacesUtil;
 
+import com.login.huntvision.model.ConfiguracaoEmail;
 import com.login.huntvision.model.Menu;
 import com.login.huntvision.model.Permissao;
 import com.login.huntvision.model.Usuario;
@@ -105,12 +106,9 @@ public class AutenticacaoFaces extends TSMainFaces {
 		}
 
 		TSFacesUtil.addObjectInSession(Constantes.USUARIO_CONECTADO, usuario);
+	
 		carregarMenu();
-		
-		setTela("crud/homeUsuario.xhtml");
-		
-		setNomeTela("Home");
-
+	
 		return SUCESSO;
 	}
 
@@ -133,8 +131,10 @@ public class AutenticacaoFaces extends TSMainFaces {
 			usuarioLembrarSenha.update();
 
 			usuarioLembrarSenha.setSenha(novaSenha);
+			
+			ConfiguracaoEmail configuracao = new ConfiguracaoEmail().findAll().get(0);
 
-			EmailUtil.enviar(usuarioLembrarSenha.getEmail(), Utilitarios.getNovaSenhaEmailMessage(usuarioLembrarSenha));
+			EmailUtil.enviar(usuarioLembrarSenha.getEmail(), Utilitarios.getNovaSenhaEmailMessage(usuarioLembrarSenha), configuracao);
 
 			this.addInfoMessage("Uma nova senha foi enviada para seu e-mail");
 

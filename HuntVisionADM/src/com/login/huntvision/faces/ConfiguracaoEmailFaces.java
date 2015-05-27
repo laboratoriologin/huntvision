@@ -3,24 +3,14 @@
  */
 package com.login.huntvision.faces;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Calendar;
-
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import org.apache.commons.io.FilenameUtils;
-import org.primefaces.event.FileUploadEvent;
-
 import br.com.topsys.exception.TSApplicationException;
-import br.com.topsys.file.TSFile;
 import br.com.topsys.web.faces.TSMainFaces;
 
-import com.login.huntvision.model.Cliente;
 import com.login.huntvision.model.ConfiguracaoEmail;
-import com.login.huntvision.util.Constantes;
 
 /**
  * @author Ricardo
@@ -39,14 +29,21 @@ public class ConfiguracaoEmailFaces extends TSMainFaces {
 		setClearFields(false);
 	}
 
-	
 	@Override
 	protected String update() throws TSApplicationException {
-	
+
 		this.configuracaoEmail.update();
-		
+
 		return null;
-		
+
+	}
+
+	public ConfiguracaoEmail getConfiguracaoEmail() {
+		return configuracaoEmail;
+	}
+
+	public void setConfiguracaoEmail(ConfiguracaoEmail configuracaoEmail) {
+		this.configuracaoEmail = configuracaoEmail;
 	}
 
 }

@@ -11,6 +11,8 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import com.login.huntvision.model.ConfiguracaoEmail;
+
 
 public class EmailUtil {
 
@@ -24,18 +26,21 @@ public class EmailUtil {
 	 * this.mailSMTPServerPort = mailSMTPServerPort; }
 	 */
 
-	public static void enviar(String to, String message) {
+	public static void enviar(String to, String message, final ConfiguracaoEmail configuracaoEmail) {
 
 
 		Properties props = new Properties();
+		
+	    props.put("mail.transport.protocol", "smtp"); //define protocolo de envio como SMTP  
 		props.put("mail.smtp.auth", "true");
 		props.put("mail.smtp.starttls.enable", "true");
-		props.put("mail.smtp.host", "smtp.gmail.com");
-		props.put("mail.smtp.port", "587");
+		props.put("mail.smtp.host", configuracaoEmail.getSmtp());
+		props.put("mail.smtp.port", configuracaoEmail.getPortaSmtp().toString());
+		props.put("mail.smtp.user", configuracaoEmail.getRemetente()); 
 
 		Session session = Session.getInstance(props, new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(Constantes.REMETENTE, Constantes.SENHA_GMAIL);
+				return new PasswordAuthentication(configuracaoEmail.getRemetente(), configuracaoEmail.getSenha());
 			}
 		});
 
@@ -46,7 +51,7 @@ public class EmailUtil {
 			// Setando o destinatário
 			msg.setRecipient(Message.RecipientType.TO, new InternetAddress(to));
 			// Setando a origem do email
-			msg.setFrom(new InternetAddress(Constantes.REMETENTE));
+		 	msg.setFrom(new InternetAddress(configuracaoEmail.getRemetente()));
 			// Setando o assunto
 			msg.setSubject(Constantes.ASSUNTO_EMAIL);
 			// Setando o conteúdo/corpo do email
