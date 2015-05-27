@@ -3,25 +3,20 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core">
 
-	<ui:param name="mbean" value="${homeFaces}" />
+	<ui:param name="mbean" value="${homeUsuarioFaces}" />
 
 
 	<h:form prependId="false"  style="width:90%">
 		<h:panelGrid id="pgTabView"  style="width:100%">
-			<p:tabView id="tabView"  style="width:100%">
-				<p:tab title="Relatório Analítico" id="tabHome"  style="width:100%">
+			<p:tabView id="tabView" style="width:100%">
+				<p:tab title="Relatório Analítico" id="tabHome">
 
 					<p:fieldset legend="Filtro" toggleable="true">
-						<h:panelGrid columns="2">
+						<h:panelGrid columns="1">
 							<h:outputLabel value="Cliente" />
-							<h:outputLabel value="Usuário" />
 							<p:selectOneMenu value="#{mbean.vistoria.cliente.id}">
 								<f:selectItem itemLabel="Selecione" itemValue="" />
 								<f:selectItems value="#{mbean.comboClientes}" />
-							</p:selectOneMenu>
-							<p:selectOneMenu value="#{mbean.vistoria.usuario.id}">
-								<f:selectItem itemLabel="Selecione" itemValue="" />
-								<f:selectItems value="#{mbean.comboUsuarios}" />
 							</p:selectOneMenu>
 							<p:commandButton value="Pesquisar" ajax="false"
 								action="#{mbean.findEvent}" icon="ui-icon-search" />

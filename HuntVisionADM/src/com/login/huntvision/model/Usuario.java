@@ -22,7 +22,7 @@ import br.com.topsys.util.TSUtil;
 
 @Entity
 @Table(name = "usuarios")
-public class Usuario extends TSActiveRecordAb<Usuario> {
+public class Usuario extends TSActiveRecordAb<Usuario> implements Comparable<Usuario> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -150,15 +150,7 @@ public class Usuario extends TSActiveRecordAb<Usuario> {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((celular == null) ? 0 : celular.hashCode());
-		result = prime * result + ((confirmaSenha == null) ? 0 : confirmaSenha.hashCode());
-		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result + ((flagAtivo == null) ? 0 : flagAtivo.hashCode());
-		result = prime * result + ((grupoUsuario == null) ? 0 : grupoUsuario.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((login == null) ? 0 : login.hashCode());
-		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
-		result = prime * result + ((senha == null) ? 0 : senha.hashCode());
 		return result;
 	}
 
@@ -171,51 +163,17 @@ public class Usuario extends TSActiveRecordAb<Usuario> {
 		if (getClass() != obj.getClass())
 			return false;
 		Usuario other = (Usuario) obj;
-		if (celular == null) {
-			if (other.celular != null)
-				return false;
-		} else if (!celular.equals(other.celular))
-			return false;
-		if (confirmaSenha == null) {
-			if (other.confirmaSenha != null)
-				return false;
-		} else if (!confirmaSenha.equals(other.confirmaSenha))
-			return false;
-		if (email == null) {
-			if (other.email != null)
-				return false;
-		} else if (!email.equals(other.email))
-			return false;
-		if (flagAtivo == null) {
-			if (other.flagAtivo != null)
-				return false;
-		} else if (!flagAtivo.equals(other.flagAtivo))
-			return false;
-		if (grupoUsuario == null) {
-			if (other.grupoUsuario != null)
-				return false;
-		} else if (!grupoUsuario.equals(other.grupoUsuario))
-			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (login == null) {
-			if (other.login != null)
-				return false;
-		} else if (!login.equals(other.login))
-			return false;
-		if (nome == null) {
-			if (other.nome != null)
-				return false;
-		} else if (!nome.equals(other.nome))
-			return false;
-		if (senha == null) {
-			if (other.senha != null)
-				return false;
-		} else if (!senha.equals(other.senha))
-			return false;
 		return true;
 	}
+
+	@Override
+	public int compareTo(Usuario o) {
+		return this.id.compareTo(o.getId());
+	}
+
 }
