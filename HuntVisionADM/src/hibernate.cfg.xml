@@ -24,6 +24,7 @@
 		<mapping class="com.login.huntvision.model.Questionario" />
 		<mapping class="com.login.huntvision.model.Resposta" />
 		<mapping class="com.login.huntvision.model.TipoQuestionario" />
+		<mapping class="com.login.huntvision.model.Protocolo" />
 		<mapping class="com.login.huntvision.model.VistoriaResposta" />
 		<mapping class="com.login.huntvision.model.Vistoria" />
 		<mapping class="com.login.huntvision.model.VistoriaRespostaImagem" />

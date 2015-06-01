@@ -15,22 +15,34 @@
 		<h:panelGrid columns="1" style="width:50%">
 
 			<p:outputLabel for="item" value="Item" />
+
 			<p:selectOneMenu id="item" value="#{mbeanModel.item.id}"
 				required="true" requiredMessage="Tipo de questionario obrigatório"
-				style="width:55%">
+				style="width:94.5%">
 				<f:selectItem itemLabel="Não Selecionado" itemValue="" />
 				<f:selectItems value="#{mbean.comboItem}" />
 			</p:selectOneMenu>
 
 
+			<h:panelGrid columns="2" styleClass="coluna100" columnClasses="coluna50 coluna50">
 
-			<p:outputLabel for="tipoQuestionario" value="Tipo questionario" />
-			<p:selectOneMenu id="tipoQuestionario"
-				value="#{mbeanModel.tipoQuestionario.id}" required="true"
-				requiredMessage="Tipo de questionario obrigatório" style="width:55%">
-				<f:selectItem itemLabel="Não Selecionado" itemValue="" />
-				<f:selectItems value="#{mbean.comboTipoQuestionario}" />
-			</p:selectOneMenu>
+				<p:outputLabel for="protocolo" value="Protocolo" />
+				<p:outputLabel for="tipoQuestionario" value="Tipo de questionário" />
+				
+				<p:selectOneMenu id="protocolo" value="#{mbeanModel.protocolo.id}" required="true" label="Protocolo" style="width:90%">
+					<f:selectItem itemLabel="Não Selecionado" itemValue="" />
+					<f:selectItems value="#{mbean.comboProtocolo}" />
+				</p:selectOneMenu>
+				
+				<p:selectOneMenu id="tipoQuestionario"
+					value="#{mbeanModel.tipoQuestionario.id}" required="true"
+					label="Tipo de questionário"
+					style="width:90%">
+					<f:selectItem itemLabel="Não Selecionado" itemValue="" />
+					<f:selectItems value="#{mbean.comboTipoQuestionario}" />
+				</p:selectOneMenu>
+
+			</h:panelGrid>
 
 			<h:outputText value="Pergunta" />
 			<p:inputText id="pergunta" required="true"
@@ -114,9 +126,9 @@
 	</ui:define>
 	<ui:define name="pesquisaCampos">
 		<p:outputLabel for="descricaoPesquisa" value="Pergunta" />
-			<p:inputText id="descricaoPesquisa"
-				value="#{mbeanPesquisaModel.pergunta}" styleClass="coluna90" />
-	
+		<p:inputText id="descricaoPesquisa"
+			value="#{mbeanPesquisaModel.pergunta}" styleClass="coluna90" />
+
 	</ui:define>
 	<ui:define name="colunasTabela">
 

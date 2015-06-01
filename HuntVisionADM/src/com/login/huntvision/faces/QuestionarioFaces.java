@@ -16,8 +16,8 @@ import org.primefaces.event.FileUploadEvent;
 
 import br.com.topsys.exception.TSApplicationException;
 
-
 import com.login.huntvision.model.Item;
+import com.login.huntvision.model.Protocolo;
 import com.login.huntvision.model.Questionario;
 import com.login.huntvision.model.Resposta;
 import com.login.huntvision.model.TipoQuestionario;
@@ -45,11 +45,13 @@ public class QuestionarioFaces extends CrudFaces<Questionario> {
 	}
 
 	private List<SelectItem> comboItem;
-	
+	private List<SelectItem> comboProtocolo;
+
 	@PostConstruct
 	protected void init() {
 		this.clearFields();
 		this.comboTipoQuestionario = super.initCombo(new TipoQuestionario().findByModel("descricao"), "id", "descricao");
+		this.comboProtocolo = super.initCombo(new Protocolo().findByModel("nome"), "id", "nome");
 		this.comboItem = super.initCombo(new Item().findByModel("descricao"), "id", "descricao");
 		setFieldOrdem("pergunta");
 
@@ -57,21 +59,14 @@ public class QuestionarioFaces extends CrudFaces<Questionario> {
 
 	@Override
 	public String limpar() {
-
 		super.limpar();
 		this.getCrudModel().setRespostas(new ArrayList<Resposta>());
-			this.getCrudModel().setStatus(Boolean.TRUE);
+		this.getCrudModel().setStatus(Boolean.TRUE);
+		this.getCrudModel().setProtocolo(new Protocolo());
 		getCrudModel().setTipoQuestionario(new TipoQuestionario());
 		getCrudModel().setItem(new Item());
 		return null;
 
-	}
-
-	@Override
-	protected String detail() {
-		super.detail();
-
-		return null;
 	}
 
 	@Override
@@ -89,24 +84,24 @@ public class QuestionarioFaces extends CrudFaces<Questionario> {
 		getCrudModel().setData(ft.format(dNow));
 
 	}
-	
+
 	@Override
 	protected String insert() throws TSApplicationException {
-		
+
 		super.setClearFields(false);
-		
+
 		Long item = getCrudModel().getItem().getId();
-		
+
 		Long tipoQuestionario = getCrudModel().getTipoQuestionario().getId();
-		
+
 		super.insert();
-		
+
 		getCrudModel().getItem().setId(item);
-		
+
 		getCrudModel().getTipoQuestionario().setId(tipoQuestionario);
-		
+
 		return null;
-		
+
 	}
 
 	@Override
@@ -161,9 +156,16 @@ public class QuestionarioFaces extends CrudFaces<Questionario> {
 		nomeArquivo += String.valueOf(now.get(Calendar.MILLISECOND));
 		nomeArquivo += "." + FilenameUtils.getExtension(event.getFile().getFileName());
 
-	
 		HuntVisionUtil.criaArquivo(event.getFile(), Constantes.CAMINHO_ARQUIVO + nomeArquivo);
 
+	}
+
+	public List<SelectItem> getComboProtocolo() {
+		return comboProtocolo;
+	}
+
+	public void setComboProtocolo(List<SelectItem> comboProtocolo) {
+		this.comboProtocolo = comboProtocolo;
 	}
 
 }
