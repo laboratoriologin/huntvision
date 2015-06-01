@@ -1,5 +1,6 @@
 package login.com.huntvision;
 
+import android.graphics.Typeface;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -30,7 +31,6 @@ public class SobreActivity extends DefaultActivity {
     @AfterViews
     void loadContent()
     {
-
         txtConteudoSobre.setText(LoadConteudo());
     }
 

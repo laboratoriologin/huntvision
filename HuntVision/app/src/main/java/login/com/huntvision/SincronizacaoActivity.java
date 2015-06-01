@@ -2,6 +2,7 @@ package login.com.huntvision;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -437,6 +438,15 @@ import login.com.huntvision.utils.JsonUtil;
     @AfterViews
     public void populateSpinner()
     {
+        Typeface helveticaBold;
+        Typeface helveticaRegular;
+
+
+        helveticaBold = Typeface.createFromAsset(getAssets(), "Agencyb.ttf");
+        helveticaRegular = Typeface.createFromAsset(getAssets(), "Agencyr.ttf");
+
+        txtChave.setTypeface(helveticaRegular);
+
         objConexao = new Conexao();
         conexaos = new ArrayList<Conexao>();
 
