@@ -17,9 +17,10 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/wrapper_superior"
+
         android:layout_below="@+id/topo"
-        android:layout_centerHorizontal="true">
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <ImageView
             android:id="@+id/imageView"
@@ -27,75 +28,213 @@
             android:layout_height="@dimen/img_huntvision_home"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
+
             android:adjustViewBounds="true"
-            android:background="@drawable/logo_hunt_vision_260px" />
+            android:background="@drawable/logo_hunt_vision_260px"
+            android:layout_alignParentTop="true" />
+
+
+        <RelativeLayout
+
+             android:layout_below="@+id/imageView"
+            android:id="@+id/rlLerCodigo"
+            android:clickable="true"
+            android:onClick="goQRcode"
+            style="@style/menuStyle" >
+
+            <RelativeLayout
+                android:id="@+id/rlTraco"
+                android:layout_width="3dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/menu_divider" android:duplicateParentState="true"/>
+
+            <TextView
+                android:id="@+id/txtLerCodigo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ler Código"
+                android:fontFamily=""
+                android:textColor="@android:color/white"
+                android:layout_toRightOf="@+id/rlTraco"
+                android:layout_alignParentBottom="false"
+                android:layout_alignParentRight="false"
+                android:layout_alignWithParentIfMissing="false"
+                android:layout_alignParentTop="false"
+                android:layout_alignParentLeft="false"
+                android:layout_centerVertical="true"
+                android:textSize="24dp"
+               />
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@drawable/icone_home_ler_codigo"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_margin="1dp"
+                />
+
+        </RelativeLayout>
+        <RelativeLayout
+
+             android:layout_below="@+id/rlLerCodigo"
+            android:id="@+id/rlCliente"
+            android:clickable="true"
+            android:onClick="loadCliente"
+            style="@style/menuStyle">
+
+            <RelativeLayout
+                android:id="@+id/rlTraco2"
+                android:layout_width="3dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/menu_divider"/>
+
+            <TextView
+                android:id="@+id/txtCliente"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cliente"
+                android:textColor="@android:color/white"
+                android:layout_toRightOf="@+id/rlTraco2"
+                android:layout_alignParentBottom="false"
+                android:layout_alignParentRight="false"
+                android:layout_alignWithParentIfMissing="false"
+                android:layout_alignParentTop="false"
+                android:layout_alignParentLeft="false"
+                android:layout_centerVertical="true"
+                android:textSize="24dp"
+                />
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@drawable/icone_home_cliente"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_margin="1dp"
+                />
+
+        </RelativeLayout>
+        <RelativeLayout
+
+            android:layout_below="@+id/rlCliente"
+            android:id="@+id/rlConcluirVisita"
+            android:clickable="true"
+            android:onClick="goPendentes"
+            style="@style/menuStyle">
+
+            <RelativeLayout
+                android:id="@+id/rlTraco3"
+                android:layout_width="3dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/menu_divider"/>
+
+            <TextView
+                android:id="@+id/txtVisita"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Concluir Visita"
+                android:textColor="@android:color/white"
+                android:layout_toRightOf="@+id/rlTraco3"
+                android:layout_alignParentBottom="false"
+                android:layout_alignParentRight="false"
+                android:layout_alignWithParentIfMissing="false"
+                android:layout_alignParentTop="false"
+                android:layout_alignParentLeft="false"
+                android:layout_centerVertical="true"
+                android:textSize="24dp" />
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@drawable/icone_home_concluir_visita"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_margin="1dp"
+                />
+
+        </RelativeLayout>
+        <RelativeLayout
+
+            android:layout_below="@+id/rlConcluirVisita"
+            android:id="@+id/rlSobre"
+           android:clickable="true"
+            android:onClick="goSobre"
+            style="@style/menuStyle">
+
+            <RelativeLayout
+                android:id="@+id/rlTraco4"
+                android:layout_width="3dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/menu_divider"/>
+
+            <TextView
+                android:id="@+id/txtSobre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sobre"
+                android:textColor="@android:color/white"
+                android:layout_toRightOf="@+id/rlTraco4"
+                android:layout_alignParentBottom="false"
+                android:layout_alignParentRight="false"
+                android:layout_alignWithParentIfMissing="false"
+                android:layout_alignParentTop="false"
+                android:layout_alignParentLeft="false"
+                android:layout_centerVertical="true"
+                android:textSize="24dp"
+               />
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@drawable/icone_home_sobre"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_margin="1dp"
+                />
+
+        </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rlSobre"
+        android:textAlignment="center"
+
+        android:clickable="true"
+        android:onClick="goSincronizacao"
+        >
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/bt_configuracoes"
+            android:layout_alignParentBottom="false"
+            android:layout_alignWithParentIfMissing="false"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
+
 
     </RelativeLayout>
 
-    <LinearLayout
-        android:id="@+id/wrapper_superior"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/wrapper_inferior"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/btnQRCODE"
-            android:layout_width="@dimen/largura_imagem"
-            android:layout_height="@dimen/altura_imagem"
-            android:layout_centerHorizontal="true"
-            android:layout_margin="@dimen/activity_horizontal_margin"
-            android:onClick="goQRcode"
-            android:background="@drawable/bt_home_ler_codigo" />
 
-        <Button
-            android:id="@+id/btnCliente"
-            android:layout_width="@dimen/largura_imagem"
-            android:layout_height="@dimen/altura_imagem"
-            android:layout_margin="@dimen/activity_horizontal_margin"
-            android:background="@drawable/bt_home_cliente"
-            android:onClick="loadCliente" />
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/wrapper_inferior"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/btConfig"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/btnServidor"
-            android:layout_width="@dimen/largura_imagem"
-            android:layout_height="@dimen/altura_imagem"
-            android:layout_marginBottom="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:background="@drawable/bt_home_concluir_visita"
-            android:onClick="goPendentes" />
-
-        <Button
-            android:id="@+id/btSobre"
-            android:layout_width="@dimen/largura_imagem"
-            android:layout_height="@dimen/altura_imagem"
-            android:layout_marginBottom="@dimen/activity_horizontal_margin"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:background="@drawable/bt_home_sobre"
-            android:onClick="goSobre" />
-
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/btConfig"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/bottom"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="@dimen/activity_vertical_margin"
-        android:onClick="goSincronizacao"
-        android:background="@drawable/bt_configuracoes" />
 
 
     <RelativeLayout
@@ -105,6 +244,10 @@
 
         android:layout_alignParentBottom="true"
         android:background="@color/huntVisionLaranja" />
+
+
+
+
 
 
 </RelativeLayout>

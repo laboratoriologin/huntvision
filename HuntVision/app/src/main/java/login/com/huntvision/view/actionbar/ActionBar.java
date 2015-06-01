@@ -68,7 +68,7 @@ public class ActionBar extends RelativeLayout implements View.OnClickListener {
      * Shows the provided logo to the left in the action bar.
      *
      * This is ment to be used instead of the setHomeAction and does not draw a
-     * divider to the left of the provided logo.
+     * menu_divider to the left of the provided logo.
      *
      * @param resId
      *            The drawable resource id

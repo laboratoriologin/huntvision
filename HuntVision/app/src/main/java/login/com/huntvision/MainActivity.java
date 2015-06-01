@@ -1,24 +1,35 @@
 package login.com.huntvision;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.location.LocationManager;
-import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ViewById;
 
 
 @EActivity(R.layout.activity_main)
 public class MainActivity extends DefaultActivity {
 
+    @ViewById(R.id.txtLerCodigo)
+    TextView txtLerCodigo;
+
+
+    @ViewById(R.id.txtCliente)
+    TextView txtCliente;
+
+
+    @ViewById(R.id.txtVisita)
+    TextView txtVisita;
+
+    @ViewById(R.id.txtSobre)
+    TextView txtSobre;
 
     private void buildAlertMessageNoGps() {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -44,6 +55,22 @@ public class MainActivity extends DefaultActivity {
             buildAlertMessageNoGps();
             return;
         }
+
+
+
+
+        Typeface helveticaBold;
+        Typeface helveticaRegular;
+
+
+        helveticaBold = Typeface.createFromAsset(getAssets(), "Agencyb.ttf");
+        helveticaRegular = Typeface.createFromAsset(getAssets(), "Agencyr.ttf");
+
+        txtCliente.setTypeface(helveticaRegular);
+        txtVisita.setTypeface(helveticaRegular);
+        txtLerCodigo.setTypeface(helveticaRegular);
+        txtSobre.setTypeface(helveticaRegular);
+
 
     }
 

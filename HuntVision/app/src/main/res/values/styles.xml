@@ -16,9 +16,17 @@
     </style>
 
     <style name="MySpinnerStyle" parent="android:style/Widget.ListView.DropDown">
-        <item name="android:divider">@color/huntVisionLaranja</item>
-        <item name="android:dividerHeight">2dp</item>
-        <item name="android:textSize">30sp</item>
+    <item name="android:divider">@color/huntVisionLaranja</item>
+    <item name="android:dividerHeight">2dp</item>
+    <item name="android:textSize">30sp</item>
+
+</style>
+
+    <style name="menuStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">59dp</item>
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:background">@drawable/menu</item>
 
     </style>
 </resources>

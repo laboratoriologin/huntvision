@@ -1,14 +1,11 @@
 package login.com.huntvision;
 
-import android.app.AlertDialog;
 import android.content.ContentValues;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
-import android.location.LocationManager;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -47,7 +44,6 @@ import login.com.huntvision.models.Resposta;
 import login.com.huntvision.models.Usuario;
 import login.com.huntvision.models.Vistoria;
 import login.com.huntvision.models.VistoriaResposta;
-import login.com.huntvision.utils.Constantes;
 import login.com.huntvision.view.adapters.QuestionarioFragmentPageAdapter;
 
 @EActivity(R.layout.activity_questionario)
@@ -82,6 +78,15 @@ public class QuestionarioActivity extends FragmentActivity {
     @AfterViews
     void init() {
 
+        Typeface helveticaBold;
+        Typeface helveticaRegular;
+
+
+        helveticaBold = Typeface.createFromAsset(getAssets(), "Agencyb.ttf");
+        helveticaRegular = Typeface.createFromAsset(getAssets(), "Agencyr.ttf");
+
+        txtUsuario.setTypeface(helveticaRegular);
+
         txtUsuario.setText(getUsuario().getNome());
 
         objCliente = (Cliente) getIntent().getSerializableExtra("cliente");
@@ -93,7 +98,7 @@ public class QuestionarioActivity extends FragmentActivity {
         TextView titulo = (TextView) findViewById(R.id.lblTituloClienteLocal);
 
         titulo.setText(objCliente.getNome() + " - " + objItem.getDescricao());
-
+        titulo.setTypeface(helveticaRegular);
         QueryBuilder<Questionario, String> builder = getHelper().getQuestionarioRuntimeDAO().queryBuilder();
 
         try {
