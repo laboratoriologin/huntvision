@@ -1,11 +1,17 @@
 package com.login.huntvision.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Cascade;
 
 import br.com.topsys.database.hibernate.TSActiveRecordAb;
 
@@ -23,6 +29,10 @@ public final class Protocolo extends TSActiveRecordAb<Protocolo> {
 
 	@Column(name = "norma")
 	private String norma;
+	
+	@Cascade(org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
+	@OneToMany(mappedBy = "acao", cascade = CascadeType.ALL)
+	private List<Acao> acoes;
 
 	@Override
 	public Long getId() {
@@ -48,6 +58,20 @@ public final class Protocolo extends TSActiveRecordAb<Protocolo> {
 
 	public void setNorma(String norma) {
 		this.norma = norma;
+	}
+
+	/**
+	 * @return the acoes
+	 */
+	public List<Acao> getAcoes() {
+		return acoes;
+	}
+
+	/**
+	 * @param acoes the acoes to set
+	 */
+	public void setAcoes(List<Acao> acoes) {
+		this.acoes = acoes;
 	}
 
 	@Override
