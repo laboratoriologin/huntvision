@@ -15,6 +15,8 @@ import org.apache.commons.io.FilenameUtils;
 import org.primefaces.event.FileUploadEvent;
 
 import br.com.topsys.exception.TSApplicationException;
+import br.com.topsys.util.TSUtil;
+import br.com.topsys.web.util.TSFacesUtil;
 
 import com.login.huntvision.model.Item;
 import com.login.huntvision.model.Protocolo;
@@ -35,6 +37,10 @@ public class QuestionarioFaces extends CrudFaces<Questionario> {
 
 	private static final long serialVersionUID = 1L;
 	private List<SelectItem> comboTipoQuestionario;
+	private Questionario questionarioDialogPesquisa;
+	private List<SelectItem> comboItem;
+	private List<SelectItem> comboProtocolo;
+	private List<Questionario> gridQuestionarioAssociado;
 
 	public List<SelectItem> getComboItem() {
 		return comboItem;
@@ -43,9 +49,6 @@ public class QuestionarioFaces extends CrudFaces<Questionario> {
 	public void setComboItem(List<SelectItem> comboItem) {
 		this.comboItem = comboItem;
 	}
-
-	private List<SelectItem> comboItem;
-	private List<SelectItem> comboProtocolo;
 
 	@PostConstruct
 	protected void init() {
@@ -65,6 +68,17 @@ public class QuestionarioFaces extends CrudFaces<Questionario> {
 		this.getCrudModel().setProtocolo(new Protocolo());
 		getCrudModel().setTipoQuestionario(new TipoQuestionario());
 		getCrudModel().setItem(new Item());
+		this.questionarioDialogPesquisa = new Questionario();
+		return null;
+
+	}
+
+	public String findQuestionarioAssociado() {
+
+		this.gridQuestionarioAssociado = this.questionarioDialogPesquisa.findByModel("pergunta");
+
+		TSFacesUtil.gerarResultadoLista(this.gridQuestionarioAssociado);
+
 		return null;
 
 	}
@@ -84,7 +98,22 @@ public class QuestionarioFaces extends CrudFaces<Questionario> {
 		getCrudModel().setData(ft.format(dNow));
 
 	}
-
+	
+	@Override
+	protected boolean validaCampos() {
+	
+		if(!TSUtil.isEmpty(this.getCrudModel().getQuestionarioPai())
+				&& this.getCrudModel().getQuestionarioPai().equals(this.getCrudModel())) {
+			
+			this.addErrorMessage("O questionário vinculado não pode ser igual ao questionário do cadastro");
+			return false;
+			
+		}
+		
+		return true;
+		
+	}
+	
 	@Override
 	protected String insert() throws TSApplicationException {
 
@@ -166,6 +195,22 @@ public class QuestionarioFaces extends CrudFaces<Questionario> {
 
 	public void setComboProtocolo(List<SelectItem> comboProtocolo) {
 		this.comboProtocolo = comboProtocolo;
+	}
+
+	public Questionario getQuestionarioDialogPesquisa() {
+		return questionarioDialogPesquisa;
+	}
+
+	public void setQuestionarioDialogPesquisa(Questionario questionarioDialogPesquisa) {
+		this.questionarioDialogPesquisa = questionarioDialogPesquisa;
+	}
+
+	public List<Questionario> getGridQuestionarioAssociado() {
+		return gridQuestionarioAssociado;
+	}
+
+	public void setGridQuestionarioAssociado(List<Questionario> gridQuestionarioAssociado) {
+		this.gridQuestionarioAssociado = gridQuestionarioAssociado;
 	}
 
 }
