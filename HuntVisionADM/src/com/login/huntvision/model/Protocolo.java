@@ -31,8 +31,8 @@ public final class Protocolo extends TSActiveRecordAb<Protocolo> {
 	private String norma;
 	
 	@Cascade(org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
-	@OneToMany(mappedBy = "acao", cascade = CascadeType.ALL)
-	private List<Acao> acoes;
+	@OneToMany(mappedBy = "protocolo", cascade = CascadeType.ALL)
+	private List<ProtocoloAcao> acoes;
 
 	@Override
 	public Long getId() {
@@ -63,14 +63,14 @@ public final class Protocolo extends TSActiveRecordAb<Protocolo> {
 	/**
 	 * @return the acoes
 	 */
-	public List<Acao> getAcoes() {
+	public List<ProtocoloAcao> getAcoes() {
 		return acoes;
 	}
 
 	/**
 	 * @param acoes the acoes to set
 	 */
-	public void setAcoes(List<Acao> acoes) {
+	public void setAcoes(List<ProtocoloAcao> acoes) {
 		this.acoes = acoes;
 	}
 

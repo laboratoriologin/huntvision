@@ -24,20 +24,21 @@
 			</p:selectOneMenu>
 
 
-			<h:panelGrid columns="2" styleClass="coluna100" columnClasses="coluna50 coluna50">
+			<h:panelGrid columns="2" styleClass="coluna100"
+				columnClasses="coluna50 coluna50">
 
 				<p:outputLabel for="protocolo" value="Protocolo" />
 				<p:outputLabel for="tipoQuestionario" value="Tipo de questionário" />
-				
-				<p:selectOneMenu id="protocolo" value="#{mbeanModel.protocolo.id}" required="true" label="Protocolo" style="width:90%">
+
+				<p:selectOneMenu id="protocolo" value="#{mbeanModel.protocolo.id}"
+					required="true" label="Protocolo" style="width:90%">
 					<f:selectItem itemLabel="Não Selecionado" itemValue="" />
 					<f:selectItems value="#{mbean.comboProtocolo}" />
 				</p:selectOneMenu>
-				
+
 				<p:selectOneMenu id="tipoQuestionario"
 					value="#{mbeanModel.tipoQuestionario.id}" required="true"
-					label="Tipo de questionário"
-					style="width:90%">
+					label="Tipo de questionário" style="width:90%">
 					<f:selectItem itemLabel="Não Selecionado" itemValue="" />
 					<f:selectItems value="#{mbean.comboTipoQuestionario}" />
 				</p:selectOneMenu>
@@ -55,6 +56,37 @@
 
 
 		<h:panelGrid columns="1" style="width:100%">
+
+
+			<p:panel header="Questionário associado em caso de não conformidade"
+				style="width:100%">
+
+				<p:outputPanel autoUpdate="true">
+
+					<h:panelGrid columns="1">
+
+						<p:commandButton type="button" value="Selecionar"
+							icon="ui-icon-plus"
+							onclick="PF('dlgQuestionarioVinculado').show()" />
+
+						<h:panelGrid columns="2">
+
+							<h:outputText
+								value="Questionário associado: #{mbeanModel.questionarioPai.pergunta}"
+								rendered="#{!empty mbeanModel.questionarioPai}" />
+							
+							<p:commandButton rendered="#{!empty mbeanModel.questionarioPai}" icon="ui-icon-closethick" process="@this">
+								<f:setPropertyActionListener value="#{null}"
+									target="#{mbeanModel.questionarioPai}" />
+							</p:commandButton>
+
+						</h:panelGrid>
+
+					</h:panelGrid>
+
+				</p:outputPanel>
+
+			</p:panel>
 
 			<p:commandButton id="adicionar" value="Adicionar Resposta"
 				icon="ui-icon-plus" action="#{mbean.adicionarResposta}"
@@ -120,7 +152,7 @@
 
 
 		<p:selectBooleanCheckbox value="#{mbeanModel.status}"
-			itemLabel="Status:" />
+			itemLabel="Ativo?" />
 
 
 	</ui:define>
@@ -135,6 +167,52 @@
 		<p:column headerText="Pergunta">
 			<h:outputText value="#{linha.pergunta}" />
 		</p:column>
+
+	</ui:define>
+
+	<ui:define name="dialogs">
+
+		<p:dialog modal="true" appendTo="@(body)"
+			widgetVar="dlgQuestionarioVinculado" header="Questionário vinculado"
+			height="400" width="600" position="center">
+
+			<h:form>
+
+				<h:panelGrid columns="1" styleClass="coluna100">
+					<h:outputText value="Pergunta" />
+					<p:inputText
+						value="#{questionarioFaces.questionarioDialogPesquisa.pergunta}"
+						style="width:95%" />
+					<p:commandButton value="Pesquisar" icon="ui-icon-search"
+						action="#{mbean.findQuestionarioAssociado}"
+						update="dtQuestionarioVinculado" />
+
+					<p:dataTable id="dtQuestionarioVinculado" rows="10"
+						emptyMessage="Nenhum registro encontrado" paginator="true"
+						paginatorAlwaysVisible="false" style="width:100%"
+						value="#{mbean.gridQuestionarioAssociado}" var="questionario">
+
+						<p:column headerText="Pergunta" style="width:80%">
+						#{questionario.pergunta}
+					</p:column>
+
+						<p:column headerText="Selecionar" style="width:20%">
+							<div align="center">
+								<p:commandButton icon="ui-icon-check"
+									oncomplete="PF('dlgQuestionarioVinculado').hide();">
+									<f:setPropertyActionListener value="#{questionario}"
+										target="#{mbeanModel.questionarioPai}" />
+								</p:commandButton>
+							</div>
+						</p:column>
+
+					</p:dataTable>
+
+				</h:panelGrid>
+
+			</h:form>
+
+		</p:dialog>
 
 	</ui:define>
 
