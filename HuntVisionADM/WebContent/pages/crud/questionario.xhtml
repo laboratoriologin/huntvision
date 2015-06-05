@@ -99,23 +99,29 @@
 					emptyMessage="Nenhuma resposta" value="#{mbeanModel.respostas}"
 					var="resposta" style="margin-top: 3px; margin-bottom: 10px;">
 
-					<p:column headerText="Resposta" styleClass="coluna45">
+					<p:column headerText="Resposta" styleClass="coluna70">
 						<div align="center">
 							<p:inputText styleClass="coluna90" value="#{resposta.descricao}" />
 						</div>
 					</p:column>
-					<!-- 
-					<p:column headerText="Observação" styleClass="coluna45">
-						<p:inputText styleClass="coluna90" value="#{resposta.observacao}" />
+					
+					<p:column headerText="Valor inicial" styleClass="coluna10">
+						<div align="center">
+							<p:inputText styleClass="coluna90" style="text-align:right;" value="#{resposta.valorInicial}"  onkeyup="return mascaraMoeda(this);">
+								<f:convertNumber minFractionDigits="2" maxFractionDigits="2"/>
+							</p:inputText>
+						</div>
+					</p:column>
+					
+					<p:column headerText="Valor Final" styleClass="coluna10">
+						<div align="center">
+							<p:inputText styleClass="coluna90"  style="text-align:right;" value="#{resposta.valorFinal}"  onkeyup="return mascaraMoeda(this);">
+								<f:convertNumber minFractionDigits="2" maxFractionDigits="2"/>
+							</p:inputText>
+						</div>
 					</p:column>
 
-					<p:column headerText="Resposta Certa" styleClass="coluna10">
-						<div align="center">
-							<p:selectBooleanCheckbox value="#{resposta.flagrespostacerta}" />
-						</div>
-					</p:column> -->
-
-					<p:column style="width:45%" headerText="Remover?">
+					<p:column style="width:10%" headerText="Remover?">
 						<div align="center">
 							<p:commandLink global="false" process="@this"
 								action="#{mbean.removerResposta(index)}">
