@@ -1,0 +1,73 @@
+<ui:composition template="/resources/templates/templateCRUD.xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+	<ui:param name="mbean" value="${protocoloFaces}" />
+	<ui:param name="mbeanModel" value="${protocoloFaces.crudModel}" />
+	<ui:param name="mbeanPesquisaModel"
+		value="${protocoloFaces.crudPesquisaModel}" />
+	<ui:param name="reload" value="true" />
+
+	<ui:define name="cadastro">
+
+
+		<h:panelGrid style="width:60%">
+
+			<h:outputText value="Protocolo:" />
+			<p:inputText id="txtNomeProtocolo" required="true"
+				requiredMessage="Local obrigatório" maxlength="50"
+				value="#{mbeanModel.nome}" styleClass="coluna50" />
+
+
+
+
+
+			<p:outputLabel for="acoes" value="Ações" />
+			<p:selectManyMenu id="acoes" style="height:200px;width:50%"
+				value="#{mbean.selectedOptions}" showCheckbox="true">
+				<f:selectItems value="#{mbean.comboAcao}" var="acao"
+					itemLabel="#{acao.nome}" itemValue="#{acao.id}" />
+			</p:selectManyMenu>
+
+
+
+
+		</h:panelGrid>
+		<h:panelGrid columns="1" style="width:100%">
+
+
+
+		</h:panelGrid>
+
+
+	</ui:define>
+
+
+
+	<ui:define name="pesquisaCampos">
+
+		<h:panelGrid columns="1" style="width:50%">
+
+			<p:outputLabel for="descricaoPesquisa" value="Protocolo:" />
+			<p:inputText id="descricaoPesquisa"
+				value="#{mbeanPesquisaModel.nome}" styleClass="coluna90" />
+
+		</h:panelGrid>
+
+	</ui:define>
+
+	<ui:define name="colunasTabela">
+
+		<p:column headerText="Protocolo">
+
+
+			<h:outputText value="#{linha.nome}" />
+
+		</p:column>
+
+
+	</ui:define>
+
+</ui:composition>
