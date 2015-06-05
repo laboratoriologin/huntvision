@@ -9,37 +9,38 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-import javax.xml.bind.annotation.XmlRootElement;
 
 import br.com.topsys.database.hibernate.TSActiveRecordAb;
 
+@SuppressWarnings("serial")
 @Entity
 @Table(name = "respostas")
-public final class Resposta  extends TSActiveRecordAb<Resposta> { 
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+public final class Resposta extends TSActiveRecordAb<Resposta> {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Column(name = "descricao")
 	private String descricao;
+
+	@Column(name = "valor_inicial")
+	private Double valorInicial;
+
+	@Column(name = "valor_final")
+	private Double valorFinal;
 
 	public String getDescricao() {
 		return descricao;
 	}
 
 	public void setDescricao(String descricao) {
-		this.descricao=descricao;
+		this.descricao = descricao;
 	}
 
 	@Column(name = "flagrespostacerta")
 	private Boolean flagrespostacerta;
-	
+
 	/**
 	 * Propriedade selecionado da Categoria
 	 */
@@ -54,7 +55,8 @@ public final class Resposta  extends TSActiveRecordAb<Resposta> {
 	}
 
 	/**
-	 * @param selecionado the selecionado to set
+	 * @param selecionado
+	 *            the selecionado to set
 	 */
 	public void setSelecionado(Boolean selecionado) {
 		this.selecionado = selecionado;
@@ -65,7 +67,7 @@ public final class Resposta  extends TSActiveRecordAb<Resposta> {
 	}
 
 	public void setFlagrespostacerta(Boolean flagrespostacerta) {
-		this.flagrespostacerta=flagrespostacerta;
+		this.flagrespostacerta = flagrespostacerta;
 	}
 
 	@ManyToOne
@@ -80,7 +82,8 @@ public final class Resposta  extends TSActiveRecordAb<Resposta> {
 	}
 
 	/**
-	 * @param questionario the questionario to set
+	 * @param questionario
+	 *            the questionario to set
 	 */
 	public void setQuestionario(Questionario questionario) {
 		this.questionario = questionario;
@@ -94,12 +97,13 @@ public final class Resposta  extends TSActiveRecordAb<Resposta> {
 	}
 
 	public void setObservacao(String observacao) {
-		this.observacao=observacao;
+		this.observacao = observacao;
 	}
 
-	public Resposta(){}
+	public Resposta() {
+	}
 
-	public Resposta(String id){
+	public Resposta(String id) {
 		this.id = Long.valueOf(id);
 	}
 
@@ -111,23 +115,38 @@ public final class Resposta  extends TSActiveRecordAb<Resposta> {
 		this.id = id;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public Double getValorInicial() {
+		return valorInicial;
 	}
 
-	/* (non-Javadoc)
+	public void setValorInicial(Double valorInicial) {
+		this.valorInicial = valorInicial;
+	}
+
+	public Double getValorFinal() {
+		return valorFinal;
+	}
+
+	public void setValorFinal(Double valorFinal) {
+		this.valorFinal = valorFinal;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result
-				+ ((descricao == null) ? 0 : descricao.hashCode());
+		result = prime * result + ((descricao == null) ? 0 : descricao.hashCode());
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -146,7 +165,5 @@ public final class Resposta  extends TSActiveRecordAb<Resposta> {
 			return false;
 		return true;
 	}
-	
-	
-	
+
 }
