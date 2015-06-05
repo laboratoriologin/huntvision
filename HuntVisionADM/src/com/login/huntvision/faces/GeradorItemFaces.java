@@ -41,15 +41,12 @@ public class GeradorItemFaces extends CrudFaces<Local> {
 	@PostConstruct
 	protected void init() {
 		this.clearFields();
-		this.comboCliente = super.initCombo(new Cliente().findByModel("nome"),
-				"id", "nome");
-		
-		this.comboLocal = super.initCombo(new Local().findByModel("nomeLocal"),
-				"id", "nomeLocal");
+		this.comboCliente = super.initCombo(new Cliente().findByModel("nome"), "id", "nome");
+
+		this.comboLocal = super.initCombo(new Local().findByModel("nomeLocal"), "id", "nomeLocal");
 		getCrudModel().setCliente(new Cliente());
 
-		this.comboItem = super.initCombo(new Item().findByModel("descricao"),
-				"id", "descricao");
+		this.comboItem = super.initCombo(new Item().findByModel("descricao"), "id", "descricao");
 
 		setFieldOrdem("nomeLocal");
 	}
@@ -62,7 +59,8 @@ public class GeradorItemFaces extends CrudFaces<Local> {
 	}
 
 	/**
-	 * @param comboLocal the comboLocal to set
+	 * @param comboLocal
+	 *            the comboLocal to set
 	 */
 	public void setComboLocal(List<SelectItem> comboLocal) {
 		this.comboLocal = comboLocal;
@@ -81,28 +79,29 @@ public class GeradorItemFaces extends CrudFaces<Local> {
 	@Override
 	protected String detail() {
 		super.detail();
-		
+
 		this.selectedOptions = new ArrayList<String>();
-		
+
 		for (ItemLocal itemLocal : getCrudModel().getItensLocais()) {
-			
+
 			this.selectedOptions.add(itemLocal.getItem().getId().toString());
-			
+
 		}
-		
+
 		return null;
 	}
 
 	@Override
 	protected String insert() throws TSApplicationException {
-		return super.update();//a tela eh sempre um update pois o local eh selecionado no combo
+		return super.update();// a tela eh sempre um update pois o local eh
+								// selecionado no combo
 	}
-	
+
 	@Override
 	protected void prePersist() {
 		super.detail();
 		getCrudModel().getItensLocais().clear();
-		
+
 		ItemLocal itemLocal = null;
 
 		for (String id : selectedOptions) {
