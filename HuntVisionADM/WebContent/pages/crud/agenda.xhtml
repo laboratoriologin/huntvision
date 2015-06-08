@@ -1,0 +1,63 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+	<ui:param name="mbean" value="${agendaFaces}" />
+
+
+	<h:form>
+		<h:panelGrid style="width:100%">
+			<p:schedule timeZone="GMT+3" locale="pt_BR" widgetVar="myschedule"
+				id="myschedule" value="#{mbean.eventModel}">
+				<p:ajax event="dateSelect" listener="#{mbean.onDateSelect}"
+					update="@parent:@parent:@parent:formAgenda:eventDetails" oncomplete="PF('eventDialog').show();" />
+				<p:ajax event="eventSelect" listener="#{mbean.onEventSelect}"
+					update="@parent:@parent:@parent:formAgenda:eventDetails" oncomplete="PF('eventDialog').show();" />
+					<p:ajax event="eventMove" listener="#{mbean.onEventMove}" update="myschedule" />
+			</p:schedule>
+		</h:panelGrid>
+	</h:form>
+
+	<p:dialog modal="true" appendTo="@(body)" width="400" height="300"
+		widgetVar="eventDialog" header="Detalhes">
+
+		<h:form prependId="false" id="formAgenda">
+		
+			<h:panelGrid id="eventDetails" columns="1" style="width:100%">
+
+				<h:outputLabel value="Cliente" />
+
+				<p:selectOneMenu style="width:100%;"
+					value="#{mbean.agenda.cliente.id}">
+					<f:selectItems value="#{mbean.comboCliente}" />
+				</p:selectOneMenu>
+
+				<h:outputLabel value="Vistoriador" />
+
+				<p:selectOneMenu style="width:100%;"
+					value="#{mbean.agenda.usuario.id}">
+					<f:selectItems value="#{mbean.comboUsuario}" />
+				</p:selectOneMenu>
+
+				<h:outputLabel for="title" value="Descrição" />
+				<p:inputTextarea id="title" rows="3" style="width:97.5%"
+					value="#{mbean.agenda.descricao}" />
+
+				<h:outputLabel for="data" value="Data" />
+				<p:calendar pattern="dd/MM/yyyy HH:mm" id="data" mask="true"
+					value="#{mbean.agenda.dataHora}" locale="pt_BR" timeZone="GMT+3" />
+
+				<p:commandButton id="addButton" value="Salvar" icon="ui-icon-disk"
+					action="#{mbean.persist}"
+					oncomplete="PF('myschedule').update(); PF('eventDialog').hide();" />
+			</h:panelGrid>
+		</h:form>
+	</p:dialog>
+
+
+
+
+
+
+</ui:composition>

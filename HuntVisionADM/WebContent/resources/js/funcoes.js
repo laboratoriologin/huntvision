@@ -170,7 +170,7 @@ function validarQtdeCaracteres(valor, max)
 
     }
 
-    alert('Insira no máximo ' + max + ' caracteres.'); 
+    alert('Insira no mï¿½ximo ' + max + ' caracteres.'); 
 
     window.event.returnValue=false;            
       
@@ -184,8 +184,8 @@ function textCounter(field,maxlimit) {
 }
 
 function mac(v){
-    v=v.toUpperCase() //Maiúsculas
-    v=v.replace(/[^ABCDEFG0123456789]/g,"") //Remove tudo o que não for A, B, C, D, E, F, G ou Numeros    
+    v=v.toUpperCase() //Maiï¿½sculas
+    v=v.replace(/[^ABCDEFG0123456789]/g,"") //Remove tudo o que nï¿½o for A, B, C, D, E, F, G ou Numeros    
     v = v.replace(/(\w\w{1})(\w{12})$/, "$1:$2");
     v = v.replace(/(\w\w{1})(\w{10})$/, "$1:$2");
     v = v.replace(/(\w\w{1})(\w{8})$/, "$1:$2");
@@ -211,28 +211,28 @@ function complexMoney(v) {
 }
 
 PrimeFaces.locales['pt_br'] = {
-        closeText: 'Fechar',
+		closeText: 'Fechar',
         prevText: 'Anterior',
-        nextText: 'Próximo',
-        currentText: 'Começo',
-        monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
+        nextText: 'PrÃ³ximo',
+        currentText: 'ComeÃ§o',
+        monthNames: ['Janeiro','Fevereiro','MarÃ§o','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
         monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun', 'Jul','Ago','Set','Out','Nov','Dez'],
-        dayNames: ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'],
-        dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'],
+        dayNames: ['Domingo','Segunda','TerÃ§a','Quarta','Quinta','Sexta','SÃ¡bado'],
+        dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','SÃ¡b'],
         dayNamesMin: ['D','S','T','Q','Q','S','S'],
         weekHeader: 'Semana',
         firstDay: 1,
         isRTL: false,
         showMonthAfterYear: false,
         yearSuffix: '',
-        timeOnlyTitle: 'Só Horas',
+        timeOnlyTitle: 'SÃ³ Horas',
         timeText: 'Tempo',
         hourText: 'Hora',
         minuteText: 'Minuto',
         secondText: 'Segundo',
-        currentText: 'Data Atual',
+        currentText: 'Agora',
         ampm: false,
-        month: 'Mês',
+        month: 'MÃªs',
         week: 'Semana',
         day: 'Dia',
         allDayText : 'Todo Dia'
@@ -241,26 +241,26 @@ PrimeFaces.locales['pt_br'] = {
 PrimeFaces.locales['pt_BR'] = {
         closeText: 'Fechar',
         prevText: 'Anterior',
-        nextText: 'Próximo',
-        currentText: 'Começo',
-        monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
+        nextText: 'PrÃ³ximo',
+        currentText: 'ComeÃ§o',
+        monthNames: ['Janeiro','Fevereiro','MarÃ§o','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
         monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun', 'Jul','Ago','Set','Out','Nov','Dez'],
-        dayNames: ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'],
-        dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'],
+        dayNames: ['Domingo','Segunda','TerÃ§a','Quarta','Quinta','Sexta','SÃ¡bado'],
+        dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','SÃ¡b'],
         dayNamesMin: ['D','S','T','Q','Q','S','S'],
         weekHeader: 'Semana',
         firstDay: 1,
         isRTL: false,
         showMonthAfterYear: false,
         yearSuffix: '',
-        timeOnlyTitle: 'Só Horas',
+        timeOnlyTitle: 'SÃ³ Horas',
         timeText: 'Tempo',
         hourText: 'Hora',
         minuteText: 'Minuto',
         secondText: 'Segundo',
         currentText: 'Agora',
         ampm: false,
-        month: 'Mês',
+        month: 'MÃªs',
         week: 'Semana',
         day: 'Dia',
         allDayText : 'Todo Dia'
