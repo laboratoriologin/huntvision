@@ -37,7 +37,7 @@
 		</h:panelGrid>
 
 		<h:panelGrid style="width:100%">
-			<p:schedule timeZone="GMT+3" locale="pt_BR" widgetVar="myschedule"
+			<p:schedule timeZone="GMT-3" locale="pt_BR" widgetVar="myschedule"
 				id="myschedule" value="#{mbean.eventModel}">
 				<p:ajax event="dateSelect" listener="#{mbean.onDateSelect}"
 					update="@parent:@parent:@parent:formAgenda:eventDetails"
@@ -83,17 +83,17 @@
 					<h:outputLabel value="Concluído em" />
 					<p:calendar pattern="dd/MM/yyyy HH:mm"
 						disabled="#{!empty mbean.agenda.dataHoraChegada}" mask="true"
-						value="#{mbean.agenda.dataHora}" locale="pt_BR" timeZone="GMT+3" />
+						value="#{mbean.agenda.dataHora}" locale="pt_BR" timeZone="GMT-3" />
 
 
 					<p:calendar pattern="dd/MM/yyyy HH:mm"
 						value="#{mbean.agenda.dataHoraChegada}" locale="pt_BR"
-						timeZone="GMT+3" disabled="true" />
+						timeZone="GMT-3" disabled="true" />
 
 
 					<p:calendar pattern="dd/MM/yyyy HH:mm"
 						value="#{mbean.agenda.dataHoraSaida}" locale="pt_BR"
-						timeZone="GMT+3" disabled="true" />
+						timeZone="GMT-3" disabled="true" />
 
 				</h:panelGrid>
 

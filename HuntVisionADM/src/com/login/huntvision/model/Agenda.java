@@ -3,6 +3,8 @@ package com.login.huntvision.model;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.TimeZone;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -106,7 +108,7 @@ public final class Agenda extends TSActiveRecordAb<Agenda> {
 			return "amarelo";
 		}
 
-		if (Calendar.getInstance().getTime().before(this.dataHora)) {
+		if (Calendar.getInstance(TimeZone.getTimeZone("GMT-3:00"), new Locale("pt","BR")).getTime().before(this.dataHora)) {
 			return null;
 		}
 
