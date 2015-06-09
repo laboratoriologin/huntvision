@@ -36,6 +36,8 @@ public class ServiceApplication extends Application {
  		this.singletons.add(new VistoriaService());
  		
  		this.singletons.add(new ProtocoloService());
+ 		
+ 		this.singletons.add(new DestinatariosService());
 
 	}
 

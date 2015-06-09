@@ -81,6 +81,11 @@ public final class ItemLocal extends TSActiveRecordAb<ItemLocal> {
 	public ItemLocal(String id){
 		this.id = Long.valueOf(id);
 	}
+	
+	public String getComboText()
+	{
+		return local.getCliente().getNome() + " - " + local.getNomeLocal() + " : " + item.getDescricao();
+	}
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()

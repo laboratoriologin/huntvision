@@ -6,7 +6,6 @@ import br.com.login.huntvision.ws.model.Cliente;
 import br.com.topsys.database.TSDataBaseBrokerIf;
 import br.com.topsys.database.factory.TSDataBaseBrokerFactory;
 import br.com.topsys.exception.TSApplicationException;
-import br.com.topsys.util.TSUtil;
 
 public class ClienteDAO  implements RestDAO<Cliente> {
 
