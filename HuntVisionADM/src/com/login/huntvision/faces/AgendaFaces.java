@@ -24,6 +24,7 @@ import br.com.topsys.web.faces.TSMainFaces;
 import com.login.huntvision.model.Agenda;
 import com.login.huntvision.model.Cliente;
 import com.login.huntvision.model.Usuario;
+import com.login.huntvision.util.Utilitarios;
 
 @ViewScoped
 @ManagedBean(name = "agendaFaces")
@@ -33,6 +34,7 @@ public class AgendaFaces extends TSMainFaces {
 	private ScheduleModel eventModel;
 	private List<SelectItem> comboCliente;
 	private List<SelectItem> comboUsuario;
+	private Agenda agendaPesquisa;
 
 	@Override
 	@PostConstruct
@@ -40,9 +42,12 @@ public class AgendaFaces extends TSMainFaces {
 		super.clearFields();
 		initAgenda();
 		eventModel = new DefaultScheduleModel();
-		initSchedule();
+		this.agendaPesquisa = new Agenda();
+		this.agendaPesquisa.setUsuario(new Usuario());
+		this.agendaPesquisa.setCliente(new Cliente());
 		this.comboCliente = super.initCombo(new Cliente().findAll(), "id", "nome");
 		this.comboUsuario = super.initCombo(new Usuario().findAll(), "id", "nome");
+		find();	
 	}
 
 	private void initAgenda() {
@@ -51,15 +56,23 @@ public class AgendaFaces extends TSMainFaces {
 		this.agenda.setUsuario(new Usuario());
 	}
 
-	private void initSchedule() {
+	protected String find() {
 
 		eventModel.clear();
 
-		for (Agenda item : new Agenda().findAll()) {
+		DefaultScheduleEvent event = null;
 
-			eventModel.addEvent(new DefaultScheduleEvent(item.toString(), item.getDataHora(), item.getDataHora(), item));
+		for (Agenda item : this.agendaPesquisa.findByModel()) {
+
+			event = new DefaultScheduleEvent(item.toString(), item.getDataHora(), item.getDataHora(), item);
+
+			event.setStyleClass(item.getStyleClass());
+
+			eventModel.addEvent(event);
 
 		}
+		
+		return null;
 
 	}
 
@@ -76,16 +89,23 @@ public class AgendaFaces extends TSMainFaces {
 
 		this.agenda = (Agenda) event.getScheduleEvent().getData();
 
-		Calendar calendar = Calendar.getInstance(new Locale("pt","BR"));
-		
+		if (this.agenda.getDataHoraChegada() != null) {
+			addInfoMessage("Esse agendamento não pode ser alterado pois o vistoriador já chegou no local");
+			initAgenda();
+			find();
+			return;
+		}
+
+		Calendar calendar = Calendar.getInstance(new Locale("pt", "BR"));
+
 		calendar.setTime(agenda.getDataHora());
-		
-		calendar.add(Calendar.DAY_OF_MONTH, - event.getDayDelta());
-		
-		calendar.add(Calendar.MINUTE, - event.getMinuteDelta());
-		
+
+		calendar.add(Calendar.DAY_OF_MONTH, -event.getDayDelta());
+
+		calendar.add(Calendar.MINUTE, -event.getMinuteDelta());
+
 		agenda.setDataHora(calendar.getTime());
-		
+
 		update();
 
 	}
@@ -96,7 +116,7 @@ public class AgendaFaces extends TSMainFaces {
 
 		initAgenda();
 
-		initSchedule();
+		find();
 
 		return null;
 
@@ -108,7 +128,7 @@ public class AgendaFaces extends TSMainFaces {
 
 		initAgenda();
 
-		initSchedule();
+		find();
 
 		return null;
 
@@ -157,6 +177,14 @@ public class AgendaFaces extends TSMainFaces {
 
 	public void setComboUsuario(List<SelectItem> comboUsuario) {
 		this.comboUsuario = comboUsuario;
+	}
+
+	public Agenda getAgendaPesquisa() {
+		return agendaPesquisa;
+	}
+
+	public void setAgendaPesquisa(Agenda agendaPesquisa) {
+		this.agendaPesquisa = agendaPesquisa;
 	}
 
 }

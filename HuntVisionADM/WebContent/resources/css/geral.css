@@ -431,15 +431,22 @@ img.right {
 }
 
 .vermelho {
-    background-color: palegoldenrod  !important;
+    background-color: #e9441c !important;
+    background-image: none !important;
+    color: #FFFFFF !important;
+    
+}
+
+.amarelo {
+    background-color: #e5e961 !important;
     background-image: none !important;
     color: #000000 !important;
 }
 
 .verde {
-    background-color: powderblue  !important;
+    background-color: #30975e!important;
     background-image: none !important;
-    color: #000000 !important;
+    color: #FFFFFF !important;
 }
 
 .cadeado {

@@ -1,6 +1,8 @@
 package com.login.huntvision.model;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,6 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import br.com.topsys.database.hibernate.TSActiveRecordAb;
+import br.com.topsys.util.TSUtil;
 
 @SuppressWarnings("serial")
 @Entity
@@ -39,6 +42,12 @@ public final class Agenda extends TSActiveRecordAb<Agenda> {
 
 	@Column(name = "data_hora")
 	private Date dataHora;
+
+	@Column(name = "data_hora_chegada")
+	private Date dataHoraChegada;
+
+	@Column(name = "data_hora_saida")
+	private Date dataHoraSaida;
 
 	@Override
 	public Long getId() {
@@ -85,6 +94,50 @@ public final class Agenda extends TSActiveRecordAb<Agenda> {
 
 	public void setDataHora(Date dataHora) {
 		this.dataHora = dataHora;
+	}
+
+	public String getStyleClass() {
+
+		if (!TSUtil.isEmpty(this.dataHoraSaida)) {
+			return "verde";
+		}
+
+		if (!TSUtil.isEmpty(this.dataHoraChegada)) {
+			return "amarelo";
+		}
+
+		if (Calendar.getInstance().getTime().before(this.dataHora)) {
+			return null;
+		}
+
+		return "vermelho";
+
+	}
+
+	@Override
+	public List<Agenda> findByModel(String... fieldsOrderBy) {
+		
+		Long usuarioId = TSUtil.isEmpty(this.usuario) ? null : TSUtil.tratarLong(this.usuario.getId());
+		
+		Long clienteId = TSUtil.isEmpty(this.cliente) ? null : TSUtil.tratarLong(this.cliente.getId());
+		
+		return find("From Agenda where cliente.id = coalesce(?, cliente.id) and usuario.id = coalesce(?,usuario.id)", null, clienteId, usuarioId);
+	}
+	
+	public Date getDataHoraChegada() {
+		return dataHoraChegada;
+	}
+
+	public void setDataHoraChegada(Date dataHoraChegada) {
+		this.dataHoraChegada = dataHoraChegada;
+	}
+
+	public Date getDataHoraSaida() {
+		return dataHoraSaida;
+	}
+
+	public void setDataHoraSaida(Date dataHoraSaida) {
+		this.dataHoraSaida = dataHoraSaida;
 	}
 
 }
