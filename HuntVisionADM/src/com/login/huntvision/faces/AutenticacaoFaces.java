@@ -108,6 +108,8 @@ public class AutenticacaoFaces extends TSMainFaces {
 		TSFacesUtil.addObjectInSession(Constantes.USUARIO_CONECTADO, usuario);
 	
 		carregarMenu();
+		
+		setTela("crud/agenda.xhtml");
 	
 		return SUCESSO;
 	}

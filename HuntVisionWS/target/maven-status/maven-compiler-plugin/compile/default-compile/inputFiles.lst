@@ -1,6 +1,7 @@
 D:\Projetos\HuntVision\Fonte\Branche\huntvision\HuntVisionWS\src\br\com\login\huntvision\ws\model\Vistoria.java
 D:\Projetos\HuntVision\Fonte\Branche\huntvision\HuntVisionWS\src\br\com\login\huntvision\ws\dao\TipoQuestionariosDAO.java
 D:\Projetos\HuntVision\Fonte\Branche\huntvision\HuntVisionWS\src\br\com\login\huntvision\ws\exception\ApplicationException.java
+D:\Projetos\HuntVision\Fonte\Branche\huntvision\HuntVisionWS\src\br\com\login\huntvision\ws\dao\DestinariosDAO.java
 D:\Projetos\HuntVision\Fonte\Branche\huntvision\HuntVisionWS\src\br\com\login\huntvision\ws\dao\ProtocoloDAO.java
 D:\Projetos\HuntVision\Fonte\Branche\huntvision\HuntVisionWS\src\br\com\login\huntvision\ws\service\ProtocoloService.java
 D:\Projetos\HuntVision\Fonte\Branche\huntvision\HuntVisionWS\src\br\com\login\huntvision\ws\util\GeneratePassword.java
@@ -10,6 +11,7 @@ D:\Projetos\HuntVision\Fonte\Branche\huntvision\HuntVisionWS\src\br\com\login\hu
 D:\Projetos\HuntVision\Fonte\Branche\huntvision\HuntVisionWS\src\br\com\login\huntvision\ws\service\ClienteService.java
 D:\Projetos\HuntVision\Fonte\Branche\huntvision\HuntVisionWS\src\br\com\login\huntvision\ws\service\ItemService.java
 D:\Projetos\HuntVision\Fonte\Branche\huntvision\HuntVisionWS\src\br\com\login\huntvision\ws\service\ProtocolosAcoesService.java
+D:\Projetos\HuntVision\Fonte\Branche\huntvision\HuntVisionWS\src\br\com\login\huntvision\ws\service\DestinatariosService.java
 D:\Projetos\HuntVision\Fonte\Branche\huntvision\HuntVisionWS\src\br\com\login\huntvision\ws\model\ProtocoloAcao.java
 D:\Projetos\HuntVision\Fonte\Branche\huntvision\HuntVisionWS\src\br\com\login\huntvision\ws\service\TipoQuestionariosService.java
 D:\Projetos\HuntVision\Fonte\Branche\huntvision\HuntVisionWS\src\br\com\login\huntvision\ws\dao\VistoriaRespostaDAO.java
@@ -31,6 +33,7 @@ D:\Projetos\HuntVision\Fonte\Branche\huntvision\HuntVisionWS\src\br\com\login\hu
 D:\Projetos\HuntVision\Fonte\Branche\huntvision\HuntVisionWS\src\br\com\login\huntvision\ws\dao\AcaoDAO.java
 D:\Projetos\HuntVision\Fonte\Branche\huntvision\HuntVisionWS\src\br\com\login\huntvision\ws\service\GrupoUsuarioService.java
 D:\Projetos\HuntVision\Fonte\Branche\huntvision\HuntVisionWS\src\br\com\login\huntvision\ws\dao\ProtocolosAcoesDAO.java
+D:\Projetos\HuntVision\Fonte\Branche\huntvision\HuntVisionWS\src\br\com\login\huntvision\ws\model\Destinatario.java
 D:\Projetos\HuntVision\Fonte\Branche\huntvision\HuntVisionWS\src\br\com\login\huntvision\ws\dao\GrupoUsuarioDAO.java
 D:\Projetos\HuntVision\Fonte\Branche\huntvision\HuntVisionWS\src\br\com\login\huntvision\ws\service\PermissaoService.java
 D:\Projetos\HuntVision\Fonte\Branche\huntvision\HuntVisionWS\src\br\com\login\huntvision\ws\model\RestModel.java
