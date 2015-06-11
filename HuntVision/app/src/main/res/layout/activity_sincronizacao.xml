@@ -50,6 +50,7 @@
             android:layout_alignParentBottom="false"
             android:layout_centerVertical="true"
             android:layout_marginTop="30dp"
+            android:visibility="invisible"
             android:layout_below="@+id/sincronizarUsuario"
             android:background="@color/huntVisionAzul"
 

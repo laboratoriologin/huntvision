@@ -12,16 +12,11 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.model.SelectItem;
 
 import br.com.topsys.exception.TSApplicationException;
-import br.com.topsys.web.faces.TSMainFaces;
 
 import com.login.huntvision.model.Cliente;
-
 import com.login.huntvision.model.Item;
 import com.login.huntvision.model.ItemLocal;
-import com.login.huntvision.model.GrupoUsuario;
 import com.login.huntvision.model.Local;
-import com.login.huntvision.model.Resposta;
-import com.login.huntvision.model.TipoQuestionario;
 
 /**
  * @author Ricardo
@@ -37,17 +32,19 @@ public class GeradorItemFaces extends CrudFaces<Local> {
 	private List<SelectItem> comboLocal;
 	private List<String> selectedOptions = new ArrayList<String>();
 	private List<SelectItem> comboItem;
-
+	
 	@PostConstruct
 	protected void init() {
 		this.clearFields();
+		
 		this.comboCliente = super.initCombo(new Cliente().findByModel("nome"), "id", "nome");
 
 		this.comboLocal = super.initCombo(new Local().findByModel("nomeLocal"), "id", "nomeLocal");
+		
+		this.comboItem = super.initCombo(new Item().findByModel("descricao"), "id", "descricao");
 		getCrudModel().setCliente(new Cliente());
 
-		this.comboItem = super.initCombo(new Item().findByModel("descricao"), "id", "descricao");
-
+	
 		setFieldOrdem("nomeLocal");
 	}
 

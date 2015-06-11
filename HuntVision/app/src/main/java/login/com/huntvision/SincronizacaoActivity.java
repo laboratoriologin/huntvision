@@ -467,7 +467,8 @@ import login.com.huntvision.utils.JsonUtil;
         objConexao.setUrl(Constantes.URL_WS_LOCAL);
 
         conexaos.add(objConexao);
-
+        //// TODO: Temporario a ser implementado - Versão OTIMIZE
+        setUrlWS(Constantes.URL_WS_OTIMIZE);
         final ArrayAdapter<Conexao> adapter = new ArrayAdapter<Conexao>(this, android.R.layout.simple_spinner_item, conexaos);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
