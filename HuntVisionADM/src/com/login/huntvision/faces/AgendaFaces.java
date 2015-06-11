@@ -24,7 +24,6 @@ import br.com.topsys.web.faces.TSMainFaces;
 import com.login.huntvision.model.Agenda;
 import com.login.huntvision.model.Cliente;
 import com.login.huntvision.model.Usuario;
-import com.login.huntvision.util.Utilitarios;
 
 @ViewScoped
 @ManagedBean(name = "agendaFaces")
