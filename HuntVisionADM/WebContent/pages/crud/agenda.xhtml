@@ -4,10 +4,11 @@
 	xmlns:f="http://java.sun.com/jsf/core">
 
 	<ui:param name="mbean" value="${agendaFaces}" />
-	
-	<h:form>
-	
-	<p:poll autoStart="true" update="@form" listener="#{mbean.findEvent}" interval="30" global="false"/>
+
+	<h:form prependId="false">
+
+		<p:poll autoStart="true" update="@form" listener="#{mbean.findEvent}"
+			interval="60" />
 
 		<h:panelGrid style="width:95%;">
 			<p:fieldset legend="Filtro" style="width:100;">
@@ -36,19 +37,55 @@
 			</p:fieldset>
 		</h:panelGrid>
 
-		<h:panelGrid style="width:100%">
-			<p:schedule timeZone="GMT-3" locale="pt_BR" widgetVar="myschedule"
-				id="myschedule" value="#{mbean.eventModel}">
-				<p:ajax event="dateSelect" listener="#{mbean.onDateSelect}"
-					update="@parent:@parent:@parent:formAgenda:eventDetails"
-					oncomplete="PF('eventDialog').show();" />
-				<p:ajax event="eventSelect" listener="#{mbean.onEventSelect}"
-					update="@parent:@parent:@parent:formAgenda:eventDetails"
-					oncomplete="PF('eventDialog').show();" />
-				<p:ajax event="eventMove" listener="#{mbean.onEventMove}"
-					update="myschedule" />
-			</p:schedule>
-		</h:panelGrid>
+
+
+
+		<p:tabView id="tabView" cache="true">
+
+			<p:tab title="Agenda" id="tabAgenda">
+
+				<h:panelGrid style="width:100%">
+					<p:schedule timeZone="GMT-3" locale="pt_BR" widgetVar="myschedule"
+						id="myschedule" value="#{mbean.eventModel}">
+						<p:ajax event="dateSelect" listener="#{mbean.onDateSelect}"
+							update="@parent:@parent:@parent:@parent:@parent:@parent:formAgenda:eventDetails"
+							oncomplete="PF('eventDialog').show();" />
+						<p:ajax event="eventSelect" listener="#{mbean.onEventSelect}"
+							update="@parent:@parent:@parent:@parent:@parent:@parent:formAgenda:eventDetails"
+							oncomplete="PF('eventDialog').show();" />
+						<p:ajax event="eventMove" listener="#{mbean.onEventMove}"
+							update="@form" />
+					</p:schedule>
+				</h:panelGrid>
+
+
+			</p:tab>
+
+			<p:tab id="tabMapa" title="Mapa">
+
+				<p:gmap widgetVar="opMap" center="#{mbean.centerMap}" zoom="13"
+					type="HYBRID" model="#{mbean.mapa}" style="width:100%;height:640px">
+
+					<p:ajax event="overlaySelect" listener="#{mbean.onMarkerSelect}" />
+
+					<p:gmapInfoWindow id="infoWindow">
+						<p:outputPanel
+							style="text-align: center; display: block; margin: auto">
+
+							<img src="/#{infoWindowView.marker.data}" height="150"
+								width="150" />
+							<br />
+							<h:outputText value="#{mbean.marker.title}" />
+
+						</p:outputPanel>
+					</p:gmapInfoWindow>
+
+				</p:gmap>
+
+			</p:tab>
+
+		</p:tabView>
+
 	</h:form>
 
 	<p:dialog modal="true" appendTo="@(body)" width="400" height="300"
@@ -60,14 +97,16 @@
 
 				<h:outputLabel value="Cliente" />
 
-				<p:selectOneMenu style="width:100%;" disabled="#{!empty mbean.agenda.dataHoraChegada}"
+				<p:selectOneMenu style="width:100%;"
+					disabled="#{!empty mbean.agenda.dataHoraChegada}"
 					value="#{mbean.agenda.cliente.id}">
 					<f:selectItems value="#{mbean.comboCliente}" />
 				</p:selectOneMenu>
 
 				<h:outputLabel value="Vistoriador" />
 
-				<p:selectOneMenu style="width:100%;" disabled="#{!empty mbean.agenda.dataHoraChegada}"
+				<p:selectOneMenu style="width:100%;"
+					disabled="#{!empty mbean.agenda.dataHoraChegada}"
 					value="#{mbean.agenda.usuario.id}">
 					<f:selectItems value="#{mbean.comboUsuario}" />
 				</p:selectOneMenu>
@@ -98,8 +137,7 @@
 				</h:panelGrid>
 
 				<p:commandButton id="addButton" value="Salvar" icon="ui-icon-disk"
-					action="#{mbean.persist}"
-					oncomplete="PF('myschedule').update(); PF('eventDialog').hide();" />
+					action="#{mbean.persist}" ajax="false" />
 			</h:panelGrid>
 		</h:form>
 	</p:dialog>

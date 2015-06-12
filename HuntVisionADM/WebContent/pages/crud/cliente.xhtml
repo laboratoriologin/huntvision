@@ -54,6 +54,19 @@
 
 		<h:panelGrid columns="2" styleClass="coluna50">
 
+			<p:outputLabel for="latitude" value="Latitude" />
+			<p:outputLabel for="longitude" value="Longitude" />
+
+			<p:inputText label="Latitude" id="latitude" required="true" value="#{mbeanModel.latitude}"
+				styleClass="coluna60">
+					<f:convertNumber locale="en_US" maxFractionDigits="12"/>
+				</p:inputText>
+
+			<p:inputText label="Longitude" id="longitude" required="true" value="#{mbeanModel.longitude}"
+				styleClass="coluna60">
+					<f:convertNumber locale="en_US" maxFractionDigits="12"/>
+				</p:inputText>
+
 
 			<p:outputLabel for="bairro" value="Bairro" />
 			<p:outputLabel for="cidade" value="Cidade" />
@@ -87,16 +100,20 @@
 				value="#{mbeanModel.pais}" styleClass="coluna50" />
 
 		</h:panelGrid>
-		
+
 		<p:fieldset legend="Logo do cliente" style="width:95%">
 
-				<p:fileUpload id="uploadArquivo" label="Adicionar Imagem" fileUploadListener="#{mbean.uploadMidias}" auto="true" multiple="false" allowTypes="/(\.|\/)(|jpe?g|png)$/" process="@this" style="width: 95%" />
+			<p:fileUpload id="uploadArquivo" label="Adicionar Imagem"
+				fileUploadListener="#{mbean.uploadMidias}" auto="true"
+				multiple="false" allowTypes="/(\.|\/)(|jpe?g|png)$/" process="@this"
+				style="width: 95%" />
 
-				<br />
-				<p:outputPanel autoUpdate="true">
-					<img src="/arquivos_huntvision/#{mbeanModel.imagem}" style="max-height: 95px; max-width: 245px" alt="Logomarca" />
-				</p:outputPanel>
-			</p:fieldset>
+			<br />
+			<p:outputPanel autoUpdate="true">
+				<img src="/arquivos_huntvision/#{mbeanModel.imagem}"
+					style="max-height: 95px; max-width: 245px" alt="Logomarca" />
+			</p:outputPanel>
+		</p:fieldset>
 
 	</ui:define>
 

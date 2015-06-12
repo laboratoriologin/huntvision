@@ -1,5 +1,7 @@
 package com.login.huntvision.faces;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -12,10 +14,15 @@ import javax.faces.model.SelectItem;
 
 import org.primefaces.event.ScheduleEntryMoveEvent;
 import org.primefaces.event.SelectEvent;
+import org.primefaces.event.map.OverlaySelectEvent;
 import org.primefaces.model.DefaultScheduleEvent;
 import org.primefaces.model.DefaultScheduleModel;
 import org.primefaces.model.ScheduleEvent;
 import org.primefaces.model.ScheduleModel;
+import org.primefaces.model.map.DefaultMapModel;
+import org.primefaces.model.map.LatLng;
+import org.primefaces.model.map.MapModel;
+import org.primefaces.model.map.Marker;
 
 import br.com.topsys.exception.TSApplicationException;
 import br.com.topsys.util.TSUtil;
@@ -25,6 +32,7 @@ import com.login.huntvision.model.Agenda;
 import com.login.huntvision.model.Cliente;
 import com.login.huntvision.model.Usuario;
 
+@SuppressWarnings("serial")
 @ViewScoped
 @ManagedBean(name = "agendaFaces")
 public class AgendaFaces extends TSMainFaces {
@@ -34,6 +42,12 @@ public class AgendaFaces extends TSMainFaces {
 	private List<SelectItem> comboCliente;
 	private List<SelectItem> comboUsuario;
 	private Agenda agendaPesquisa;
+	private MapModel mapa;
+	private String centerMap;
+	private Marker marker;
+	private SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+	private SimpleDateFormat dateFormatComplete  = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+	private List<String> coordenadas;
 
 	@Override
 	@PostConstruct
@@ -46,7 +60,7 @@ public class AgendaFaces extends TSMainFaces {
 		this.agendaPesquisa.setCliente(new Cliente());
 		this.comboCliente = super.initCombo(new Cliente().findAll(), "id", "nome");
 		this.comboUsuario = super.initCombo(new Usuario().findAll(), "id", "nome");
-		find();	
+		find();
 	}
 
 	private void initAgenda() {
@@ -61,7 +75,13 @@ public class AgendaFaces extends TSMainFaces {
 
 		DefaultScheduleEvent event = null;
 
-		for (Agenda item : this.agendaPesquisa.findByModel()) {
+		List<Agenda> agendas = this.agendaPesquisa.findByModel();
+
+		mapa = new DefaultMapModel();
+		
+		coordenadas = new ArrayList<String>();
+
+		for (Agenda item : agendas) {
 
 			event = new DefaultScheduleEvent(item.toString(), item.getDataHora(), item.getDataHora(), item);
 
@@ -69,9 +89,39 @@ public class AgendaFaces extends TSMainFaces {
 
 			eventModel.addEvent(event);
 
+			addMapMarker(item);
+
 		}
-		
+
 		return null;
+
+	}
+
+	private void addMapMarker(Agenda item) {
+
+		if (dateFormat.format(Calendar.getInstance().getTime()).equals(dateFormat.format(item.getDataHora()))) {
+			
+			int qtd = 0;
+			
+			for(String coordenada : coordenadas) {
+				
+				if(coordenada.equals(item.getCliente().getLatitude() + "," + item.getCliente().getLongitude())) {
+					qtd++;
+				}
+				
+			}
+			
+			if(qtd == 0) {
+				coordenadas.add(item.getCliente().getLatitude() + "," + item.getCliente().getLongitude());
+			}
+			
+			double factor = Double.valueOf(qtd) / 10000;
+
+			mapa.addOverlay(new Marker(new LatLng(item.getCliente().getLatitude() + factor, item.getCliente().getLongitude()), item.getCliente().getNome() + " | " + dateFormatComplete.format(item.getDataHora()) + " | " + item.getUsuario().getNome(), item.getCliente().getImagem(), item.getMapDot()));
+
+			centerMap = "" + item.getCliente().getLatitude() + "," + item.getCliente().getLongitude();
+
+		}
 
 	}
 
@@ -184,6 +234,30 @@ public class AgendaFaces extends TSMainFaces {
 
 	public void setAgendaPesquisa(Agenda agendaPesquisa) {
 		this.agendaPesquisa = agendaPesquisa;
+	}
+
+	public MapModel getMapa() {
+		return mapa;
+	}
+
+	public void setMapa(MapModel mapa) {
+		this.mapa = mapa;
+	}
+
+	public String getCenterMap() {
+		return centerMap;
+	}
+
+	public void setCenterMap(String centerMap) {
+		this.centerMap = centerMap;
+	}
+
+	public void onMarkerSelect(OverlaySelectEvent event) {
+		marker = (Marker) event.getOverlay();
+	}
+
+	public Marker getMarker() {
+		return marker;
 	}
 
 }
