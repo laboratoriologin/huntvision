@@ -1,66 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ui:composition template="/resources/templates/templateCRUD.xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core">
 
-	<ui:param name="mbean" value="${destinatarioFaces}" />
-	<ui:param name="mbeanModel" value="${destinatarioFaces.crudModel}" />
+	<ui:param name="mbean" value="${geradorDestinatarioFaces}" />
+	<ui:param name="mbeanModel"
+		value="${geradorDestinatarioFaces.crudModel}" />
 	<ui:param name="mbeanPesquisaModel"
-		value="${destinatarioFaces.crudPesquisaModel}" />
+		value="${geradorDestinatarioFaces.crudPesquisaModel}" />
 	<ui:param name="reload" value="true" />
 
 	<ui:define name="cadastro">
 
 		<h:panelGrid style="width:60%">
-		
+
 
 			<p:outputLabel for="local" value="Item Local" />
-			<p:selectOneMenu id="local" value="#{mbeanModel.itemLocal.id}" required="true"
+			<p:selectOneMenu id="local" value="#{mbeanModel.id}" required="true"
 				requiredMessage="Campo Item Local obrigatório" style="width:55%">
-				<f:selectItem itemLabel="Não Selecionado" itemValue="" />
+				<f:selectItem itemLabel="Não selecionado" itemValue="" />
 				<f:selectItems value="#{mbean.comboItemLocal}" />
 			</p:selectOneMenu>
 
-	     <p:outputLabel for="destinatarios" value="Destinatários:" />
-			<p:selectManyMenu id="destinatarios" style="height:200px;width:50%"
-				value="#{mbean.selectedOptions}" showCheckbox="true">
-				<f:selectItems value="#{mbean.comboDestinatario}" var="destinatario"
-					itemLabel="#{destinatario.descricao}" itemValue="#{destinatario.id}" />
-			</p:selectManyMenu>
-
+		
 		</h:panelGrid>
+		
+			<p:commandButton id="adicionar" value="Adicionar Destinatário"
+				icon="ui-icon-plus" action="#{mbean.adicionarDestinatario}"
+				process="@this panelDestinatariosAdicionados" />
 
-	</ui:define>
+			<p:outputPanel autoUpdate="true" id="panelDestinatariosAdicionados"
+				style="width:100%; max-height:145px; overflow:auto" layout="block">
 
+				<p:dataTable rowIndexVar="index" id="gridDestinatario"
+					emptyMessage="Nenhuma destinatário" value="#{mbeanModel.destinatarios}"
+					var="destinatario" style="margin-top: 3px; margin-bottom: 10px;">
 
+					<p:column headerText="Nome" styleClass="coluna70">
+						<div align="center">
+							<p:inputText styleClass="coluna90" value="#{destinatario.nome}" />
+						</div>
+					</p:column>
+					
+					<p:column headerText="E-mail" styleClass="coluna70">
+						<div align="center">
+							<p:inputText styleClass="coluna90" value="#{destinatario.email}" />
+						</div>
+					</p:column>
+					
+					<p:column style="width:10%" headerText="Remover?">
+						<div align="center">
+							<p:commandLink global="false" process="@this"
+								action="#{mbean.removerDestinatario(index)}">
 
-	<ui:define name="pesquisaCampos">
-
-		<h:panelGrid columns="1" style="width:50%">
-
-			<p:outputLabel for="descricaoPesquisa" value="Nome" />
-			<p:inputText id="descricaoPesquisa"
-				value="#{mbeanPesquisaModel.nome}" styleClass="coluna90" />
-
-		</h:panelGrid>
-
+								<img alt="Remover" title="Remover"
+									src="#{request.contextPath}/resources/images/delete16.png" />
+							</p:commandLink>
+						</div>
+					</p:column>
+				</p:dataTable>
+			</p:outputPanel>
 	</ui:define>
 
 	<ui:define name="colunasTabela">
+
+		<p:column headerText="Cliente">
+			<h:outputText value="#{linha.local.cliente.nome}" />
+
+		</p:column>
+
 		<p:column headerText="Nome">
-			<h:outputText value="#{linha.nome}" />
+			<h:outputText value="#{linha.local.nomeLocal}" />
 
 		</p:column>
-
-		<p:column headerText="E-mail">
-			<h:outputText value="#{linha.email}" />
-
-		</p:column>
-
-
-
-
 
 	</ui:define>
 
