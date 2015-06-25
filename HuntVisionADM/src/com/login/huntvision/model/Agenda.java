@@ -15,6 +15,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.login.huntvision.util.Constantes;
+
 import br.com.topsys.database.hibernate.TSActiveRecordAb;
 import br.com.topsys.util.TSUtil;
 
@@ -113,6 +115,24 @@ public final class Agenda extends TSActiveRecordAb<Agenda> {
 		}
 
 		return "vermelho";
+
+	}
+	
+	public String getMapDot() {
+
+		if (!TSUtil.isEmpty(this.dataHoraSaida)) {
+			return Constantes.GREEN_DOT;
+		}
+
+		if (!TSUtil.isEmpty(this.dataHoraChegada)) {
+			return  Constantes.YELLOW_DOT;
+		}
+
+		if (Calendar.getInstance(TimeZone.getTimeZone("GMT-3:00"), new Locale("pt","BR")).getTime().before(this.dataHora)) {
+			return  Constantes.BLUE_DOT;
+		}
+
+		return  Constantes.RED_DOT;
 
 	}
 

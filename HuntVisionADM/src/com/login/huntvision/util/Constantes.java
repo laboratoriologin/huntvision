@@ -53,5 +53,12 @@ public class Constantes {
 	    data = sd.format(dataAtual);        
 	    return data;
 	}
+	
+	public static String YELLOW_DOT = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+	public static String RED_DOT = "http://maps.google.com/mapfiles/ms/micons/red-dot.png";
+	public static String BLUE_DOT = "http://maps.google.com/mapfiles/ms/micons/blue-dot.png";
+	public static String GREEN_DOT = "http://maps.google.com/mapfiles/ms/micons/green-dot.png";
+
+	
 }
 
