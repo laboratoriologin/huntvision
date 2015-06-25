@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>BAEC1552-E38D-4A79-8F77-0D0419D768F4</string>
+	<key>IDESourceControlProjectName</key>
+	<string>project</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>9FF3141B071C427C5B6EE1A1609FD712E2487B9B</key>
+		<string>https://github.com/laboratoriologin/huntvision.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>iOS/HuntVision/HuntVision.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>9FF3141B071C427C5B6EE1A1609FD712E2487B9B</key>
+		<string>../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/laboratoriologin/huntvision.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>9FF3141B071C427C5B6EE1A1609FD712E2487B9B</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>9FF3141B071C427C5B6EE1A1609FD712E2487B9B</string>
+			<key>IDESourceControlWCCName</key>
+			<string>huntvision</string>
+		</dict>
+	</array>
+</dict>
+</plist>
