@@ -40,7 +40,7 @@
 						<h:panelGrid columns="1" style="width:100%">
 
 							<p:outputLabel for="celular" value="Celular" />
-							<p:inputText id="celular" required="true" requiredMessage="Celular Campo obrigatório" maxlength="50" value="#{mbeanModel.celular}" styleClass="coluna50" />
+							<p:inputText id="celular" required="true" onkeyup="return Mascara(this, TelefoneCall);" requiredMessage="Celular Campo obrigatório" maxlength="15" value="#{mbeanModel.celular}" styleClass="coluna50" />
 
 							<p:outputLabel for="email" value="E-mail" />
 							<p:inputText id="email" value="#{mbeanModel.email}" style="width: 95%" validatorMessage="E-mail inválido">

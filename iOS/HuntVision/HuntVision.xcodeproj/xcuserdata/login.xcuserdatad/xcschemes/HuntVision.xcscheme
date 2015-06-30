@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "06E4FCC71B3C3D6D00094AD4"
+               BlueprintIdentifier = "06E4FCF81B3C678400094AD4"
                BuildableName = "HuntVision.app"
                BlueprintName = "HuntVision"
                ReferencedContainer = "container:HuntVision.xcodeproj">
@@ -28,7 +28,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "06E4FCDF1B3C3D6D00094AD4"
+               BlueprintIdentifier = "06E4FD101B3C678400094AD4"
                BuildableName = "HuntVisionTests.xctest"
                BlueprintName = "HuntVisionTests"
                ReferencedContainer = "container:HuntVision.xcodeproj">
@@ -46,7 +46,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "06E4FCDF1B3C3D6D00094AD4"
+               BlueprintIdentifier = "06E4FD101B3C678400094AD4"
                BuildableName = "HuntVisionTests.xctest"
                BlueprintName = "HuntVisionTests"
                ReferencedContainer = "container:HuntVision.xcodeproj">
@@ -56,7 +56,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "06E4FCC71B3C3D6D00094AD4"
+            BlueprintIdentifier = "06E4FCF81B3C678400094AD4"
             BuildableName = "HuntVision.app"
             BlueprintName = "HuntVision"
             ReferencedContainer = "container:HuntVision.xcodeproj">
@@ -76,7 +76,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "06E4FCC71B3C3D6D00094AD4"
+            BlueprintIdentifier = "06E4FCF81B3C678400094AD4"
             BuildableName = "HuntVision.app"
             BlueprintName = "HuntVision"
             ReferencedContainer = "container:HuntVision.xcodeproj">
@@ -95,7 +95,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "06E4FCC71B3C3D6D00094AD4"
+            BlueprintIdentifier = "06E4FCF81B3C678400094AD4"
             BuildableName = "HuntVision.app"
             BlueprintName = "HuntVision"
             ReferencedContainer = "container:HuntVision.xcodeproj">

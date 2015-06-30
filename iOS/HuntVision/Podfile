@@ -1,0 +1,13 @@
+platform :ios, '8.0'
+use_frameworks!
+
+target 'HuntVision' do
+
+pod 'Alamofire', '~> 1.2'
+pod 'Mantle'
+end
+
+target 'HuntVisionTests' do
+
+end
+

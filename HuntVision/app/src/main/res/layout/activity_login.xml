@@ -52,7 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/lblUsuario"
-            android:singleLine="true" android:text="r"/>
+            android:singleLine="true"/>
 
         <TextView
             android:id="@+id/lblSenha"
@@ -67,7 +67,7 @@
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/edtSenha" android:text="123456"
+            android:id="@+id/edtSenha"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/lblSenha"

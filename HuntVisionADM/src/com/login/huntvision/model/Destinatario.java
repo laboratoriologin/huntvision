@@ -15,10 +15,6 @@ import br.com.topsys.database.hibernate.TSActiveRecordAb;
 @Table(name = "destinatarios")
 public final class Destinatario  extends TSActiveRecordAb<Destinatario> { 
 
-	/**
-	 * 
-	 */
-	private static long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,20 +32,7 @@ public final class Destinatario  extends TSActiveRecordAb<Destinatario> {
 
 
 
-	/**
-	 * @return the serialVersionUID
-	 */
-	public static long getSerialVersionUID() {
-		return serialVersionUID;
-	}
-
-	/**
-	 * @param serialVersionUID the serialVersionUID to set
-	 */
-	public static void setSerialVersionUID(long serialVersionUID) {
-		Destinatario.serialVersionUID = serialVersionUID;
-	}
-
+	
 	/**
 	 * @return the itemLocal
 	 */
@@ -93,13 +76,7 @@ public final class Destinatario  extends TSActiveRecordAb<Destinatario> {
 		this.email = email;
 	}
 
-	/**
-	 * @param serialversionuid the serialversionuid to set
-	 */
-	public static void setSerialversionuid(long serialversionuid) {
-		serialVersionUID = serialversionuid;
-	}
-
+	
 	public Destinatario(){}
 
 	public Destinatario(String id){
@@ -114,13 +91,7 @@ public final class Destinatario  extends TSActiveRecordAb<Destinatario> {
 		this.id = id;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
-
 	
-
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()

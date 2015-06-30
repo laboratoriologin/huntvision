@@ -1,5 +1,8 @@
 package com.login.huntvision.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,8 +10,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import org.hibernate.annotations.Cascade;
 
 import br.com.topsys.database.hibernate.TSActiveRecordAb;
 
@@ -34,6 +40,10 @@ public final class ItemLocal extends TSActiveRecordAb<ItemLocal> {
 	@JoinColumn(name = "item_id")
 	private Item item;
 	
+
+	@Cascade(org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
+	@OneToMany(mappedBy = "itemLocal", cascade = CascadeType.ALL)
+	private List<Destinatario> destinatarios;
 
 	/**
 	 * @return the item
@@ -130,5 +140,14 @@ public final class ItemLocal extends TSActiveRecordAb<ItemLocal> {
 		return true;
 	}
 
+	public List<Destinatario> getDestinatarios() {
+		return destinatarios;
+	}
+
+	public void setDestinatarios(List<Destinatario> destinatarios) {
+		this.destinatarios = destinatarios;
+	}
+
+	
 	
 }
