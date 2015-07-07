@@ -24,6 +24,7 @@ public class ItemLocal extends Base {
     public ItemLocal() {
 
         setServiceName("itens_locais");
+
     }
 
     public String getId() {

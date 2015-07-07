@@ -7,9 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		062C684D1B4B07650040F274 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 062C684C1B4B07650040F274 /* CoreGraphics.framework */; };
+		0693D1771B4AF27900591A16 /* HVLTipoQuestionarioEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0693D1761B4AF27900591A16 /* HVLTipoQuestionarioEntity.swift */; };
+		0693D1791B4AF2AA00591A16 /* HVLTipoQuestionario.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0693D1781B4AF2AA00591A16 /* HVLTipoQuestionario.swift */; };
+		0693D17B1B4AF32B00591A16 /* HVLTipoQuestionarioWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0693D17A1B4AF32B00591A16 /* HVLTipoQuestionarioWrapper.swift */; };
+		0693D17D1B4AFC6D00591A16 /* HVLRespostaEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0693D17C1B4AFC6D00591A16 /* HVLRespostaEntity.swift */; };
+		0693D17F1B4AFCAA00591A16 /* HVLResposta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0693D17E1B4AFCAA00591A16 /* HVLResposta.swift */; };
+		0693D1811B4AFDB400591A16 /* HVLRespostaWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0693D1801B4AFDB400591A16 /* HVLRespostaWrapper.swift */; };
 		0696F7271B418512004D97A2 /* HVLCliente.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0696F7261B418512004D97A2 /* HVLCliente.swift */; };
 		0696F7291B4187C9004D97A2 /* HVLClienteEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0696F7281B4187C9004D97A2 /* HVLClienteEntity.swift */; };
 		0696F72B1B41881E004D97A2 /* HVLClienteWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0696F72A1B41881E004D97A2 /* HVLClienteWrapper.swift */; };
+		06A2EFC21B441AFE0075833B /* HVLItemEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A2EFC11B441AFE0075833B /* HVLItemEntity.swift */; };
+		06A2EFC41B441B1C0075833B /* HVLItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A2EFC31B441B1C0075833B /* HVLItem.swift */; };
+		06A2EFC61B441BA10075833B /* HVLItemWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A2EFC51B441BA10075833B /* HVLItemWrapper.swift */; };
+		06A2EFCA1B442A610075833B /* HVLItemLocalEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A2EFC91B442A610075833B /* HVLItemLocalEntity.swift */; };
+		06A2EFCC1B442A7A0075833B /* HVLItemLocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A2EFCB1B442A7A0075833B /* HVLItemLocal.swift */; };
+		06A2EFCE1B442B1E0075833B /* HVLItemLocalWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A2EFCD1B442B1E0075833B /* HVLItemLocalWrapper.swift */; };
+		06A2EFD01B44531B0075833B /* HVLQuestionarioEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A2EFCF1B44531B0075833B /* HVLQuestionarioEntity.swift */; };
+		06A2EFD21B4453630075833B /* HVLQuestionario.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A2EFD11B4453630075833B /* HVLQuestionario.swift */; };
+		06A2EFD41B44543E0075833B /* HVLQuestionarioWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A2EFD31B44543E0075833B /* HVLQuestionarioWrapper.swift */; };
+		06B13D891B43071D00F5F3D0 /* HVLLocalEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B13D881B43071D00F5F3D0 /* HVLLocalEntity.swift */; };
+		06B13D8B1B43078B00F5F3D0 /* HVLLocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B13D8A1B43078B00F5F3D0 /* HVLLocal.swift */; };
+		06B13D8D1B43085C00F5F3D0 /* HVLLocalWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B13D8C1B43085C00F5F3D0 /* HVLLocalWrapper.swift */; };
 		06B73CDA1B3D821200D1C183 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B73CD91B3D821200D1C183 /* SwiftyJSON.swift */; };
 		06B73CDC1B3D96D000D1C183 /* HVLUsuarioWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B73CDB1B3D96D000D1C183 /* HVLUsuarioWrapper.swift */; };
 		06B73CE01B3DD9ED00D1C183 /* HVLUsuario.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B73CDF1B3DD9ED00D1C183 /* HVLUsuario.swift */; };
@@ -36,9 +55,28 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		062C684C1B4B07650040F274 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		0693D1761B4AF27900591A16 /* HVLTipoQuestionarioEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HVLTipoQuestionarioEntity.swift; path = Models/HVLTipoQuestionarioEntity.swift; sourceTree = "<group>"; };
+		0693D1781B4AF2AA00591A16 /* HVLTipoQuestionario.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HVLTipoQuestionario.swift; sourceTree = "<group>"; };
+		0693D17A1B4AF32B00591A16 /* HVLTipoQuestionarioWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HVLTipoQuestionarioWrapper.swift; sourceTree = "<group>"; };
+		0693D17C1B4AFC6D00591A16 /* HVLRespostaEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HVLRespostaEntity.swift; sourceTree = "<group>"; };
+		0693D17E1B4AFCAA00591A16 /* HVLResposta.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HVLResposta.swift; sourceTree = "<group>"; };
+		0693D1801B4AFDB400591A16 /* HVLRespostaWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HVLRespostaWrapper.swift; sourceTree = "<group>"; };
 		0696F7261B418512004D97A2 /* HVLCliente.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HVLCliente.swift; path = Models/HVLCliente.swift; sourceTree = "<group>"; };
 		0696F7281B4187C9004D97A2 /* HVLClienteEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HVLClienteEntity.swift; path = Models/HVLClienteEntity.swift; sourceTree = "<group>"; };
 		0696F72A1B41881E004D97A2 /* HVLClienteWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HVLClienteWrapper.swift; path = Models/HVLClienteWrapper.swift; sourceTree = "<group>"; };
+		06A2EFC11B441AFE0075833B /* HVLItemEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HVLItemEntity.swift; sourceTree = "<group>"; };
+		06A2EFC31B441B1C0075833B /* HVLItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HVLItem.swift; path = Models/HVLItem.swift; sourceTree = "<group>"; };
+		06A2EFC51B441BA10075833B /* HVLItemWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HVLItemWrapper.swift; path = Models/HVLItemWrapper.swift; sourceTree = "<group>"; };
+		06A2EFC91B442A610075833B /* HVLItemLocalEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HVLItemLocalEntity.swift; sourceTree = "<group>"; };
+		06A2EFCB1B442A7A0075833B /* HVLItemLocal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HVLItemLocal.swift; path = Models/HVLItemLocal.swift; sourceTree = "<group>"; };
+		06A2EFCD1B442B1E0075833B /* HVLItemLocalWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HVLItemLocalWrapper.swift; path = Models/HVLItemLocalWrapper.swift; sourceTree = "<group>"; };
+		06A2EFCF1B44531B0075833B /* HVLQuestionarioEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HVLQuestionarioEntity.swift; path = Models/HVLQuestionarioEntity.swift; sourceTree = "<group>"; };
+		06A2EFD11B4453630075833B /* HVLQuestionario.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HVLQuestionario.swift; path = Models/HVLQuestionario.swift; sourceTree = "<group>"; };
+		06A2EFD31B44543E0075833B /* HVLQuestionarioWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HVLQuestionarioWrapper.swift; path = Models/HVLQuestionarioWrapper.swift; sourceTree = "<group>"; };
+		06B13D881B43071D00F5F3D0 /* HVLLocalEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HVLLocalEntity.swift; sourceTree = "<group>"; };
+		06B13D8A1B43078B00F5F3D0 /* HVLLocal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HVLLocal.swift; path = Models/HVLLocal.swift; sourceTree = "<group>"; };
+		06B13D8C1B43085C00F5F3D0 /* HVLLocalWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HVLLocalWrapper.swift; sourceTree = "<group>"; };
 		06B73CD91B3D821200D1C183 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		06B73CDB1B3D96D000D1C183 /* HVLUsuarioWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HVLUsuarioWrapper.swift; sourceTree = "<group>"; };
 		06B73CDF1B3DD9ED00D1C183 /* HVLUsuario.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HVLUsuario.swift; path = Models/HVLUsuario.swift; sourceTree = "<group>"; };
@@ -66,6 +104,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				062C684D1B4B07650040F274 /* CoreGraphics.framework in Frameworks */,
 				E084C556557E88C33011EB01 /* Pods_HuntVision.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -80,6 +119,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		06B13D871B43061000F5F3D0 /* entities */ = {
+			isa = PBXGroup;
+			children = (
+				0693D17C1B4AFC6D00591A16 /* HVLRespostaEntity.swift */,
+				0693D1761B4AF27900591A16 /* HVLTipoQuestionarioEntity.swift */,
+				06A2EFCF1B44531B0075833B /* HVLQuestionarioEntity.swift */,
+				06A2EFC91B442A610075833B /* HVLItemLocalEntity.swift */,
+				06A2EFC11B441AFE0075833B /* HVLItemEntity.swift */,
+				06B13D881B43071D00F5F3D0 /* HVLLocalEntity.swift */,
+				06B73CE11B3DDFC600D1C183 /* HVLUsuarioEntity.swift */,
+				0696F7281B4187C9004D97A2 /* HVLClienteEntity.swift */,
+			);
+			name = entities;
+			sourceTree = "<group>";
+		};
 		06E4FCF01B3C678400094AD4 = {
 			isa = PBXGroup;
 			children = (
@@ -145,12 +199,23 @@
 		06E52F011B3C83EE00FDB7EA /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				06B73CE11B3DDFC600D1C183 /* HVLUsuarioEntity.swift */,
+				06B13D871B43061000F5F3D0 /* entities */,
 				06B73CDF1B3DD9ED00D1C183 /* HVLUsuario.swift */,
 				06B73CDB1B3D96D000D1C183 /* HVLUsuarioWrapper.swift */,
-				0696F7281B4187C9004D97A2 /* HVLClienteEntity.swift */,
 				0696F7261B418512004D97A2 /* HVLCliente.swift */,
 				0696F72A1B41881E004D97A2 /* HVLClienteWrapper.swift */,
+				06B13D8A1B43078B00F5F3D0 /* HVLLocal.swift */,
+				06B13D8C1B43085C00F5F3D0 /* HVLLocalWrapper.swift */,
+				06A2EFC31B441B1C0075833B /* HVLItem.swift */,
+				06A2EFC51B441BA10075833B /* HVLItemWrapper.swift */,
+				06A2EFCB1B442A7A0075833B /* HVLItemLocal.swift */,
+				06A2EFCD1B442B1E0075833B /* HVLItemLocalWrapper.swift */,
+				06A2EFD11B4453630075833B /* HVLQuestionario.swift */,
+				06A2EFD31B44543E0075833B /* HVLQuestionarioWrapper.swift */,
+				0693D1781B4AF2AA00591A16 /* HVLTipoQuestionario.swift */,
+				0693D17A1B4AF32B00591A16 /* HVLTipoQuestionarioWrapper.swift */,
+				0693D17E1B4AFCAA00591A16 /* HVLResposta.swift */,
+				0693D1801B4AFDB400591A16 /* HVLRespostaWrapper.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -200,6 +265,7 @@
 		8878E4AFA0F3DC33B7A40CB2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				062C684C1B4B07650040F274 /* CoreGraphics.framework */,
 				CDA57EE155B41003667B3605 /* Pods_HuntVision.framework */,
 			);
 			name = Frameworks;
@@ -358,16 +424,34 @@
 			buildActionMask = 2147483647;
 			files = (
 				06B73CE21B3DDFC600D1C183 /* HVLUsuarioEntity.swift in Sources */,
+				06A2EFC41B441B1C0075833B /* HVLItem.swift in Sources */,
 				06E4FD041B3C678400094AD4 /* ViewController.swift in Sources */,
 				06B73CE01B3DD9ED00D1C183 /* HVLUsuario.swift in Sources */,
+				0693D1811B4AFDB400591A16 /* HVLRespostaWrapper.swift in Sources */,
+				06A2EFCE1B442B1E0075833B /* HVLItemLocalWrapper.swift in Sources */,
+				06A2EFC61B441BA10075833B /* HVLItemWrapper.swift in Sources */,
 				0696F7271B418512004D97A2 /* HVLCliente.swift in Sources */,
+				0693D17D1B4AFC6D00591A16 /* HVLRespostaEntity.swift in Sources */,
+				06A2EFD21B4453630075833B /* HVLQuestionario.swift in Sources */,
+				06B13D8B1B43078B00F5F3D0 /* HVLLocal.swift in Sources */,
+				06A2EFD01B44531B0075833B /* HVLQuestionarioEntity.swift in Sources */,
+				0693D17F1B4AFCAA00591A16 /* HVLResposta.swift in Sources */,
 				06B73CDC1B3D96D000D1C183 /* HVLUsuarioWrapper.swift in Sources */,
+				06B13D891B43071D00F5F3D0 /* HVLLocalEntity.swift in Sources */,
+				0693D1791B4AF2AA00591A16 /* HVLTipoQuestionario.swift in Sources */,
 				06E52F0D1B3D712B00FDB7EA /* HVLConstants.swift in Sources */,
+				06B13D8D1B43085C00F5F3D0 /* HVLLocalWrapper.swift in Sources */,
 				06B73CDA1B3D821200D1C183 /* SwiftyJSON.swift in Sources */,
+				06A2EFCA1B442A610075833B /* HVLItemLocalEntity.swift in Sources */,
+				0693D1771B4AF27900591A16 /* HVLTipoQuestionarioEntity.swift in Sources */,
 				06E4FD021B3C678400094AD4 /* HuntVision.xcdatamodeld in Sources */,
+				06A2EFD41B44543E0075833B /* HVLQuestionarioWrapper.swift in Sources */,
+				0693D17B1B4AF32B00591A16 /* HVLTipoQuestionarioWrapper.swift in Sources */,
 				0696F72B1B41881E004D97A2 /* HVLClienteWrapper.swift in Sources */,
+				06A2EFCC1B442A7A0075833B /* HVLItemLocal.swift in Sources */,
 				0696F7291B4187C9004D97A2 /* HVLClienteEntity.swift in Sources */,
 				06E4FCFF1B3C678400094AD4 /* AppDelegate.swift in Sources */,
+				06A2EFC21B441AFE0075833B /* HVLItemEntity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

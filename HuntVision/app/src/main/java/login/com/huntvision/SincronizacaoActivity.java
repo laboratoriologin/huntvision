@@ -214,7 +214,7 @@ import login.com.huntvision.utils.JsonUtil;
 
         progressDialog.setMessage("Sincronizando itens...");
 
-        new ItemRequest( getUrlWS(), new ResponseListener() {
+        new ItemRequest(getUrlWS(), new ResponseListener() {
 
             @Override
             public void onResult(ServerResponse serverResponse) {
@@ -327,7 +327,7 @@ import login.com.huntvision.utils.JsonUtil;
 
                     }
 
-                    sincronizarTipoQuestionario() ;
+                    sincronizarTipoQuestionario();
 
                 } else {
 

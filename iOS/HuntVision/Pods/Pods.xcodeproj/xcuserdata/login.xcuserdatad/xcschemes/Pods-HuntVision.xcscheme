@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "00A99DD28CA39373962147C4"
+               BlueprintIdentifier = "50C518BC58D9050AABAE8C5C"
                BuildableName = "Pods_HuntVision.framework"
                BlueprintName = "Pods-HuntVision"
                ReferencedContainer = "container:Pods.xcodeproj">

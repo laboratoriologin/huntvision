@@ -18,7 +18,7 @@ class HVLCliente: MTLModel, MTLJSONSerializing, MTLManagedObjectSerializing {
     var cidade   : NSString?
     var bairro   : NSString?
     var estado   : NSString?
-    var cep      : NSString?
+    var cep      : NSNumber?
     var pais     : NSString?
     
     static func JSONKeyPathsByPropertyKey() -> [NSObject : AnyObject]! {

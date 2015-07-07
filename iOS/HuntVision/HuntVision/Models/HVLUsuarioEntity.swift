@@ -15,7 +15,7 @@ class HVLUsuarioEntity: NSManagedObject {
     @NSManaged var email   : NSString
     @NSManaged var login   : NSString
     @NSManaged var senha   : NSString
-    @NSManaged var celular : NSNumber
+    @NSManaged var celular : NSString
     @NSManaged var nome    : NSString
 
 }
