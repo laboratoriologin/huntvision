@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="HuntVision" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="qsD-km-jqZ">
+                                <rect key="frame" x="77" y="39" width="261" height="261"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="qsD-km-jqZ" secondAttribute="height" multiplier="1:1" id="T9f-JS-xQi"/>
+                                </constraints>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n1i-EF-ye7">
+                                <rect key="frame" x="0.0" y="702" width="414" height="34"/>
+                                <color key="backgroundColor" red="0.80392163991928101" green="0.33725491166114807" blue="0.1098039299249649" alpha="1" colorSpace="deviceRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="z8e-We-Erp"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cgI-UK-tVe">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="30"/>
+                                <color key="backgroundColor" red="0.21568629145622253" green="0.49803924560546875" blue="0.729411780834198" alpha="1" colorSpace="deviceRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="c1j-Kq-pOs"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="dpd-2h-zLf"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n4S-sT-PcK">
+                                <rect key="frame" x="77" y="320" width="261" height="30"/>
+                                <color key="backgroundColor" red="0.21568629145622253" green="0.49803924560546875" blue="0.729411780834198" alpha="1" colorSpace="deviceRGB"/>
+                                <state key="normal" title="Sincronizar">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="sincronizar:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hj1-ZN-XAK"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.92941182851791382" green="0.92941182851791382" blue="0.92941182851791382" alpha="1" colorSpace="deviceRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="n4S-sT-PcK" secondAttribute="centerX" id="6yb-4p-wPM"/>
+                            <constraint firstItem="qsD-km-jqZ" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="19" id="84d-zn-SPD"/>
+                            <constraint firstAttribute="centerX" secondItem="qsD-km-jqZ" secondAttribute="centerX" id="9uS-Ih-dW5"/>
+                            <constraint firstItem="n1i-EF-ye7" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="Ek8-m7-nRw"/>
+                            <constraint firstItem="qsD-km-jqZ" firstAttribute="width" secondItem="n4S-sT-PcK" secondAttribute="width" id="Lbo-Ox-LjZ"/>
+                            <constraint firstItem="cgI-UK-tVe" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="SF0-Af-WSB"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="n1i-EF-ye7" secondAttribute="trailing" constant="-16" id="dKE-4C-HdY"/>
+                            <constraint firstAttribute="centerX" secondItem="n4S-sT-PcK" secondAttribute="centerX" id="hIF-Nv-fCv"/>
+                            <constraint firstItem="n4S-sT-PcK" firstAttribute="top" secondItem="qsD-km-jqZ" secondAttribute="bottom" constant="20" id="il2-QX-sEj"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="cgI-UK-tVe" secondAttribute="trailing" constant="-16" id="sRm-6Q-EO7"/>
+                            <constraint firstItem="cgI-UK-tVe" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="szB-P3-rLL"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="n1i-EF-ye7" secondAttribute="bottom" id="xMJ-th-juW"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="422" y="322"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Logo" width="261" height="261"/>
+    </resources>
+</document>

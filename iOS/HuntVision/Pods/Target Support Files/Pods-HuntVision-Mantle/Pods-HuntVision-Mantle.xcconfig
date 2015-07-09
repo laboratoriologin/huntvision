@@ -1,0 +1,1 @@
+PODS_HUNTVISION_MANTLE_OTHER_LDFLAGS = -framework "Foundation"

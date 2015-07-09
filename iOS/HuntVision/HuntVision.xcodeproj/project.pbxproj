@@ -1,0 +1,685 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		062C684D1B4B07650040F274 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 062C684C1B4B07650040F274 /* CoreGraphics.framework */; };
+		0693D1771B4AF27900591A16 /* HVLTipoQuestionarioEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0693D1761B4AF27900591A16 /* HVLTipoQuestionarioEntity.swift */; };
+		0693D1791B4AF2AA00591A16 /* HVLTipoQuestionario.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0693D1781B4AF2AA00591A16 /* HVLTipoQuestionario.swift */; };
+		0693D17B1B4AF32B00591A16 /* HVLTipoQuestionarioWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0693D17A1B4AF32B00591A16 /* HVLTipoQuestionarioWrapper.swift */; };
+		0693D17D1B4AFC6D00591A16 /* HVLRespostaEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0693D17C1B4AFC6D00591A16 /* HVLRespostaEntity.swift */; };
+		0693D17F1B4AFCAA00591A16 /* HVLResposta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0693D17E1B4AFCAA00591A16 /* HVLResposta.swift */; };
+		0693D1811B4AFDB400591A16 /* HVLRespostaWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0693D1801B4AFDB400591A16 /* HVLRespostaWrapper.swift */; };
+		0696F7271B418512004D97A2 /* HVLCliente.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0696F7261B418512004D97A2 /* HVLCliente.swift */; };
+		0696F7291B4187C9004D97A2 /* HVLClienteEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0696F7281B4187C9004D97A2 /* HVLClienteEntity.swift */; };
+		0696F72B1B41881E004D97A2 /* HVLClienteWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0696F72A1B41881E004D97A2 /* HVLClienteWrapper.swift */; };
+		06A2EFC21B441AFE0075833B /* HVLItemEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A2EFC11B441AFE0075833B /* HVLItemEntity.swift */; };
+		06A2EFC41B441B1C0075833B /* HVLItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A2EFC31B441B1C0075833B /* HVLItem.swift */; };
+		06A2EFC61B441BA10075833B /* HVLItemWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A2EFC51B441BA10075833B /* HVLItemWrapper.swift */; };
+		06A2EFCA1B442A610075833B /* HVLItemLocalEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A2EFC91B442A610075833B /* HVLItemLocalEntity.swift */; };
+		06A2EFCC1B442A7A0075833B /* HVLItemLocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A2EFCB1B442A7A0075833B /* HVLItemLocal.swift */; };
+		06A2EFCE1B442B1E0075833B /* HVLItemLocalWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A2EFCD1B442B1E0075833B /* HVLItemLocalWrapper.swift */; };
+		06A2EFD01B44531B0075833B /* HVLQuestionarioEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A2EFCF1B44531B0075833B /* HVLQuestionarioEntity.swift */; };
+		06A2EFD21B4453630075833B /* HVLQuestionario.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A2EFD11B4453630075833B /* HVLQuestionario.swift */; };
+		06A2EFD41B44543E0075833B /* HVLQuestionarioWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A2EFD31B44543E0075833B /* HVLQuestionarioWrapper.swift */; };
+		06B13D891B43071D00F5F3D0 /* HVLLocalEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B13D881B43071D00F5F3D0 /* HVLLocalEntity.swift */; };
+		06B13D8B1B43078B00F5F3D0 /* HVLLocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B13D8A1B43078B00F5F3D0 /* HVLLocal.swift */; };
+		06B13D8D1B43085C00F5F3D0 /* HVLLocalWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B13D8C1B43085C00F5F3D0 /* HVLLocalWrapper.swift */; };
+		06B73CDA1B3D821200D1C183 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B73CD91B3D821200D1C183 /* SwiftyJSON.swift */; };
+		06B73CDC1B3D96D000D1C183 /* HVLUsuarioWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B73CDB1B3D96D000D1C183 /* HVLUsuarioWrapper.swift */; };
+		06B73CE01B3DD9ED00D1C183 /* HVLUsuario.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B73CDF1B3DD9ED00D1C183 /* HVLUsuario.swift */; };
+		06B73CE21B3DDFC600D1C183 /* HVLUsuarioEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B73CE11B3DDFC600D1C183 /* HVLUsuarioEntity.swift */; };
+		06E4FCFF1B3C678400094AD4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E4FCFE1B3C678400094AD4 /* AppDelegate.swift */; };
+		06E4FD021B3C678400094AD4 /* HuntVision.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 06E4FD001B3C678400094AD4 /* HuntVision.xcdatamodeld */; };
+		06E4FD041B3C678400094AD4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E4FD031B3C678400094AD4 /* ViewController.swift */; };
+		06E4FD071B3C678400094AD4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06E4FD051B3C678400094AD4 /* Main.storyboard */; };
+		06E4FD091B3C678400094AD4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06E4FD081B3C678400094AD4 /* Images.xcassets */; };
+		06E4FD0C1B3C678400094AD4 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06E4FD0A1B3C678400094AD4 /* LaunchScreen.xib */; };
+		06E4FD181B3C678400094AD4 /* HuntVisionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E4FD171B3C678400094AD4 /* HuntVisionTests.swift */; };
+		06E52F0D1B3D712B00FDB7EA /* HVLConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E52F0C1B3D712B00FDB7EA /* HVLConstants.swift */; };
+		E084C556557E88C33011EB01 /* Pods_HuntVision.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDA57EE155B41003667B3605 /* Pods_HuntVision.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		06E4FD121B3C678400094AD4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 06E4FCF11B3C678400094AD4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 06E4FCF81B3C678400094AD4;
+			remoteInfo = HuntVision;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		062C684C1B4B07650040F274 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		0693D1761B4AF27900591A16 /* HVLTipoQuestionarioEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HVLTipoQuestionarioEntity.swift; path = Models/HVLTipoQuestionarioEntity.swift; sourceTree = "<group>"; };
+		0693D1781B4AF2AA00591A16 /* HVLTipoQuestionario.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HVLTipoQuestionario.swift; sourceTree = "<group>"; };
+		0693D17A1B4AF32B00591A16 /* HVLTipoQuestionarioWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HVLTipoQuestionarioWrapper.swift; sourceTree = "<group>"; };
+		0693D17C1B4AFC6D00591A16 /* HVLRespostaEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HVLRespostaEntity.swift; sourceTree = "<group>"; };
+		0693D17E1B4AFCAA00591A16 /* HVLResposta.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HVLResposta.swift; sourceTree = "<group>"; };
+		0693D1801B4AFDB400591A16 /* HVLRespostaWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HVLRespostaWrapper.swift; sourceTree = "<group>"; };
+		0696F7261B418512004D97A2 /* HVLCliente.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HVLCliente.swift; path = Models/HVLCliente.swift; sourceTree = "<group>"; };
+		0696F7281B4187C9004D97A2 /* HVLClienteEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HVLClienteEntity.swift; path = Models/HVLClienteEntity.swift; sourceTree = "<group>"; };
+		0696F72A1B41881E004D97A2 /* HVLClienteWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HVLClienteWrapper.swift; path = Models/HVLClienteWrapper.swift; sourceTree = "<group>"; };
+		06A2EFC11B441AFE0075833B /* HVLItemEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HVLItemEntity.swift; sourceTree = "<group>"; };
+		06A2EFC31B441B1C0075833B /* HVLItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HVLItem.swift; path = Models/HVLItem.swift; sourceTree = "<group>"; };
+		06A2EFC51B441BA10075833B /* HVLItemWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HVLItemWrapper.swift; path = Models/HVLItemWrapper.swift; sourceTree = "<group>"; };
+		06A2EFC91B442A610075833B /* HVLItemLocalEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HVLItemLocalEntity.swift; sourceTree = "<group>"; };
+		06A2EFCB1B442A7A0075833B /* HVLItemLocal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HVLItemLocal.swift; path = Models/HVLItemLocal.swift; sourceTree = "<group>"; };
+		06A2EFCD1B442B1E0075833B /* HVLItemLocalWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HVLItemLocalWrapper.swift; path = Models/HVLItemLocalWrapper.swift; sourceTree = "<group>"; };
+		06A2EFCF1B44531B0075833B /* HVLQuestionarioEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HVLQuestionarioEntity.swift; path = Models/HVLQuestionarioEntity.swift; sourceTree = "<group>"; };
+		06A2EFD11B4453630075833B /* HVLQuestionario.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HVLQuestionario.swift; path = Models/HVLQuestionario.swift; sourceTree = "<group>"; };
+		06A2EFD31B44543E0075833B /* HVLQuestionarioWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HVLQuestionarioWrapper.swift; path = Models/HVLQuestionarioWrapper.swift; sourceTree = "<group>"; };
+		06B13D881B43071D00F5F3D0 /* HVLLocalEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HVLLocalEntity.swift; sourceTree = "<group>"; };
+		06B13D8A1B43078B00F5F3D0 /* HVLLocal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HVLLocal.swift; path = Models/HVLLocal.swift; sourceTree = "<group>"; };
+		06B13D8C1B43085C00F5F3D0 /* HVLLocalWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HVLLocalWrapper.swift; sourceTree = "<group>"; };
+		06B73CD91B3D821200D1C183 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		06B73CDB1B3D96D000D1C183 /* HVLUsuarioWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HVLUsuarioWrapper.swift; sourceTree = "<group>"; };
+		06B73CDF1B3DD9ED00D1C183 /* HVLUsuario.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HVLUsuario.swift; path = Models/HVLUsuario.swift; sourceTree = "<group>"; };
+		06B73CE11B3DDFC600D1C183 /* HVLUsuarioEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HVLUsuarioEntity.swift; path = Models/HVLUsuarioEntity.swift; sourceTree = "<group>"; };
+		06E4FCF91B3C678400094AD4 /* HuntVision.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HuntVision.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		06E4FCFD1B3C678400094AD4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		06E4FCFE1B3C678400094AD4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		06E4FD011B3C678400094AD4 /* HuntVision.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HuntVision.xcdatamodel; sourceTree = "<group>"; };
+		06E4FD031B3C678400094AD4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		06E4FD061B3C678400094AD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		06E4FD081B3C678400094AD4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		06E4FD0B1B3C678400094AD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		06E4FD111B3C678400094AD4 /* HuntVisionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HuntVisionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		06E4FD161B3C678400094AD4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		06E4FD171B3C678400094AD4 /* HuntVisionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HuntVisionTests.swift; sourceTree = "<group>"; };
+		06E52F0A1B3C8F0500FDB7EA /* HuntVision-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HuntVision-Bridging-Header.h"; sourceTree = "<group>"; };
+		06E52F0C1B3D712B00FDB7EA /* HVLConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HVLConstants.swift; path = Helpers/HVLConstants.swift; sourceTree = "<group>"; };
+		077F8B8B55B7D593E2EE2F32 /* Pods-HuntVision.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HuntVision.release.xcconfig"; path = "Pods/Target Support Files/Pods-HuntVision/Pods-HuntVision.release.xcconfig"; sourceTree = "<group>"; };
+		3C74ED11131EEB75BB6CBFB0 /* Pods-HuntVision.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HuntVision.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HuntVision/Pods-HuntVision.debug.xcconfig"; sourceTree = "<group>"; };
+		CDA57EE155B41003667B3605 /* Pods_HuntVision.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HuntVision.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		06E4FCF61B3C678400094AD4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				062C684D1B4B07650040F274 /* CoreGraphics.framework in Frameworks */,
+				E084C556557E88C33011EB01 /* Pods_HuntVision.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		06E4FD0E1B3C678400094AD4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		06B13D871B43061000F5F3D0 /* entities */ = {
+			isa = PBXGroup;
+			children = (
+				0693D17C1B4AFC6D00591A16 /* HVLRespostaEntity.swift */,
+				0693D1761B4AF27900591A16 /* HVLTipoQuestionarioEntity.swift */,
+				06A2EFCF1B44531B0075833B /* HVLQuestionarioEntity.swift */,
+				06A2EFC91B442A610075833B /* HVLItemLocalEntity.swift */,
+				06A2EFC11B441AFE0075833B /* HVLItemEntity.swift */,
+				06B13D881B43071D00F5F3D0 /* HVLLocalEntity.swift */,
+				06B73CE11B3DDFC600D1C183 /* HVLUsuarioEntity.swift */,
+				0696F7281B4187C9004D97A2 /* HVLClienteEntity.swift */,
+			);
+			name = entities;
+			sourceTree = "<group>";
+		};
+		06E4FCF01B3C678400094AD4 = {
+			isa = PBXGroup;
+			children = (
+				06E4FCFB1B3C678400094AD4 /* HuntVision */,
+				06E4FD141B3C678400094AD4 /* HuntVisionTests */,
+				06E4FCFA1B3C678400094AD4 /* Products */,
+				86903B1DC2A954CC16F59D76 /* Pods */,
+				8878E4AFA0F3DC33B7A40CB2 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		06E4FCFA1B3C678400094AD4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				06E4FCF91B3C678400094AD4 /* HuntVision.app */,
+				06E4FD111B3C678400094AD4 /* HuntVisionTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		06E4FCFB1B3C678400094AD4 /* HuntVision */ = {
+			isa = PBXGroup;
+			children = (
+				06E52F0B1B3D6ECD00FDB7EA /* Stores */,
+				06E52F081B3C898B00FDB7EA /* Helpers */,
+				06E52F011B3C83EE00FDB7EA /* Models */,
+				06E52F021B3C83F800FDB7EA /* Views */,
+				06E52F031B3C83FD00FDB7EA /* Controllers */,
+				06E52F0A1B3C8F0500FDB7EA /* HuntVision-Bridging-Header.h */,
+				06E4FCFE1B3C678400094AD4 /* AppDelegate.swift */,
+				06E4FD081B3C678400094AD4 /* Images.xcassets */,
+				06E4FD001B3C678400094AD4 /* HuntVision.xcdatamodeld */,
+				06E4FCFC1B3C678400094AD4 /* Supporting Files */,
+			);
+			path = HuntVision;
+			sourceTree = "<group>";
+		};
+		06E4FCFC1B3C678400094AD4 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				06E4FCFD1B3C678400094AD4 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		06E4FD141B3C678400094AD4 /* HuntVisionTests */ = {
+			isa = PBXGroup;
+			children = (
+				06E4FD171B3C678400094AD4 /* HuntVisionTests.swift */,
+				06E4FD151B3C678400094AD4 /* Supporting Files */,
+			);
+			path = HuntVisionTests;
+			sourceTree = "<group>";
+		};
+		06E4FD151B3C678400094AD4 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				06E4FD161B3C678400094AD4 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		06E52F011B3C83EE00FDB7EA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				06B13D871B43061000F5F3D0 /* entities */,
+				06B73CDF1B3DD9ED00D1C183 /* HVLUsuario.swift */,
+				06B73CDB1B3D96D000D1C183 /* HVLUsuarioWrapper.swift */,
+				0696F7261B418512004D97A2 /* HVLCliente.swift */,
+				0696F72A1B41881E004D97A2 /* HVLClienteWrapper.swift */,
+				06B13D8A1B43078B00F5F3D0 /* HVLLocal.swift */,
+				06B13D8C1B43085C00F5F3D0 /* HVLLocalWrapper.swift */,
+				06A2EFC31B441B1C0075833B /* HVLItem.swift */,
+				06A2EFC51B441BA10075833B /* HVLItemWrapper.swift */,
+				06A2EFCB1B442A7A0075833B /* HVLItemLocal.swift */,
+				06A2EFCD1B442B1E0075833B /* HVLItemLocalWrapper.swift */,
+				06A2EFD11B4453630075833B /* HVLQuestionario.swift */,
+				06A2EFD31B44543E0075833B /* HVLQuestionarioWrapper.swift */,
+				0693D1781B4AF2AA00591A16 /* HVLTipoQuestionario.swift */,
+				0693D17A1B4AF32B00591A16 /* HVLTipoQuestionarioWrapper.swift */,
+				0693D17E1B4AFCAA00591A16 /* HVLResposta.swift */,
+				0693D1801B4AFDB400591A16 /* HVLRespostaWrapper.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		06E52F021B3C83F800FDB7EA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				06E4FD051B3C678400094AD4 /* Main.storyboard */,
+				06E4FD0A1B3C678400094AD4 /* LaunchScreen.xib */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		06E52F031B3C83FD00FDB7EA /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				06E4FD031B3C678400094AD4 /* ViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		06E52F081B3C898B00FDB7EA /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				06E52F0C1B3D712B00FDB7EA /* HVLConstants.swift */,
+				06B73CD91B3D821200D1C183 /* SwiftyJSON.swift */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
+		06E52F0B1B3D6ECD00FDB7EA /* Stores */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Stores;
+			sourceTree = "<group>";
+		};
+		86903B1DC2A954CC16F59D76 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3C74ED11131EEB75BB6CBFB0 /* Pods-HuntVision.debug.xcconfig */,
+				077F8B8B55B7D593E2EE2F32 /* Pods-HuntVision.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		8878E4AFA0F3DC33B7A40CB2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				062C684C1B4B07650040F274 /* CoreGraphics.framework */,
+				CDA57EE155B41003667B3605 /* Pods_HuntVision.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		06E4FCF81B3C678400094AD4 /* HuntVision */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 06E4FD1B1B3C678400094AD4 /* Build configuration list for PBXNativeTarget "HuntVision" */;
+			buildPhases = (
+				8E33E28DD7D3754DA202F720 /* Check Pods Manifest.lock */,
+				06E4FCF51B3C678400094AD4 /* Sources */,
+				06E4FCF61B3C678400094AD4 /* Frameworks */,
+				06E4FCF71B3C678400094AD4 /* Resources */,
+				AA8576818CE0790B66BD8BA8 /* Embed Pods Frameworks */,
+				521265346B08C93F82ED3ED4 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HuntVision;
+			productName = HuntVision;
+			productReference = 06E4FCF91B3C678400094AD4 /* HuntVision.app */;
+			productType = "com.apple.product-type.application";
+		};
+		06E4FD101B3C678400094AD4 /* HuntVisionTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 06E4FD1E1B3C678400094AD4 /* Build configuration list for PBXNativeTarget "HuntVisionTests" */;
+			buildPhases = (
+				06E4FD0D1B3C678400094AD4 /* Sources */,
+				06E4FD0E1B3C678400094AD4 /* Frameworks */,
+				06E4FD0F1B3C678400094AD4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				06E4FD131B3C678400094AD4 /* PBXTargetDependency */,
+			);
+			name = HuntVisionTests;
+			productName = HuntVisionTests;
+			productReference = 06E4FD111B3C678400094AD4 /* HuntVisionTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		06E4FCF11B3C678400094AD4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = "Login Informatica";
+				TargetAttributes = {
+					06E4FCF81B3C678400094AD4 = {
+						CreatedOnToolsVersion = 6.3;
+						DevelopmentTeam = ZVUZ3MVQ8J;
+					};
+					06E4FD101B3C678400094AD4 = {
+						CreatedOnToolsVersion = 6.3;
+						TestTargetID = 06E4FCF81B3C678400094AD4;
+					};
+				};
+			};
+			buildConfigurationList = 06E4FCF41B3C678400094AD4 /* Build configuration list for PBXProject "HuntVision" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 06E4FCF01B3C678400094AD4;
+			productRefGroup = 06E4FCFA1B3C678400094AD4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				06E4FCF81B3C678400094AD4 /* HuntVision */,
+				06E4FD101B3C678400094AD4 /* HuntVisionTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		06E4FCF71B3C678400094AD4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				06E4FD071B3C678400094AD4 /* Main.storyboard in Resources */,
+				06E4FD0C1B3C678400094AD4 /* LaunchScreen.xib in Resources */,
+				06E4FD091B3C678400094AD4 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		06E4FD0F1B3C678400094AD4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		521265346B08C93F82ED3ED4 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HuntVision/Pods-HuntVision-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8E33E28DD7D3754DA202F720 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		AA8576818CE0790B66BD8BA8 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HuntVision/Pods-HuntVision-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		06E4FCF51B3C678400094AD4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				06B73CE21B3DDFC600D1C183 /* HVLUsuarioEntity.swift in Sources */,
+				06A2EFC41B441B1C0075833B /* HVLItem.swift in Sources */,
+				06E4FD041B3C678400094AD4 /* ViewController.swift in Sources */,
+				06B73CE01B3DD9ED00D1C183 /* HVLUsuario.swift in Sources */,
+				0693D1811B4AFDB400591A16 /* HVLRespostaWrapper.swift in Sources */,
+				06A2EFCE1B442B1E0075833B /* HVLItemLocalWrapper.swift in Sources */,
+				06A2EFC61B441BA10075833B /* HVLItemWrapper.swift in Sources */,
+				0696F7271B418512004D97A2 /* HVLCliente.swift in Sources */,
+				0693D17D1B4AFC6D00591A16 /* HVLRespostaEntity.swift in Sources */,
+				06A2EFD21B4453630075833B /* HVLQuestionario.swift in Sources */,
+				06B13D8B1B43078B00F5F3D0 /* HVLLocal.swift in Sources */,
+				06A2EFD01B44531B0075833B /* HVLQuestionarioEntity.swift in Sources */,
+				0693D17F1B4AFCAA00591A16 /* HVLResposta.swift in Sources */,
+				06B73CDC1B3D96D000D1C183 /* HVLUsuarioWrapper.swift in Sources */,
+				06B13D891B43071D00F5F3D0 /* HVLLocalEntity.swift in Sources */,
+				0693D1791B4AF2AA00591A16 /* HVLTipoQuestionario.swift in Sources */,
+				06E52F0D1B3D712B00FDB7EA /* HVLConstants.swift in Sources */,
+				06B13D8D1B43085C00F5F3D0 /* HVLLocalWrapper.swift in Sources */,
+				06B73CDA1B3D821200D1C183 /* SwiftyJSON.swift in Sources */,
+				06A2EFCA1B442A610075833B /* HVLItemLocalEntity.swift in Sources */,
+				0693D1771B4AF27900591A16 /* HVLTipoQuestionarioEntity.swift in Sources */,
+				06E4FD021B3C678400094AD4 /* HuntVision.xcdatamodeld in Sources */,
+				06A2EFD41B44543E0075833B /* HVLQuestionarioWrapper.swift in Sources */,
+				0693D17B1B4AF32B00591A16 /* HVLTipoQuestionarioWrapper.swift in Sources */,
+				0696F72B1B41881E004D97A2 /* HVLClienteWrapper.swift in Sources */,
+				06A2EFCC1B442A7A0075833B /* HVLItemLocal.swift in Sources */,
+				0696F7291B4187C9004D97A2 /* HVLClienteEntity.swift in Sources */,
+				06E4FCFF1B3C678400094AD4 /* AppDelegate.swift in Sources */,
+				06A2EFC21B441AFE0075833B /* HVLItemEntity.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		06E4FD0D1B3C678400094AD4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				06E4FD181B3C678400094AD4 /* HuntVisionTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		06E4FD131B3C678400094AD4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 06E4FCF81B3C678400094AD4 /* HuntVision */;
+			targetProxy = 06E4FD121B3C678400094AD4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		06E4FD051B3C678400094AD4 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				06E4FD061B3C678400094AD4 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		06E4FD0A1B3C678400094AD4 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				06E4FD0B1B3C678400094AD4 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		06E4FD191B3C678400094AD4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		06E4FD1A1B3C678400094AD4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		06E4FD1C1B3C678400094AD4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3C74ED11131EEB75BB6CBFB0 /* Pods-HuntVision.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = HuntVision/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "HuntVision/HuntVision-Bridging-Header.h";
+			};
+			name = Debug;
+		};
+		06E4FD1D1B3C678400094AD4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 077F8B8B55B7D593E2EE2F32 /* Pods-HuntVision.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = HuntVision/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "HuntVision/HuntVision-Bridging-Header.h";
+			};
+			name = Release;
+		};
+		06E4FD1F1B3C678400094AD4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = HuntVisionTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HuntVision.app/HuntVision";
+			};
+			name = Debug;
+		};
+		06E4FD201B3C678400094AD4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = HuntVisionTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HuntVision.app/HuntVision";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		06E4FCF41B3C678400094AD4 /* Build configuration list for PBXProject "HuntVision" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				06E4FD191B3C678400094AD4 /* Debug */,
+				06E4FD1A1B3C678400094AD4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		06E4FD1B1B3C678400094AD4 /* Build configuration list for PBXNativeTarget "HuntVision" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				06E4FD1C1B3C678400094AD4 /* Debug */,
+				06E4FD1D1B3C678400094AD4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		06E4FD1E1B3C678400094AD4 /* Build configuration list for PBXNativeTarget "HuntVisionTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				06E4FD1F1B3C678400094AD4 /* Debug */,
+				06E4FD201B3C678400094AD4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		06E4FD001B3C678400094AD4 /* HuntVision.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				06E4FD011B3C678400094AD4 /* HuntVision.xcdatamodel */,
+			);
+			currentVersion = 06E4FD011B3C678400094AD4 /* HuntVision.xcdatamodel */;
+			path = HuntVision.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 06E4FCF11B3C678400094AD4 /* Project object */;
+}

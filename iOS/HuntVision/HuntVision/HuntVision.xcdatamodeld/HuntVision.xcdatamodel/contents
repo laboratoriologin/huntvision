@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="14D136" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="ClienteEntity" representedClassName="HuntVision.HVLClienteEntity" syncable="YES">
+        <attribute name="bairro" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="celular" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cep" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="cidade" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cnpj" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="endereco" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="estado" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="nome" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pais" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="ItemEntity" representedClassName="HuntVision.HVLItemEntity" syncable="YES">
+        <attribute name="chave" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="descricao" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <entity name="ItemLocalEntity" representedClassName="HuntVision.HVLItemLocalEntity" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="item" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="local" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <entity name="LocalEntity" representedClassName="HuntVision.HVLLocalEntity" syncable="YES">
+        <attribute name="cliente" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="nome" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="QuestionarioEntity" representedClassName="HuntVision.HVLQuestionarioEntity" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="item" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="pergunta" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="RespostaEntity" representedClassName="PRODUCT_MODULE_NAME.RespostaEntity" syncable="YES">
+        <attribute name="descricao" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="questionario" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <entity name="TipoQuestionarioEntity" representedClassName="HuntVision.HVLTipoQuestionarioEntity" syncable="YES">
+        <attribute name="descricao" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <entity name="UsuarioEntity" representedClassName="HuntVision.HVLUsuarioEntity" syncable="YES">
+        <attribute name="celular" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="login" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nome" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="senha" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="ClienteEntity" positionX="-29" positionY="-108" width="128" height="208"/>
+        <element name="ItemEntity" positionX="-216" positionY="108" width="128" height="88"/>
+        <element name="ItemLocalEntity" positionX="-207" positionY="27" width="128" height="90"/>
+        <element name="LocalEntity" positionX="232" positionY="27" width="128" height="88"/>
+        <element name="QuestionarioEntity" positionX="-198" positionY="36" width="128" height="90"/>
+        <element name="UsuarioEntity" positionX="-425" positionY="36" width="128" height="133"/>
+        <element name="TipoQuestionarioEntity" positionX="-216" positionY="18" width="128" height="75"/>
+        <element name="RespostaEntity" positionX="-207" positionY="27" width="128" height="90"/>
+    </elements>
+</model>

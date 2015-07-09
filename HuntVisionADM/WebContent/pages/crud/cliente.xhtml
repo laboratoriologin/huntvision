@@ -33,12 +33,12 @@
 			<p:outputLabel for="cnpj" value="CNPJ" />
 			<p:outputLabel for="telefone" value="Telefone" />
 
-			<p:inputText id="cnpj" required="true"
-				requiredMessage="CNPJ campo obrigatório" maxlength="50"
+			<p:inputMask mask="99.999.999/9999-99" id="cnpj" required="true"
+				requiredMessage="CNPJ campo obrigatório" 
 				value="#{mbeanModel.cnpj}" styleClass="coluna95" />
 
-			<p:inputText id="telefone" required="true"
-				requiredMessage="Telefone Campo obrigatório" maxlength="10"
+			<p:inputText id="telefone" required="true" onkeyup="return Mascara(this, TelefoneCall);"
+				requiredMessage="Telefone Campo obrigatório" maxlength="14"
 				value="#{mbeanModel.telefone}" styleClass="coluna90" />
 
 		</h:panelGrid>
