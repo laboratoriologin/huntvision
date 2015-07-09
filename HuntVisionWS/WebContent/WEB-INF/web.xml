@@ -2,7 +2,7 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
   <display-name>app_name</display-name>
 	<context-param>
-      <param-name>javax.ws.rs.core.Application</param-name>
+      <param-name>javax.ws.rs.Application</param-name>
       <param-value>br.com.login.huntvision.ws.service.ServiceApplication</param-value>
    </context-param>
    

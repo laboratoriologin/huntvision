@@ -1,5 +1,7 @@
 package login.com.huntvision.utils;
 
+import java.util.Collection;
+
 /**
  * Created by Ricardo on 16/01/2015.
  */
@@ -10,7 +12,7 @@ public final class Constantes {
     public static final String SHARED_PREFS = "prefs";
     public static final String URL_WS_GOLD = "http://177.1.212.50:9004/HuntVisionWS";
     public static final String URL_WS_OTIMIZE = "http://177.1.212.50:9004/OtimizeWS";
-    public static final String URL_WS_LOCAL = "http://10.0.0.103:8080/HuntVisionWS";
+    public static final String URL_WS_LOCAL = "http://10.0.0.109:8080/HuntVisionWS";
     public static final String KEYMOBILE = "123";
     public static final String ID_CATEGORIA_HUNTVISION = "id";
     public static final String KEY_HUNTVISION = "keyHuntVision";
@@ -34,7 +36,25 @@ public final class Constantes {
     public static final String FILETYPE = "FILETYPE";
     public static final String FILENAME = "FILENAME";
     public static final String SECURITY_KEY = "Senai.l@g1n";
+    public static boolean isEmpty(Object value) {
+
+        if (value == null) {
+            return true;
+        } else if (value instanceof Collection) {
+            return ((Collection) value).isEmpty();
+        } else if (value instanceof String) {
+            return isEmpty((String) value);
+        }
+
+        return false;
+    }
+    public static String YELLOW_DOT = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+    public static String RED_DOT = "http://maps.google.com/mapfiles/ms/micons/red-dot.png";
+    public static String BLUE_DOT = "http://maps.google.com/mapfiles/ms/micons/blue-dot.png";
+    public static String GREEN_DOT = "http://maps.google.com/mapfiles/ms/micons/green-dot.png";
 
     private Constantes() {
     }
+
+
 }

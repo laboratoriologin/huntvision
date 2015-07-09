@@ -141,3 +141,15 @@ fieldName=vistoriaId;
 fieldName=respostaId;
 fieldName=imagem;
 fieldName=observacao;
+
+################################################
+
+dataClass=login.com.huntvision.models.Agenda
+tableName=agenda
+fieldName=id;
+fieldName=clienteId;
+fieldName=usuarioId;
+fieldName=descricao;
+fieldName=dataHora;
+fieldName=dataHoraChegada;
+fieldName=dataHoraSaida;

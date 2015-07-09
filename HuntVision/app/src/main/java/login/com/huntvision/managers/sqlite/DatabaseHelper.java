@@ -13,6 +13,7 @@ import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 
 import login.com.huntvision.R;
+import login.com.huntvision.models.Agenda;
 import login.com.huntvision.models.Cliente;
 import login.com.huntvision.models.Imagem;
 import login.com.huntvision.models.Item;
@@ -56,6 +57,8 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
     private RuntimeExceptionDao<Resposta, String> respostaRuntimeDAO = null;
 
+    private RuntimeExceptionDao<Agenda, String> agendaRuntimeDAO = null;
+
     public DatabaseHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION, R.raw.ormlite_config);
 	}
@@ -79,6 +82,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             TableUtils.createTable(connectionSource, ItemLocal.class);
             TableUtils.createTable(connectionSource, Imagem.class);
             TableUtils.createTable(connectionSource, Resposta.class);
+            TableUtils.createTable(connectionSource, Agenda.class);
 
 		} catch (SQLException e) {
 			Log.e(DatabaseHelper.class.getName(), "Can't create database", e);
@@ -105,6 +109,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             TableUtils.dropTable(connectionSource, VistoriaResposta.class, true);
             TableUtils.dropTable(connectionSource, ItemLocal.class, true);
             TableUtils.dropTable(connectionSource, Resposta.class, true);
+            TableUtils.dropTable(connectionSource, Agenda.class, true);
             // after we drop the old databases, we create the new ones
 			onCreate(db, connectionSource);
 		} catch (SQLException e) {
@@ -198,5 +203,12 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 		clienteRuntimeDAO = null;
 	}
 
+
+    public RuntimeExceptionDao<Agenda, String> getAgendaRuntimeDAO() {
+        if (agendaRuntimeDAO == null) {
+            agendaRuntimeDAO = getRuntimeExceptionDao(Agenda.class);
+        }
+        return agendaRuntimeDAO;
+    }
 
 }

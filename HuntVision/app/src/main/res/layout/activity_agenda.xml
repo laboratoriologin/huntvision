@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/huntVisionCinza"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/topo"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/top_bar_height"
+        android:background="@color/huntVisionAzul"
+        >
+
+        <Button
+            android:id="@+id/btnVoltar"
+            android:layout_width="@dimen/top_bar_font_height"
+            android:layout_height="@dimen/top_bar_font_height"
+            android:layout_centerVertical="true"
+            android:background="@drawable/botao_seta_voltar"
+            android:layout_marginLeft="10dp"
+            android:onClick="onBackPressed" />
+
+        <ImageView
+            android:id="@+id/imgCliente"
+            android:layout_width="@dimen/top_bar_font_height"
+            android:layout_height="@dimen/top_bar_font_height"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/btnVoltar"
+            android:background="@drawable/icone_concluir_visita" android:onClick="onBackPressed"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/imgCliente"
+            android:padding="5dp"
+            android:text="Agenda"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/top_bar_font_height" />
+
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rlBk"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentRight="false"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@android:color/white">
+
+        <RelativeLayout
+            android:id="@+id/wrapper_usuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@color/huntVisionCinza"
+            android:gravity="right">
+
+
+            <TextView
+                android:id="@+id/lblUsuario"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/txtUsuario"
+                android:gravity="right"
+                android:text="Usuario:"
+                android:textColor="#FFF"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtUsuario"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:text="Ricardo"
+                android:textColor="#FFF"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rlConteudo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/wrapper_usuario"
+            android:layout_margin="10dp"
+            android:background="@android:color/white">
+
+            <EditText
+                android:id="@+id/edtTextPesquisa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:background="@drawable/orange_border"
+                android:hint="Pesquisar..."
+                android:padding="10dp"
+                android:textSize="16sp" />
+
+            <ListView
+                android:id="@+id/agenda_listview"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/edtTextPesquisa"
+                android:layout_marginTop="10dp"
+                android:divider="@android:color/transparent"
+                android:dividerHeight="5dp"
+                android:textFilterEnabled="true" />
+
+        </RelativeLayout>
+    </RelativeLayout>
+</LinearLayout>

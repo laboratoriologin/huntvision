@@ -2,12 +2,13 @@ package br.com.login.huntvision.ws.service;
 
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.ws.rs.core.Application;
 
 public class ServiceApplication extends Application {
 
 	private Set<Object> singletons = new HashSet<Object>();
-	private Set<Class<?>> empty = new HashSet<Class<?>>();
+	private Set<Class<?>> classes = new HashSet<Class<?>>();
 
 	public ServiceApplication() {
 
@@ -38,12 +39,14 @@ public class ServiceApplication extends Application {
  		this.singletons.add(new ProtocoloService());
  		
  		this.singletons.add(new DestinatariosService());
+ 		
+ 		this.singletons.add(new AgendaService());
 
 	}
 
 @	Override
 	public Set<Class<?>> getClasses() {
-		return this.empty;
+		return this.classes;
 	}
 
 @	Override
@@ -51,4 +54,5 @@ public class ServiceApplication extends Application {
 		return this.singletons;
 	}
 
+ 
 }

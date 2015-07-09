@@ -3,9 +3,14 @@ package login.com.huntvision.utils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import login.com.huntvision.models.Agenda;
 import login.com.huntvision.models.Cliente;
 import login.com.huntvision.models.Imagem;
 import login.com.huntvision.models.Item;
@@ -397,6 +402,71 @@ public final class JsonUtil {
 
     }
 
+    public static List<Agenda> agendasFromJsonObject(JSONObject jsonObject) {
+
+        Agenda agenda = null;
+
+        JSONObject jsonAgenda = null;
+
+        List<Agenda> agendas = new ArrayList<Agenda>();
+
+        try {
+
+            for (int i = 0; i < Utilitarios.getAlwaysJsonArray(jsonObject, "").length(); i++) {
+
+                jsonAgenda = Utilitarios.getAlwaysJsonArray(jsonObject, "").getJSONObject(i);
+
+                if (jsonAgenda.has("agendas")) {
+
+                    jsonAgenda = jsonAgenda.getJSONObject("agendas");
+
+                    agenda = new Agenda();
+
+                    agenda.setId(jsonAgenda.getString("id"));
+
+                    agenda.setDescricao(jsonAgenda.has("descricao") ? jsonAgenda.getString("descricao") : "");
+
+                    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+
+                    Date dateHora = formatter.parse(jsonAgenda.has("dataHoraFormatada") ? jsonAgenda.getString("dataHoraFormatada") : "");
+
+                    agenda.setDataHora(dateHora);
+
+                    Date dateHoraChegada = null;
+
+                    if(jsonAgenda.has("dataHoraChegadaFormatada")) {
+                        dateHoraChegada = formatter.parse(jsonAgenda.getString("dataHoraChegadaFormatada"));
+                    }
+
+                    agenda.setDataHoraChegada(dateHoraChegada);
+
+                    Date dateHoraSaida = null;
+
+                    if(jsonAgenda.has("dataHoraSaidaFormatada")) {
+                        dateHoraSaida = formatter.parse(jsonAgenda.getString("dataHoraSaidaFormatada"));
+                    }
+
+                    agenda.setDataHoraSaida(dateHoraSaida);
+
+                    agenda.setClienteId(jsonAgenda.getJSONObject("cliente").getLong("id"));
+
+                    agenda.setUsuarioId(jsonAgenda.getJSONObject("usuario").getLong("id"));
+
+                    agendas.add(agenda);
+
+                }
+
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return agendas;
+
+    }
 
 
 }
