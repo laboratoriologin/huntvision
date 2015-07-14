@@ -426,24 +426,24 @@ public final class JsonUtil {
 
                     agenda.setDescricao(jsonAgenda.has("descricao") ? jsonAgenda.getString("descricao") : "");
 
-                    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-                    Date dateHora = formatter.parse(jsonAgenda.has("dataHoraFormatada") ? jsonAgenda.getString("dataHoraFormatada") : "");
+                    Date dateHora = formatter.parse(jsonAgenda.has("dataHora") ? jsonAgenda.getString("dataHora") : "");
 
                     agenda.setDataHora(dateHora);
 
                     Date dateHoraChegada = null;
 
-                    if(jsonAgenda.has("dataHoraChegadaFormatada")) {
-                        dateHoraChegada = formatter.parse(jsonAgenda.getString("dataHoraChegadaFormatada"));
+                    if(jsonAgenda.has("dataHoraChegada")) {
+                        dateHoraChegada = formatter.parse(jsonAgenda.getString("dataHoraChegada"));
                     }
 
                     agenda.setDataHoraChegada(dateHoraChegada);
 
                     Date dateHoraSaida = null;
 
-                    if(jsonAgenda.has("dataHoraSaidaFormatada")) {
-                        dateHoraSaida = formatter.parse(jsonAgenda.getString("dataHoraSaidaFormatada"));
+                    if(jsonAgenda.has("dataHoraSaida")) {
+                        dateHoraSaida = formatter.parse(jsonAgenda.getString("dataHoraSaida"));
                     }
 
                     agenda.setDataHoraSaida(dateHoraSaida);
