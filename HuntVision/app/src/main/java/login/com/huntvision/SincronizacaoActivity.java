@@ -22,6 +22,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import login.com.huntvision.models.Agenda;
 import login.com.huntvision.models.Cliente;
 import login.com.huntvision.models.Conexao;
 import login.com.huntvision.models.Item;
@@ -32,6 +33,7 @@ import login.com.huntvision.models.Resposta;
 import login.com.huntvision.models.ServerResponse;
 import login.com.huntvision.models.TipoQuestionario;
 import login.com.huntvision.models.Usuario;
+import login.com.huntvision.network.AgendaRequest;
 import login.com.huntvision.network.ClienteRequest;
 import login.com.huntvision.network.ItemLocalRequest;
 import login.com.huntvision.network.ItemRequest;
@@ -348,6 +350,8 @@ import login.com.huntvision.utils.JsonUtil;
 
     private void sincronizarTipoQuestionario() {
 
+        progressDialog.setMessage("Sincronizando dados dos tipo questionários...");
+
         new TipoQuestionarioRequest( getUrlWS(), new ResponseListener() {
 
             @Override
@@ -391,7 +395,9 @@ import login.com.huntvision.utils.JsonUtil;
 
     private void sincronizarRespostas() {
 
-        progressDialog.setMessage("Finalizando sincronização...");
+        progressDialog.setMessage("Sincronizando dados dos respostas...");
+
+
 
         new RespostaRequest(getUrlWS(), new ResponseListener() {
 
@@ -418,7 +424,8 @@ import login.com.huntvision.utils.JsonUtil;
 
                     }
 
-                    startLoginActivity();
+                    sincronizarAgendas();
+
 
                 } else {
 
@@ -434,6 +441,56 @@ import login.com.huntvision.utils.JsonUtil;
 
 
     }
+
+
+
+
+    private void sincronizarAgendas() {
+
+        progressDialog.setMessage("Finalizando sincronização...");
+
+        new AgendaRequest(getUrlWS(), new ResponseListener() {
+
+            @Override
+            public void onResult(ServerResponse serverResponse) {
+
+                progressDialog.dismiss();
+
+                if (serverResponse.isOK()) {
+
+                    try {
+
+                        getHelper().getAgendaRuntimeDAO().deleteBuilder().delete();
+
+                    } catch (SQLException e) {
+
+                        e.printStackTrace();
+
+                    }
+
+                    for (Agenda agenda : JsonUtil.agendasFromJsonObject((JSONObject) serverResponse.getReturnObject())) {
+
+                        getHelper().getAgendaRuntimeDAO().create(agenda);
+
+                    }
+
+                    startLoginActivity();
+
+                } else {
+
+                    progressDialog.dismiss();
+
+                    Toast.makeText(SincronizacaoActivity.this, "Ocorreu um erro, tente novamente", Toast.LENGTH_LONG).show();
+
+                }
+
+            }
+
+        }).getAll(new Agenda());
+
+
+    }
+
 
     @AfterViews
     public void populateSpinner()
@@ -467,8 +524,6 @@ import login.com.huntvision.utils.JsonUtil;
         objConexao.setUrl(Constantes.URL_WS_LOCAL);
 
         conexaos.add(objConexao);
-        //// TODO: Temporario a ser implementado - Versão OTIMIZE
-        setUrlWS(Constantes.URL_WS_OTIMIZE);
         final ArrayAdapter<Conexao> adapter = new ArrayAdapter<Conexao>(this, android.R.layout.simple_spinner_item, conexaos);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);

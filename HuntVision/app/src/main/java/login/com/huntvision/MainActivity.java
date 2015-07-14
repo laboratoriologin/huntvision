@@ -98,6 +98,12 @@ public class MainActivity extends DefaultActivity {
 
     }
 
+    public void goAgenda(View view) {
+
+        Intent mainIntent = new Intent(MainActivity.this, AgendaActivity_.class);
+        this.startActivity(mainIntent);
+
+    }
     public void goQRcode(View view) {
 
         Intent mainIntent = new Intent(MainActivity.this, QrcodeActivity_.class);
