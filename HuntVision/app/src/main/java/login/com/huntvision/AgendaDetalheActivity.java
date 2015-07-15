@@ -5,12 +5,15 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.j256.ormlite.stmt.DeleteBuilder;
+
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 import org.apache.james.mime4j.field.datetime.DateTime;
 
+import java.sql.SQLException;
 import java.util.Date;
 
 import login.com.huntvision.models.Agenda;
@@ -52,12 +55,7 @@ public class AgendaDetalheActivity extends DefaultActivity {
 
         txtUsuario.setText(getUsuario().getNome());
 
-
         agenda = (Agenda) getIntent().getSerializableExtra("agenda");
-
-
-
-
 
         txtDetalheData.setText("Agendado: " + agenda.getDataHora().toString());
 
@@ -65,64 +63,148 @@ public class AgendaDetalheActivity extends DefaultActivity {
 
         txtDetalheDescricao.setText("Descrição: " + agenda.getDescricao().toString());
 
+        validaHora();
     }
 
     @Click
     void excluir(View view) {
 
+        new AgendaRequest(getUrlWS(), new ResponseListener() {
+
+            @Override
+            public void onResult(ServerResponse serverResponse) {
+
+                if (serverResponse.isOK()) {
+
+                    try {
+
+                        DeleteBuilder<Agenda, String> builder = getHelper().getAgendaRuntimeDAO().deleteBuilder();
+
+                        builder.where().eq("id", agenda.getId());
+
+                        builder.delete();
+
+
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+
+                } else {
+
+                    Toast.makeText(AgendaDetalheActivity.this, "Sem conexão no momento", Toast.LENGTH_SHORT).show();
+
+                }
+
+            }
+
+        }).delete(agenda);
+
+        Toast.makeText(this, "Agenda excluída com sucesso", Toast.LENGTH_SHORT).show();
+
+        finish();
 
 
     }
-
 
 
     @Click
     void btnRegistrarChegada() {
 
-        agenda.setDataHoraChegada(new Date());
+        if (agenda.getDataHoraChegada() == null) {
 
-        new AgendaRequest(getUrlWS(), new ResponseListener() {
+            agenda.setDataHoraChegada(new Date());
 
-            @Override
-            public void onResult(ServerResponse serverResponse) {
+            new AgendaRequest(getUrlWS(), new ResponseListener() {
 
-                if (serverResponse.isOK()) {
+                @Override
+                public void onResult(ServerResponse serverResponse) {
 
-                    getHelper().getAgendaRuntimeDAO().update(agenda);
-                     
-                     Toast.makeText(AgendaDetalheActivity.this, "Data de chegada registrada com sucesso!", Toast.LENGTH_LONG).show();
+                    if (serverResponse.isOK()) {
+
+                        getHelper().getAgendaRuntimeDAO().update(agenda);
+
+                        Toast.makeText(AgendaDetalheActivity.this, "Data de chegada registrada com sucesso!", Toast.LENGTH_LONG).show();
+
+                        validaHora();
+
+                    } else {
+
+                        Toast.makeText(AgendaDetalheActivity.this, "É necessária a conexão com a internet! ", Toast.LENGTH_LONG).show();
+
+                        agenda.setDataHoraChegada(null);
+
+                    }
+
                 }
-            }
 
 
-    }).updateHoras(agenda);
+            }).updateHoras(agenda);
+        }
+
     }
 
 
     @Click
-    void btnRegistrarSaida()
-    {
-        agenda.setDataHoraSaida(new Date());
+    void btnRegistrarSaida() {
 
-        new AgendaRequest(getUrlWS(), new ResponseListener() {
+        if (agenda.getDataHoraSaida() == null) {
 
-            @Override
-            public void onResult(ServerResponse serverResponse) {
+            agenda.setDataHoraSaida(new Date());
 
-                if (serverResponse.isOK()) {
+            new AgendaRequest(getUrlWS(), new ResponseListener() {
 
-                    getHelper().getAgendaRuntimeDAO().update(agenda);
+                @Override
+                public void onResult(ServerResponse serverResponse) {
+
+                    if (serverResponse.isOK()) {
+
+                        if (agenda.getDataHoraChegada() != null) {
+
+                            getHelper().getAgendaRuntimeDAO().update(agenda);
+
+                            Toast.makeText(AgendaDetalheActivity.this, "Data de saída registrada com sucesso!", Toast.LENGTH_LONG).show();
+
+                            validaHora();
+
+                        } else {
+
+                            Toast.makeText(AgendaDetalheActivity.this, "Atenção, é necessario registrar hora de chegada antes!", Toast.LENGTH_LONG).show();
+
+                        }
+                    } else {
+
+                        Toast.makeText(AgendaDetalheActivity.this, "É necessária a conexão com a internet! ", Toast.LENGTH_LONG).show();
+
+                        agenda.setDataHoraSaida(null);
+
+                    }
+
                 }
-            }
 
 
-        }).updateHoras(agenda);
+            }).updateHoras(agenda);
+
+        }
+    }
+
+
+    private void validaHora() {
+        if (agenda.getDataHoraChegada() == null) {
+            txtChegada.setText("");
+        } else {
+            txtChegada.setText(agenda.getDataHoraChegada().toString());
+        }
+
+        if (agenda.getDataHoraSaida() == null) {
+            txtSaida.setText("");
+        } else {
+            txtSaida.setText(agenda.getDataHoraSaida().toString());
+        }
     }
 
     public void backPressed(View view) {
         super.onBackPressed();
     }
-
 
 
 }

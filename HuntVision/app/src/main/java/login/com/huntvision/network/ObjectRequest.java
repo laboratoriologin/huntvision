@@ -46,6 +46,13 @@ public abstract class ObjectRequest<T extends Base> extends HttpTask {
         this.execute(serverRequest);
     }
 
+    public void delete(T obj) {
+
+        ServerRequest serverRequest = new ServerRequest(ServerRequest.DELETE, getUrlDelete(obj), createParameters(obj));
+
+        this.execute(serverRequest);
+    }
+
     public void get(T obj) {
 
         ServerRequest serverRequest = new ServerRequest(ServerRequest.GET, getUrlGet(obj), createParameters(obj));
@@ -79,6 +86,12 @@ public abstract class ObjectRequest<T extends Base> extends HttpTask {
     }
 
     protected String getUrlPut(T object) {
+
+        return url + "/" + object.getServiceName() + "/" + (object.getId() == null ? "" : object.getId());
+
+    }
+
+    protected String getUrlDelete(T object) {
 
         return url + "/" + object.getServiceName() + "/" + (object.getId() == null ? "" : object.getId());
 

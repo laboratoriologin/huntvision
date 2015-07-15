@@ -20,48 +20,50 @@
 			<p:outputLabel for="local" value="Item Local" />
 			<p:selectOneMenu id="local" value="#{mbeanModel.id}" required="true"
 				requiredMessage="Campo Item Local obrigatório" style="width:55%">
+				<p:ajax event="change" listener="#{geradorDestinatarioFaces.onChangeEvent}" update="@form"/>
 				<f:selectItem itemLabel="Não selecionado" itemValue="" />
 				<f:selectItems value="#{mbean.comboItemLocal}" />
 			</p:selectOneMenu>
 
-		
+
 		</h:panelGrid>
-		
-			<p:commandButton id="adicionar" value="Adicionar Destinatário"
-				icon="ui-icon-plus" action="#{mbean.adicionarDestinatario}"
-				process="@this panelDestinatariosAdicionados" />
 
-			<p:outputPanel autoUpdate="true" id="panelDestinatariosAdicionados"
-				style="width:100%; max-height:145px; overflow:auto" layout="block">
+		<p:commandButton id="adicionar" value="Adicionar Destinatário"
+			icon="ui-icon-plus" action="#{mbean.adicionarDestinatario}"
+			process="@this panelDestinatariosAdicionados" />
 
-				<p:dataTable rowIndexVar="index" id="gridDestinatario"
-					emptyMessage="Nenhuma destinatário" value="#{mbeanModel.destinatarios}"
-					var="destinatario" style="margin-top: 3px; margin-bottom: 10px;">
+		<p:outputPanel autoUpdate="true" id="panelDestinatariosAdicionados"
+			style="width:100%; max-height:145px; overflow:auto" layout="block">
 
-					<p:column headerText="Nome" styleClass="coluna70">
-						<div align="center">
-							<p:inputText styleClass="coluna90" value="#{destinatario.nome}" />
-						</div>
-					</p:column>
-					
-					<p:column headerText="E-mail" styleClass="coluna70">
-						<div align="center">
-							<p:inputText styleClass="coluna90" value="#{destinatario.email}" />
-						</div>
-					</p:column>
-					
-					<p:column style="width:10%" headerText="Remover?">
-						<div align="center">
-							<p:commandLink global="false" process="@this"
-								action="#{mbean.removerDestinatario(index)}">
+			<p:dataTable rowIndexVar="index" id="gridDestinatario"
+				emptyMessage="Nenhuma destinatário"
+				value="#{mbeanModel.destinatarios}" var="destinatario"
+				style="margin-top: 3px; margin-bottom: 10px;">
 
-								<img alt="Remover" title="Remover"
-									src="#{request.contextPath}/resources/images/delete16.png" />
-							</p:commandLink>
-						</div>
-					</p:column>
-				</p:dataTable>
-			</p:outputPanel>
+				<p:column headerText="Nome" styleClass="coluna70">
+					<div align="center">
+						<p:inputText styleClass="coluna90" value="#{destinatario.nome}" />
+					</div>
+				</p:column>
+
+				<p:column headerText="E-mail" styleClass="coluna70">
+					<div align="center">
+						<p:inputText styleClass="coluna90" value="#{destinatario.email}" />
+					</div>
+				</p:column>
+
+				<p:column style="width:10%" headerText="Remover?">
+					<div align="center">
+						<p:commandLink global="false" process="@this"
+							action="#{mbean.removerDestinatario(index)}">
+
+							<img alt="Remover" title="Remover"
+								src="#{request.contextPath}/resources/images/delete16.png" />
+						</p:commandLink>
+					</div>
+				</p:column>
+			</p:dataTable>
+		</p:outputPanel>
 	</ui:define>
 
 	<ui:define name="colunasTabela">
