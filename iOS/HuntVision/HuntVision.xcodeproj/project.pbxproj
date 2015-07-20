@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		060CFF6A1B5D751500E12636 /* HVLAgendaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060CFF681B5D751500E12636 /* HVLAgendaViewController.swift */; };
 		062C684D1B4B07650040F274 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 062C684C1B4B07650040F274 /* CoreGraphics.framework */; };
 		066994321B4D96FF0001E785 /* NotificationBackgroundError.png in Resources */ = {isa = PBXBuildFile; fileRef = 0669941A1B4D96FE0001E785 /* NotificationBackgroundError.png */; };
 		066994331B4D96FF0001E785 /* NotificationBackgroundError@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0669941B1B4D96FE0001E785 /* NotificationBackgroundError@2x.png */; };
@@ -59,6 +60,7 @@
 		06B73CDC1B3D96D000D1C183 /* HVLUsuarioWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B73CDB1B3D96D000D1C183 /* HVLUsuarioWrapper.swift */; };
 		06B73CE01B3DD9ED00D1C183 /* HVLUsuario.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B73CDF1B3DD9ED00D1C183 /* HVLUsuario.swift */; };
 		06B73CE21B3DDFC600D1C183 /* HVLUsuarioEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B73CE11B3DDFC600D1C183 /* HVLUsuarioEntity.swift */; };
+		06D485481B5D336F00EA7C22 /* HVLHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D485471B5D336F00EA7C22 /* HVLHomeController.swift */; };
 		06E4DA7C1B4C58A400B9E8CF /* HVLLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E4DA7B1B4C58A400B9E8CF /* HVLLoginController.swift */; };
 		06E4FCFF1B3C678400094AD4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E4FCFE1B3C678400094AD4 /* AppDelegate.swift */; };
 		06E4FD021B3C678400094AD4 /* HuntVision.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 06E4FD001B3C678400094AD4 /* HuntVision.xcdatamodeld */; };
@@ -82,6 +84,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		060CFF681B5D751500E12636 /* HVLAgendaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HVLAgendaViewController.swift; sourceTree = "<group>"; };
 		062C684C1B4B07650040F274 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		0669941A1B4D96FE0001E785 /* NotificationBackgroundError.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NotificationBackgroundError.png; sourceTree = "<group>"; };
 		0669941B1B4D96FE0001E785 /* NotificationBackgroundError@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NotificationBackgroundError@2x.png"; sourceTree = "<group>"; };
@@ -139,6 +142,7 @@
 		06B73CDB1B3D96D000D1C183 /* HVLUsuarioWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HVLUsuarioWrapper.swift; sourceTree = "<group>"; };
 		06B73CDF1B3DD9ED00D1C183 /* HVLUsuario.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HVLUsuario.swift; path = Models/HVLUsuario.swift; sourceTree = "<group>"; };
 		06B73CE11B3DDFC600D1C183 /* HVLUsuarioEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HVLUsuarioEntity.swift; path = Models/HVLUsuarioEntity.swift; sourceTree = "<group>"; };
+		06D485471B5D336F00EA7C22 /* HVLHomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HVLHomeController.swift; sourceTree = "<group>"; };
 		06E4DA7B1B4C58A400B9E8CF /* HVLLoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HVLLoginController.swift; sourceTree = "<group>"; };
 		06E4FCF91B3C678400094AD4 /* HuntVision.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HuntVision.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06E4FCFD1B3C678400094AD4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -342,6 +346,8 @@
 			children = (
 				06E4FD031B3C678400094AD4 /* HVLSincronizacaoController.swift */,
 				06E4DA7B1B4C58A400B9E8CF /* HVLLoginController.swift */,
+				06D485471B5D336F00EA7C22 /* HVLHomeController.swift */,
+				060CFF681B5D751500E12636 /* HVLAgendaViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -573,6 +579,7 @@
 				0669944C1B4D9F9F0001E785 /* NSString+MD5.swift in Sources */,
 				0693D17F1B4AFCAA00591A16 /* HVLResposta.swift in Sources */,
 				06B73CDC1B3D96D000D1C183 /* HVLUsuarioWrapper.swift in Sources */,
+				060CFF6A1B5D751500E12636 /* HVLAgendaViewController.swift in Sources */,
 				06A09C161B4EA84B00D933B9 /* HVLItemStore.swift in Sources */,
 				06B13D891B43071D00F5F3D0 /* HVLLocalEntity.swift in Sources */,
 				0693D1791B4AF2AA00591A16 /* HVLTipoQuestionario.swift in Sources */,
@@ -580,6 +587,7 @@
 				06B13D8D1B43085C00F5F3D0 /* HVLLocalWrapper.swift in Sources */,
 				066994441B4D96FF0001E785 /* TSMessage.m in Sources */,
 				066994431B4D96FF0001E785 /* TSBlurView.m in Sources */,
+				06D485481B5D336F00EA7C22 /* HVLHomeController.swift in Sources */,
 				06B73CDA1B3D821200D1C183 /* SwiftyJSON.swift in Sources */,
 				06A2EFCA1B442A610075833B /* HVLItemLocalEntity.swift in Sources */,
 				06E4DA7C1B4C58A400B9E8CF /* HVLLoginController.swift in Sources */,

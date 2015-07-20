@@ -91,7 +91,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1408" y="-391"/>
+            <point key="canvasLocation" x="1402" y="-393"/>
         </scene>
         <!--Login Controller-->
         <scene sceneID="XQQ-rx-xn9">
@@ -203,17 +203,17 @@
                         <outlet property="loginTextField" destination="VMX-Fb-apu" id="Q8j-hz-VUY"/>
                         <outlet property="senhaTextField" destination="KpJ-4g-5D7" id="yHJ-o3-qDL"/>
                         <segue destination="BYZ-38-t0r" kind="presentation" identifier="sg_sincronizacao" id="twX-hW-kbL"/>
-                        <segue destination="hKT-5d-cgq" kind="showDetail" identifier="sg_menu" id="ZHm-zs-Vaq"/>
+                        <segue destination="iDk-ss-7hT" kind="showDetail" identifier="sg_menu" id="ZHm-zs-Vaq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JtY-Ig-Uye" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="973" y="185"/>
         </scene>
-        <!--View Controller-->
+        <!--Home-->
         <scene sceneID="bPy-Bq-Wbq">
             <objects>
-                <viewController id="hKT-5d-cgq" sceneMemberID="viewController">
+                <viewController id="hKT-5d-cgq" customClass="HVLHomeController" customModule="HuntVision" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="flC-oL-nbW"/>
                         <viewControllerLayoutGuide type="bottom" id="v8e-39-SBa"/>
@@ -237,62 +237,95 @@
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="zRH-7t-FQ2"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="0gE-LG-Ywy">
-                                <rect key="frame" x="111" y="38" width="98" height="98"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rGv-3U-GPy">
+                                <rect key="frame" x="16" y="150" width="288" height="48"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="98" id="04v-d3-Zor"/>
-                                    <constraint firstAttribute="height" constant="98" id="3ay-Kt-z0J"/>
-                                </constraints>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rGv-3U-GPy">
-                                <rect key="frame" x="16" y="150" width="288" height="30"/>
-                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="0q5-9i-1s1"/>
                                     <constraint firstAttribute="height" constant="30" id="Qc8-5H-b4F"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" title="Ler código">
+                                <inset key="titleEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="Ler código" backgroundImage="ic_home_codigo_background">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Qc8-5H-b4F"/>
+                                    </mask>
+                                </variation>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lw5-Ga-7Av">
-                                <rect key="frame" x="16" y="188" width="288" height="30"/>
+                                <rect key="frame" x="16" y="206" width="288" height="48"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="aZW-cQ-kEh"/>
+                                    <constraint firstAttribute="height" constant="48" id="aZW-cQ-kEh"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" title="Cliente">
+                                <inset key="titleEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="Cliente" backgroundImage="ic_home_cliente_background">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fx5-UY-mjz">
-                                <rect key="frame" x="16" y="226" width="288" height="30"/>
+                                <rect key="frame" x="16" y="262" width="288" height="48"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="3LE-gQ-Vyw"/>
+                                    <constraint firstAttribute="height" constant="48" id="3LE-gQ-Vyw"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" title="Concluir visita">
+                                <inset key="titleEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="Concluir visita" backgroundImage="ic_home_concluir_visita_background">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yDq-7J-myK">
-                                <rect key="frame" x="16" y="264" width="288" height="30"/>
+                                <rect key="frame" x="16" y="318" width="288" height="48"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="oAs-a0-hY1"/>
+                                    <constraint firstAttribute="height" constant="48" id="oAs-a0-hY1"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" title="Agenda">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MCI-59-XOV">
-                                <rect key="frame" x="16" y="302" width="288" height="30"/>
-                                <state key="normal" title="Configurações">
+                                <inset key="titleEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="Agenda" backgroundImage="ic_home_agenda_background">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="BYZ-38-t0r" kind="presentation" id="c6U-Ug-PkK"/>
+                                    <segue destination="Ype-xK-LSP" kind="show" id="Zf6-7Y-bnl"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hkk-mh-rvI">
+                                <rect key="frame" x="136" y="390" width="48" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="48" id="oRT-iu-2nc"/>
+                                    <constraint firstAttribute="height" constant="48" id="olz-IZ-uYs"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="ic_configuracoes">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="presentation" id="Uqy-oL-CKO"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="0gE-LG-Ywy">
+                                <rect key="frame" x="128" y="72" width="64" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="98" id="04v-d3-Zor"/>
+                                    <constraint firstAttribute="height" constant="98" id="3ay-Kt-z0J"/>
+                                    <constraint firstAttribute="height" constant="64" id="FPx-RD-F65"/>
+                                    <constraint firstAttribute="width" constant="64" id="c3V-C0-pjK"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="04v-d3-Zor"/>
+                                        <exclude reference="3ay-Kt-z0J"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.92941182850000004" green="0.92941182850000004" blue="0.92941182850000004" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
@@ -300,39 +333,104 @@
                             <constraint firstItem="yDq-7J-myK" firstAttribute="trailing" secondItem="iXZ-NN-Kgq" secondAttribute="trailingMargin" id="7Eo-OU-0rc"/>
                             <constraint firstItem="Fx5-UY-mjz" firstAttribute="leading" secondItem="iXZ-NN-Kgq" secondAttribute="leadingMargin" id="9md-BP-26p"/>
                             <constraint firstItem="rGv-3U-GPy" firstAttribute="trailing" secondItem="iXZ-NN-Kgq" secondAttribute="trailingMargin" id="EJd-NM-IT1"/>
-                            <constraint firstItem="MCI-59-XOV" firstAttribute="leading" secondItem="iXZ-NN-Kgq" secondAttribute="leadingMargin" id="Gg3-Dc-ySU"/>
                             <constraint firstItem="rGv-3U-GPy" firstAttribute="leading" secondItem="iXZ-NN-Kgq" secondAttribute="leadingMargin" id="Jqb-Jn-rpp"/>
                             <constraint firstItem="0gE-LG-Ywy" firstAttribute="top" secondItem="pNG-hP-FfX" secondAttribute="bottom" constant="8" id="MUc-QU-YeM"/>
                             <constraint firstItem="yDq-7J-myK" firstAttribute="top" secondItem="flC-oL-nbW" secondAttribute="bottom" constant="244" id="OmG-rX-WC0"/>
                             <constraint firstItem="pNG-hP-FfX" firstAttribute="leading" secondItem="iXZ-NN-Kgq" secondAttribute="leadingMargin" constant="-16" id="VoV-C5-2Uj"/>
                             <constraint firstItem="dZ8-o7-oQm" firstAttribute="leading" secondItem="iXZ-NN-Kgq" secondAttribute="leadingMargin" constant="-16" id="ZL3-NU-vPo"/>
+                            <constraint firstItem="yDq-7J-myK" firstAttribute="top" secondItem="Fx5-UY-mjz" secondAttribute="bottom" constant="8" id="aCG-9D-RiF"/>
                             <constraint firstItem="lw5-Ga-7Av" firstAttribute="trailing" secondItem="iXZ-NN-Kgq" secondAttribute="trailingMargin" id="c7Y-Nn-KzV"/>
                             <constraint firstItem="yDq-7J-myK" firstAttribute="leading" secondItem="iXZ-NN-Kgq" secondAttribute="leadingMargin" id="egE-Ve-4hg"/>
+                            <constraint firstAttribute="centerX" secondItem="Hkk-mh-rvI" secondAttribute="centerX" id="ek3-F4-qqD"/>
+                            <constraint firstItem="dZ8-o7-oQm" firstAttribute="top" secondItem="Hkk-mh-rvI" secondAttribute="bottom" constant="8" id="g0O-L8-26V"/>
                             <constraint firstItem="rGv-3U-GPy" firstAttribute="top" secondItem="0gE-LG-Ywy" secondAttribute="bottom" constant="14" id="iW1-0i-EaF"/>
                             <constraint firstAttribute="trailingMargin" secondItem="dZ8-o7-oQm" secondAttribute="trailing" constant="-16" id="j7W-h1-MHr"/>
-                            <constraint firstItem="MCI-59-XOV" firstAttribute="top" secondItem="yDq-7J-myK" secondAttribute="bottom" constant="8" id="lOA-bZ-57l"/>
                             <constraint firstItem="lw5-Ga-7Av" firstAttribute="top" secondItem="rGv-3U-GPy" secondAttribute="bottom" constant="8" id="llc-qi-uGS"/>
                             <constraint firstItem="pNG-hP-FfX" firstAttribute="top" secondItem="iXZ-NN-Kgq" secondAttribute="topMargin" id="o3e-SQ-OyQ"/>
                             <constraint firstItem="Fx5-UY-mjz" firstAttribute="trailing" secondItem="iXZ-NN-Kgq" secondAttribute="trailingMargin" id="q0f-hE-HVC"/>
-                            <constraint firstItem="MCI-59-XOV" firstAttribute="trailing" secondItem="iXZ-NN-Kgq" secondAttribute="trailingMargin" id="q8F-D3-A7o"/>
                             <constraint firstItem="Fx5-UY-mjz" firstAttribute="top" secondItem="lw5-Ga-7Av" secondAttribute="bottom" constant="8" id="rfG-Ta-471"/>
                             <constraint firstItem="v8e-39-SBa" firstAttribute="top" secondItem="dZ8-o7-oQm" secondAttribute="bottom" id="uka-Sz-1ec"/>
                             <constraint firstItem="lw5-Ga-7Av" firstAttribute="leading" secondItem="iXZ-NN-Kgq" secondAttribute="leadingMargin" id="utE-wm-geJ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="pNG-hP-FfX" secondAttribute="trailing" constant="-16" id="vse-Pm-gTt"/>
+                            <constraint firstItem="0gE-LG-Ywy" firstAttribute="top" secondItem="flC-oL-nbW" secondAttribute="bottom" constant="8" id="xoP-lD-3ur"/>
                             <constraint firstAttribute="centerX" secondItem="0gE-LG-Ywy" secondAttribute="centerX" id="zXY-XA-DzJ"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="2v0-cv-f2x"/>
+                                <exclude reference="MUc-QU-YeM"/>
+                                <exclude reference="OmG-rX-WC0"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <navigationItem key="navigationItem" title="Home" id="whS-NA-XSP"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F3L-Yl-nWQ" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1391" y="185"/>
+            <point key="canvasLocation" x="1934" y="185"/>
+        </scene>
+        <!--Agenda View Controller-->
+        <scene sceneID="xZt-bS-GFJ">
+            <objects>
+                <tableViewController id="Ype-xK-LSP" customClass="HVLAgendaViewController" customModule="HuntVision" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="c9i-BA-OD1">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="RuV-ro-mqi">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RuV-ro-mqi" id="uzN-fG-Aty">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Ype-xK-LSP" id="8xm-ML-Pst"/>
+                            <outlet property="delegate" destination="Ype-xK-LSP" id="qDC-xS-4Lf"/>
+                        </connections>
+                    </tableView>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="veA-Ce-qpr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1934" y="832"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="c37-Ze-h62">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="iDk-ss-7hT" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="W4S-Pe-Sa2">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.21568629145622253" green="0.49803924560546875" blue="0.729411780834198" alpha="1" colorSpace="deviceRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="textShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="hKT-5d-cgq" kind="relationship" relationship="rootViewController" id="RGr-Pk-96Y"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vna-bW-Btg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1402" y="185"/>
         </scene>
     </scenes>
     <resources>
         <image name="Logo" width="261" height="261"/>
+        <image name="ic_configuracoes" width="81" height="81"/>
+        <image name="ic_home_agenda_background" width="280" height="48"/>
+        <image name="ic_home_cliente_background" width="280" height="48"/>
+        <image name="ic_home_codigo_background" width="280" height="48"/>
+        <image name="ic_home_concluir_visita_background" width="280" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="c6U-Ug-PkK"/>
+        <segue reference="Uqy-oL-CKO"/>
     </inferredMetricsTieBreakers>
 </document>
