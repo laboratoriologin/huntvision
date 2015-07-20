@@ -83,14 +83,9 @@ public class AgendaActivity extends DefaultActivity {
 
         QueryBuilder<Cliente, String> queryBuilderCliente = getHelper().getClienteRuntimeDAO().queryBuilder();
 
-
-
         for (Agenda agenda : agendas) {
 
             try {
-
-
-
 
                 agenda.setCliente(getHelper().getClienteRuntimeDAO().queryForFirst(queryBuilderCliente.where().eq("id", agenda.getClienteId()).prepare()));
 

@@ -19,7 +19,9 @@
 		<mapping class="com.login.huntvision.model.Item" />
 		<mapping class="com.login.huntvision.model.Local" />
 		<mapping class="com.login.huntvision.model.Usuario" />
-		<mapping class="com.login.huntvision.model.Menu" />
+		
+		 
+		 		<mapping class="com.login.huntvision.model.Menu" />
 		<mapping class="com.login.huntvision.model.Permissao" />
 		<mapping class="com.login.huntvision.model.Questionario" />
 		<mapping class="com.login.huntvision.model.Resposta" />

@@ -1,5 +1,9 @@
 package br.com.login.huntvision.ws.service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -33,8 +37,26 @@ public class AgendaService extends RestService<Agenda> {
 			this.validate(form);
 
 			form.setId(id);
+			
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			
+			Date datahoraChegada = null;
 
-			return new AgendaDAO().updateHoras(form);
+			try {
+				datahoraChegada = formatter.parse(form.getDataHoraChegada());
+			} catch (Exception e) {
+
+			}
+
+			Date datahoraSaida = null;
+
+			try {
+				datahoraSaida = formatter.parse(form.getDataHoraSaida());
+			} catch (Exception e) {
+
+			}
+
+			return new AgendaDAO().updateHoras(form, datahoraChegada, datahoraSaida);
 
 		} catch (TSApplicationException ex) {
 

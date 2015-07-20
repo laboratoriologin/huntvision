@@ -3,26 +3,22 @@
  */
 package com.login.huntvision.faces;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.model.SelectItem;
 
+import org.primefaces.event.SelectEvent;
+
 import br.com.topsys.exception.TSApplicationException;
+import br.com.topsys.util.TSUtil;
 
 import com.login.huntvision.model.Destinatario;
-import com.login.huntvision.model.Item;
 import com.login.huntvision.model.ItemLocal;
-import com.login.huntvision.model.Protocolo;
-import com.login.huntvision.model.Questionario;
-import com.login.huntvision.model.Resposta;
-import com.login.huntvision.model.TipoQuestionario;
-import com.login.huntvision.util.UsuarioUtil;
 
 /**
  * @author Ricardo
@@ -34,10 +30,7 @@ import com.login.huntvision.util.UsuarioUtil;
 public class GeradorDestinatarioFaces extends CrudFaces<ItemLocal> {
 
 	private List<SelectItem> comboItemLocal;
-	private List<SelectItem> comboDestinatario;
-	private List<String> selectedOptions = new ArrayList<String>();
-	private List<Destinatario> lstDestinatario = new ArrayList<Destinatario>();
-	
+	private List<SelectItem> comboDestinatario;;
 
 	@PostConstruct
 	protected void init() {
@@ -48,46 +41,29 @@ public class GeradorDestinatarioFaces extends CrudFaces<ItemLocal> {
 
 		this.comboDestinatario = super.initCombo(new Destinatario().findByModel("nome"), "id", "nome");
 
-		setFieldOrdem("nomeLocal");
-	}
-	
-	@Override
-	protected String insert() throws TSApplicationException {
-		return super.update();// a tela eh sempre um update pois o local eh
-								// selecionado no combo
+		setFieldOrdem("id");
 	}
 
-	@Override
-	protected String detail() {
-		
-		super.detail();
 
-		this.selectedOptions = new ArrayList<String>();
+	public void onChangeEvent(AjaxBehaviorEvent event) {
 
-		for (Destinatario itemDestinatario : getCrudModel().getDestinatarios()) {
+		if (TSUtil.isEmpty(TSUtil.tratarLong(getCrudModel().getId()))) {
 
-			this.selectedOptions.add(itemDestinatario.getId().toString());
-		
+			this.clearFields();
+
+		} else {
+
+			this.detail();
 
 		}
 
-		return null;
 	}
-
-
 
 	@Override
 	protected void prePersist() {
-		 lstDestinatario = new ArrayList<Destinatario>();
 		for (Destinatario objDestinatario : getCrudModel().getDestinatarios()) {
 			objDestinatario.setItemLocal(getCrudModel());
-			
-			lstDestinatario.add(objDestinatario);
 		}
-		
-		
-		getCrudModel().setDestinatarios(lstDestinatario);
-
 	}
 
 	/**
@@ -105,21 +81,7 @@ public class GeradorDestinatarioFaces extends CrudFaces<ItemLocal> {
 		this.comboDestinatario = comboDestinatario;
 	}
 
-	/**
-	 * @return the selectedOptions
-	 */
-	public List<String> getSelectedOptions() {
-		return selectedOptions;
-	}
-
-	/**
-	 * @param selectedOptions
-	 *            the selectedOptions to set
-	 */
-	public void setSelectedOptions(List<String> selectedOptions) {
-		this.selectedOptions = selectedOptions;
-	}
-
+	
 	/**
 	 * @return the comboItemLocal
 	 */
@@ -135,29 +97,18 @@ public class GeradorDestinatarioFaces extends CrudFaces<ItemLocal> {
 		this.comboItemLocal = comboItemLocal;
 	}
 
-	
-	
 	public String adicionarDestinatario() {
 
 		this.getCrudModel().getDestinatarios().add(new Destinatario());
 
 		return null;
 	}
-	
+
 	public String removerDestinatario(Integer intPosition) {
 
 		this.getCrudModel().getDestinatarios().remove(intPosition.intValue());
 
 		return null;
-	}
-	
-	
-	public List<Destinatario> getLstDestinatario() {
-		return lstDestinatario;
-	}
-
-	public void setLstDestinatario(List<Destinatario> lstDestinatario) {
-		this.lstDestinatario = lstDestinatario;
 	}
 
 	@Override
@@ -167,12 +118,11 @@ public class GeradorDestinatarioFaces extends CrudFaces<ItemLocal> {
 		return null;
 
 	}
-	
+
 	@Override
 	public String limparPesquisa() {
 		String retorno = super.limparPesquisa();
 		return retorno;
 	}
 
-	
 }

@@ -16,7 +16,7 @@ public class QuestionariosDAO  implements RestDAO<Questionario> {
 
 		broker.setPropertySQL("questionariosdao.get", id);
 
-		return (Questionario) broker.getObjectBean(Questionario.class, "data", "id",  "item.id", "tipoQuestionario.id", "usuario.id", "pergunta", "status");
+		return (Questionario) broker.getObjectBean(Questionario.class, "data", "id",  "item.id", "tipoQuestionario.id", "usuario.id", "pergunta", "status" , "conformidade");
 			
 	}
 
@@ -27,7 +27,7 @@ public class QuestionariosDAO  implements RestDAO<Questionario> {
 
 		broker.setPropertySQL("questionariosdao.findall");
 
-		return broker.getCollectionBean(Questionario.class, "data", "id",  "item.id", "tipoQuestionario.id", "usuario.id", "pergunta", "status");
+		return broker.getCollectionBean(Questionario.class, "data", "id",  "item.id", "tipoQuestionario.id", "usuario.id", "pergunta", "status" , "conformidade");
 
 	}
 
@@ -38,7 +38,7 @@ public class QuestionariosDAO  implements RestDAO<Questionario> {
 
 		model.setId(broker.getSequenceNextValue("dbo.questionarios"));
 		
-		broker.setPropertySQL("questionariosdao.insert",model.getTipoQuestionario().getId(), model.getItem().getId(), model.getStatus(), model.getPergunta(), model.getUsuario().getId(),  model.getData());
+		broker.setPropertySQL("questionariosdao.insert",model.getTipoQuestionario().getId(), model.getItem().getId(), model.getStatus(), model.getPergunta(), model.getUsuario().getId(),  model.getData() ,  model.getConformidade());
 
 		broker.execute();
 
@@ -51,7 +51,7 @@ public class QuestionariosDAO  implements RestDAO<Questionario> {
 
 		TSDataBaseBrokerIf broker = TSDataBaseBrokerFactory.getDataBaseBrokerIf();
 		
-		broker.setPropertySQL("questionariosdao.update", model.getTipoQuestionario().getId(), model.getItem().getId(),  model.getStatus(), model.getPergunta(),  model.getUsuario().getId(), model.getData(),model.getId());
+		broker.setPropertySQL("questionariosdao.update", model.getTipoQuestionario().getId(), model.getItem().getId(),  model.getStatus(), model.getPergunta(),  model.getUsuario().getId(), model.getData(),model.getId() , model.getConformidade());
 
 		broker.execute();
 

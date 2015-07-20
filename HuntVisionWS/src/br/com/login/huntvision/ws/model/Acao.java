@@ -10,7 +10,8 @@ public final class Acao extends RestModel {
 	@FormParam("nome")
 	private String nome;
 
-	
+	@FormParam("procedimento")
+	private String procedimento;
 
 
 	/**
@@ -32,5 +33,19 @@ public final class Acao extends RestModel {
 
 	public Acao(String id){
 		this.id = Long.valueOf(id);
+	}
+
+	/**
+	 * @return the procedimento
+	 */
+	public String getProcedimento() {
+		return procedimento;
+	}
+
+	/**
+	 * @param procedimento the procedimento to set
+	 */
+	private void setProcedimento(String procedimento) {
+		this.procedimento = procedimento;
 	}
 }

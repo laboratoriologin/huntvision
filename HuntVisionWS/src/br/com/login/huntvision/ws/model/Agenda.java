@@ -1,33 +1,20 @@
 package br.com.login.huntvision.ws.model;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-
-
-
 import javax.ws.rs.FormParam;
 import javax.xml.bind.annotation.XmlRootElement;
 
-
 @SuppressWarnings("serial")
-@XmlRootElement(name ="agendas")
+@XmlRootElement(name = "agendas")
 public final class Agenda extends RestModel {
 
-
-	
 	@FormParam("cliente_id")
 	private Cliente cliente;
 
 	@FormParam("usuario_id")
 	private Usuario usuario;
 
-
-	
 	@FormParam("descricao")
 	private String descricao;
-
 
 	@FormParam("data_hora")
 	private String dataHora;
@@ -37,20 +24,9 @@ public final class Agenda extends RestModel {
 
 	@FormParam("data_hora_saida")
 	private String dataHoraSaida;
-	
-	@FormParam("data_hora_formatada")
-	private String dataHoraFormatada;
-	
-	@FormParam("data_hora_chegada_formatada")
-	private String dataHoraChegadaFormatada;
-	
-	@FormParam("data_hora_saida_formatada")
-	private String dataHoraSaidaFormatada;
-	
-	
-	
 
-	public Agenda(){}
+	public Agenda() {
+	}
 
 	public Cliente getCliente() {
 		return cliente;
@@ -100,72 +76,10 @@ public final class Agenda extends RestModel {
 		this.dataHoraSaida = dataHoraSaida;
 	}
 
-	public Agenda(String id){
+	public Agenda(String id) {
 		this.id = Long.valueOf(id);
 	}
 
-	
-	public String getDataHoraFormatada() {
-	
-		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-	
-		try {
-	
-			return formatter.format(formatter.parse(dataHora));
-	
-		} catch (ParseException e) {
-			
-			return null;
-		}
-	}
-
-	public void setDataHoraFormatada(String dataHoraFormatada) {
-		this.dataHoraFormatada = dataHoraFormatada;
-	}
-	
-	
-
-	public String getDataHoraChegadaFormatada() {
-		if(dataHoraChegada==null) {
-			return null;
-		}
-		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-		
-		try {
-	
-			return formatter.format(formatter.parse(dataHoraChegada));
-	
-		} catch (ParseException e) {
-			
-			return null;
-		}
-	}
-
-	public void setDataHoraChegadaFormatada(String dataHoraChegadaFormatada) {
-		this.dataHoraChegadaFormatada = dataHoraChegadaFormatada;
-	}
-
-	public String getDataHoraSaidaFormatada() {
-		if(dataHoraSaida==null) {
-			return null;
-		}
-		
-		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-		
-		
-		try {
-			
-			return formatter.format(formatter.parse(dataHoraSaida));
-	
-		} catch (ParseException e) {
-			
-			return null;
-		}
-	}
-
-	public void setDataHoraSaidaFormatada(String dataHoraSaidaFormatada) {
-		this.dataHoraSaidaFormatada = dataHoraSaidaFormatada;
-	}
 
 	@Override
 	public int hashCode() {
@@ -222,6 +136,4 @@ public final class Agenda extends RestModel {
 		return true;
 	}
 
-	
-	
 }

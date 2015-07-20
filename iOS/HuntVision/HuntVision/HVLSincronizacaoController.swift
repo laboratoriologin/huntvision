@@ -11,15 +11,36 @@ import Alamofire
 import Mantle
 import MBProgressHUD
 
-class ViewController: UIViewController {
+class HVLSincronizacaoController: UIViewController {
     
     var error       : NSError?
     var progressHUD : MBProgressHUD?
 
+    @IBOutlet weak var fecharButton: UIButton!
+    
     override func viewDidLoad() {
+    
         super.viewDidLoad()
+        
+         self.fecharButton.alpha = 0
+        
+        if let objects = HVLUsuarioStore().getAll() {
+        
+            if(objects.count > 0) {
+                
+                self.fecharButton.alpha = 1
+                
+            }
+            
+        }
+        
     }
 
+    @IBAction func fechar(sender: AnyObject) {
+        
+        self.dismissViewControllerAnimated(true, completion: nil)
+        
+    }
     @IBAction func sincronizar(sender: AnyObject) {
         
         var usuario: HVLUsuario
@@ -39,6 +60,8 @@ class ViewController: UIViewController {
             let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
             
             let userManagedObject = HVLUsuario()
+            
+            HVLDBUtilStore().clean("UsuarioEntity")
             
             for item in users {
                 
@@ -72,6 +95,8 @@ class ViewController: UIViewController {
             
             let userManagedObject = HVLCliente()
             
+            HVLDBUtilStore().clean("ClienteEntity")
+            
             for item in clientes {
                 
                 cliente = item as! HVLClienteWrapper
@@ -103,6 +128,8 @@ class ViewController: UIViewController {
             let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
             
             let userManagedObject = HVLLocal()
+            
+            HVLDBUtilStore().clean("LocalEntity")
             
             for item in locais {
                 
@@ -136,6 +163,8 @@ class ViewController: UIViewController {
             
             let itemManagedObject = HVLItem()
             
+            HVLDBUtilStore().clean("ItemEntity")
+            
             for item in items {
                 
                 itemWrapper = item as! HVLItemWrapper
@@ -165,6 +194,8 @@ class ViewController: UIViewController {
             let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
             
             let itemManagedObject = HVLItemLocal()
+            
+            HVLDBUtilStore().clean("ItemLocalEntity")
             
             for item in itensLocais {
                 
@@ -198,6 +229,8 @@ class ViewController: UIViewController {
             
             let itemManagedObject = HVLQuestionario()
             
+            HVLDBUtilStore().clean("QuestionarioEntity")
+            
             for item in questionarios {
                 
                 questionarioWrapper = item as! HVLQuestionarioWrapper
@@ -227,6 +260,8 @@ class ViewController: UIViewController {
             let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
             
             let itemManagedObject = HVLTipoQuestionario()
+            
+            HVLDBUtilStore().clean("TipoQuestionarioEntity")
             
             for item in tiposQestionarios {
                 
@@ -261,6 +296,8 @@ class ViewController: UIViewController {
             
             let itemManagedObject = HVLResposta()
             
+            HVLDBUtilStore().clean("RespostaEntity")
+            
             for item in respostas {
                 
                 respostaWrapper = item as! HVLRespostaWrapper
@@ -280,6 +317,12 @@ class ViewController: UIViewController {
     func finalizarSincronizacao() {
         
         progressHUD?.hide(true)
+        
+        if(self.error == nil) {
+            
+            self.dismissViewControllerAnimated(true, completion: nil)
+            
+        }
         
     }
     
