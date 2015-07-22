@@ -61,6 +61,17 @@ public final class Questionario extends TSActiveRecordAb<Questionario> {
 
 	@Column(name = "status")
 	private Boolean status;
+	
+	@Column(name = "conformidade")
+	private Boolean conformidade;
+
+	public Boolean getConformidade() {
+		return conformidade;
+	}
+
+	public void setConformidade(Boolean conformidade) {
+		this.conformidade = conformidade;
+	}
 
 	@Column(name = "valor_inicial")
 	private Double valorInicial;

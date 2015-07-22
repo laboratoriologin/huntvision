@@ -56,12 +56,12 @@
 							</div>
 							<br />
 							<div style="float: right">
-								<h:outputLink value="#" onclick="dlgNovaSenha.show()">Esqueci a senha</h:outputLink>
+								<h:outputLink value="#" onclick="PF('dlgNovaSenha').show()">Esqueci a senha</h:outputLink>
 							</div>
 							<div style="float: right; width: 5px">|</div>
 
 							<div style="float: right">
-								<h:outputLink value="#" onclick="dlgAlterarSenha.show()">Alterar senha</h:outputLink>
+								<h:outputLink value="#" onclick="PF('dlgAlterarSenha').show()">Alterar senha</h:outputLink>
 							</div>
 
 							<br />
@@ -152,9 +152,9 @@
 		</p:dialog>
 
 
-		<p:ajaxStatus onstart="statusDialog.show();"
-			onsuccess="statusDialog.hide();" onerror="statusDialog.hide();"
-			oncomplete="statusDialog.hide();" />
+		<p:ajaxStatus onstart="PF('statusDialog').show();"
+			onsuccess="PF('statusDialog').hide();" onerror="PF('statusDialog').hide();"
+			oncomplete="PF('statusDialog').hide();" />
 
 		<p:dialog modal="true" widgetVar="statusDialog"
 			header="Processando..." draggable="false" closable="false"

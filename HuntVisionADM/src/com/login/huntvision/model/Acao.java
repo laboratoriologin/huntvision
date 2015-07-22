@@ -30,6 +30,17 @@ public final class Acao extends TSActiveRecordAb<Acao> {
 	@Column(name = "nome")
 	private String nome;	
 	
+	@Column(name = "procedimento")
+	private String procedimento;	
+	
+	public String getProcedimento() {
+		return procedimento;
+	}
+
+	public void setProcedimento(String procedimento) {
+		this.procedimento = procedimento;
+	}
+
 	@Override
 	public Long getId() {
 		return id;

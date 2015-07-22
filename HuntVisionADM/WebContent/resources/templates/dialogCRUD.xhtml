@@ -6,8 +6,8 @@
 
   <p:confirmDialog message="Confirma exclusão do registro?" appendTo="@(body)" header="Aviso" severity="alert" widgetVar="cdExcluir">
 	    
-	    <p:commandButton value="Sim" onclick="cdExcluir.hide()" action="#{mbean.deleteEvent}" update="@form" process="@this" />
-	    <p:commandButton value="Não" onclick="cdExcluir.hide()" />
+	    <p:commandButton value="Sim" onclick="PF('cdExcluir').hide()" action="#{mbean.deleteEvent}" update="@form" process="@this" />
+	    <p:commandButton value="Não" onclick="PF('cdExcluir').hide()" />
 	    
   </p:confirmDialog>
 

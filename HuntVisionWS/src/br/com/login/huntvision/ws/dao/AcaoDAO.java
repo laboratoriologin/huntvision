@@ -26,7 +26,7 @@ public class AcaoDAO  implements RestDAO<Acao> {
 
 		broker.setPropertySQL("acaodao.findall");
 
-		return broker.getCollectionBean(Acao.class, "nome");
+		return broker.getCollectionBean(Acao.class, "nome" , "procedimento");
 
 	}
 
@@ -37,7 +37,7 @@ public class AcaoDAO  implements RestDAO<Acao> {
 
 		model.setId(broker.getSequenceNextValue("dbo.acoes"));
 
-		broker.setPropertySQL("acaodao.insert", model.getNome());
+		broker.setPropertySQL("acaodao.insert", model.getNome()  , model.getProcedimento());
 
 		broker.execute();
 
@@ -50,7 +50,7 @@ public class AcaoDAO  implements RestDAO<Acao> {
 
 		TSDataBaseBrokerIf broker = TSDataBaseBrokerFactory.getDataBaseBrokerIf();
 
-		broker.setPropertySQL("acaodao.update", model.getNome());
+		broker.setPropertySQL("acaodao.update", model.getNome()  , model.getProcedimento());
 
 		broker.execute();
 

@@ -77,6 +77,17 @@ public final class Questionario extends RestModel {
 
 	@FormParam("status")
 	private Boolean status;
+	
+	@FormParam("conformidade")
+	private Boolean conformidade;
+
+	public Boolean getConformidade() {
+		return conformidade;
+	}
+
+	public void setConformidade(Boolean conformidade) {
+		this.conformidade = conformidade;
+	}
 
 	public Boolean getStatus() {
 		return status;

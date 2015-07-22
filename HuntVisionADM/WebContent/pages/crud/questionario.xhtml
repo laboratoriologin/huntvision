@@ -58,35 +58,7 @@
 		<h:panelGrid columns="1" style="width:100%">
 
 
-			<p:panel header="Questionário associado em caso de não conformidade"
-				style="width:100%">
 
-				<p:outputPanel autoUpdate="true">
-
-					<h:panelGrid columns="1">
-
-						<p:commandButton type="button" value="Selecionar"
-							icon="ui-icon-plus"
-							onclick="PF('dlgQuestionarioVinculado').show()" />
-
-						<h:panelGrid columns="2">
-
-							<h:outputText
-								value="Questionário associado: #{mbeanModel.questionarioPai.pergunta}"
-								rendered="#{!empty mbeanModel.questionarioPai}" />
-							
-							<p:commandButton rendered="#{!empty mbeanModel.questionarioPai}" icon="ui-icon-closethick" process="@this">
-								<f:setPropertyActionListener value="#{null}"
-									target="#{mbeanModel.questionarioPai}" />
-							</p:commandButton>
-
-						</h:panelGrid>
-
-					</h:panelGrid>
-
-				</p:outputPanel>
-
-			</p:panel>
 
 			<p:commandButton id="adicionar" value="Adicionar Resposta"
 				icon="ui-icon-plus" action="#{mbean.adicionarResposta}"
@@ -99,30 +71,37 @@
 					emptyMessage="Nenhuma resposta" value="#{mbeanModel.respostas}"
 					var="resposta" style="margin-top: 3px; margin-bottom: 10px;">
 
+
 					<p:column headerText="Resposta" styleClass="coluna70">
 						<div align="center">
 							<p:inputText styleClass="coluna90" value="#{resposta.descricao}" />
 						</div>
 					</p:column>
-					
+
 					<p:column headerText="Valor inicial" styleClass="coluna10">
 						<div align="center">
-							<p:inputText styleClass="coluna90" style="text-align:right;" value="#{resposta.valorInicial}"  onkeyup="return mascaraMoeda(this);">
-								<f:convertNumber minFractionDigits="2" maxFractionDigits="2"/>
+							<p:inputText styleClass="coluna90" style="text-align:right;"
+								value="#{resposta.valorInicial}"
+								onkeyup="return mascaraMoeda(this);">
+								<f:convertNumber minFractionDigits="2" maxFractionDigits="2" />
 							</p:inputText>
 						</div>
 					</p:column>
-					
-					
-					
-					
-					
-					
+
 					<p:column headerText="Valor Final" styleClass="coluna10">
 						<div align="center">
-							<p:inputText styleClass="coluna90"  style="text-align:right;" value="#{resposta.valorFinal}"  onkeyup="return mascaraMoeda(this);">
-								<f:convertNumber minFractionDigits="2" maxFractionDigits="2"/>
+							<p:inputText styleClass="coluna90" style="text-align:right;"
+								value="#{resposta.valorFinal}"
+								onkeyup="return mascaraMoeda(this);">
+								<f:convertNumber minFractionDigits="2" maxFractionDigits="2" />
 							</p:inputText>
+						</div>
+					</p:column>
+
+					<p:column headerText="Não Conformidade" styleClass="coluna70">
+						<div align="center">
+							<p:selectBooleanCheckbox styleClass="coluna90"
+								value="#{resposta.flagrespostacerta}" />
 						</div>
 					</p:column>
 
@@ -161,10 +140,52 @@
 		</p:fieldset>
 
 
+		<h:panelGrid columns="2">
 
-		<p:selectBooleanCheckbox value="#{mbeanModel.status}"
-			itemLabel="Ativo?" />
 
+			<p:selectBooleanCheckbox value="#{mbeanModel.status}"
+				itemLabel="Ativo?" />
+
+			<p:selectBooleanCheckbox id="chkConformidade"
+				value="#{mbeanModel.conformidade}"
+				itemLabel="Gera não conformidade?">
+				<p:ajax event="change" update="btnAddConformidade" />
+
+			</p:selectBooleanCheckbox>
+
+		</h:panelGrid>
+
+		<p:panel header="Questionário associado em caso de não conformidade"
+			style="width:100%">
+
+			<p:outputPanel autoUpdate="true">
+
+				<h:panelGrid columns="1">
+
+					<p:commandButton id="btnAddConformidade" type="button"
+						value="#{!mbeanModel.conformidade?'Não é possível quando questionário não gera conformidade':'Selecionar'}"
+						icon="ui-icon-plus" disabled="#{!mbeanModel.conformidade}"
+						onclick="PF('dlgQuestionarioVinculado').show()" />
+
+					<h:panelGrid columns="2">
+
+						<h:outputText
+							value="Questionário associado: #{mbeanModel.questionarioPai.pergunta}"
+							rendered="#{!empty mbeanModel.questionarioPai}" />
+
+						<p:commandButton rendered="#{!empty mbeanModel.questionarioPai}"
+							icon="ui-icon-closethick" process="@this">
+							<f:setPropertyActionListener value="#{null}"
+								target="#{mbeanModel.questionarioPai}" />
+						</p:commandButton>
+
+					</h:panelGrid>
+
+				</h:panelGrid>
+
+			</p:outputPanel>
+
+		</p:panel>
 
 	</ui:define>
 	<ui:define name="pesquisaCampos">
