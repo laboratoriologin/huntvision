@@ -50,6 +50,14 @@ public class QuestionarioRequest extends ObjectRequest<Questionario> {
             nameValuePairs.add(new BasicNameValuePair("usuario.id", questionario.getUsuarioId() != null ? questionario.getUsuarioId().toString() : ""));
         }
 
+        if( questionario.getProtocoloId()!=null) {
+            nameValuePairs.add(new BasicNameValuePair("protocolo.id", questionario.getProtocoloId() != null ? questionario.getProtocoloId().toString() : ""));
+        }
+
+        if( questionario.getConformidade()!=null) {
+            nameValuePairs.add(new BasicNameValuePair("conformidade", questionario.getConformidade().toString()));
+        }
+
         return nameValuePairs;
 
     }

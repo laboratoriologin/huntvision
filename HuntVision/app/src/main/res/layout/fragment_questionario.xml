@@ -57,11 +57,25 @@
             android:inputType="textMultiLine"
             android:minHeight="50dp" />
 
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="15dp"
+            android:id="@+id/btnNaoConformidade"
+            android:layout_below="@+id/edtObservacoes"
+            android:text="@string/label.nao_conformidade"
+            android:textColor="@color/huntVisionLaranja"
+            android:clickable="true"
+            android:visibility="invisible"
+            android:background="@android:color/transparent"
+
+            />
+
         <TextView
             android:id="@+id/lbCapturarImagem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/edtObservacoes"
+            android:layout_below="@+id/btnNaoConformidade"
             android:layout_marginTop="5dp"
             android:background="@color/huntVisionAzul"
             android:gravity="center_horizontal"

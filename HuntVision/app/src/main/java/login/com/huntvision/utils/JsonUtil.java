@@ -1,5 +1,6 @@
 package login.com.huntvision.utils;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -10,12 +11,15 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import login.com.huntvision.models.Acao;
 import login.com.huntvision.models.Agenda;
 import login.com.huntvision.models.Cliente;
 import login.com.huntvision.models.Imagem;
 import login.com.huntvision.models.Item;
 import login.com.huntvision.models.ItemLocal;
 import login.com.huntvision.models.Local;
+import login.com.huntvision.models.Protocolo;
+import login.com.huntvision.models.ProtocoloAcao;
 import login.com.huntvision.models.Questionario;
 import login.com.huntvision.models.Resposta;
 import login.com.huntvision.models.TipoQuestionario;
@@ -297,6 +301,11 @@ public final class JsonUtil {
 
                     questionario.setData(jsonQuestionario.has("data") ? jsonQuestionario.getString("data") : "");
 
+                    questionario.setProtocoloId(jsonQuestionario.getJSONObject("protocolo").getLong("id"));
+                    questionario.setConformidade(jsonQuestionario.has("conformidade") ? jsonQuestionario.getString("conformidade") : "");
+
+
+                    preencherProcedimentos(questionario, jsonQuestionario);
 
                     questionarios.add(questionario);
 
@@ -380,7 +389,7 @@ public final class JsonUtil {
 
                     resposta.setDescricao(jsonResposta.has("descricao") ? jsonResposta.getString("descricao") : "");
 
-                    resposta.setFlagRespostaCerta(jsonResposta.has("flagrespostacerta") ? jsonResposta.getBoolean("flagrespostacerta") : false);
+                    resposta.setFlagNaoConformidade(jsonResposta.has("flagNaoConformidade") ? jsonResposta.getBoolean("flagNaoConformidade") : false);
 
                     resposta.setObservacao(jsonResposta.has("observacao") ? jsonResposta.getString("observacao") : "");
 
@@ -399,6 +408,26 @@ public final class JsonUtil {
         }
 
         return respostas;
+
+    }
+
+    private static void preencherProcedimentos(Questionario questionario, JSONObject jsonQuestionario) throws JSONException {
+
+        JSONArray procedimentos = Utilitarios.getAlwaysJsonArray(jsonQuestionario, "acoes");
+
+        String procedimento = "";
+
+        JSONObject jsonAcao = null;
+
+        for(int i = 0; i < procedimentos.length(); i++) {
+
+            jsonAcao = procedimentos.getJSONObject(i);
+
+            procedimento = procedimento + jsonAcao.getString("nome") + "\n" + jsonAcao.getString("procedimento") + "\n\n";
+
+        }
+
+        questionario.setProcedimentos(procedimento);
 
     }
 
@@ -468,5 +497,132 @@ public final class JsonUtil {
 
     }
 
+    public static List<ProtocoloAcao> protocolosAcoesFromJsonObject(JSONObject jsonObject) {
 
+        ProtocoloAcao protocoloAcao = null;
+
+        JSONObject jsonProtocoloAcao = null;
+
+        List<ProtocoloAcao> protocoloAcaoList = new ArrayList<ProtocoloAcao>();
+
+        try {
+
+            for (int i = 0; i < Utilitarios.getAlwaysJsonArray(jsonObject, "").length(); i++) {
+
+                jsonProtocoloAcao = Utilitarios.getAlwaysJsonArray(jsonObject, "").getJSONObject(i);
+
+                if (jsonProtocoloAcao.has("protocolosacoes")) {
+
+                    jsonProtocoloAcao = jsonProtocoloAcao.getJSONObject("protocolosacoes");
+
+                    protocoloAcao = new ProtocoloAcao();
+
+                    protocoloAcao.setId(jsonProtocoloAcao.has("id") ? jsonProtocoloAcao.getString("id") : null);
+
+                    protocoloAcao.setAcao_id(jsonProtocoloAcao.getJSONObject("acao").getInt("id"));
+
+                    protocoloAcao.setProtocolo_id(jsonProtocoloAcao.getJSONObject("protocolo").getInt("id"));
+
+                    protocoloAcaoList.add(protocoloAcao);
+
+                }
+
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return protocoloAcaoList;
+
+    }
+
+    public static List<Protocolo> protocolosFromJsonObject(JSONObject jsonObject) {
+
+        Protocolo protocolo = null;
+
+        JSONObject jsonProtocolo = null;
+
+        List<Protocolo> protocolos = new ArrayList<Protocolo>();
+
+        try {
+
+            for (int i = 0; i < Utilitarios.getAlwaysJsonArray(jsonObject, "").length(); i++) {
+
+                jsonProtocolo = Utilitarios.getAlwaysJsonArray(jsonObject, "").getJSONObject(i);
+
+                if (jsonProtocolo.has("protocolos")) {
+
+                    jsonProtocolo = jsonProtocolo.getJSONObject("protocolos");
+
+                    protocolo = new Protocolo();
+
+                    protocolo.setId(jsonProtocolo.getString("id"));
+
+                    protocolo.setNorma(jsonProtocolo.has("norma") ? jsonProtocolo.getString("norma") : "");
+
+                    protocolo.setNome(jsonProtocolo.has("nome") ? jsonProtocolo.getString("nome") : "");
+
+
+                    protocolos.add(protocolo);
+
+                }
+
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return protocolos;
+
+    }
+
+
+    public static List<Acao> acoesFromJsonObject(JSONObject jsonObject) {
+
+        Acao acao = null;
+
+        JSONObject jsonAcao = null;
+
+        List<Acao> acoes = new ArrayList<Acao>();
+
+        try {
+
+            for (int i = 0; i < Utilitarios.getAlwaysJsonArray(jsonObject, "").length(); i++) {
+
+                jsonAcao = Utilitarios.getAlwaysJsonArray(jsonObject, "").getJSONObject(i);
+
+                if (jsonAcao.has("acoes")) {
+
+                    jsonAcao = jsonAcao.getJSONObject("acoes");
+
+                    acao = new Acao();
+
+                    acao.setId(jsonAcao.getString("id"));
+
+                    acao.setProcedimento(jsonAcao.has("procedimento") ? jsonAcao.getString("procedimento") : "");
+
+                    acao.setNome(jsonAcao.has("nome") ? jsonAcao.getString("nome") : "");
+
+
+                    acoes.add(acao);
+
+                }
+
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return acoes;
+
+    }
 }

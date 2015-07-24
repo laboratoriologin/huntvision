@@ -9,5 +9,6 @@
     <string name="title_activity_config">ConfigActivity</string>
     <string name="title_activity_sobre">SobreActivity</string>
     <string name="title_activity_qrcode">QrcodeActivity</string>
+    <string name="label.nao_conformidade"><u>Não conformidade</u></string>
 
 </resources>

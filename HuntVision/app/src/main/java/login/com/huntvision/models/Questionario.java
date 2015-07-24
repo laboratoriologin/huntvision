@@ -36,6 +36,9 @@ public class Questionario extends Base {
     private String data;
 
     @DatabaseField
+    private String procedimentos;
+
+    @DatabaseField
     private String status;
 
     @DatabaseField
@@ -44,8 +47,16 @@ public class Questionario extends Base {
     @DatabaseField
     private Long usuarioId;
 
+
+
     @DatabaseField
     private String observacao;
+
+    @DatabaseField
+    private Long protocoloId;
+
+    @DatabaseField
+    private String conformidade;
 
     private List<String> caminhosImagens;
 
@@ -161,4 +172,28 @@ public class Questionario extends Base {
         return id.hashCode();
     }
 
+    public Long getProtocoloId() {
+        return protocoloId;
+    }
+
+    public void setProtocoloId(Long protocoloId) {
+        this.protocoloId = protocoloId;
+    }
+
+
+    public String getConformidade() {
+        return conformidade;
+    }
+
+    public void setConformidade(String conformidade) {
+        this.conformidade = conformidade;
+    }
+
+    public String getProcedimentos() {
+        return procedimentos;
+    }
+
+    public void setProcedimentos(String procedimentos) {
+        this.procedimentos = procedimentos;
+    }
 }

@@ -17,7 +17,7 @@ public class RespostasDAO  implements RestDAO<Resposta> {
 
 		broker.setPropertySQL("respostasdao.get", id);
 
-		return (Resposta) broker.getObjectBean(Resposta.class, "descricao", "flagrespostacerta", "id",  "observacao", "questionario.id");
+		return (Resposta) broker.getObjectBean(Resposta.class, "descricao", "flagNaoConformidade", "id",  "observacao", "questionario.id");
 
 	}
 
@@ -27,8 +27,8 @@ public class RespostasDAO  implements RestDAO<Resposta> {
 		TSDataBaseBrokerIf broker = TSDataBaseBrokerFactory.getDataBaseBrokerIf();
 
 		broker.setPropertySQL("respostasdao.findall");
-
-		return broker.getCollectionBean(Resposta.class, "descricao", "flagrespostacerta", "id", "observacao", "questionario.id");
+		
+		return broker.getCollectionBean(Resposta.class, "descricao", "flagNaoConformidade", "id", "observacao", "questionario.id");		
 
 	}
 
@@ -39,7 +39,7 @@ public class RespostasDAO  implements RestDAO<Resposta> {
 
 		model.setId(broker.getSequenceNextValue("dbo.respostas "));
 
-		broker.setPropertySQL("respostasdao.insert",model.getDescricao(), model.getFlagrespostacerta(), model.getObservacao(), model.getQuestionario());
+		broker.setPropertySQL("respostasdao.insert",model.getDescricao(), model.getFlagNaoConformidade(), model.getObservacao(), model.getQuestionario());
 
 		broker.execute();
 
@@ -52,7 +52,7 @@ public class RespostasDAO  implements RestDAO<Resposta> {
 
 		TSDataBaseBrokerIf broker = TSDataBaseBrokerFactory.getDataBaseBrokerIf();
 
-		broker.setPropertySQL("respostasdao.update", model.getDescricao(), model.getFlagrespostacerta(),  model.getObservacao(), model.getId(), model.getQuestionario());
+		broker.setPropertySQL("respostasdao.update", model.getDescricao(), model.getFlagNaoConformidade(),  model.getObservacao(), model.getId(), model.getQuestionario());
 
 		broker.execute();
 
