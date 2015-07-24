@@ -45,7 +45,7 @@ public final class Acao extends RestModel {
 	/**
 	 * @param procedimento the procedimento to set
 	 */
-	private void setProcedimento(String procedimento) {
+	public void setProcedimento(String procedimento) {
 		this.procedimento = procedimento;
 	}
 }

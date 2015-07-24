@@ -17,8 +17,13 @@ public class Resposta extends Base {
     @DatabaseField
     private String descricao;
 
+
+    //Controle logico do app na tela de questionario, quando finaliza a vistoria somente a resposta certa é persistida como VistoriaResposta
     @DatabaseField
     private Boolean flagRespostaCerta;
+
+    @DatabaseField
+    private Boolean flagNaoConformidade;
 
     @DatabaseField
     private String observacao;
@@ -103,4 +108,13 @@ public class Resposta extends Base {
     public void setQuestionario(Questionario questionario) {
         this.questionario = questionario;
     }
+
+    public Boolean getFlagNaoConformidade() {
+        return flagNaoConformidade;
+    }
+
+    public void setFlagNaoConformidade(Boolean flagNaoConformidade) {
+        this.flagNaoConformidade = flagNaoConformidade;
+    }
+
 }

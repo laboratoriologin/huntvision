@@ -3,6 +3,8 @@ package br.com.login.huntvision.ws.dao;
 import java.util.List;
 
 import br.com.login.huntvision.ws.model.Acao;
+import br.com.login.huntvision.ws.model.Questionario;
+import br.com.login.huntvision.ws.model.Resposta;
 import br.com.topsys.database.TSDataBaseBrokerIf;
 import br.com.topsys.database.factory.TSDataBaseBrokerFactory;
 import br.com.topsys.exception.TSApplicationException;
@@ -66,6 +68,16 @@ public class AcaoDAO  implements RestDAO<Acao> {
 		broker.setPropertySQL("acaodao.delete", id);
 
 		broker.execute();
+
+	}
+	
+	public List<Acao> getAll(Questionario questionario) {
+
+		TSDataBaseBrokerIf broker = TSDataBaseBrokerFactory.getDataBaseBrokerIf();
+
+		broker.setPropertySQL("acaodao.findallbyquestionario", questionario.getId());
+
+		return broker.getCollectionBean(Acao.class, "nome" , "procedimento");
 
 	}
 

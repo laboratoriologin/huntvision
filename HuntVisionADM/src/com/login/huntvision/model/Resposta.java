@@ -38,8 +38,8 @@ public final class Resposta extends TSActiveRecordAb<Resposta> {
 		this.descricao = descricao;
 	}
 
-	@Column(name = "flagrespostacerta")
-	private Boolean flagrespostacerta;
+	@Column(name = "flag_nao_conformidade")
+	private Boolean flagNaoConformidade;
 
 	/**
 	 * Propriedade selecionado da Categoria
@@ -62,12 +62,12 @@ public final class Resposta extends TSActiveRecordAb<Resposta> {
 		this.selecionado = selecionado;
 	}
 
-	public Boolean getFlagrespostacerta() {
-		return flagrespostacerta;
+	public Boolean getFlagNaoConformidade() {
+		return flagNaoConformidade;
 	}
 
-	public void setFlagrespostacerta(Boolean flagrespostacerta) {
-		this.flagrespostacerta = flagrespostacerta;
+	public void setFlagNaoConformidade(Boolean flagNaoConformidade) {
+		this.flagNaoConformidade = flagNaoConformidade;
 	}
 
 	@ManyToOne
@@ -140,7 +140,8 @@ public final class Resposta extends TSActiveRecordAb<Resposta> {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((descricao == null) ? 0 : descricao.hashCode());
+		result = prime * result
+				+ ((descricao == null) ? 0 : descricao.hashCode());
 		return result;
 	}
 

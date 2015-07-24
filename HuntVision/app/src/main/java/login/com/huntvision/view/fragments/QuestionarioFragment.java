@@ -19,6 +19,7 @@ import login.com.huntvision.QuestionarioActivity;
 import login.com.huntvision.R;
 import login.com.huntvision.models.Questionario;
 import login.com.huntvision.models.Resposta;
+import login.com.huntvision.models.Protocolo;
 
 /**
  * Created by login on 20/03/15.
@@ -46,11 +47,28 @@ public class QuestionarioFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.fragment_questionario, container, false);
+        final View rootView = inflater.inflate(R.layout.fragment_questionario, container, false);
 
         final Questionario questionario = (Questionario) getArguments().getSerializable(ARG_OBJECT);
 
         final RadioGroup radioGroup = (RadioGroup) rootView.findViewById(R.id.rgpResposta);
+
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+
+                if (questionario.getRespostas().get(i-1).getFlagNaoConformidade()) {
+
+                    rootView.findViewById(R.id.btnNaoConformidade).setVisibility(View.VISIBLE);
+
+                } else {
+
+                    rootView.findViewById(R.id.btnNaoConformidade).setVisibility(View.INVISIBLE);
+
+                }
+
+            }
+        });
 
         RadioButton button = null;
 
@@ -121,6 +139,15 @@ public class QuestionarioFragment extends Fragment {
             public void onClick(View v) {
 
                 ((QuestionarioActivity) getActivity()).openCamera(questionario);
+
+            }
+        });
+
+        rootView.findViewById(R.id.btnNaoConformidade).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                ((QuestionarioActivity) getActivity()).linkNaoConformidade(questionario);
 
             }
         });

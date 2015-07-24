@@ -4,9 +4,10 @@ import javax.ws.rs.FormParam;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import java.util.Date;
+import java.util.List;
 
 @SuppressWarnings("serial")
-@XmlRootElement(name ="questionarios")
+@XmlRootElement(name = "questionarios")
 public final class Questionario extends RestModel {
 
 	@FormParam("data")
@@ -17,7 +18,7 @@ public final class Questionario extends RestModel {
 	}
 
 	public void setData(String data) {
-		this.data=data;
+		this.data = data;
 	}
 
 	@FormParam("imagem")
@@ -28,7 +29,17 @@ public final class Questionario extends RestModel {
 	}
 
 	public void setImagem(Imagem imagem) {
-		this.imagem=imagem;
+		this.imagem = imagem;
+	}
+
+	private List<Acao> acoes;
+
+	public List<Acao> getAcoes() {
+		return acoes;
+	}
+
+	public void setAcoes(List<Acao> acoes) {
+		this.acoes = acoes;
 	}
 
 	@FormParam("item")
@@ -39,7 +50,7 @@ public final class Questionario extends RestModel {
 	}
 
 	public void setItem(Item item) {
-		this.item=item;
+		this.item = item;
 	}
 
 	@FormParam("tipoquestionario")
@@ -50,7 +61,7 @@ public final class Questionario extends RestModel {
 	}
 
 	public void setTipoQuestionario(TipoQuestionario tipoQuestionario) {
-		this.tipoQuestionario=tipoQuestionario;
+		this.tipoQuestionario = tipoQuestionario;
 	}
 
 	@FormParam("usuario")
@@ -61,7 +72,7 @@ public final class Questionario extends RestModel {
 	}
 
 	public void setUsuario(Usuario usuario) {
-		this.usuario=usuario;
+		this.usuario = usuario;
 	}
 
 	@FormParam("pergunta")
@@ -72,12 +83,12 @@ public final class Questionario extends RestModel {
 	}
 
 	public void setPergunta(String pergunta) {
-		this.pergunta=pergunta;
+		this.pergunta = pergunta;
 	}
 
 	@FormParam("status")
 	private Boolean status;
-	
+
 	@FormParam("conformidade")
 	private Boolean conformidade;
 
@@ -94,12 +105,24 @@ public final class Questionario extends RestModel {
 	}
 
 	public void setStatus(Boolean status) {
-		this.status=status;
+		this.status = status;
 	}
 
-	public Questionario(){}
+	@FormParam("protocolo")
+	private Protocolo protocolo;
 
-	public Questionario(String id){
+	public Protocolo getProtocolo() {
+		return protocolo;
+	}
+
+	public void setProtocolo(Protocolo protocolo) {
+		this.protocolo = protocolo;
+	}
+
+	public Questionario() {
+	}
+
+	public Questionario(String id) {
 		this.id = Long.valueOf(id);
 	}
 }

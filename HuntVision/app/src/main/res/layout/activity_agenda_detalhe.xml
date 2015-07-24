@@ -46,7 +46,7 @@
             android:layout_marginLeft="5dp"
             android:layout_marginTop="5dp"
             android:layout_toRightOf="@+id/imgCliente"
-            android:text="Vistoria"
+            android:text="Agenda"
             android:textColor="#FFF"
             android:textSize="@dimen/top_bar_font_height" />
 

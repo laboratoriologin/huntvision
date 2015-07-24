@@ -13,12 +13,15 @@ import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 
 import login.com.huntvision.R;
+import login.com.huntvision.models.Acao;
 import login.com.huntvision.models.Agenda;
 import login.com.huntvision.models.Cliente;
 import login.com.huntvision.models.Imagem;
 import login.com.huntvision.models.Item;
 import login.com.huntvision.models.ItemLocal;
 import login.com.huntvision.models.Local;
+import login.com.huntvision.models.Protocolo;
+import login.com.huntvision.models.ProtocoloAcao;
 import login.com.huntvision.models.Questionario;
 import login.com.huntvision.models.Resposta;
 import login.com.huntvision.models.TipoQuestionario;
@@ -59,6 +62,12 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
     private RuntimeExceptionDao<Agenda, String> agendaRuntimeDAO = null;
 
+    private RuntimeExceptionDao<Acao, String> acaoRuntimeDAO = null;
+    private RuntimeExceptionDao<ProtocoloAcao, String> protocoloAcaoRuntimeDAO = null;
+
+    private RuntimeExceptionDao<Protocolo, String> protocoloRuntimeDAO = null;
+
+
     public DatabaseHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION, R.raw.ormlite_config);
 	}
@@ -83,8 +92,13 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             TableUtils.createTable(connectionSource, Imagem.class);
             TableUtils.createTable(connectionSource, Resposta.class);
             TableUtils.createTable(connectionSource, Agenda.class);
+            TableUtils.createTable(connectionSource, Acao.class);
+            TableUtils.createTable(connectionSource, Protocolo.class);
 
-		} catch (SQLException e) {
+            TableUtils.createTable(connectionSource, ProtocoloAcao.class);
+
+
+        } catch (SQLException e) {
 			Log.e(DatabaseHelper.class.getName(), "Can't create database", e);
 			throw new RuntimeException(e);
 		}
@@ -110,6 +124,9 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             TableUtils.dropTable(connectionSource, ItemLocal.class, true);
             TableUtils.dropTable(connectionSource, Resposta.class, true);
             TableUtils.dropTable(connectionSource, Agenda.class, true);
+            TableUtils.dropTable(connectionSource, Acao.class, true);
+            TableUtils.dropTable(connectionSource, Protocolo.class, true);
+            TableUtils.dropTable(connectionSource, ProtocoloAcao.class, true);
             // after we drop the old databases, we create the new ones
 			onCreate(db, connectionSource);
 		} catch (SQLException e) {
@@ -211,4 +228,27 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         return agendaRuntimeDAO;
     }
 
+    public RuntimeExceptionDao<Acao, String> getAcaoRuntimeDAO() {
+        return acaoRuntimeDAO;
+    }
+
+    public void setAcaoRuntimeDAO(RuntimeExceptionDao<Acao, String> acaoRuntimeDAO) {
+        this.acaoRuntimeDAO = acaoRuntimeDAO;
+    }
+
+    public RuntimeExceptionDao<ProtocoloAcao, String> getProtocoloAcaoRuntimeDAO() {
+        return protocoloAcaoRuntimeDAO;
+    }
+
+    public void setProtocoloAcaoRuntimeDAO(RuntimeExceptionDao<ProtocoloAcao, String> protocoloAcaoRuntimeDAO) {
+        this.protocoloAcaoRuntimeDAO = protocoloAcaoRuntimeDAO;
+    }
+
+    public RuntimeExceptionDao<Protocolo, String> getProtocoloRuntimeDAO() {
+        return protocoloRuntimeDAO;
+    }
+
+    public void setProtocoloRuntimeDAO(RuntimeExceptionDao<Protocolo, String> protocoloRuntimeDAO) {
+        this.protocoloRuntimeDAO = protocoloRuntimeDAO;
+    }
 }

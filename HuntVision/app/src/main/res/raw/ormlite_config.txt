@@ -101,6 +101,9 @@ fieldName=status;
 fieldName=pergunta;
 fieldName= usuarioId;
 fieldName= observacao;
+fieldName= protocoloId;
+fieldName= conformidade;
+fieldName= procedimentos;
 
 ################################################
 
@@ -109,8 +112,10 @@ tableName=resposta
 fieldName=id;
 fieldName=descricao;
 fieldName=flagRespostaCerta;
+fieldName=flagNaoConformidade;
 fieldName=observacao;
 fieldName=questionarioId;
+
 
 
 ################################################

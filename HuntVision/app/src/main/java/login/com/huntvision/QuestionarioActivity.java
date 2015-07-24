@@ -1,5 +1,7 @@
 package login.com.huntvision;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -35,16 +37,20 @@ import java.util.Date;
 import java.util.List;
 
 import login.com.huntvision.managers.sqlite.DatabaseHelper;
+import login.com.huntvision.models.Acao;
 import login.com.huntvision.models.Cliente;
 import login.com.huntvision.models.Imagem;
 import login.com.huntvision.models.Item;
 import login.com.huntvision.models.Local;
+import login.com.huntvision.models.Protocolo;
+import login.com.huntvision.models.ProtocoloAcao;
 import login.com.huntvision.models.Questionario;
 import login.com.huntvision.models.Resposta;
 import login.com.huntvision.models.Usuario;
 import login.com.huntvision.models.Vistoria;
 import login.com.huntvision.models.VistoriaResposta;
 import login.com.huntvision.view.adapters.QuestionarioFragmentPageAdapter;
+import login.com.huntvision.view.fragments.QuestionarioFragment;
 
 @EActivity(R.layout.activity_questionario)
 public class QuestionarioActivity extends FragmentActivity {
@@ -54,6 +60,11 @@ public class QuestionarioActivity extends FragmentActivity {
     private Cliente objCliente;
     private Local objLocal;
     private Item objItem;
+    private Protocolo objProtocolo;
+    private Acao objAcao;
+    private ProtocoloAcao objProtocoloAcao;
+
+
     private boolean acervo = false;
 
     private DatabaseHelper databaseHelper;
@@ -65,6 +76,10 @@ public class QuestionarioActivity extends FragmentActivity {
 
     @ViewById(R.id.btnVoltar)
     Button btnVoltar;
+
+    @ViewById(R.id.btnNaoConformidade)
+    Button btnNaoConformidade;
+
 
     @ViewById(R.id.txtUsuario)
     TextView txtUsuario;
@@ -93,7 +108,13 @@ public class QuestionarioActivity extends FragmentActivity {
 
         objLocal = (Local) getIntent().getSerializableExtra("local");
 
-        objItem = (Item) getIntent().getSerializableExtra("item");
+        objAcao= (Acao) getIntent().getSerializableExtra("acao");
+
+        objItem= (Item) getIntent().getSerializableExtra("item");
+
+        objProtocolo= (Protocolo) getIntent().getSerializableExtra("protocolo");
+
+        objProtocoloAcao= (ProtocoloAcao) getIntent().getSerializableExtra("protocoloacao");
 
         TextView titulo = (TextView) findViewById(R.id.lblTituloClienteLocal);
 
@@ -163,6 +184,15 @@ public class QuestionarioActivity extends FragmentActivity {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, selectedImage);
         startActivityForResult(intent, lstQuestionario.indexOf(questionario));
+
+    }
+
+    public void linkNaoConformidade(Questionario questionario){
+
+        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+        alertDialog.setTitle("Não conformidade");
+        alertDialog.setMessage(questionario.getProcedimentos());
+        alertDialog.show();
 
     }
 
