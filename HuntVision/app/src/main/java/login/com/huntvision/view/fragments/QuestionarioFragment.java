@@ -57,7 +57,7 @@ public class QuestionarioFragment extends Fragment {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
 
-                if (questionario.getRespostas().get(i-1).getFlagNaoConformidade()) {
+                if (questionario.getRespostas().get(radioGroup.getCheckedRadioButtonId()).getFlagNaoConformidade()) {
 
                     rootView.findViewById(R.id.btnNaoConformidade).setVisibility(View.VISIBLE);
 
@@ -94,9 +94,15 @@ public class QuestionarioFragment extends Fragment {
 
         ((TextView) rootView.findViewById(R.id.lblTituloPergunta)).setText(questionario.getPergunta());
 
-        for (Resposta resposta : questionario.getRespostas()) {
+        Resposta resposta = null;
+
+        for (int i = 0; i < questionario.getRespostas().size(); i++) {
 
             button = new RadioButton(rootView.getContext());
+
+            resposta = questionario.getRespostas().get(i);
+
+            button.setId(i);
 
             button.setChecked(resposta.getFlagRespostaCerta() != null && resposta.getFlagRespostaCerta());
 
