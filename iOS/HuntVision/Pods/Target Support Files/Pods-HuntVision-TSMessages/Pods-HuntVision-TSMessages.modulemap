@@ -1,0 +1,6 @@
+framework module TSMessages {
+  umbrella header "Pods-HuntVision-TSMessages-umbrella.h"
+
+  export *
+  module * { export * }
+}

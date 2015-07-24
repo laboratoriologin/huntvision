@@ -49,11 +49,15 @@ code_sign() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'Alamofire.framework'
+  install_framework 'HexColors.framework'
   install_framework 'MBProgressHUD.framework'
   install_framework 'Mantle.framework'
+  install_framework 'TSMessages.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Alamofire.framework'
+  install_framework 'HexColors.framework'
   install_framework 'MBProgressHUD.framework'
   install_framework 'Mantle.framework'
+  install_framework 'TSMessages.framework'
 fi

@@ -6,6 +6,7 @@ target 'HuntVision' do
 pod 'Alamofire', '~> 1.2'
 pod 'Mantle'
 pod 'MBProgressHUD'
+pod 'TSMessages'
 end
 
 target 'HuntVisionTests' do

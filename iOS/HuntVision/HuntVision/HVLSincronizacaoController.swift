@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import Mantle
 import MBProgressHUD
-
+import TSMessages
 class HVLSincronizacaoController: UIViewController {
     
     var error       : NSError?
@@ -43,6 +43,8 @@ class HVLSincronizacaoController: UIViewController {
     }
     @IBAction func sincronizar(sender: AnyObject) {
         
+        self.error = nil
+        
         var usuario: HVLUsuario
         
         progressHUD = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
@@ -50,30 +52,40 @@ class HVLSincronizacaoController: UIViewController {
         progressHUD?.labelText = "Sincronizando usuários..."
         
         Alamofire.request(.GET, HVLConstants.usuarioURL).responseJSON {(_, _, result, _) in
+            
+            if(result != nil) {
                 
-            var json = JSON(result!)
-            
-            let users = MTLJSONAdapter.modelsOfClass(HVLUsuarioWrapper.self, fromJSONArray: json.arrayObject, error: nil)
-            
-            var user: HVLUsuarioWrapper!
-            
-            let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
-            
-            let userManagedObject = HVLUsuario()
-            
-            HVLDBUtilStore().clean("UsuarioEntity")
-            
-            for item in users {
+                var json = JSON(result!)
                 
-                user = item as! HVLUsuarioWrapper
+                let users = MTLJSONAdapter.modelsOfClass(HVLUsuarioWrapper.self, fromJSONArray: json.arrayObject, error: nil)
                 
-                MTLManagedObjectAdapter.managedObjectFromModel(user.usuario, insertingIntoContext: managedObjectContext, error: &self.error)
+                var user: HVLUsuarioWrapper!
                 
-                managedObjectContext?.save(&self.error)
+                let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+                
+                let userManagedObject = HVLUsuario()
+                
+                HVLDBUtilStore().clean("UsuarioEntity")
+                
+                for item in users {
+                    
+                    user = item as! HVLUsuarioWrapper
+                    
+                    MTLManagedObjectAdapter.managedObjectFromModel(user.usuario, insertingIntoContext: managedObjectContext, error: &self.error)
+                    
+                    managedObjectContext?.save(&self.error)
+                    
+                }
+                
+                self.sincronizarCliente()
+                
+            } else {
+                
+                UIAlertView(title: "Sem conexão", message: "Não foi possível se conectar ao servidor, tente novamente, ", delegate: nil, cancelButtonTitle: "OK").show()
+                
+                self.progressHUD?.hide(true)
                 
             }
-            
-            self.sincronizarCliente()
             
         }
         
@@ -282,7 +294,7 @@ class HVLSincronizacaoController: UIViewController {
     
     func sincronizarRespostas() {
         
-        progressHUD?.labelText = "finalizando sincronização..."
+        progressHUD?.labelText = "finalizando respostas..."
         
         Alamofire.request(.GET, HVLConstants.respostaURL).responseJSON {(_, _, result, _) in
             
@@ -308,6 +320,40 @@ class HVLSincronizacaoController: UIViewController {
                 
             }
             
+            self.sincronizarAgenda()
+            
+        }
+        
+    }
+    
+    func sincronizarAgenda() {
+        
+        progressHUD?.labelText = "finalizando sincronização..."
+        
+        Alamofire.request(.GET, HVLConstants.agendaURL).responseJSON {(_, _, result, _) in
+            
+            var json = JSON(result!)
+            
+            let agendas = MTLJSONAdapter.modelsOfClass(HVLAgendaWrapper.self, fromJSONArray: json.arrayObject, error: &self.error)
+            
+            var agendaWrapper: HVLAgendaWrapper!
+            
+            let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+            
+            let itemManagedObject = HVLAgenda()
+            
+            HVLDBUtilStore().clean("AgendaEntity")
+            
+            for item in agendas {
+                
+                agendaWrapper = item as! HVLAgendaWrapper
+                
+                MTLManagedObjectAdapter.managedObjectFromModel(agendaWrapper.agenda, insertingIntoContext: managedObjectContext, error: &self.error)
+                
+                managedObjectContext?.save(&self.error)
+                
+            }
+            
             self.finalizarSincronizacao()
             
         }
@@ -321,6 +367,10 @@ class HVLSincronizacaoController: UIViewController {
         if(self.error == nil) {
             
             self.dismissViewControllerAnimated(true, completion: nil)
+            
+        } else {
+            
+            TSMessage.showNotificationWithTitle("Erro na sincronização", subtitle: "Tente novamente", type: TSMessageNotificationType.Error)
             
         }
         
