@@ -22,91 +22,21 @@ class HVLAgendaDetalheViewController: UIViewController {
     @IBOutlet weak var horarioChegadaLabel: UILabel!
     @IBOutlet weak var horarioSaidaLabel: UILabel!
     
-    @IBAction func registrarChegada(sender: AnyObject) {
-        
-        let dateFormatter = NSDateFormatter()
-        
-        dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
-        
-        let parameters = [
-            "dataHoraChegada": dateFormatter.stringFromDate(NSDate()),
-        ]
-        
-        let url = "\(HVLConstants.agendaURL)/update_horas/\(self.agenda.id)"
-        
-        self.progressHUD = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
-    
-        Alamofire.request(.PUT, url, parameters: parameters, encoding: .JSON).responseJSON { request, response, JSON, error in
-            
-            self.progressHUD?.hide(true)
-            
-            if(error == nil) {
-                
-                self.agenda.dataHoraChegada = NSDate()
-                
-                let delegate =  UIApplication.sharedApplication().delegate as! AppDelegate
-                
-                delegate.managedObjectContext!.save(nil)
-                
-                TSMessage.showNotificationWithTitle("", subtitle: "Chegada registrada com sucesso", type: TSMessageNotificationType.Success)
-            
-            } else {
-                
-                TSMessage.showNotificationWithTitle("Ocorreu um erro", subtitle: "Verifique sua conexão e tente novamente", type: TSMessageNotificationType.Error)
-                
-            }
-            
-        }
-        
-    }
-    
-    @IBAction func registrarSaida(sender: AnyObject) {
-        
-        let dateFormatter = NSDateFormatter()
-        
-        dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
-        
-        let parameters = [
-            "dataHoraChegada": dateFormatter.stringFromDate(agenda.dataHoraChegada),
-            "dataHoraSaida": dateFormatter.stringFromDate(NSDate())
-        ]
-        
-        let url = "\(HVLConstants.agendaURL)/update_horas/\(self.agenda.id)"
-        
-        self.progressHUD = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
-        
-        Alamofire.request(.PUT, url, parameters: parameters, encoding: .JSON).responseJSON { request, response, JSON, error in
-            
-            self.progressHUD?.hide(true)
-            
-            if(error == nil) {
-                
-                self.agenda.dataHoraSaida = NSDate()
-                
-                let delegate =  UIApplication.sharedApplication().delegate as! AppDelegate
-                
-                delegate.managedObjectContext!.save(nil)
-                
-                TSMessage.showNotificationWithTitle("", subtitle: "Saída registrada com sucesso", type: TSMessageNotificationType.Success)
-                
-            } else {
-                
-                
-                TSMessage.showNotificationWithTitle("Ocorreu um erro", subtitle: "Verifique sua conexão e tente novamente", type: TSMessageNotificationType.Error)
-                
-            }
-            
-        }
-    
-    }
-
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
         self.title = "Agenda"
         
-        self.localLabel.text = "Cliente: \(self.agenda.clienteOBJ!.nome) | \(self.agenda.clienteOBJ!.endereco) \n \(self.agenda.descricao)"
+        self.initComponents()
+        
+    }
+    
+    func initComponents() {
+        
+        self.localLabel.text = "Cliente: \(self.agenda.clienteOBJ!.nome) | \(self.agenda.clienteOBJ!.endereco)"
+        
+        self.descricaoLabel.text = self.agenda.descricao
         
         let dateFormatter = NSDateFormatter()
         
@@ -120,8 +50,14 @@ class HVLAgendaDetalheViewController: UIViewController {
             
             self.registrarChegadaButton.enabled = false
             
+            self.registrarSaidaButton.enabled = true
+            
+        } else {
+            
+            self.registrarSaidaButton.enabled = false
+            
         }
-
+        
         if let jaSaiu = self.agenda.dataHoraSaida as NSDate? {
             
             self.horarioSaidaLabel.text = " Hora de saída: ".stringByAppendingString(dateFormatter.stringFromDate(self.agenda.dataHoraSaida))
@@ -132,6 +68,90 @@ class HVLAgendaDetalheViewController: UIViewController {
         
     }
 
+    
+    @IBAction func registrarChegada(sender: AnyObject) {
+        
+        let dateFormatter = NSDateFormatter()
+        
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        
+        let parameters = [
+            "data_hora_chegada": dateFormatter.stringFromDate(NSDate()),
+        ]
+        
+        var url = "\(HVLConstants.agendaURL)/update_horas/\(self.agenda.id)"
+        
+        self.progressHUD = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+    
+        Alamofire.request(.PUT, url, parameters: parameters, encoding: .URL).responseJSON { request, response, JSON, error in
+            
+            self.progressHUD?.hide(true)
+            
+            if(error == nil) {
+                
+                self.agenda.dataHoraChegada = NSDate()
+                
+                let delegate =  UIApplication.sharedApplication().delegate as! AppDelegate
+                
+                delegate.managedObjectContext!.save(nil)
+                
+                TSMessage.showNotificationInViewController(self, title: "Pronto", subtitle: "Chegada registrada com sucesso", type: TSMessageNotificationType.Success)
+                
+                self.initComponents()
+            
+            } else {
+                
+                TSMessage.showNotificationInViewController(self, title:"Ocorreu um erro", subtitle: "Verifique sua conexão e tente novamente", type: TSMessageNotificationType.Error)
+                
+            }
+            
+        }
+        
+    }
+    
+    @IBAction func registrarSaida(sender: AnyObject) {
+        
+        let dateFormatter = NSDateFormatter()
+        
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        
+        let parameters = [
+            "data_hora_chegada": dateFormatter.stringFromDate(agenda.dataHoraChegada),
+            "data_hora_saida": dateFormatter.stringFromDate(NSDate())
+        ]
+        
+        var url = "\(HVLConstants.agendaURL)/update_horas/\(self.agenda.id)"
+        
+        self.progressHUD = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        
+        Alamofire.request(.PUT, url, parameters: parameters, encoding: .URL).responseJSON { request, response, JSON, error in
+            
+            self.progressHUD?.hide(true)
+            
+            if(error == nil) {
+                
+                self.agenda.dataHoraSaida = NSDate()
+                
+                let delegate =  UIApplication.sharedApplication().delegate as! AppDelegate
+                
+                delegate.managedObjectContext!.save(nil)
+                
+                TSMessage.showNotificationInViewController(self, title:"Pronto", subtitle: "Saída registrada com sucesso", type: TSMessageNotificationType.Success)
+                
+                self.initComponents()
+                
+            } else {
+                
+                
+                TSMessage.showNotificationInViewController(self, title:"Ocorreu um erro", subtitle: "Verifique sua conexão e tente novamente", type: TSMessageNotificationType.Error)
+                
+            }
+            
+        }
+    
+    }
+
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

@@ -370,7 +370,7 @@ class HVLSincronizacaoController: UIViewController {
             
         } else {
             
-            TSMessage.showNotificationWithTitle("Erro na sincronização", subtitle: "Tente novamente", type: TSMessageNotificationType.Error)
+            TSMessage.showNotificationInViewController(self, title:"Erro na sincronização", subtitle: "Tente novamente", type: TSMessageNotificationType.Error)
             
         }
         
