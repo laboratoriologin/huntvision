@@ -3,6 +3,7 @@ package br.com.login.huntvision.ws.dao;
 import java.util.List;
 
 import br.com.login.huntvision.ws.model.Destinatario;
+import br.com.login.huntvision.ws.model.Resposta;
 import br.com.topsys.database.TSDataBaseBrokerIf;
 import br.com.topsys.database.factory.TSDataBaseBrokerFactory;
 import br.com.topsys.exception.TSApplicationException;
@@ -67,6 +68,16 @@ public class DestinariosDAO implements RestDAO<Destinatario> {
 		broker.setPropertySQL("destinariodao.delete", id);
 
 		broker.execute();
+
+	}
+	
+	public List<Destinatario> getByDestinatarios() {
+
+		TSDataBaseBrokerIf broker = TSDataBaseBrokerFactory.getDataBaseBrokerIf();
+
+		broker.setPropertySQL("destinariosdAO.getbyDestinatarios");
+		
+		return broker.getCollectionBean(Destinatario.class, "nome", "email", "itemLocal");		
 
 	}
 

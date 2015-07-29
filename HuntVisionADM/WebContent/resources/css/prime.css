@@ -1,0 +1,177 @@
+@CHARSET "ISO-8859-1";
+
+/** jQuery UI CSS Framework 1.8.9** Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)* Dual licensed under the MIT or GPL Version 2 licenses.* http://jquery.org/license** http://docs.jquery.com/UI/Theming/API** To view and modify this theme, visit http://jqueryui.com/themeroller/?ffDefault=segoe%20ui,%20Arial,%20sans-serif&fwDefault=bold&fsDefault=1.1em&cornerRadius=3px&bgColorHeader=f9f9f9&bgTextureHeader=03_highlight_soft.png&bgImgOpacityHeader=100&borderColorHeader=cccccc&fcHeader=e69700&iconColorHeader=5fa5e3&bgColorContent=eeeeee&bgTextureContent=06_inset_hard.png&bgImgOpacityContent=100&borderColorContent=aaaaaa&fcContent=222222&iconColorContent=0a82eb&bgColorDefault=1484e6&bgTextureDefault=08_diagonals_thick.png&bgImgOpacityDefault=22&borderColorDefault=ffffff&fcDefault=ffffff&iconColorDefault=fcdd4a&bgColorHover=2293f7&bgTextureHover=08_diagonals_thick.png&bgImgOpacityHover=26&borderColorHover=2293f7&fcHover=ffffff&iconColorHover=ffffff&bgColorActive=e69700&bgTextureActive=08_diagonals_thick.png&bgImgOpacityActive=20&borderColorActive=e69700&fcActive=ffffff&iconColorActive=ffffff&bgColorHighlight=c5ddfc&bgTextureHighlight=07_diagonals_small.png&bgImgOpacityHighlight=25&borderColorHighlight=ffffff&fcHighlight=333333&iconColorHighlight=0b54d5&bgColorError=e69700&bgTextureError=08_diagonals_thick.png&bgImgOpacityError=20&borderColorError=e69700&fcError=ffffff&iconColorError=ffffff&bgColorOverlay=e6b900&bgTextureOverlay=01_flat.png&bgImgOpacityOverlay=0&opacityOverlay=30&bgColorShadow=e69700&bgTextureShadow=01_flat.png&bgImgOpacityShadow=0&opacityShadow=20&thicknessShadow=0px&offsetTopShadow=6px&offsetLeftShadow=6px&cornerRadiusShadow=3px*/
+/* Component containers----------------------------------*/
+.ui-widget {
+	font-family: segoe ui, Arial, sans-serif;
+	font-size: 1.1em;
+}
+
+.ui-widget .ui-widget {
+	font-size: 1em;
+}
+
+.ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button
+	{
+	font-family: segoe ui, Arial, sans-serif;
+	font-size: 1em;
+}
+
+.ui-widget-content a {
+	color: #414042;
+}
+
+.ui-widget-header a {
+	color: #E77D20;
+} /* Interaction states----------------------------------*/
+.ui-state-default, .ui-widget-content .ui-state-default,
+	.ui-widget-header .ui-state-default {
+	border: 1px solid #ffffff;
+	background: #2780BB 50% 50% repeat;
+	font-weight: bold;
+	color: #ffffff;
+}
+
+.ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited
+	{
+	color: #ffffff;
+	text-decoration: none;
+}
+/* Menu Principal */
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover,
+	.ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus
+	{
+	border: 1px solid #2780BB;
+	background: #2780BB 50% 50% repeat;
+	font-weight: bold;
+	color: #ffffff;
+}
+
+
+.ui-state-hover a, .ui-state-hover a:hover {
+	color: #ffffff;
+	text-decoration: none;
+
+}
+
+.ui-menuitem-link ui-submenu-link{}
+
+/*  Botão de seleção da tab  */
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active
+	{
+	border: 1px solid #E77D20;
+	background: #E77D20 50% 50% repeat;
+	font-weight: bold;
+	color: #ffffff;
+}
+
+.ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited
+	{
+	color: #ffffff;
+	text-decoration: none;
+}
+
+.ui-widget:active {
+	outline: none;
+} /* Interaction Cues----------------------------------*/
+.ui-state-highlight, .ui-widget-content .ui-state-highlight,
+	.ui-widget-header .ui-state-highlight {
+	border: 1px solid #ffffff;
+	background: #c5ddfc 50% 50% repeat;
+	color: #333333;
+}
+
+.ui-state-highlight a, .ui-widget-content .ui-state-highlight a,
+	.ui-widget-header .ui-state-highlight a {
+	color: #333333;
+}
+
+.ui-state-error, .ui-widget-content .ui-state-error, .ui-widget-header .ui-state-error
+	{
+	border: 1px solid #E77D20;
+	background: #E77D20 50% 50% repeat;
+	color: #ffffff;
+}
+
+.ui-state-error a, .ui-widget-content .ui-state-error a,
+	.ui-widget-header .ui-state-error a {
+	color: #ffffff;
+}
+
+.ui-state-error-text, .ui-widget-content .ui-state-error-text,
+	.ui-widget-header .ui-state-error-text {
+	color: #ffffff;
+}
+
+.ui-priority-primary, .ui-widget-content .ui-priority-primary,
+	.ui-widget-header .ui-priority-primary {
+	font-weight: bold;
+}
+
+.ui-priority-secondary, .ui-widget-content .ui-priority-secondary,
+	.ui-widget-header .ui-priority-secondary {
+	opacity: .7;
+	filter: Alpha(Opacity = 70);
+	font-weight: normal;
+}
+
+.ui-state-disabled, .ui-widget-content .ui-state-disabled,
+	.ui-widget-header .ui-state-disabled {
+	opacity: .35;
+	filter: Alpha(Opacity = 35);
+	background-image: none;
+} /* Icons----------------------------------*/ /* states and images */
+/* Overlays */
+
+/* PrimeFaces Extensions */
+.ui-inputfield, .ui-widget-content .ui-inputfield, .ui-widget-header .ui-inputfield
+	{
+	border: 1px solid #1484e6;
+	background: #fff;
+	-moz-box-shadow: inset 0 2px 2px #8f8f8f;
+	-webkit-box-shadow: inset 0 2px 2px #8f8f8f;
+	box-shadow: inset 0 2px 2px #8f8f8f;
+	color: #400040;
+}
+
+.ui-inputfield.ui-state-focus, .ui-widget-content .ui-inputfield.ui-state-focus,
+	.ui-widget-header .ui-inputfield.ui-state-focus {
+	-moz-box-shadow: 0px 0px 5px #E77D20, inset 0 2px 2px #8f8f8f;
+	-webkit-box-shadow: 0px 0px 5px #E77D20, inset 0 2px 2px #8f8f8f;
+	box-shadow: 0px 0px 5px #E77D20, inset 0 2px 2px #8f8f8f;
+}
+
+.ui-layout-north {
+	z-index: 20 !important;
+	overflow: visible !important;;
+}
+
+.ui-layout-north .ui-layout-unit-content {
+	overflow: visible !important;
+}
+
+.ui-menuitem-text {
+	width: 100% !important;
+	vertical-align: middle !important;
+font-weight:normal;
+	font-size: 14px;
+	padding: 0px;
+
+}
+
+.ui-menuitem-text:hover {
+	width:  100% !important;
+	vertical-align: middle !important;
+	padding: 0px;
+	font-weight:normal;
+	font-size: 14px;
+		color:#fff;
+}
+
+.ui-layout-unit-header-title {
+	color: #2780BB;
+}
+
+.ui-growl {
+	margin-top: 5%;
+}

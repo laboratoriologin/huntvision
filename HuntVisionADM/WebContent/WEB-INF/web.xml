@@ -11,7 +11,7 @@
   </context-param>
   <context-param>
     <param-name>primefaces.THEME</param-name>
-    <param-value>pepper-grinder</param-value>
+    <param-value>excite-bike</param-value>
   </context-param>
   <welcome-file-list>
     <welcome-file>pages/index.html</welcome-file>

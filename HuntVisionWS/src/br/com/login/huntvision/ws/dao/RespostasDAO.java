@@ -37,7 +37,7 @@ public class RespostasDAO  implements RestDAO<Resposta> {
 
 		TSDataBaseBrokerIf broker = TSDataBaseBrokerFactory.getDataBaseBrokerIf();
 
-		model.setId(broker.getSequenceNextValue("dbo.respostas "));
+		model.setId(broker.getSequenceNextValue("dbo.respostas"));
 
 		broker.setPropertySQL("respostasdao.insert",model.getDescricao(), model.getFlagNaoConformidade(), model.getObservacao(), model.getQuestionario());
 
@@ -70,5 +70,7 @@ public class RespostasDAO  implements RestDAO<Resposta> {
 		broker.execute();
 
 	}
+	
+	
 
 }

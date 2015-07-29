@@ -10,8 +10,7 @@
 
 	<h:head>
 		<title>HuntVision</title>
-		<link type="text/css" rel="stylesheet"
-			href="#{request.contextPath}/resources/css/geral.css" />
+
 		<script src="#{request.contextPath}/resources/js/funcoes.js"
 			type="text/javascript" />
 		<script
@@ -19,6 +18,10 @@
 		<script
 			src="#{request.contextPath}/resources/js/markerwithlabel_packed.js"
 			type="text/javascript" />
+		<link type="text/css" rel="stylesheet"
+			href="#{request.contextPath}/resources/css/geral.css" />
+		<link type="text/css" rel="stylesheet"
+			href="#{request.contextPath}/resources/css/prime.css" />
 
 		<script>
 			function gerarQRCode() {
@@ -35,7 +38,6 @@
 
 			}
 		</script>
-
 	</h:head>
 
 	<h:body style="font-size: 12px">
@@ -44,28 +46,34 @@
 			sticky="false" autoUpdate="true" globalOnly="false" />
 
 		<p:ajaxStatus onstart="PF('statusDialog').show();"
-			onsuccess="PF('statusDialog').hide();" onerror="PF('statusDialog').hide();"
+			onsuccess="PF('statusDialog').hide();"
+			onerror="PF('statusDialog').hide();"
 			oncomplete="PF('statusDialog').hide();" />
 
 		<p:dialog modal="true" widgetVar="statusDialog"
 			header="Processando..." draggable="false" closable="false"
 			resizable="false">
-			<p:graphicImage  value="../resources/images/ajaxloadingbar.gif" />
+			<p:graphicImage value="../resources/images/ajaxloadingbar.gif" />
 		</p:dialog>
-		<p:layout fullPage="true" >
-	
-			<p:layoutUnit position="west" size="230" resizable="true"
-				header="Menu">
-				
-				<ui:include id="uiMenu" src="/pages/menu.xhtml" />
-				
-			</p:layoutUnit>
+		<p:layout fullPage="true">
 
+			<p:layoutUnit position="north" size="50" resizable="false">
+
+				<ui:include id="uiMenu" src="/pages/menu.xhtml" />
+		
+
+			</p:layoutUnit>
+				<p:layoutUnit>
+				<h:outputText value="#{autenticacaoFaces.usuario.nome}" style="position:right;" />				
+	</p:layoutUnit>
 			<p:layoutUnit id="areaTrabalho" position="center"
 				header="#{autenticacaoFaces.nomeTela}">
+				
 				<ui:include id="uiMenu2" src="#{autenticacaoFaces.tela}" />
+				
 			</p:layoutUnit>
-
+<p:graphicImage width="130px" 
+								value="../resources/images/logo_hunt_vision_260px.png" />
 			<p:layoutUnit position="south" size="35">
 				<h:panelGrid columns="6" width="100%" style="height: 100%;"
 					columnClasses="colunaInformativo40, colunaInformativo20, colunaInformativo20, colunaInformativo10, colunaInformativoVerde10,colunaInformativoVermelho10">
@@ -74,10 +82,10 @@
 					</h:column>
 
 					<h:column>
-						<h:outputText value="#{autenticacaoFaces.usuario.nome}" />
+					
 					</h:column>
 
-					
+
 
 					<h:column>
 						<p:ajaxStatus style="width:100%">
@@ -106,7 +114,7 @@
 				</h:panelGrid>
 			</p:layoutUnit>
 		</p:layout>
-		
+
 	</h:body>
 
 </f:view>

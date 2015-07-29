@@ -123,4 +123,7 @@ public class UsuarioService extends RestService<Usuario> {
 		}
 
 	}
+	
+	
+	
 }

@@ -49,12 +49,12 @@ public class MainActivity extends DefaultActivity {
     @AfterViews
     void afterView() {
 
-        final LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+      /*  final LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
         if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             buildAlertMessageNoGps();
             return;
-        }
+        }*/
 
 
 
