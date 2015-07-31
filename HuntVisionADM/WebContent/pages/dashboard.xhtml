@@ -41,7 +41,7 @@
 	</h:head>
 
 	<h:body style="font-size: 12px">
-
+<div id="topHunt"  class="topHunt"></div>
 		<p:growl id="growl" showDetail="true" showSummary="false"
 			sticky="false" autoUpdate="true" globalOnly="false" />
 
@@ -55,66 +55,36 @@
 			resizable="false">
 			<p:graphicImage value="../resources/images/ajaxloadingbar.gif" />
 		</p:dialog>
-		<p:layout fullPage="true">
 
-			<p:layoutUnit position="north" size="50" resizable="false">
 
-				<ui:include id="uiMenu" src="/pages/menu.xhtml" />
+			
+
+				<ui:include   id="uiMenu" src="/pages/menu.xhtml" />
+		<p:graphicImage id="logoHunt" style="border:inset 0.1em gray;" width="5.8%" value="../resources/images/logo_hunt_vision_260px.png" />
+
+
+		<h:outputText value="#{autenticacaoFaces.nomeTela}" styleClass="menu"></h:outputText>
 		
-
-			</p:layoutUnit>
-				<p:layoutUnit>
-				<h:outputText value="#{autenticacaoFaces.usuario.nome}" style="position:right;" />				
-	</p:layoutUnit>
-			<p:layoutUnit id="areaTrabalho" position="center"
-				header="#{autenticacaoFaces.nomeTela}">
+				
+		
 				
 				<ui:include id="uiMenu2" src="#{autenticacaoFaces.tela}" />
 				
-			</p:layoutUnit>
-<p:graphicImage width="130px" 
-								value="../resources/images/logo_hunt_vision_260px.png" />
-			<p:layoutUnit position="south" size="35">
+		
+
 				<h:panelGrid columns="6" width="100%" style="height: 100%;"
 					columnClasses="colunaInformativo40, colunaInformativo20, colunaInformativo20, colunaInformativo10, colunaInformativoVerde10,colunaInformativoVermelho10">
-					<h:column>
-						<h:outputText value="Sistema de HuntVision" />
-					</h:column>
-
-					<h:column>
-					
-					</h:column>
+		
 
 
 
-					<h:column>
-						<p:ajaxStatus style="width:100%">
-							<f:facet name="start">
-								<h:graphicImage
-									value="../resources/images/ajax-loader-barra.gif" height="12"
-									style="border: 0px;width:100%" />
-							</f:facet>
+				
 
-							<f:facet name="complete">
-								<h:outputText value="" />
-							</f:facet>
-						</p:ajaxStatus>
-					</h:column>
-
-					<h:column>
-						<h:form>
-							<p:commandLink ajax="false" value="Desconectar"
-								style="font-weight: 700; text-decoration: none;  color:red; text-align: center"
-								action="#{autenticacaoFaces.logout}" />
-
-						</h:form>
-					</h:column>
 
 
 				</h:panelGrid>
-			</p:layoutUnit>
-		</p:layout>
-
+		
+<div id="botomHunt"  class="botomHunt"></div>
 	</h:body>
 
 </f:view>

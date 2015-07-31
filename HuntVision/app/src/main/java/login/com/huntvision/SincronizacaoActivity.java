@@ -33,6 +33,7 @@ import login.com.huntvision.models.Resposta;
 import login.com.huntvision.models.ServerResponse;
 import login.com.huntvision.models.TipoQuestionario;
 import login.com.huntvision.models.Usuario;
+import login.com.huntvision.models.Vistoria;
 import login.com.huntvision.network.AgendaRequest;
 import login.com.huntvision.network.ClienteRequest;
 import login.com.huntvision.network.ItemLocalRequest;
@@ -79,6 +80,17 @@ import login.com.huntvision.utils.JsonUtil;
 
         }
 
+        for(Vistoria vistoria : getHelper().getVistoriaRuntimeDAO().queryForAll()) {
+
+            if(vistoria.getFlagSincronizado() == 0) {
+
+                Toast.makeText(this, "É necessário concluir todas as visitas antes de sincronizar", Toast.LENGTH_SHORT).show();
+
+                return;
+
+            }
+
+        }
         progressDialog = ProgressDialog.show(this, "Aguarde", "Sincronizando usuários...");
 
         new UsuarioRequest(getUrlWS(),new ResponseListener() {
@@ -543,6 +555,14 @@ import login.com.huntvision.utils.JsonUtil;
     private void startLoginActivity() {
 
         Toast.makeText(SincronizacaoActivity.this, "Sincronização feita com sucesso!", Toast.LENGTH_SHORT).show();
+
+
+        try {
+            getHelper().getVistoriaRuntimeDAO().deleteBuilder().delete();
+            getHelper().getVistoriaRespostaRuntimeDAO().deleteBuilder().delete();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         Intent intent = new Intent(SincronizacaoActivity.this,LoginActivity_.class);
 

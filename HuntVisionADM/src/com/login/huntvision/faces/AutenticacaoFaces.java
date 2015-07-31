@@ -187,6 +187,8 @@ public class AutenticacaoFaces extends TSMainFaces {
 		TSFacesUtil.getRequest().getSession().invalidate();
 		return "sair";
 	}
+	
+	
 
 	public String getNomeTela() {
 		return nomeTela;

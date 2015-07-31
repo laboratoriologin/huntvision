@@ -7,82 +7,78 @@
 
 <h:head>
 	<title>This content will not be displayed</title>
+
 </h:head>
-<h:body>
+<h:body >
+
 	<composite:interface>	
 	</composite:interface>
 
 	<composite:implementation>
-		<p:layout fullPage="true">
+		
 
-			<p:layoutUnit position="north" size="10">
 
-			</p:layoutUnit>
-
-			<p:layoutUnit position="center">
-				<h:form id="formLogin" prependId="false">
+			<div id="topHunt"  class="topHunt"></div>
+				<h:form id="formLogin"  prependId="false">
 					<p:growl id="msgLogin" autoUpdate="true" globalOnly="false"
 						showDetail="true" showSummary="false" />
 					<br />
 					<br />
-					<div align="center">
+					<br />
+					<br />
+					<div align="center" >
 
-						<p:panel id="panelLogin" header="HuntVision - Painel de Controle"
-							style="width: 280px; text-align: left">
+						<p:panel id="panelLogin" styleClass="panelLogin" style="padding: 0 !important;
+						"
+							>
 
 							<p:graphicImage
-								value="../resources/images/logo_hunt_vision_260px.png" />
-							<h:panelGrid style="width: 245px;" columns="2"
-								columnClasses="coluna30, coluna70">
-								<p:outputLabel for="login" value="Login:" />
+								value="../resources/images/logo_hunt_vision_260px.png"  style="margin-left:25%;width:150px;z-index: 999;;" />
+							<h:panelGrid style="width: 100% !important; margin: 0 !important; margin-bottom: 0 !important;">
+							<p>
 								<p:inputText id="login"
-									value="#{autenticacaoFaces.usuario.login}" style="width: 100%;"
+								 	value="#{autenticacaoFaces.usuario.login}" onblur="Usuário" style="width: 98%; height:170%; background-color:#FFF;"
 									required="true" requiredMessage="Usuário: Obrigatório" />
-								<p:outputLabel for="senha" value="Senha:" />
+							</p>
+							<p>
 								<p:password id="senha"
-									value="#{autenticacaoFaces.usuario.senha}" feedback="false"
-									style="width: 100%;" required="true"
+									value="#{autenticacaoFaces.usuario.senha}" onblur="Senha" feedback="false"
+									style="width: 98% ;height:170%; " required="true"
 									requiredMessage="Senha: Obrigatório" />
+							</p>
+							
+				
 
-							</h:panelGrid>
-							<br />
 
-
-							<div align="right" style="width: 100%">
+							
 								<p:commandButton ajax="false" title="Acessar o HuntVision"
-									id="btnAcessar" value="Autenticar"
-									style="height: 35px;width: 135px" icon="cadeado"
+									id="btnAcessar" value="Entrar"
+									style="height: 35px;width: 100%" icon="cadeado"
 									action="#{autenticacaoFaces.login}" />
-							</div>
-							<br />
-							<div style="float: right">
-								<h:outputLink value="#" onclick="PF('dlgNovaSenha').show()">Esqueci a senha</h:outputLink>
-							</div>
-							<div style="float: right; width: 5px">|</div>
+					
+					</h:panelGrid>
+								
+								<div style="height:104px; background-color:rgba(0, 0, 0, 0.2); margin-top:-7%; padding-top:5%;">
+								<p><h:outputLink value="#" style="margin-left:20%;" onclick="PF('dlgNovaSenha').show()">Esqueci a senha </h:outputLink>|
+						
+							
 
-							<div style="float: right">
+						
 								<h:outputLink value="#" onclick="PF('dlgAlterarSenha').show()">Alterar senha</h:outputLink>
-							</div>
+							</p> 
+						</div>
+					
 
-							<br />
-							<br />
+						
 
 						</p:panel>
-
+	
 					</div>
 				</h:form>
-			</p:layoutUnit>
+						
 
-			<p:layoutUnit position="south" size="35">
-				<h:panelGrid columns="1" width="100%" style="height: 100%"
-					columnClasses="colunaInformativo100">
-					<h:column>
-						<h:outputText value="HuntVision" />
-					</h:column>
-				</h:panelGrid>
-			</p:layoutUnit>
-		</p:layout>
-
+			
+	
 		<p:dialog header="Nova senha" position="center" modal="true"
 			appendTo="@(body)" width="400" height="300" widgetVar="dlgNovaSenha">
 

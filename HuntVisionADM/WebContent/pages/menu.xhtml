@@ -2,8 +2,24 @@
 
 			
 	<h:form id="formMenu">
-		<div style="font-size: 11px; width: 100%; height: 100%">
-							
+	<div id="borderBoxTop"></div>
+		<div id="userBox" >
+		<DIV style="margin-left:15px ; margin-top:10px;">
+<h:outputText value="#{autenticacaoFaces.usuario.nome}"  style="position:right;" />
+
+	<br/>
+ 
+
+<br/>
+	<p:commandLink ajax="false" value="Desconectar"
+								style="font-weight: 700; text-decoration: none;  color:red; text-align: center"
+								action="#{autenticacaoFaces.logout}" /><br/>
+			
+		</DIV>
+		</div>
+			
+		<div style="font-size: 11px; width: 82%; height: 100% !important; border:inset 0.1em gray; position: relative; float: left;">
+						
 			<p:menubar autoDisplay="false">
 
 				<c:forEach id="feMenuRaiz" items="#{autenticacaoFaces.menus}" var="linha">
