@@ -37,5 +37,41 @@ class HVLDBUtilStore: NSObject {
         }
         
     }
+    
+    func getAllWithEntity(entity: String!) -> [AnyObject]? {
+        
+        let appDelegate: AppDelegate =  UIApplication.sharedApplication().delegate as! AppDelegate
+        
+        let entityDescription = NSEntityDescription.entityForName(entity, inManagedObjectContext: appDelegate.managedObjectContext!)
+        
+        let request = NSFetchRequest()
+        
+        request.entity = entityDescription
+        
+        var error: NSError?
+        
+        return appDelegate.managedObjectContext?.executeFetchRequest(request, error: &error)
+        
+    }
+    
+    func getAllWithEntity(entity: String!, predicateFormat: String!, argumentArray arguments: [AnyObject]?)  -> [AnyObject]? {
+        
+        let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        
+        let entityDescription = NSEntityDescription.entityForName(entity, inManagedObjectContext: appDelegate.managedObjectContext!)
+        
+        let request = NSFetchRequest()
+        
+        request.entity = entityDescription
+        
+//        let pred = NSPredicate(format: predicateFormat, argumentArray: arguments)
+//        
+//        request.predicate = pred
+        
+        var error: NSError?
+        
+        return appDelegate.managedObjectContext?.executeFetchRequest(request, error: &error)
+        
+    }
 
 }

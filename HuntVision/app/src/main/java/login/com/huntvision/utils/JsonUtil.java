@@ -302,6 +302,7 @@ public final class JsonUtil {
                     questionario.setData(jsonQuestionario.has("data") ? jsonQuestionario.getString("data") : "");
 
                     questionario.setProtocoloId(jsonQuestionario.getJSONObject("protocolo").getLong("id"));
+
                     questionario.setConformidade(jsonQuestionario.has("conformidade") ? jsonQuestionario.getString("conformidade") : "");
 
 

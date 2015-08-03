@@ -12,6 +12,7 @@
 		0669944C1B4D9F9F0001E785 /* NSString+MD5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0669944B1B4D9F9F0001E785 /* NSString+MD5.swift */; };
 		0669944E1B4DA3F90001E785 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0669944D1B4DA3F90001E785 /* Utils.swift */; };
 		066994501B4DAFC60001E785 /* HVLUsuarioStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0669944F1B4DAFC60001E785 /* HVLUsuarioStore.swift */; };
+		06702C571B67B0340034D9EF /* HVLEscolhaClienteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06702C561B67B0340034D9EF /* HVLEscolhaClienteController.swift */; };
 		0692ADC91B5FB5B600ADB135 /* HVLAgendaEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0692ADC81B5FB5B600ADB135 /* HVLAgendaEntity.swift */; };
 		0692ADCB1B5FB61700ADB135 /* HVLAgenda.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0692ADCA1B5FB61700ADB135 /* HVLAgenda.swift */; };
 		0692ADCD1B5FB7AA00ADB135 /* HVLAgendaWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0692ADCC1B5FB7AA00ADB135 /* HVLAgendaWrapper.swift */; };
@@ -94,6 +95,7 @@
 		0669944B1B4D9F9F0001E785 /* NSString+MD5.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSString+MD5.swift"; sourceTree = "<group>"; };
 		0669944D1B4DA3F90001E785 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		0669944F1B4DAFC60001E785 /* HVLUsuarioStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HVLUsuarioStore.swift; sourceTree = "<group>"; };
+		06702C561B67B0340034D9EF /* HVLEscolhaClienteController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HVLEscolhaClienteController.swift; sourceTree = "<group>"; };
 		0692ADC81B5FB5B600ADB135 /* HVLAgendaEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HVLAgendaEntity.swift; path = Models/HVLAgendaEntity.swift; sourceTree = "<group>"; };
 		0692ADCA1B5FB61700ADB135 /* HVLAgenda.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HVLAgenda.swift; path = Models/HVLAgenda.swift; sourceTree = "<group>"; };
 		0692ADCC1B5FB7AA00ADB135 /* HVLAgendaWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HVLAgendaWrapper.swift; path = Models/HVLAgendaWrapper.swift; sourceTree = "<group>"; };
@@ -334,6 +336,7 @@
 				06D485471B5D336F00EA7C22 /* HVLHomeController.swift */,
 				060CFF681B5D751500E12636 /* HVLAgendaViewController.swift */,
 				06A41A321B626F84007C6803 /* HVLAgendaDetalheViewController.swift */,
+				06702C561B67B0340034D9EF /* HVLEscolhaClienteController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -578,6 +581,7 @@
 				06B13D891B43071D00F5F3D0 /* HVLLocalEntity.swift in Sources */,
 				0693D1791B4AF2AA00591A16 /* HVLTipoQuestionario.swift in Sources */,
 				06E52F0D1B3D712B00FDB7EA /* HVLConstants.swift in Sources */,
+				06702C571B67B0340034D9EF /* HVLEscolhaClienteController.swift in Sources */,
 				06B13D8D1B43085C00F5F3D0 /* HVLLocalWrapper.swift in Sources */,
 				06D485481B5D336F00EA7C22 /* HVLHomeController.swift in Sources */,
 				06B73CDA1B3D821200D1C183 /* SwiftyJSON.swift in Sources */,
@@ -731,6 +735,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = HuntVision/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -760,6 +765,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = HuntVision/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

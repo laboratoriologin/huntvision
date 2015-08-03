@@ -57,12 +57,28 @@ public class HuntVisionApp extends Application implements LocationListener {
 
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+        if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
 
-        if (locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER) != null) {
-            latitude = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER).getLatitude();
-            longitude = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER).getLongitude();
-            isChanged = true;
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+
+            if (locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER) != null) {
+                latitude = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER).getLatitude();
+                longitude = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER).getLongitude();
+                isChanged = true;
+            }
+
+        }
+
+        if (locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
+
+            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
+
+            if (locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER) != null) {
+                latitude = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER).getLatitude();
+                longitude = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER).getLongitude();
+                isChanged = true;
+            }
+
         }
 
     }
@@ -95,7 +111,7 @@ public class HuntVisionApp extends Application implements LocationListener {
     }
 
     public String getUrlWS() {
-           return getSharedPreferences(Constantes.SHARED_PREFS, 0).getString(Constantes.KEY_WS, null);
+        return getSharedPreferences(Constantes.SHARED_PREFS, 0).getString(Constantes.KEY_WS, null);
 
     }
 

@@ -392,12 +392,9 @@ import login.com.huntvision.utils.JsonUtil;
 
     }
 
-
     private void sincronizarRespostas() {
 
         progressDialog.setMessage("Sincronizando dados dos respostas...");
-
-
 
         new RespostaRequest(getUrlWS(), new ResponseListener() {
 
@@ -439,11 +436,7 @@ import login.com.huntvision.utils.JsonUtil;
 
         }).getAll(new Resposta());
 
-
     }
-
-
-
 
     private void sincronizarAgendas() {
 
