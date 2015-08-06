@@ -75,8 +75,7 @@
             android:screenOrientation="sensorPortrait"></activity>
         <activity
             android:name=".QrcodeActivity"
-            android:label="@string/app_name"
-            android:screenOrientation="sensorPortrait"></activity>
+            android:label="@string/app_name"></activity>
         <activity
             android:name=".VistoriaPendenteDetalheActivity_"
             android:label="@string/app_name"

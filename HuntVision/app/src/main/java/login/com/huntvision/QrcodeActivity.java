@@ -1,21 +1,23 @@
 package login.com.huntvision;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.widget.Toast;
 
-import com.google.zxing.Result;
+
 import com.j256.ormlite.stmt.QueryBuilder;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import login.com.huntvision.models.Cliente;
 import login.com.huntvision.models.Item;
@@ -23,11 +25,13 @@ import login.com.huntvision.models.ItemLocal;
 import login.com.huntvision.models.Local;
 import me.dm7.barcodescanner.core.IViewFinder;
 import me.dm7.barcodescanner.core.ViewFinderView;
-import me.dm7.barcodescanner.zxing.ZXingScannerView;
+import me.dm7.barcodescanner.zbar.BarcodeFormat;
+import me.dm7.barcodescanner.zbar.Result;
+import me.dm7.barcodescanner.zbar.ZBarScannerView;
 
-public class QrcodeActivity extends DefaultActivity implements ZXingScannerView.ResultHandler {
+public class QrcodeActivity extends DefaultActivity implements ZBarScannerView.ResultHandler {
 
-    private ZXingScannerView mScannerView;
+    private ZBarScannerView mScannerView;
 
 
     //QRCode objects
@@ -40,7 +44,7 @@ public class QrcodeActivity extends DefaultActivity implements ZXingScannerView.
     @Override
     public void onCreate(Bundle state) {
         super.onCreate(state);
-        mScannerView = new ZXingScannerView(this) {
+        mScannerView = new ZBarScannerView(this) {
             @Override
             protected IViewFinder createViewFinderView(Context context) {
                 return new CustomViewFinderView(context);
@@ -53,6 +57,9 @@ public class QrcodeActivity extends DefaultActivity implements ZXingScannerView.
     public void onResume() {
         super.onResume();
         mScannerView.setResultHandler(this);
+        List<BarcodeFormat> formats = new ArrayList<>();
+        formats.add(BarcodeFormat.QRCODE);
+        mScannerView.setFormats(formats);
         mScannerView.startCamera();
     }
 
@@ -65,7 +72,7 @@ public class QrcodeActivity extends DefaultActivity implements ZXingScannerView.
     @Override
     public void handleResult(Result rawResult) {
 
-        String contents = rawResult.getText();
+        String contents = rawResult.getContents();
 
         if (contents != null) {
 
@@ -133,7 +140,7 @@ public class QrcodeActivity extends DefaultActivity implements ZXingScannerView.
     }
 
     private static class CustomViewFinderView extends ViewFinderView {
-        public static final String TRADE_MARK_TEXT = "ZXing";
+        public static final String TRADE_MARK_TEXT = "HuntVision";
         public static final int TRADE_MARK_TEXT_SIZE_SP = 40;
         public final Paint PAINT = new Paint();
 
@@ -172,7 +179,10 @@ public class QrcodeActivity extends DefaultActivity implements ZXingScannerView.
                 tradeMarkTop = 10;
                 tradeMarkLeft = canvas.getHeight() - PAINT.getTextSize() - 10;
             }
-            canvas.drawText(TRADE_MARK_TEXT, tradeMarkLeft, tradeMarkTop, PAINT);
+
+            BitmapDrawable drawable = (BitmapDrawable) getResources().getDrawable(R.drawable.ic_launcher);
+
+            canvas.drawBitmap(drawable.getBitmap(), tradeMarkLeft, tradeMarkTop, PAINT);
         }
     }
 }
