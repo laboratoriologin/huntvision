@@ -46,14 +46,15 @@ public class AutenticacaoFaces extends TSMainFaces {
 	private List<Permissao> permissoes;
 	private Permissao PermissaoSelecionada;
 	private Integer tabAtiva;
+	private Menu menuMeuAcompanhamento = new Menu(Constantes.MENU_MEU_ACOMPANHAMENTO);
+	private Menu menuAcompanhamentoGeral = new Menu(Constantes.MENU_ACOMPANHAMENTO_GERAL);
+
 
 	public AutenticacaoFaces() throws TSApplicationException {
 
 		clearFields();
-
-		setTabAtiva(new Integer(0));
-
-		setNomeTela("Área de Trabalho");
+	
+		
 	}
 
 	protected void clearFields() {
@@ -108,7 +109,33 @@ public class AutenticacaoFaces extends TSMainFaces {
 		TSFacesUtil.addObjectInSession(Constantes.USUARIO_CONECTADO, usuario);
 	
 		carregarMenu();
-	
+		
+		Permissao permissao = new Permissao();
+		
+		permissao.setMenu(this.menuAcompanhamentoGeral);
+		
+		if(permissoes.contains(permissao)) {
+			
+			this.PermissaoSelecionada = permissoes.get(permissoes.indexOf(permissao));
+			
+			redirecionar();
+			
+			return SUCESSO;
+			
+		}
+		
+		permissao.setMenu(menuMeuAcompanhamento);
+		
+		if(permissoes.contains(permissao)) {
+			
+			this.PermissaoSelecionada = permissoes.get(permissoes.indexOf(permissao));
+			
+			redirecionar();
+			
+			return SUCESSO;
+			
+		}
+			
 		return SUCESSO;
 	}
 

@@ -9,7 +9,7 @@
 
 struct HVLConstants {
     
-    static let baseURL             : String = "http://177.1.212.50:9004/HuntVisionWS/"
+    static let baseURL             : String = "http://177.1.212.50:9004/OtimizeWS/"
     static let usuarioURL          : String = baseURL + "usuarios"
     static let clienteURL          : String = baseURL + "clientes"
     static let localURL            : String = baseURL + "locais"
@@ -17,6 +17,7 @@ struct HVLConstants {
     static let itemURL             : String = baseURL + "itens"
     static let questionarioURL     : String = baseURL + "questionarios"
     static let tipoQuestionarioURL : String = baseURL + "tipo_questionarios"
-    static let respostaURL : String = baseURL + "respostas"
+    static let respostaURL         : String = baseURL + "respostas"
+    static let agendaURL         : String = baseURL + "agendas"
     
 }

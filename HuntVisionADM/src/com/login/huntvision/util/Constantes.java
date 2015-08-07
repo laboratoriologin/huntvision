@@ -45,6 +45,9 @@ public class Constantes {
 	public static final int TIPO_AGENDA_SEMANAL = 2;
 	public static final int TIPO_AGENDA_MENSAL = 3;
 	
+	public static final Long MENU_MEU_ACOMPANHAMENTO = 111L;
+	public static final Long MENU_ACOMPANHAMENTO_GERAL = 110L;
+	
 	
 	public static String getDataAtual() {  
 		String data = new String();

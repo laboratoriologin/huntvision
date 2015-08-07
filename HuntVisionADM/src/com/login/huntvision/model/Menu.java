@@ -14,6 +14,7 @@ import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
 
+
 import br.com.topsys.database.hibernate.TSActiveRecordAb;
 import br.com.topsys.util.TSUtil;
 
@@ -45,6 +46,15 @@ public final class Menu  extends TSActiveRecordAb<Menu> {
 
 	public Menu() {
 	}
+	
+	
+
+	public Menu(Long id) {
+		super();
+		this.id = id;
+	}
+
+
 
 	public Menu(Boolean flagAtivo) {
 		this.flagAtivo = flagAtivo;

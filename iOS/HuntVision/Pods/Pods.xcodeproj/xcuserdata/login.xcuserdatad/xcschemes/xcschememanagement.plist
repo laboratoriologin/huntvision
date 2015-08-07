@@ -9,12 +9,22 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-HuntVision-HexColors.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-HuntVision-MBProgressHUD.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
 		<key>Pods-HuntVision-Mantle.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-HuntVision-TSMessages.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -27,22 +37,32 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>3CD77EA3C8BFCBBD550C4F49</key>
+		<key>1118DC05EF85B514697A76FF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6EA2EC3DB7F414183845EC85</key>
+		<key>3123C22DA5CEE6039EECBFD0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D59C66C64351E6C324DF8B50</key>
+		<key>44B73EA409859794BE2EDC36</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E807BE882432AA290FA4C8B6</key>
+		<key>50CF3BCCABBF259EF9DF7849</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5EA3E41FED148C339EF75552</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9F7563D4C58EE77C490A3640</key>
 		<dict>
 			<key>primary</key>
 			<true/>

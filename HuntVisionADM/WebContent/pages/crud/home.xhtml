@@ -12,14 +12,14 @@
 				<p:tab title="Relatório Analítico" id="tabHome"  style="width:100%">
 
 					<p:fieldset legend="Filtro" toggleable="true">
-						<h:panelGrid columns="2">
+						<h:panelGrid columns="2"  >
 							<h:outputLabel value="Cliente" />
 							<h:outputLabel value="Usuário" />
-							<p:selectOneMenu value="#{mbean.vistoria.cliente.id}">
+							<p:selectOneMenu value="#{mbean.vistoria.cliente.id}" style="width:170px;">
 								<f:selectItem itemLabel="Selecione" itemValue="" />
 								<f:selectItems value="#{mbean.comboClientes}" />
 							</p:selectOneMenu>
-							<p:selectOneMenu value="#{mbean.vistoria.usuario.id}">
+							<p:selectOneMenu value="#{mbean.vistoria.usuario.id}"  style="width:170px;">
 								<f:selectItem itemLabel="Selecione" itemValue="" />
 								<f:selectItems value="#{mbean.comboUsuarios}" />
 							</p:selectOneMenu>

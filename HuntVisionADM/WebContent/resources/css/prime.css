@@ -56,7 +56,7 @@
 
 .ui-menuitem-link ui-submenu-link{}
 
-/*  Botão de seleção da tab  */
+/*  BotÃ£o de seleÃ§Ã£o da tab  */
 .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active
 	{
 	border: 1px solid #E77D20;
@@ -155,7 +155,7 @@
 	vertical-align: middle !important;
 font-weight:normal;
 	font-size: 14px;
-	height:40px;
+	height:15px;
 	padding: 0px;
 
 }
@@ -199,6 +199,7 @@ margin-top: 11%;
 .menu
 {
 	color: #2780BB;
+	font-family:segoe ui,â€‹Arial,â€‹sans-serif;
 	font-weight: bolder;
 	margin: 15px;
 }
@@ -215,7 +216,7 @@ margin-top: 11%;
 {
 	position:relative;
 	float:left;
-	border:inset 0.1em gray;
+	border-bottom:inset 0.1em gray;
 	width: 11%;
 	height: 77px;
 	

@@ -98,7 +98,7 @@
 						</div>
 					</p:column>
 
-					<p:column headerText="Não Conformidade" styleClass="coluna70">
+					<p:column headerText="Protocolo" styleClass="coluna70">
 						<div align="center">
 							<p:selectBooleanCheckbox styleClass="coluna90"
 								value="#{resposta.flagNaoConformidade}" />
@@ -146,16 +146,16 @@
 			<p:selectBooleanCheckbox value="#{mbeanModel.status}"
 				itemLabel="Ativo?" />
 
-			<p:selectBooleanCheckbox id="chkConformidade"
-				value="#{mbeanModel.conformidade}"
-				itemLabel="Gera não conformidade?">
-				<p:ajax event="change" update="btnAddConformidade" />
+<!-- 			<p:selectBooleanCheckbox id="chkConformidade" -->
+<!-- 				value="#{mbeanModel.conformidade}" -->
+<!-- 				itemLabel="Gera não conformidade?"> -->
+<!-- 				<p:ajax event="change" update="btnAddConformidade" /> -->
 
-			</p:selectBooleanCheckbox>
+<!-- 			</p:selectBooleanCheckbox> -->
 
 		</h:panelGrid>
 
-		<p:panel header="Questionário associado em caso de não conformidade"
+		<!-- <p:panel header="Questionário associado em caso de não conformidade"
 			style="width:100%">
 
 			<p:outputPanel autoUpdate="true">
@@ -185,7 +185,7 @@
 
 			</p:outputPanel>
 
-		</p:panel>
+		</p:panel> -->
 
 	</ui:define>
 	<ui:define name="pesquisaCampos">
