@@ -1,22 +1,19 @@
 package login.com.huntvision;
 
+import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
+import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.widget.Toast;
 
-import com.google.zxing.integration.android.IntentIntegrator;
-import com.google.zxing.integration.android.IntentResult;
-import com.j256.ormlite.stmt.QueryBuilder;
 
-import org.androidannotations.annotations.AfterViews;
-import org.androidannotations.annotations.Click;
-import org.androidannotations.annotations.EActivity;
-import org.androidannotations.annotations.ViewById;
+import com.j256.ormlite.stmt.QueryBuilder;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -26,114 +23,166 @@ import login.com.huntvision.models.Cliente;
 import login.com.huntvision.models.Item;
 import login.com.huntvision.models.ItemLocal;
 import login.com.huntvision.models.Local;
-import login.com.huntvision.models.Questionario;
+import me.dm7.barcodescanner.core.IViewFinder;
+import me.dm7.barcodescanner.core.ViewFinderView;
+import me.dm7.barcodescanner.zbar.BarcodeFormat;
+import me.dm7.barcodescanner.zbar.Result;
+import me.dm7.barcodescanner.zbar.ZBarScannerView;
 
-@EActivity(R.layout.activity_qrcode)
-public class QrcodeActivity extends DefaultActivity {
+public class QrcodeActivity extends DefaultActivity implements ZBarScannerView.ResultHandler {
 
-    private List<Item> lstItem = new ArrayList<>();
-    private List<ItemLocal> lstItemLocal = new ArrayList<>();
-    private List<Local> lstLocal = new ArrayList<>();
-    private List<Cliente> lstCliente = new ArrayList<>();
+    private ZBarScannerView mScannerView;
+
+
+    //QRCode objects
 
     private Item item;
     private Local local;
     private Cliente cliente;
     private ItemLocal itemLocal;
 
-    @AfterViews
-    public void createQrcode() {
-
-
-
-        IntentIntegrator integrator = new IntentIntegrator(this);
-
-        integrator.initiateScan();
-
-    }
-
-    @ViewById(R.id.btnVoltar)
-    Button btnVoltar;
-
-    @Click
-    public void btnVoltar(View view) {
-
-        this.finish();
+    @Override
+    public void onCreate(Bundle state) {
+        super.onCreate(state);
+        mScannerView = new ZBarScannerView(this) {
+            @Override
+            protected IViewFinder createViewFinderView(Context context) {
+                return new CustomViewFinderView(context);
+            }
+        };
+        setContentView(mScannerView);
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+    public void onResume() {
+        super.onResume();
+        mScannerView.setResultHandler(this);
+        List<BarcodeFormat> formats = new ArrayList<>();
+        formats.add(BarcodeFormat.QRCODE);
+        mScannerView.setFormats(formats);
+        mScannerView.startCamera();
+    }
 
-        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
+    @Override
+    public void onPause() {
+        super.onPause();
+        mScannerView.stopCamera();
+    }
 
-        if (result != null) {
+    @Override
+    public void handleResult(Result rawResult) {
 
-            String contents = result.getContents();
+        String contents = rawResult.getContents();
 
-            if (contents != null) {
+        if (contents != null) {
 
-                QueryBuilder<Item, String> builder = getHelper().getItemRuntimeDAO().queryBuilder();
+            QueryBuilder<Item, String> builder = getHelper().getItemRuntimeDAO().queryBuilder();
 
-                try {
+            try {
 
-                    builder.where().eq("chave", contents.toString());
+                builder.where().eq("chave", contents.toString());
 
-                    item = getHelper().getItemRuntimeDAO().queryForFirst(builder.prepare());
+                item = getHelper().getItemRuntimeDAO().queryForFirst(builder.prepare());
 
-                    if (item != null) {
+                if (item != null) {
 
-                        QueryBuilder<ItemLocal, String> builderItemLocal = getHelper().getItemLocalRuntimeDAO().queryBuilder();
+                    QueryBuilder<ItemLocal, String> builderItemLocal = getHelper().getItemLocalRuntimeDAO().queryBuilder();
 
-                        builderItemLocal.where().eq("item_id", item.getId().toString());
+                    builderItemLocal.where().eq("item_id", item.getId().toString());
 
-                        itemLocal = getHelper().getItemLocalRuntimeDAO().queryForFirst(builderItemLocal.prepare());
+                    itemLocal = getHelper().getItemLocalRuntimeDAO().queryForFirst(builderItemLocal.prepare());
 
-                        QueryBuilder<Local, String> builderLocal = getHelper().getLocalRuntimeDAO().queryBuilder();
+                    QueryBuilder<Local, String> builderLocal = getHelper().getLocalRuntimeDAO().queryBuilder();
 
-                        builderLocal.where().eq("id", itemLocal.getLocal_id().toString());
+                    builderLocal.where().eq("id", itemLocal.getLocal_id().toString());
 
-                        local = getHelper().getLocalRuntimeDAO().queryForFirst(builderLocal.prepare());
+                    local = getHelper().getLocalRuntimeDAO().queryForFirst(builderLocal.prepare());
 
-                        QueryBuilder<Cliente, String> builderCliente = getHelper().getClienteRuntimeDAO().queryBuilder();
+                    QueryBuilder<Cliente, String> builderCliente = getHelper().getClienteRuntimeDAO().queryBuilder();
 
-                        builderCliente.where().eq("id", local.getClienteId().toString());
+                    builderCliente.where().eq("id", local.getClienteId().toString());
 
-                        cliente = getHelper().getClienteRuntimeDAO().queryForFirst(builderCliente.prepare());
+                    cliente = getHelper().getClienteRuntimeDAO().queryForFirst(builderCliente.prepare());
 
-                        Intent mainIntent = new Intent(this, QuestionarioActivity_.class);
+                    Intent mainIntent = new Intent(this, QuestionarioActivity_.class);
 
-                        mainIntent.putExtra("item", item);
+                    mainIntent.putExtra("item", item);
 
-                        mainIntent.putExtra("cliente", cliente);
+                    mainIntent.putExtra("cliente", cliente);
 
-                        mainIntent.putExtra("local", local);
+                    mainIntent.putExtra("local", local);
 
-                        this.startActivity(mainIntent);
+                    this.startActivity(mainIntent);
 
-                        finish();
+                    finish();
 
 
+                } else {
 
-                    } else {
-
-                        Toast.makeText(this, "Não existe vistoria para esse QRCode, obrigado.", Toast.LENGTH_SHORT).show();
-
-                        finish();
-
-                    }
-
-                } catch (SQLException e) {
-
-                    Toast.makeText(this, "Ocorreu um erro ao ler código, tente novamente.", Toast.LENGTH_SHORT).show();
-
-                    e.printStackTrace();
+                    Toast.makeText(this, "Não existe vistoria para esse QRCode, obrigado.", Toast.LENGTH_SHORT).show();
 
                     finish();
 
                 }
 
+            } catch (SQLException e) {
+
+                Toast.makeText(this, "Ocorreu um erro ao ler código, tente novamente.", Toast.LENGTH_SHORT).show();
+
+                e.printStackTrace();
+
+                finish();
 
             }
+
+
+        }
+    }
+
+    private static class CustomViewFinderView extends ViewFinderView {
+        public static final String TRADE_MARK_TEXT = "HuntVision";
+        public static final int TRADE_MARK_TEXT_SIZE_SP = 40;
+        public final Paint PAINT = new Paint();
+
+        public CustomViewFinderView(Context context) {
+            super(context);
+            init();
+        }
+
+        public CustomViewFinderView(Context context, AttributeSet attrs) {
+            super(context, attrs);
+            init();
+        }
+
+        private void init() {
+            PAINT.setColor(Color.WHITE);
+            PAINT.setAntiAlias(true);
+            float textPixelSize = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP,
+                    TRADE_MARK_TEXT_SIZE_SP, getResources().getDisplayMetrics());
+            PAINT.setTextSize(textPixelSize);
+        }
+
+        @Override
+        public void onDraw(Canvas canvas) {
+            super.onDraw(canvas);
+            drawTradeMark(canvas);
+        }
+
+        private void drawTradeMark(Canvas canvas) {
+            Rect framingRect = getFramingRect();
+            float tradeMarkTop;
+            float tradeMarkLeft;
+            if (framingRect != null) {
+                tradeMarkTop = framingRect.bottom + PAINT.getTextSize() + 10;
+                tradeMarkLeft = framingRect.left;
+            } else {
+                tradeMarkTop = 10;
+                tradeMarkLeft = canvas.getHeight() - PAINT.getTextSize() - 10;
+            }
+
+            BitmapDrawable drawable = (BitmapDrawable) getResources().getDrawable(R.drawable.ic_launcher);
+
+            canvas.drawBitmap(drawable.getBitmap(), tradeMarkLeft, tradeMarkTop, PAINT);
         }
     }
 }

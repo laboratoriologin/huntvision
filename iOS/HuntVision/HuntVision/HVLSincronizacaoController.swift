@@ -63,8 +63,6 @@ class HVLSincronizacaoController: UIViewController {
                 
                 let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
                 
-                let userManagedObject = HVLUsuario()
-                
                 HVLDBUtilStore().clean("UsuarioEntity")
                 
                 for item in users {
@@ -73,11 +71,9 @@ class HVLSincronizacaoController: UIViewController {
                     
                     MTLManagedObjectAdapter.managedObjectFromModel(user.usuario, insertingIntoContext: managedObjectContext, error: &self.error)
                     
-                    managedObjectContext?.save(&self.error)
-                    
                 }
                 
-                self.sincronizarCliente()
+                self.sincronizarCliente(managedObjectContext!)
                 
             } else {
                 
@@ -91,7 +87,7 @@ class HVLSincronizacaoController: UIViewController {
         
     }
     
-    func sincronizarCliente() {
+    func sincronizarCliente(managedObjectContext: NSManagedObjectContext) {
         
         progressHUD?.labelText = "Sincronizando clientes..."
         
@@ -103,10 +99,6 @@ class HVLSincronizacaoController: UIViewController {
             
             var cliente: HVLClienteWrapper!
             
-            let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
-            
-            let userManagedObject = HVLCliente()
-            
             HVLDBUtilStore().clean("ClienteEntity")
             
             for item in clientes {
@@ -115,17 +107,15 @@ class HVLSincronizacaoController: UIViewController {
                 
                 MTLManagedObjectAdapter.managedObjectFromModel(cliente.cliente, insertingIntoContext: managedObjectContext, error: &self.error)
                 
-                managedObjectContext?.save(&self.error)
-                
             }
             
-            self.sincronizarLocal()
+            self.sincronizarLocal(managedObjectContext)
             
         }
         
     }
     
-    func sincronizarLocal() {
+    func sincronizarLocal(managedObjectContext: NSManagedObjectContext) {
         
         progressHUD?.labelText = "Sincronizando locais..."
         
@@ -135,31 +125,25 @@ class HVLSincronizacaoController: UIViewController {
             
             let locais = MTLJSONAdapter.modelsOfClass(HVLLocalWrapper.self, fromJSONArray: json.arrayObject, error: &self.error)
             
-            var local: HVLLocalWrapper!
-            
-            let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
-            
-            let userManagedObject = HVLLocal()
+            var localWrapper: HVLLocalWrapper!
             
             HVLDBUtilStore().clean("LocalEntity")
             
             for item in locais {
                 
-                local = item as! HVLLocalWrapper
+                localWrapper = item as! HVLLocalWrapper
                 
-                MTLManagedObjectAdapter.managedObjectFromModel(local.local, insertingIntoContext: managedObjectContext, error: &self.error)
-                
-                managedObjectContext?.save(&self.error)
+                MTLManagedObjectAdapter.managedObjectFromModel(localWrapper.local, insertingIntoContext: managedObjectContext, error: &self.error)
                 
             }
             
         }
         
-        self.sincronizarItem()
+        self.sincronizarItem(managedObjectContext)
         
     }
     
-    func sincronizarItem() {
+    func sincronizarItem(managedObjectContext: NSManagedObjectContext) {
         
         progressHUD?.labelText = "Sincronizando itens..."
         
@@ -171,10 +155,6 @@ class HVLSincronizacaoController: UIViewController {
             
             var itemWrapper: HVLItemWrapper!
             
-            let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
-            
-            let itemManagedObject = HVLItem()
-            
             HVLDBUtilStore().clean("ItemEntity")
             
             for item in items {
@@ -183,17 +163,15 @@ class HVLSincronizacaoController: UIViewController {
                 
                 MTLManagedObjectAdapter.managedObjectFromModel(itemWrapper.item, insertingIntoContext: managedObjectContext, error: &self.error)
                 
-                managedObjectContext?.save(&self.error)
-                
             }
             
-            self.sincronizarItemLocal()
+            self.sincronizarItemLocal(managedObjectContext)
             
         }
         
     }
     
-    func sincronizarItemLocal() {
+    func sincronizarItemLocal(managedObjectContext: NSManagedObjectContext) {
         
         Alamofire.request(.GET, HVLConstants.itemLocalURL).responseJSON {(_, _, result, _) in
             
@@ -203,10 +181,6 @@ class HVLSincronizacaoController: UIViewController {
             
             var itemLocalWrapper: HVLItemLocalWrapper!
             
-            let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
-            
-            let itemManagedObject = HVLItemLocal()
-            
             HVLDBUtilStore().clean("ItemLocalEntity")
             
             for item in itensLocais {
@@ -215,17 +189,15 @@ class HVLSincronizacaoController: UIViewController {
                 
                 MTLManagedObjectAdapter.managedObjectFromModel(itemLocalWrapper.itemLocal, insertingIntoContext: managedObjectContext, error: &self.error)
                 
-                managedObjectContext?.save(&self.error)
-                
             }
             
         }
         
-        self.sincronizarQuestionario()
+        self.sincronizarQuestionario(managedObjectContext)
         
     }
     
-    func sincronizarQuestionario() {
+    func sincronizarQuestionario(managedObjectContext: NSManagedObjectContext) {
         
         progressHUD?.labelText = "Sincronizando questionários..."
         
@@ -237,10 +209,6 @@ class HVLSincronizacaoController: UIViewController {
             
             var questionarioWrapper: HVLQuestionarioWrapper!
             
-            let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
-            
-            let itemManagedObject = HVLQuestionario()
-            
             HVLDBUtilStore().clean("QuestionarioEntity")
             
             for item in questionarios {
@@ -249,17 +217,15 @@ class HVLSincronizacaoController: UIViewController {
                 
                 MTLManagedObjectAdapter.managedObjectFromModel(questionarioWrapper.questionario, insertingIntoContext: managedObjectContext, error: &self.error)
                 
-                managedObjectContext?.save(&self.error)
-                
             }
             
         }
         
-        self.sincronizarTipoQuestionario()
+        self.sincronizarTipoQuestionario(managedObjectContext)
         
     }
     
-    func sincronizarTipoQuestionario() {
+    func sincronizarTipoQuestionario(managedObjectContext: NSManagedObjectContext) {
         
         Alamofire.request(.GET, HVLConstants.tipoQuestionarioURL).responseJSON {(_, _, result, _) in
             
@@ -269,10 +235,6 @@ class HVLSincronizacaoController: UIViewController {
             
             var tipoQuestionarioWrapper: HVLTipoQuestionarioWrapper!
             
-            let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
-            
-            let itemManagedObject = HVLTipoQuestionario()
-            
             HVLDBUtilStore().clean("TipoQuestionarioEntity")
             
             for item in tiposQestionarios {
@@ -281,18 +243,16 @@ class HVLSincronizacaoController: UIViewController {
                 
                 MTLManagedObjectAdapter.managedObjectFromModel(tipoQuestionarioWrapper.tipoQuestionario, insertingIntoContext: managedObjectContext, error: &self.error)
                 
-                managedObjectContext?.save(&self.error)
-                
             }
             
-            self.sincronizarRespostas()
+            self.sincronizarRespostas(managedObjectContext)
             
         }
         
         
     }
     
-    func sincronizarRespostas() {
+    func sincronizarRespostas(managedObjectContext: NSManagedObjectContext) {
         
         progressHUD?.labelText = "finalizando respostas..."
         
@@ -304,10 +264,6 @@ class HVLSincronizacaoController: UIViewController {
             
             var respostaWrapper: HVLRespostaWrapper!
             
-            let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
-            
-            let itemManagedObject = HVLResposta()
-            
             HVLDBUtilStore().clean("RespostaEntity")
             
             for item in respostas {
@@ -316,17 +272,15 @@ class HVLSincronizacaoController: UIViewController {
                 
                 MTLManagedObjectAdapter.managedObjectFromModel(respostaWrapper.resposta, insertingIntoContext: managedObjectContext, error: &self.error)
                 
-                managedObjectContext?.save(&self.error)
-                
             }
             
-            self.sincronizarAgenda()
+            self.sincronizarAgenda(managedObjectContext)
             
         }
         
     }
     
-    func sincronizarAgenda() {
+    func sincronizarAgenda(managedObjectContext: NSManagedObjectContext) {
         
         progressHUD?.labelText = "finalizando sincronização..."
         
@@ -338,10 +292,6 @@ class HVLSincronizacaoController: UIViewController {
             
             var agendaWrapper: HVLAgendaWrapper!
             
-            let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
-            
-            let itemManagedObject = HVLAgenda()
-            
             HVLDBUtilStore().clean("AgendaEntity")
             
             for item in agendas {
@@ -350,17 +300,17 @@ class HVLSincronizacaoController: UIViewController {
                 
                 MTLManagedObjectAdapter.managedObjectFromModel(agendaWrapper.agenda, insertingIntoContext: managedObjectContext, error: &self.error)
                 
-                managedObjectContext?.save(&self.error)
-                
             }
             
-            self.finalizarSincronizacao()
+            self.finalizarSincronizacao(managedObjectContext)
             
         }
         
     }
 
-    func finalizarSincronizacao() {
+    func finalizarSincronizacao(managedObjectContext: NSManagedObjectContext) {
+
+        managedObjectContext.save(&self.error)
         
         progressHUD?.hide(true)
         

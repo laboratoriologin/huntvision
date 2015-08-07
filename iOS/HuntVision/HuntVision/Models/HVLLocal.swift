@@ -10,7 +10,7 @@ import Foundation
 import Mantle
 class HVLLocal: MTLModel, MTLJSONSerializing, MTLManagedObjectSerializing {
     
-    var id        : NSNumber?
+    var id        : NSNumber!
     var nome      : NSString?
     var cliente   : NSNumber!
     
@@ -34,13 +34,7 @@ class HVLLocal: MTLModel, MTLJSONSerializing, MTLManagedObjectSerializing {
         
         super.init(dictionary: dictionaryValue, error: error)
         
-        let clienteDictionary = dictionaryValue["cliente"] as? [NSObject : AnyObject]
-        
-        if(clienteDictionary != nil) {
-            
-            self.cliente = (MTLJSONAdapter.modelOfClass(HVLCliente.self, fromJSONDictionary: clienteDictionary, error: error) as! HVLCliente).id;
-            
-        }
+        self.cliente = dictionaryValue["cliente"]?["id"] as? NSNumber
         
     }
 

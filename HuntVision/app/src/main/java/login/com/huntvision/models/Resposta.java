@@ -18,7 +18,11 @@ public class Resposta extends Base {
     private String descricao;
 
 
+<<<<<<< HEAD
     //Controle logico do app na tela de questionario, quando finaliza a vistoria somente a resposta certa e persistida como VistoriaResposta
+=======
+    //Controle logico do app na tela de questionario, quando finaliza a vistoria somente a resposta certa persistida como VistoriaResposta
+>>>>>>> 753edef40ead32635458984c73971275a98667e1
     @DatabaseField
     private Boolean flagRespostaCerta;
 

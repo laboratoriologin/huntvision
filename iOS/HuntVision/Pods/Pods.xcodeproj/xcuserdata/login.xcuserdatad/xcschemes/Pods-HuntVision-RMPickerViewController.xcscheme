@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "226322764DB965D6E181A3A7"
-               BuildableName = "Mantle.framework"
-               BlueprintName = "Pods-HuntVision-Mantle"
+               BlueprintIdentifier = "FF89EAB2FDC527731D0FFC2D"
+               BuildableName = "RMPickerViewController.framework"
+               BlueprintName = "Pods-HuntVision-RMPickerViewController"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

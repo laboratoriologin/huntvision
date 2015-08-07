@@ -1,6 +1,5 @@
 package br.com.login.huntvision.ws.service;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -12,11 +11,9 @@ import javax.ws.rs.Produces;
 import org.apache.catalina.connector.Response;
 import org.jboss.resteasy.annotations.Form;
 
-import br.com.login.huntvision.ws.model.Agenda;
-import br.com.login.huntvision.ws.model.ItemLocal;
 import br.com.login.huntvision.ws.dao.AgendaDAO;
-import br.com.login.huntvision.ws.dao.ItensLocaisDAO;
 import br.com.login.huntvision.ws.exception.ApplicationException;
+import br.com.login.huntvision.ws.model.Agenda;
 import br.com.topsys.exception.TSApplicationException;
 import br.com.topsys.exception.TSSystemException;
 @Path("/agendas")

@@ -15,7 +15,7 @@ import org.androidannotations.annotations.ViewById;
 
 
 @EActivity(R.layout.activity_main)
-public class MainActivity extends DefaultActivity {
+public class MainActivity extends DefaultActivity  {
 
     @ViewById(R.id.txtLerCodigo)
     TextView txtLerCodigo;
@@ -30,6 +30,7 @@ public class MainActivity extends DefaultActivity {
 
     @ViewById(R.id.txtSobre)
     TextView txtSobre;
+
 
     private void buildAlertMessageNoGps() {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -51,13 +52,10 @@ public class MainActivity extends DefaultActivity {
 
       /*  final LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
-        if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+        if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER) && !manager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
             buildAlertMessageNoGps();
             return;
         }*/
-
-
-
 
         Typeface helveticaBold;
         Typeface helveticaRegular;
@@ -70,6 +68,7 @@ public class MainActivity extends DefaultActivity {
         txtVisita.setTypeface(helveticaRegular);
         txtLerCodigo.setTypeface(helveticaRegular);
         txtSobre.setTypeface(helveticaRegular);
+
 
 
     }
@@ -104,10 +103,10 @@ public class MainActivity extends DefaultActivity {
         this.startActivity(mainIntent);
 
     }
+
     public void goQRcode(View view) {
 
-        Intent mainIntent = new Intent(MainActivity.this, QrcodeActivity_.class);
-        this.startActivity(mainIntent);
+        startActivity(new Intent(this, QrcodeActivity.class));
 
     }
 

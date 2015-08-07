@@ -36,6 +36,12 @@
 #define COCOAPODS_VERSION_MINOR_Mantle_extobjc 5
 #define COCOAPODS_VERSION_PATCH_Mantle_extobjc 4
 
+// RMPickerViewController
+#define COCOAPODS_POD_AVAILABLE_RMPickerViewController
+#define COCOAPODS_VERSION_MAJOR_RMPickerViewController 1
+#define COCOAPODS_VERSION_MINOR_RMPickerViewController 3
+#define COCOAPODS_VERSION_PATCH_RMPickerViewController 2
+
 // TSMessages
 #define COCOAPODS_POD_AVAILABLE_TSMessages
 #define COCOAPODS_VERSION_MAJOR_TSMessages 0
