@@ -8,15 +8,13 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.j256.ormlite.stmt.QueryBuilder;
-import com.j256.ormlite.stmt.Where;
 
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+
 import login.com.huntvision.models.Usuario;
 import login.com.huntvision.utils.Utilitarios;
 
@@ -97,7 +95,7 @@ public class LoginActivity extends DefaultActivity {
     public void btnEsqueciSenha(View view)
     {
 
-         Intent mainIntent = new Intent(LoginActivity.this, ConfigActivity_.class);
+         Intent mainIntent = new Intent(LoginActivity.this, EsqueciSenhaActivity_.class);
         this.startActivity(mainIntent);
     }
 

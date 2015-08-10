@@ -1,0 +1,53 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/huntVisionCinza"
+    android:orientation="vertical"
+    tools:context="login.com.huntvision.EsqueciSenhaActivity">
+
+
+    <LinearLayout
+        android:id="@+id/rlBk"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_margin="10dp"
+        android:background="@android:color/white"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/txtEmailCadastrado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:text="E-mail cadastrado:"
+            android:textColor="@color/huntVisionAzul"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/edtEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="1dp"
+            android:textSize="20sp"
+            android:hint="Seu e-mail"
+            android:textColor="@android:color/black" />
+
+
+        <Button
+            android:id="@+id/mudarSenha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rlCampoEmail"
+            android:layout_marginTop="20dp"
+            android:background="@color/huntVisionLaranja"
+            android:text="Solicitar mudança de senha"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+
+
+</LinearLayout>

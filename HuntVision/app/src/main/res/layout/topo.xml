@@ -1,0 +1,7 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/topo"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/tob_bar_height_small"
+    android:background="@color/huntVisionAzul"
+    android:orientation="horizontal" />
+

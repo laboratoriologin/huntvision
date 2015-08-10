@@ -5,46 +5,53 @@
     android:background="@drawable/orange_border">
 
     <RelativeLayout
-        android:id="@+id/wrapper_botoes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:background="@color/huntVisionLaranja">
+        android:background="?attr/selectableItemBackground">
+
+        <RelativeLayout
+            android:id="@+id/wrapper_botoes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:background="@color/huntVisionLaranja">
+
+            <TextView
+                android:id="@+id/status_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:padding="5dp"
+                android:textColor="@android:color/white"
+                android:textSize="14sp" />
+
+
+        </RelativeLayout>
 
         <TextView
-            android:id="@+id/status_textview"
+            android:id="@+id/adapter_vistoria_resumo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/wrapper_botoes"
+            android:gravity="top"
+            android:padding="5dp"
+            android:text="Lorem ipsum bla bla bla"
+            android:textSize="18sp" />
+
+
+        <TextView
+            android:id="@+id/adapter_vistoria_data"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/adapter_vistoria_resumo"
+            android:gravity="top"
             android:padding="5dp"
-            android:textColor="@android:color/white"
-            android:textSize="14sp" />
-
+            android:text="Feita em 13/04/2015"
+            android:textSize="14sp"
+            android:textStyle="italic" />
 
     </RelativeLayout>
-
-    <TextView
-        android:id="@+id/adapter_vistoria_resumo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/wrapper_botoes"
-        android:gravity="top"
-        android:padding="5dp"
-        android:text="Lorem ipsum bla bla bla"
-        android:textSize="18sp" />
-
-
-    <TextView
-        android:id="@+id/adapter_vistoria_data"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/adapter_vistoria_resumo"
-        android:gravity="top"
-        android:padding="5dp"
-        android:text="Feita em 13/04/2015"
-        android:textSize="14sp"
-        android:textStyle="italic" />
 
 </RelativeLayout>

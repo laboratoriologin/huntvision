@@ -6,57 +6,10 @@
     android:orientation="vertical">
 
     <RelativeLayout
-        android:id="@+id/topo"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/top_bar_height"
-        android:background="@color/huntVisionAzul"
-        >
-
-        <Button
-            android:id="@+id/btnVoltar"
-            android:layout_width="@dimen/top_bar_font_height"
-            android:layout_height="@dimen/top_bar_font_height"
-            android:layout_centerVertical="true"
-            android:background="@drawable/botao_seta_voltar"
-            android:layout_marginLeft="10dp"
-            android:onClick="onBackPressed" />
-
-        <ImageView
-            android:id="@+id/imgCliente"
-            android:layout_width="@dimen/top_bar_font_height"
-            android:layout_height="@dimen/top_bar_font_height"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/btnVoltar"
-            android:background="@drawable/icone_concluir_visita" android:onClick="onBackPressed"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/imgCliente"
-            android:padding="5dp"
-            android:text="Concluir visita"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/top_bar_font_height" />
-
-        <Button
-            android:id="@+id/enviarVistoriasPendentes"
-            android:layout_width="@dimen/top_bar_font_height"
-            android:layout_height="@dimen/top_bar_font_height"
-            android:layout_centerVertical="true"
-            android:background="@drawable/icone_concluir_visita"
-            android:layout_marginRight="10dp"
-            android:layout_alignParentRight="true" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
         android:id="@+id/rlBk"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="false"
-        android:layout_alignParentRight="false"
         android:layout_centerInParent="true"
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="10dp"
@@ -78,8 +31,8 @@
                 android:layout_height="wrap_content"
                 android:layout_toLeftOf="@+id/txtUsuario"
                 android:gravity="right"
-                android:text="Usuario:"
-                android:textColor="#FFF"
+                android:text="Usuario: "
+                android:textColor="@android:color/white"
                 android:textStyle="bold" />
 
             <TextView
@@ -89,7 +42,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="10dp"
                 android:text="Ricardo"
-                android:textColor="#FFF"
+                android:textColor="@android:color/white"
                 android:textStyle="bold" />
         </RelativeLayout>
 
@@ -101,21 +54,31 @@
             android:layout_margin="10dp"
             android:background="@android:color/white">
 
-            <EditText
-                android:id="@+id/edtTextPesquisa"
+
+            <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/card_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:background="@drawable/orange_border"
-                android:hint="Pesquisar..."
-                android:padding="10dp"
-                android:textSize="16sp" />
+                android:layout_gravity="center"
+                card_view:cardCornerRadius="4dp">
+
+                <EditText
+                    android:id="@+id/edtTextPesquisa"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:background="@drawable/orange_border"
+                    android:hint="Pesquisar..."
+                    android:padding="10dp"
+                    android:textSize="16sp" />
+
+            </android.support.v7.widget.CardView>
 
             <ListView
                 android:id="@+id/vistoria_pendente_listview"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_below="@+id/edtTextPesquisa"
+                android:layout_below="@+id/card_view"
                 android:layout_marginTop="10dp"
                 android:divider="@android:color/transparent"
                 android:dividerHeight="5dp"

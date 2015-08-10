@@ -3,7 +3,10 @@ package login.com.huntvision;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -39,13 +42,10 @@ import login.com.huntvision.view.adapters.LocalAdapter;
 public class ClienteActivity extends DefaultActivity {
 
 
-    private Cliente objCliente;
     private ClienteAdapter clienteAdapter;
     private List<Cliente> lstCliente = new ArrayList<Cliente>();
-    private Local objLocal;
     private LocalAdapter localAdapter;
     private List<Local> lstLocal = new ArrayList<Local>();
-    private Item objItem;
 
 
     @ViewById(R.id.spnSecao)
@@ -75,22 +75,16 @@ public class ClienteActivity extends DefaultActivity {
     @ViewById(R.id.lblSecao)
     TextView txtSecao;
 
-    @ViewById(R.id.btnQuestionario)
-    Button btnQuestionario;
-
     @ViewById(R.id.btnVoltar)
     Button btnVoltar;
-
-    @Click
-    public void btnVoltar(View view) {
-
-        this.finish();
-    }
 
     @AfterViews
     void loadCliente() {
 
+        setTitle("Cliente");
+
         txtUsuario.setText(getUsuario().getNome());
+
         lstCliente = new ArrayList<Cliente>();
 
         lstCliente = getHelper().getClienteRuntimeDAO().queryForAll();
@@ -122,40 +116,6 @@ public class ClienteActivity extends DefaultActivity {
             }
         });
 
-  /*      comboCliente.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                loadLocal(id);
-                comboLocal.setVisibility(View.VISIBLE);
-                txtLocal.setVisibility(View.VISIBLE);
-            }
-
-
-        });*/
-
-
-
-
-
-
-    /*    comboCliente.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-
-
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-
-                loadLocal(id);
-                comboLocal.setVisibility(View.VISIBLE);
-                txtLocal.setVisibility(View.VISIBLE);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });*/
         if (lstCliente.size() == 0) {
             txtCliente.setVisibility(View.INVISIBLE);
             comboCliente.setVisibility(View.INVISIBLE);
@@ -163,6 +123,7 @@ public class ClienteActivity extends DefaultActivity {
     }
 
 
+    @Click
     public void gerarQuestionario(View view) {
         Cliente cliente = (Cliente) comboCliente.getSelectedItem();
         Local local = (Local) comboLocal.getSelectedItem();
@@ -275,6 +236,28 @@ public class ClienteActivity extends DefaultActivity {
 
         itemAdapter.notifyDataSetChanged();
 
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+
+        return super.onCreateOptionsMenu(menu);
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (item.getItemId() == android.R.id.home) {
+
+            NavUtils.navigateUpFromSameTask(this);
+
+        }
+
+        return true;
 
     }
 

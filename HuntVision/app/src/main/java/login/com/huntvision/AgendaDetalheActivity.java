@@ -1,5 +1,8 @@
 package login.com.huntvision;
 
+import android.support.v4.app.NavUtils;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -14,6 +17,7 @@ import org.androidannotations.annotations.ViewById;
 import org.apache.james.mime4j.field.datetime.DateTime;
 
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import login.com.huntvision.models.Agenda;
@@ -50,14 +54,18 @@ public class AgendaDetalheActivity extends DefaultActivity {
 
     private Agenda agenda;
 
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+
     @AfterViews
     void init() {
+
+        setTitle("Detalhes da agenda");
 
         txtUsuario.setText(getUsuario().getNome());
 
         agenda = (Agenda) getIntent().getSerializableExtra("agenda");
 
-        txtDetalheData.setText("Agendado: " + agenda.getDataHora().toString());
+        txtDetalheData.setText("Agendado: " + dateFormat.format(agenda.getDataHora()));
 
         txtDetalheLocal.setText("Local: " + agenda.getCliente().getNome() + "\n" + agenda.getCliente().getEndereco());
 
@@ -66,8 +74,7 @@ public class AgendaDetalheActivity extends DefaultActivity {
         validaHora();
     }
 
-    @Click
-    void excluir(View view) {
+    private void excluir() {
 
         new AgendaRequest(getUrlWS(), new ResponseListener() {
 
@@ -168,7 +175,7 @@ public class AgendaDetalheActivity extends DefaultActivity {
 
                         } else {
 
-                            Toast.makeText(AgendaDetalheActivity.this, "Atenção, é necessario registrar hora de chegada antes!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(AgendaDetalheActivity.this, "Atenção, é necessário registrar hora de chegada antes!", Toast.LENGTH_LONG).show();
 
                         }
                     } else {
@@ -189,21 +196,47 @@ public class AgendaDetalheActivity extends DefaultActivity {
 
 
     private void validaHora() {
+
         if (agenda.getDataHoraChegada() == null) {
             txtChegada.setText("");
         } else {
-            txtChegada.setText(agenda.getDataHoraChegada().toString());
+            txtChegada.setText(dateFormat.format(agenda.getDataHoraChegada()));
         }
 
         if (agenda.getDataHoraSaida() == null) {
             txtSaida.setText("");
         } else {
-            txtSaida.setText(agenda.getDataHoraSaida().toString());
+            txtSaida.setText(dateFormat.format(agenda.getDataHoraSaida()));
         }
+
     }
 
-    public void backPressed(View view) {
-        super.onBackPressed();
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.menu_agenda_detalhe, menu);
+
+        return super.onCreateOptionsMenu(menu);
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (item.getItemId() == android.R.id.home) {
+
+            NavUtils.navigateUpFromSameTask(this);
+
+        }
+
+        if (item.getItemId() == R.id.excluir) {
+
+            excluir();
+
+        }
+
+        return true;
+
     }
 
 

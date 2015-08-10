@@ -3,5 +3,7 @@
     <color name="transparent">#00000000</color>
     <color name="huntVisionLaranja">#E77D20</color>
     <color name="huntVisionAzul">#2780BB</color>
+    <color name="huntVisionAzulDark">#2172bb</color>
+    <color name="huntVisionAzulLight">#191758d5</color>
     <color name="huntVisionCinza">#585757</color>
 </resources>

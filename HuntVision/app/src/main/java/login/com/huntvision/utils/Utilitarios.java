@@ -2,7 +2,9 @@ package login.com.huntvision.utils;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
@@ -26,7 +28,6 @@ import java.util.Observable;
 
 public class Utilitarios {
     private Observable observable;
-
 
 
     public static String getHourNow() {
@@ -188,6 +189,38 @@ public class Utilitarios {
         }
     }
 
+    public static Bitmap decodeSampledBitmapFromUri(String path, int originalWidth, int reqWidth, int originalHeight, int reqHeight) {
+
+        if (reqWidth > originalWidth)
+            reqWidth = originalWidth;
+
+        int inSampleSize = 1;
+        while (originalWidth / 2 > reqWidth) {
+            originalWidth /= 2;
+            originalHeight /= 2;
+            inSampleSize *= 2;
+        }
+
+
+// Decode with inSampleSize
+        float desiredScale = (float) reqWidth / originalWidth;
+
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = false;
+        options.inDither = false;
+        options.inSampleSize = inSampleSize;
+        options.inScaled = false;
+        options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+        Bitmap sampledSrcBitmap = BitmapFactory.decodeFile(path, options);
+
+// Resize
+        Matrix matrix = new Matrix();
+        matrix.postScale(desiredScale, desiredScale);
+        Bitmap scaledBitmap = Bitmap.createBitmap(sampledSrcBitmap, 0, 0, sampledSrcBitmap.getWidth(), sampledSrcBitmap.getHeight(), matrix, true);
+
+        return scaledBitmap;
+
+    }
 
 
 }

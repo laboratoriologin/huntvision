@@ -1,93 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
 
     <RelativeLayout
         android:id="@+id/rlConteudo"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignBottom="@+id/rlBk"
-        android:background="#FFF"
-        android:padding="10dp"
-        tools:context="login.com.huntvision.QuestionarioActivity">
+        android:padding="10dp">
 
-        <TextView
-            android:id="@+id/lblTituloPergunta"
+        <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/lblTituloClienteLocal"
-            android:text="1- Atividades de manutenção elétrica foram realizadas há quanto tempo?"
-            android:textColor="@color/huntVisionAzul"
-            android:textSize="16dp" />
+            android:layout_gravity="center"
+            card_view:cardCornerRadius="4dp">
 
-        <RadioGroup
-            android:id="@+id/rgpResposta"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/lblTituloPergunta"
-            android:background="#FFF">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:background="@color/huntVisionAzulLight">
 
-            <requestFocus />
+                <TextView
+                    android:id="@+id/lblTituloPergunta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/lblTituloClienteLocal"
+                    android:text="1- Atividades de manutenção elétrica foram realizadas há quanto tempo?"
+                    android:textColor="@color/huntVisionAzul"
+                    android:textSize="16dp" />
 
-        </RadioGroup>
+                <RadioGroup
+                    android:id="@+id/rgpResposta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/lblTituloPergunta">
 
-        <TextView
-            android:id="@+id/lblObservacoes"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/rgpResposta"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
-            android:text="Observações:"
-            android:textColor="@color/huntVisionAzul"
-            android:textIsSelectable="true"
-            android:textSize="16dp" />
+                    <requestFocus />
 
-        <EditText
-            android:id="@+id/edtObservacoes"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="false"
-            android:layout_alignParentStart="false"
-            android:layout_below="@+id/lblObservacoes"
+                </RadioGroup>
 
-            android:background="@drawable/orange_border"
-            android:inputType="textMultiLine"
-            android:minHeight="50dp" />
+                <TextView
+                    android:id="@+id/lblObservacoes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rgpResposta"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Observações:"
+                    android:textColor="@color/huntVisionAzul"
+                    android:textIsSelectable="true"
+                    android:textSize="16dp" />
+
+                <EditText
+                    android:id="@+id/edtObservacoes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="false"
+                    android:layout_alignParentStart="false"
+                    android:layout_below="@+id/lblObservacoes"
+
+                    android:background="@drawable/orange_border"
+                    android:inputType="textMultiLine"
+                    android:minHeight="50dp" />
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
 
         <Button
+            android:id="@+id/btnNaoConformidade"
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:layout_below="@+id/card_view"
             android:layout_marginTop="15dp"
-            android:id="@+id/btnNaoConformidade"
-            android:layout_below="@+id/edtObservacoes"
+            android:background="@android:color/transparent"
+            android:clickable="true"
             android:text="@string/label.nao_conformidade"
             android:textColor="@color/huntVisionLaranja"
-            android:clickable="true"
-            android:visibility="invisible"
-            android:background="@android:color/transparent"
+            android:visibility="invisible" />
 
-            />
-
-        <TextView
-            android:id="@+id/lbCapturarImagem"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/btnNaoConformidade"
-            android:layout_marginTop="5dp"
-            android:background="@color/huntVisionAzul"
-            android:gravity="center_horizontal"
-            android:padding="5dp"
-            android:text="Capturar imagem"
-            android:textColor="@android:color/white" />
 
         <LinearLayout
             android:id="@+id/btsImagens"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/lbCapturarImagem"
+            android:layout_below="@+id/btnNaoConformidade"
             android:layout_marginTop="1dp"
             android:orientation="horizontal"
             android:weightSum="2">
@@ -102,7 +102,7 @@
                 android:padding="10dp"
                 android:text="Tirar foto"
                 android:textColor="#FFF"
-                android:textSize="22dp" />
+                android:textSize="18dp" />
 
             <LinearLayout
                 android:layout_width="1dp"
