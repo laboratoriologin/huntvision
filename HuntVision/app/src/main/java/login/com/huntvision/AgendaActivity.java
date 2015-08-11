@@ -30,6 +30,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import login.com.huntvision.managers.alarms.AlarmScheduler;
 import login.com.huntvision.models.Agenda;
 import login.com.huntvision.models.Cliente;
 import login.com.huntvision.models.Imagem;
@@ -157,6 +158,14 @@ public class AgendaActivity extends DefaultActivity {
                     for (Agenda agenda : JsonUtil.agendasFromJsonObject((JSONObject) serverResponse.getReturnObject())) {
 
                         getHelper().getAgendaRuntimeDAO().create(agenda);
+
+                        agenda.setCliente(getHelper().getClienteRuntimeDAO().queryForId(agenda.getClienteId().toString()));
+
+                        if (agenda.getCliente() != null && agenda.getDataHoraChegada() == null) {
+
+                            AlarmScheduler.schedule(agenda, AgendaActivity.this);
+
+                        }
 
                     }
 

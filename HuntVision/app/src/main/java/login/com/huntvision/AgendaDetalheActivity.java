@@ -54,7 +54,7 @@ public class AgendaDetalheActivity extends DefaultActivity {
 
     private Agenda agenda;
 
-    private SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
     @AfterViews
     void init() {
@@ -64,6 +64,10 @@ public class AgendaDetalheActivity extends DefaultActivity {
         txtUsuario.setText(getUsuario().getNome());
 
         agenda = (Agenda) getIntent().getSerializableExtra("agenda");
+
+        agenda = getHelper().getAgendaRuntimeDAO().queryForId(agenda.getId());
+
+        agenda.setCliente(getHelper().getClienteRuntimeDAO().queryForId(agenda.getClienteId().toString()));
 
         txtDetalheData.setText("Agendado: " + dateFormat.format(agenda.getDataHora()));
 
