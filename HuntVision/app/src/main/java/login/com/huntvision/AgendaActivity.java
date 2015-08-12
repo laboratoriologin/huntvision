@@ -2,8 +2,11 @@ package login.com.huntvision;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.support.v4.app.NavUtils;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -18,6 +21,7 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -26,15 +30,18 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import login.com.huntvision.managers.alarms.AlarmScheduler;
 import login.com.huntvision.models.Agenda;
 import login.com.huntvision.models.Cliente;
 import login.com.huntvision.models.Imagem;
 import login.com.huntvision.models.ServerResponse;
 import login.com.huntvision.models.Vistoria;
 import login.com.huntvision.models.VistoriaResposta;
+import login.com.huntvision.network.AgendaRequest;
 import login.com.huntvision.network.VistoriaRequest;
 import login.com.huntvision.network.http.InputStreamWrapper;
 import login.com.huntvision.network.http.ResponseListener;
+import login.com.huntvision.utils.JsonUtil;
 import login.com.huntvision.view.adapters.AgendaAdapter;
 import login.com.huntvision.view.adapters.VistoriaAdapter;
 
@@ -53,12 +60,7 @@ public class AgendaActivity extends DefaultActivity {
     EditText filter;
 
     private List<Agenda> agendas;
-
-
     private AgendaAdapter agendaAdapter;
-
-    private int positionToSend;
-
     private ProgressDialog progressDialog;
 
     @Click
@@ -69,17 +71,14 @@ public class AgendaActivity extends DefaultActivity {
 
     @AfterViews
     void init() {
+
+        setTitle("Agenda");
+
+        this.filter.setText("");
+
         txtUsuario.setText(getUsuario().getNome());
-    }
-
-    @Override
-    protected void onResume() {
-
-        super.onResume();
 
         agendas = getHelper().getAgendaRuntimeDAO().queryForAll();
-
-        QueryBuilder<Agenda, String> queryBuilder = getHelper().getAgendaRuntimeDAO().queryBuilder();
 
         QueryBuilder<Cliente, String> queryBuilderCliente = getHelper().getClienteRuntimeDAO().queryBuilder();
 
@@ -94,7 +93,7 @@ public class AgendaActivity extends DefaultActivity {
 
             }
 
-        } 
+        }
 
         this.agendaAdapter = new AgendaAdapter(agendas, this);
 
@@ -131,15 +130,88 @@ public class AgendaActivity extends DefaultActivity {
         });
 
         this.agendaAdapter.notifyDataSetChanged();
+    }
+
+    private void sincronizarAgendas() {
+
+        progressDialog = ProgressDialog.show(this, "Aguarde", "Sincronizando agendas...");
+
+        new AgendaRequest(getUrlWS(), new ResponseListener() {
+
+            @Override
+            public void onResult(ServerResponse serverResponse) {
+
+                progressDialog.dismiss();
+
+                if (serverResponse.isOK()) {
+
+                    try {
+
+                        getHelper().getAgendaRuntimeDAO().deleteBuilder().delete();
+
+                    } catch (SQLException e) {
+
+                        e.printStackTrace();
+
+                    }
+
+                    for (Agenda agenda : JsonUtil.agendasFromJsonObject((JSONObject) serverResponse.getReturnObject())) {
+
+                        getHelper().getAgendaRuntimeDAO().create(agenda);
+
+                        agenda.setCliente(getHelper().getClienteRuntimeDAO().queryForId(agenda.getClienteId().toString()));
+
+                        if (agenda.getCliente() != null && agenda.getDataHoraChegada() == null) {
+
+                            AlarmScheduler.schedule(agenda, AgendaActivity.this);
+
+                        }
+
+                    }
+
+                    init();
+
+                } else {
+
+                    progressDialog.dismiss();
+
+                    Toast.makeText(AgendaActivity.this, "Ocorreu um erro, tente novamente", Toast.LENGTH_LONG).show();
+
+                }
+
+            }
+
+        }).getAll(new Agenda());
+
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
 
-    public List<Agenda> getAgendas() {
-        return agendas;
+        getMenuInflater().inflate(R.menu.menu_agenda, menu);
+
+        return super.onCreateOptionsMenu(menu);
+
     }
 
-    public void setAgendas(List<Agenda> agendas) {
-        this.agendas = agendas;
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (item.getItemId() == android.R.id.home) {
+
+            NavUtils.navigateUpFromSameTask(this);
+
+        }
+
+        if (item.getItemId() == R.id.refresh) {
+
+            sincronizarAgendas();
+
+        }
+
+        return true;
+
     }
+
 }

@@ -10,5 +10,9 @@
     <string name="title_activity_sobre">SobreActivity</string>
     <string name="title_activity_qrcode">QrcodeActivity</string>
     <string name="label.nao_conformidade"><u>Não conformidade</u></string>
+    <string name="label.concluir">Concluir visitas</string>
+    <string name="label.excluir">Excluir</string>
+    <string name="label.refresh">Atualizar</string>
+    <string name="label.salvar">Salvar</string>
 
 </resources>

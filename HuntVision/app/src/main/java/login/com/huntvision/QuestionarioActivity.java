@@ -1,29 +1,25 @@
 package login.com.huntvision;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Matrix;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
-import android.view.View;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.stmt.QueryBuilder;
 
 import org.androidannotations.annotations.AfterViews;
-import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
@@ -36,7 +32,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import login.com.huntvision.managers.sqlite.DatabaseHelper;
 import login.com.huntvision.models.Acao;
 import login.com.huntvision.models.Cliente;
 import login.com.huntvision.models.Imagem;
@@ -49,11 +44,11 @@ import login.com.huntvision.models.Resposta;
 import login.com.huntvision.models.Usuario;
 import login.com.huntvision.models.Vistoria;
 import login.com.huntvision.models.VistoriaResposta;
+import login.com.huntvision.utils.Utilitarios;
 import login.com.huntvision.view.adapters.QuestionarioFragmentPageAdapter;
-import login.com.huntvision.view.fragments.QuestionarioFragment;
 
 @EActivity(R.layout.activity_questionario)
-public class QuestionarioActivity extends FragmentActivity {
+public class QuestionarioActivity extends DefaultActivity {
 
     private Uri selectedImage;
     List<Questionario> lstQuestionario;
@@ -63,11 +58,7 @@ public class QuestionarioActivity extends FragmentActivity {
     private Protocolo objProtocolo;
     private Acao objAcao;
     private ProtocoloAcao objProtocoloAcao;
-
-
     private boolean acervo = false;
-
-    private DatabaseHelper databaseHelper;
 
     @ViewById(R.id.pager)
     ViewPager viewPager;
@@ -84,23 +75,10 @@ public class QuestionarioActivity extends FragmentActivity {
     @ViewById(R.id.txtUsuario)
     TextView txtUsuario;
 
-    @Click
-    public void btnVoltar(View view) {
-
-        this.finish();
-    }
-
     @AfterViews
     void init() {
 
-        Typeface helveticaBold;
-        Typeface helveticaRegular;
-
-
-        helveticaBold = Typeface.createFromAsset(getAssets(), "Agencyb.ttf");
-        helveticaRegular = Typeface.createFromAsset(getAssets(), "Agencyr.ttf");
-
-        txtUsuario.setTypeface(helveticaRegular);
+        setTitle("Questionário");
 
         txtUsuario.setText(getUsuario().getNome());
 
@@ -108,18 +86,22 @@ public class QuestionarioActivity extends FragmentActivity {
 
         objLocal = (Local) getIntent().getSerializableExtra("local");
 
-        objAcao= (Acao) getIntent().getSerializableExtra("acao");
+        objAcao = (Acao) getIntent().getSerializableExtra("acao");
 
-        objItem= (Item) getIntent().getSerializableExtra("item");
+        objItem = (Item) getIntent().getSerializableExtra("item");
 
-        objProtocolo= (Protocolo) getIntent().getSerializableExtra("protocolo");
+        objProtocolo = (Protocolo) getIntent().getSerializableExtra("protocolo");
 
-        objProtocoloAcao= (ProtocoloAcao) getIntent().getSerializableExtra("protocoloacao");
+        objProtocoloAcao = (ProtocoloAcao) getIntent().getSerializableExtra("protocoloacao");
 
         TextView titulo = (TextView) findViewById(R.id.lblTituloClienteLocal);
 
         titulo.setText(objCliente.getNome() + " - " + objItem.getDescricao());
+
+        Typeface helveticaRegular = Typeface.createFromAsset(getAssets(), "Agencyr.ttf");
+
         titulo.setTypeface(helveticaRegular);
+
         QueryBuilder<Questionario, String> builder = getHelper().getQuestionarioRuntimeDAO().queryBuilder();
 
         try {
@@ -187,7 +169,7 @@ public class QuestionarioActivity extends FragmentActivity {
 
     }
 
-    public void linkNaoConformidade(Questionario questionario){
+    public void linkNaoConformidade(Questionario questionario) {
 
         AlertDialog alertDialog = new AlertDialog.Builder(this).create();
         alertDialog.setTitle("Não conformidade");
@@ -262,8 +244,7 @@ public class QuestionarioActivity extends FragmentActivity {
 
     }
 
-    @Click
-    void salvarQuestionario(View view) {
+    void salvarQuestionario() {
 
         if (!validarPerguntas()) {
 
@@ -359,36 +340,6 @@ public class QuestionarioActivity extends FragmentActivity {
 
     }
 
-    private void cleanTmpDirectory() {
-
-        for (Questionario questionario : lstQuestionario) {
-
-            for (int i = 0; i < questionario.getCaminhosImagens().size(); i++) {
-
-                if (!TextUtils.isEmpty(questionario.getCaminhosImagens().get(i))) {
-
-                    File file = new File(getApp().getTmpDataFolder() + "/" + questionario.getCaminhosImagens().get(i));
-
-                    if (file.exists()) {
-
-                        file.renameTo(new File(getApp().getDataFolder() + "/" + questionario.getCaminhosImagens().get(i)));
-
-                    }
-
-                }
-
-            }
-
-        }
-
-        for (File file : getApp().getTmpDataFolder().listFiles()) {
-
-            file.delete();
-
-        }
-
-    }
-
     private boolean validarPerguntas() {
 
         boolean questionarioRespondido = false;
@@ -445,11 +396,11 @@ public class QuestionarioActivity extends FragmentActivity {
 
             int factor = originalWidth / 480;
 
-            if(factor == 0) {
+            if (factor == 0) {
                 factor = 1;
             }
 
-            Bitmap reduzida = decodeSampledBitmapFromUri(file.getAbsolutePath(), originalWidth, originalWidth / factor, originalHeight, originalHeight / factor);
+            Bitmap reduzida = Utilitarios.decodeSampledBitmapFromUri(file.getAbsolutePath(), originalWidth, originalWidth / factor, originalHeight, originalHeight / factor);
 
             File fileSample = new File(folder, imageName);
 
@@ -470,27 +421,31 @@ public class QuestionarioActivity extends FragmentActivity {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public boolean onCreateOptionsMenu(Menu menu) {
 
-        super.onCreate(savedInstanceState);
+        getMenuInflater().inflate(R.menu.menu_questionario, menu);
 
-        databaseHelper = OpenHelperManager.getHelper(this, DatabaseHelper.class);
+        return super.onCreateOptionsMenu(menu);
 
-    }
-
-    public void backPressed(View view) {
-        super.onBackPressed();
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        OpenHelperManager.releaseHelper();
-        cleanTmpDirectory();
-    }
+    public boolean onOptionsItemSelected(MenuItem item) {
 
-    DatabaseHelper getHelper() {
-        return databaseHelper;
+        if (item.getItemId() == R.id.salvar) {
+
+            salvarQuestionario();
+
+        }
+
+        if (item.getItemId() == android.R.id.home) {
+
+            NavUtils.navigateUpFromSameTask(this);
+
+        }
+
+        return true;
+
     }
 
     public Questionario getQuestionario(Questionario questionario) {
@@ -502,36 +457,5 @@ public class QuestionarioActivity extends FragmentActivity {
         return (HuntVisionApp) getApplication();
     }
 
-    public Bitmap decodeSampledBitmapFromUri(String path, int originalWidth, int reqWidth, int originalHeight, int reqHeight) {
 
-        if (reqWidth > originalWidth)
-            reqWidth = originalWidth;
-
-        int inSampleSize = 1;
-        while (originalWidth / 2 > reqWidth) {
-            originalWidth /= 2;
-            originalHeight /= 2;
-            inSampleSize *= 2;
-        }
-
-
-// Decode with inSampleSize
-        float desiredScale = (float) reqWidth / originalWidth;
-
-        BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inJustDecodeBounds = false;
-        options.inDither = false;
-        options.inSampleSize = inSampleSize;
-        options.inScaled = false;
-        options.inPreferredConfig = Bitmap.Config.ARGB_8888;
-        Bitmap sampledSrcBitmap = BitmapFactory.decodeFile(path, options);
-
-// Resize
-        Matrix matrix = new Matrix();
-        matrix.postScale(desiredScale, desiredScale);
-        Bitmap scaledBitmap = Bitmap.createBitmap(sampledSrcBitmap, 0, 0, sampledSrcBitmap.getWidth(), sampledSrcBitmap.getHeight(), matrix, true);
-
-        return scaledBitmap;
-
-    }
 }

@@ -3,57 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:orientation="vertical" android:background="@android:color/white"
     tools:context="login.com.huntvision.QuestionarioActivity">
-
-    <RelativeLayout
-        android:id="@+id/topo"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/top_bar_height"
-        android:background="@color/huntVisionAzul"
-        android:clickable="true">
-
-        <Button
-            android:id="@+id/btnVoltar"
-            android:layout_width="@dimen/top_bar_font_height"
-            android:layout_height="@dimen/top_bar_font_height"
-            android:layout_centerVertical="true"
-            android:onClick="backPressed"
-            android:layout_marginLeft="10dp"
-            android:background="@drawable/botao_seta_voltar" />
-
-        <ImageView
-            android:onClick="backPressed"
-            android:id="@+id/imgCliente"
-            android:layout_width="@dimen/top_bar_font_height"
-            android:layout_height="@dimen/top_bar_font_height"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="5dp"
-            android:layout_toRightOf="@+id/btnVoltar"
-            android:background="@drawable/icone_cliente" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_toRightOf="@+id/imgCliente"
-            android:text="Cliente"
-            android:textColor="#FFF"
-            android:textSize="@dimen/top_bar_font_height" />
-
-        <Button
-            android:id="@+id/salvarQuestionario"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="10dp"
-            android:background="@android:drawable/ic_menu_save" />
-
-    </RelativeLayout>
-
 
     <RelativeLayout
         android:id="@+id/rlBk"
@@ -67,10 +18,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="false"
             android:layout_alignParentRight="true"
-
-            android:layout_alignParentStart="false"
             android:gravity="right">
 
 
@@ -100,7 +48,6 @@
             android:id="@+id/rlConteudo"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_alignBottom="@+id/rlBk"
             android:layout_marginBottom="10sp"
 
             android:layout_marginTop="20sp"
@@ -138,7 +85,6 @@
                     android:textColor="#fff" />
 
             </android.support.v4.view.ViewPager>
-
 
 
         </RelativeLayout>

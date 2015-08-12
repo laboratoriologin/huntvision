@@ -2,18 +2,16 @@ package login.com.huntvision;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.text.Editable;
-import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,7 +25,6 @@ import org.androidannotations.annotations.ViewById;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,8 +37,6 @@ import login.com.huntvision.models.VistoriaResposta;
 import login.com.huntvision.network.VistoriaRequest;
 import login.com.huntvision.network.http.InputStreamWrapper;
 import login.com.huntvision.network.http.ResponseListener;
-import login.com.huntvision.utils.Constantes;
-import login.com.huntvision.view.adapters.ClienteAdapter;
 import login.com.huntvision.view.adapters.VistoriaAdapter;
 
 @EActivity(R.layout.activity_vistoria_pendente)
@@ -68,21 +63,12 @@ public class VistoriaPendenteActivity extends DefaultActivity {
 
     private ProgressDialog progressDialog;
 
-    @Click
-    public void btnVoltar(View view) {
-
-        this.finish();
-    }
-
     @AfterViews
     void init() {
+
+        setTitle("Concluir visita");
+
         txtUsuario.setText(getUsuario().getNome());
-    }
-
-    @Override
-    protected void onResume() {
-
-        super.onResume();
 
         vistorias = getHelper().getVistoriaRuntimeDAO().queryForAll();
 
@@ -98,7 +84,7 @@ public class VistoriaPendenteActivity extends DefaultActivity {
 
                 vistoria.setRespostas(getHelper().getVistoriaRespostaRuntimeDAO().query(queryBuilder.where().eq("vistoriaId", vistoria.getId()).prepare()));
 
-                for(VistoriaResposta resposta : vistoria.getRespostas()) {
+                for (VistoriaResposta resposta : vistoria.getRespostas()) {
                     builderImagem.where().eq("vistoriaRespostaId", resposta.getId());
                     resposta.setImagens(builderImagem.query());
                 }
@@ -149,11 +135,9 @@ public class VistoriaPendenteActivity extends DefaultActivity {
         });
 
         this.vistoriaAdapter.notifyDataSetChanged();
-
     }
 
-    @Click
-    void enviarVistoriasPendentes(View view) {
+    private void enviarVistoriasPendentes() {
 
         vistoriasToSend = new ArrayList<>();
 
@@ -234,7 +218,7 @@ public class VistoriaPendenteActivity extends DefaultActivity {
 
             Toast.makeText(this, "Pronto!", Toast.LENGTH_SHORT).show();
 
-            this.onResume();
+            this.init();
 
         }
 
@@ -242,7 +226,7 @@ public class VistoriaPendenteActivity extends DefaultActivity {
 
     private void postImagens(final Vistoria vistoria, List<InputStreamWrapper> imagens) {
 
-        new VistoriaRequest(getUrlWS() ,new ResponseListener() {
+        new VistoriaRequest(getUrlWS(), new ResponseListener() {
 
             @Override
             public void onResult(ServerResponse serverResponse) {
@@ -278,9 +262,9 @@ public class VistoriaPendenteActivity extends DefaultActivity {
 
         for (VistoriaResposta vistoriaResposta : vistoria.getRespostas()) {
 
-            for(Imagem caminhoImagem : vistoriaResposta.getImagens()) {
+            for (Imagem caminhoImagem : vistoriaResposta.getImagens()) {
 
-                File imgFile = new File(getDataFolder() + "/"  + caminhoImagem.getCaminho());
+                File imgFile = new File(getTmpDataFolder() + "/" + caminhoImagem.getCaminho());
 
                 if (imgFile.exists()) {
 
@@ -307,6 +291,34 @@ public class VistoriaPendenteActivity extends DefaultActivity {
         }
 
         return imagens;
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.menu_vistoria_pendente, menu);
+
+        return super.onCreateOptionsMenu(menu);
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (item.getItemId() == R.id.concluir) {
+
+            enviarVistoriasPendentes();
+
+        }
+
+        if (item.getItemId() == android.R.id.home) {
+
+            NavUtils.navigateUpFromSameTask(this);
+
+        }
+
+        return true;
 
     }
 

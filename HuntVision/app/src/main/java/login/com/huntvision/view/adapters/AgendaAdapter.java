@@ -9,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.Filter;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +27,7 @@ public class AgendaAdapter extends BaseAdapter {
     private List<Agenda> agendasFiltered;
     private LayoutInflater mInflater;
     private AgendaFilter mFilter = new AgendaFilter();
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
     public AgendaAdapter(List<Agenda> agendas, Context context) {
         this.agendas = agendas;
@@ -51,11 +53,11 @@ public class AgendaAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        convertView = mInflater.inflate(R.layout.adapter_agenda,null);
+        convertView = mInflater.inflate(R.layout.adapter_agenda, null);
 
         TextView titulo = (TextView) convertView.findViewById(R.id.adapter_agenda_descricao);
 
-        TextView data  = (TextView) convertView.findViewById(R.id.adapter_agenda_data);
+        TextView data = (TextView) convertView.findViewById(R.id.adapter_agenda_data);
 
         TextView status = (TextView) convertView.findViewById(R.id.status_textview);
 
@@ -63,8 +65,7 @@ public class AgendaAdapter extends BaseAdapter {
 
         titulo.setText(agenda.getCliente().getNome() + "\n" + agenda.getCliente().getEndereco());
 
-        data.setText("Agendado para " + agenda.getDataHora());
-
+        data.setText("Agendado para " + dateFormat.format(agenda.getDataHora()));
 
 
         return convertView;
@@ -80,7 +81,7 @@ public class AgendaAdapter extends BaseAdapter {
 
             final List<Agenda> list = agendas;
 
-            if(TextUtils.isEmpty(filterString)) {
+            if (TextUtils.isEmpty(filterString)) {
                 results.values = list;
                 results.count = list.size();
                 return results;

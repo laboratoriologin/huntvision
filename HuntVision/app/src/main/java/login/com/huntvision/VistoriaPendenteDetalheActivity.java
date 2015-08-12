@@ -1,8 +1,10 @@
 package login.com.huntvision;
 
 import android.content.Intent;
+import android.support.v4.app.NavUtils;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,8 +41,9 @@ public class VistoriaPendenteDetalheActivity extends DefaultActivity {
     @AfterViews
     void init() {
 
-        txtUsuario.setText(getUsuario().getNome());
+        setTitle("Detalhe de vistoria");
 
+        txtUsuario.setText(getUsuario().getNome());
 
         vistoria = (Vistoria) getIntent().getSerializableExtra("vistoria");
 
@@ -115,8 +118,7 @@ public class VistoriaPendenteDetalheActivity extends DefaultActivity {
 
     }
 
-    @Click
-    void excluir(View view) {
+    private void excluir() {
 
         try {
 
@@ -142,10 +144,6 @@ public class VistoriaPendenteDetalheActivity extends DefaultActivity {
 
     }
 
-    public void backPressed(View view) {
-        super.onBackPressed();
-    }
-
     public void showImages(Questionario questionario) {
 
         Intent intent = new Intent(this, GaleriaActivity_.class);
@@ -155,6 +153,34 @@ public class VistoriaPendenteDetalheActivity extends DefaultActivity {
         intent.putExtra("path", getDataFolder().getAbsolutePath());
 
         startActivity(intent);
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.menu_vistoria_pendente_detalhe, menu);
+
+        return super.onCreateOptionsMenu(menu);
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (item.getItemId() == R.id.excluir) {
+
+            excluir();
+
+        }
+
+        if (item.getItemId() == android.R.id.home) {
+
+            NavUtils.navigateUpFromSameTask(this);
+
+        }
+
+        return true;
 
     }
 

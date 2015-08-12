@@ -22,6 +22,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import login.com.huntvision.managers.alarms.AlarmScheduler;
 import login.com.huntvision.models.Agenda;
 import login.com.huntvision.models.Cliente;
 import login.com.huntvision.models.Conexao;
@@ -49,13 +50,13 @@ import login.com.huntvision.utils.JsonUtil;
 
 
 @EActivity(R.layout.activity_sincronizacao)
-    public class SincronizacaoActivity extends DefaultActivity {
+public class SincronizacaoActivity extends DefaultActivity {
     private Conexao objConexao;
     private ProgressDialog progressDialog;
     private List<Conexao> conexaos;
 
     @ViewById(R.id.rlConexao)
-    RelativeLayout rlConexao ;
+    RelativeLayout rlConexao;
 
     @ViewById
     RelativeLayout rlGeraChave;
@@ -72,17 +73,17 @@ import login.com.huntvision.utils.JsonUtil;
     @Click
     void sincronizarUsuario(View view) {
 
-        if(TextUtils.isEmpty(getUrlWS())) {
+        if (TextUtils.isEmpty(getUrlWS())) {
 
-            Toast.makeText(this,"Nenhuma chave no sistema. É necessário incluir uma chava primeiro", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Nenhuma chave no sistema. É necessário incluir uma chava primeiro", Toast.LENGTH_SHORT).show();
 
             return;
 
         }
 
-        for(Vistoria vistoria : getHelper().getVistoriaRuntimeDAO().queryForAll()) {
+        for (Vistoria vistoria : getHelper().getVistoriaRuntimeDAO().queryForAll()) {
 
-            if(vistoria.getFlagSincronizado() == 0) {
+            if (vistoria.getFlagSincronizado() == 0) {
 
                 Toast.makeText(this, "É necessário concluir todas as visitas antes de sincronizar", Toast.LENGTH_SHORT).show();
 
@@ -93,7 +94,7 @@ import login.com.huntvision.utils.JsonUtil;
         }
         progressDialog = ProgressDialog.show(this, "Aguarde", "Sincronizando usuários...");
 
-        new UsuarioRequest(getUrlWS(),new ResponseListener() {
+        new UsuarioRequest(getUrlWS(), new ResponseListener() {
 
             @Override
             public void onResult(ServerResponse serverResponse) {
@@ -138,7 +139,7 @@ import login.com.huntvision.utils.JsonUtil;
 
         progressDialog.setMessage("Sincronizando clientes...");
 
-        new ClienteRequest( getUrlWS(), new ResponseListener() {
+        new ClienteRequest(getUrlWS(), new ResponseListener() {
 
             @Override
             public void onResult(ServerResponse serverResponse) {
@@ -270,7 +271,7 @@ import login.com.huntvision.utils.JsonUtil;
 
     private void sincronizarItemLocal() {
 
-        new ItemLocalRequest( getUrlWS() , new ResponseListener() {
+        new ItemLocalRequest(getUrlWS(), new ResponseListener() {
 
             @Override
             public void onResult(ServerResponse serverResponse) {
@@ -313,12 +314,11 @@ import login.com.huntvision.utils.JsonUtil;
     }
 
 
-
     private void sincronizarQuestionario() {
 
         progressDialog.setMessage("Sincronizando dados dos questionários...");
 
-        new QuestionarioRequest(getUrlWS() , new ResponseListener() {
+        new QuestionarioRequest(getUrlWS(), new ResponseListener() {
 
             @Override
             public void onResult(ServerResponse serverResponse) {
@@ -364,7 +364,7 @@ import login.com.huntvision.utils.JsonUtil;
 
         progressDialog.setMessage("Sincronizando dados dos tipo questionários...");
 
-        new TipoQuestionarioRequest( getUrlWS(), new ResponseListener() {
+        new TipoQuestionarioRequest(getUrlWS(), new ResponseListener() {
 
             @Override
             public void onResult(ServerResponse serverResponse) {
@@ -477,6 +477,14 @@ import login.com.huntvision.utils.JsonUtil;
 
                         getHelper().getAgendaRuntimeDAO().create(agenda);
 
+                        agenda.setCliente(getHelper().getClienteRuntimeDAO().queryForId(agenda.getClienteId().toString()));
+
+                        if (agenda.getCliente() != null && agenda.getDataHoraChegada() == null) {
+
+                            AlarmScheduler.schedule(agenda, SincronizacaoActivity.this);
+
+                        }
+
                     }
 
                     startLoginActivity();
@@ -498,8 +506,7 @@ import login.com.huntvision.utils.JsonUtil;
 
 
     @AfterViews
-    public void populateSpinner()
-    {
+    public void populateSpinner() {
         Typeface helveticaBold;
         Typeface helveticaRegular;
 
@@ -557,7 +564,7 @@ import login.com.huntvision.utils.JsonUtil;
             e.printStackTrace();
         }
 
-        Intent intent = new Intent(SincronizacaoActivity.this,LoginActivity_.class);
+        Intent intent = new Intent(SincronizacaoActivity.this, LoginActivity_.class);
 
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
@@ -568,27 +575,22 @@ import login.com.huntvision.utils.JsonUtil;
     }
 
     @Click
-    void btnGeraChave()
-    {
+    void btnGeraChave() {
         rlGeraChave.setVisibility(View.VISIBLE);
         btnGeraChave.setVisibility(View.INVISIBLE);
     }
 
     @Click
-    void btnAcessar()
-    {
-        if(txtChave.getText().toString().equals(Constantes.SECURITY_KEY)) {
+    void btnAcessar() {
+        if (txtChave.getText().toString().equals(Constantes.SECURITY_KEY)) {
             rlGeraChave.setVisibility(View.INVISIBLE);
             rlConexao.setVisibility(View.VISIBLE);
-        }
-        else
+        } else
 
         {
             Toast.makeText(this, "Chave de segurança incorreta!", Toast.LENGTH_LONG).show();
         }
     }
-
-
 
 
 }

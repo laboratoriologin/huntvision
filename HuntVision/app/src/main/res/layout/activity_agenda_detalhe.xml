@@ -1,225 +1,170 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rlBk"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    tools:context="login.com.huntvision.AgendaDetalheActivity" >
+    android:layout_height="match_parent"
+    android:layout_alignParentBottom="true"
+    android:layout_centerInParent="true"
+    android:background="@color/huntVisionCinza">
 
     <RelativeLayout
-        android:id="@+id/topo"
         android:layout_width="match_parent"
-        android:layout_height="44dp"
-        android:background="@color/huntVisionAzul"
-        android:clickable="true"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentRight="true"
 
-        android:layout_alignParentStart="false"
-        android:layout_alignParentTop="false"
-        android:layout_alignParentLeft="false"
-        android:gravity="top"
-        android:layout_marginBottom="44dp">
+        android:gravity="right">
 
-        <Button
-            android:id="@+id/btnVoltar"
-            android:layout_width="@dimen/top_bar_font_height"
-            android:layout_height="@dimen/top_bar_font_height"
-            android:layout_centerVertical="true"
-            android:onClick="backPressed"
-            android:layout_marginLeft="10dp"
-            android:background="@drawable/botao_seta_voltar" />
-
-        <ImageView
-            android:onClick="backPressed"
-            android:id="@+id/imgCliente"
-            android:layout_width="@dimen/top_bar_font_height"
-            android:layout_height="@dimen/top_bar_font_height"
-            android:adjustViewBounds="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="5dp"
-            android:layout_toRightOf="@+id/btnVoltar"
-            android:background="@drawable/icone_cliente" />
 
         <TextView
+            android:id="@+id/lblUsuario"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_toRightOf="@+id/imgCliente"
-            android:text="Agenda"
+            android:layout_marginRight="2dp"
+            android:layout_toLeftOf="@+id/txtUsuario"
+            android:gravity="right"
+            android:text="Usuario: "
             android:textColor="#FFF"
-            android:textSize="@dimen/top_bar_font_height" />
+            android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/excluir"
-            android:layout_width="@dimen/top_bar_font_height"
-            android:layout_height="@dimen/top_bar_font_height"
-            android:layout_centerVertical="true"
-
+        <TextView
+            android:id="@+id/txtUsuario"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginRight="10dp"
-            android:background="@android:drawable/ic_menu_delete" />
-
+            android:text="Ricardo"
+            android:textColor="#FFF"
+            android:textStyle="bold" />
     </RelativeLayout>
 
-
     <RelativeLayout
-        android:id="@+id/rlBk"
+        android:id="@+id/rlConteudo"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_below="@id/topo"
-        android:layout_centerInParent="true"
-        android:background="@color/huntVisionCinza">
+        android:layout_height="match_parent"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/white">
 
-        <RelativeLayout
+        <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="false"
-            android:layout_alignParentRight="true"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/activity_vertical_margin"
+            card_view:cardCornerRadius="0dp">
 
-            android:gravity="right">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/huntVisionAzulLight">
 
+                <TextView
+                    android:id="@+id/activity_agenda_detalhe_data"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
 
-            <TextView
-                android:id="@+id/lblUsuario"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="2dp"
-                android:layout_toLeftOf="@+id/txtUsuario"
-                android:gravity="right"
-                android:text="Usuario:"
-                android:textColor="#FFF"
-                android:textStyle="bold" />
+                    android:gravity="top"
+                    android:padding="15dp"
 
-            <TextView
-                android:id="@+id/txtUsuario"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="10dp"
-                android:text="Ricardo"
-                android:textColor="#FFF"
-                android:textStyle="bold" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/rlConteudo"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-
-            android:layout_marginBottom="10sp"
-
-            android:layout_marginTop="20sp"
-            android:background="#FFF">
-    <TextView
-        android:id="@+id/activity_agenda_detalhe_data"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-
-        android:gravity="top"
-        android:padding="15dp"
-
-        android:text="Agendado"
-        android:textSize="18sp" />
+                    android:text="Agendado"
+                    android:textSize="18sp" />
 
 
-    <TextView
-        android:id="@+id/activity_agenda_detalhe_local"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/activity_agenda_detalhe_data"
-        android:gravity="top"
-        android:padding="15dp"
-        android:text="Senai Av Orlando Gomes"
-        android:textSize="16sp"
-        android:textStyle="italic|bold" />
+                <TextView
+                    android:id="@+id/activity_agenda_detalhe_local"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/activity_agenda_detalhe_data"
+                    android:gravity="top"
+                    android:padding="15dp"
+                    android:text="Senai Av Orlando Gomes"
+                    android:textSize="16sp"
+                    android:textStyle="italic|bold" />
 
 
-        <TextView
-            android:id="@+id/activity_agenda_detalhe_descricao"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@+id/activity_agenda_detalhe_local"
-            android:gravity="top"
-            android:padding="15dp"
-            android:text="Senai Av Orlando Gomes"
-            android:textSize="16sp"
-            android:textStyle="italic|bold" />
+                <TextView
+                    android:id="@+id/activity_agenda_detalhe_descricao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/activity_agenda_detalhe_local"
+                    android:gravity="top"
+                    android:padding="15dp"
+                    android:text="Senai Av Orlando Gomes"
+                    android:textSize="16sp"
+                    android:textStyle="italic|bold" />
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
 
 
         <LinearLayout
-        android:id="@+id/llRegistrarChegada"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_below="@+id/activity_agenda_detalhe_descricao"
-
-
-            android:layout_margin="10dp"
-
-            android:layout_alignParentBottom="false"
-            android:layout_centerHorizontal="true"
-            android:gravity="center_horizontal">
-    <Button
-
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:text="Registrar Chegada"
-
-        android:id="@+id/btnRegistrarChegada"
-        android:textColor="#FFFFFF"
-        android:textSize="18dp"
-        android:background="@color/huntVisionLaranja"
-
-         android:clickable="true" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/txtChegada"
-            android:text="30/06/2015"
-            android:layout_margin="1dp"
-            android:paddingLeft="20dp" />
-    </LinearLayout>
-
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_below="@+id/llRegistrarChegada"
-        android:layout_alignParentLeft="false"
-        android:layout_alignParentTop="false"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="10dp"
-        android:weightSum="1"
-        android:gravity="center_horizontal">
-        <Button
+            android:id="@+id/llRegistrarChegada"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:text="Registrar Saída"
-            android:id="@+id/btnRegistrarSaida"
-            android:textSize="18dp"
-            android:background="@color/huntVisionLaranja"
-            android:textColor="#FFF"
-            android:layout_weight="0.33"
-            android:clickable="true" />
-
-        <TextView
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="30/06/2015"
-            android:id="@+id/txtSaida"
+            android:layout_alignParentBottom="false"
+            android:layout_below="@+id/card_view"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
 
-            android:layout_margin="1dp"
-            android:paddingLeft="20dp" />
-    </LinearLayout>
+            <Button
 
-</RelativeLayout>
-</RelativeLayout>
+                android:id="@+id/btnRegistrarChegada"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/huntVisionLaranja"
+                android:clickable="true"
+                android:text="Registrar Chegada"
+                android:textColor="#FFFFFF"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/txtChegada"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:paddingLeft="5dp"
+                android:text="30/06/2015" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentTop="false"
+            android:layout_below="@+id/llRegistrarChegada"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:weightSum="1">
+
+            <Button
+                android:id="@+id/btnRegistrarSaida"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.33"
+                android:background="@color/huntVisionLaranja"
+                android:clickable="true"
+                android:text="Registrar Saída"
+                android:textColor="#FFF"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/txtSaida"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:paddingLeft="5dp"
+                android:text="30/06/2015" />
+        </LinearLayout>
+
+    </RelativeLayout>
 </RelativeLayout>
