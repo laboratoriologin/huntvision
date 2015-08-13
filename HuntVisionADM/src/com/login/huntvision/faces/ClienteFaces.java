@@ -3,8 +3,8 @@
  */
 package com.login.huntvision.faces;
 
-import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import javax.annotation.PostConstruct;
@@ -16,8 +16,10 @@ import org.primefaces.event.FileUploadEvent;
 
 import br.com.topsys.exception.TSApplicationException;
 import br.com.topsys.file.TSFile;
+import br.com.topsys.util.TSUtil;
 
 import com.login.huntvision.model.Cliente;
+import com.login.huntvision.model.Local;
 import com.login.huntvision.util.Constantes;
 
 /**
@@ -30,11 +32,33 @@ public class ClienteFaces extends CrudFaces<Cliente> {
 
 	private static final long serialVersionUID = 1L;
 
+	private Local localSelecionado;
+
 	@PostConstruct
 	protected void init() {
 		this.clearFields();
 
 		setFieldOrdem("nome");
+	}
+
+	public String addLocal() {
+
+		Local local = new Local();
+
+		local.setCliente(getCrudModel());
+
+		if (TSUtil.isEmpty(getCrudModel().getLocais())) {
+			getCrudModel().setLocais(new ArrayList<Local>());
+		}
+
+		getCrudModel().getLocais().add(local);
+
+		return null;
+	}
+
+	public String delLocal() {
+		getCrudModel().getLocais().remove(this.localSelecionado);
+		return null;
 	}
 
 	@Override
@@ -65,15 +89,23 @@ public class ClienteFaces extends CrudFaces<Cliente> {
 		this.getCrudModel().setImagem(nomeArquivo);
 
 		try {
-		
+
 			TSFile.inputStreamToFile(event.getFile().getInputstream(), Constantes.CAMINHO_ARQUIVO + this.getCrudModel().getImagem());
-		
+
 		} catch (TSApplicationException | IOException e) {
 			this.addErrorMessage("Ocorreu um erro ao enviar imagem: " + e.getMessage());
 			e.printStackTrace();
-			
+
 		}
-		
+
+	}
+
+	public Local getLocalSelecionado() {
+		return localSelecionado;
+	}
+
+	public void setLocalSelecionado(Local localSelecionado) {
+		this.localSelecionado = localSelecionado;
 	}
 
 }

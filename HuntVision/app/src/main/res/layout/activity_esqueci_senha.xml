@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="@color/huntVisionCinza"
     android:orientation="vertical"
-    tools:context="login.com.huntvision.EsqueciSenhaActivity">
+    tools:context="com.login.huntvision.EsqueciSenhaActivity">
 
 
     <LinearLayout

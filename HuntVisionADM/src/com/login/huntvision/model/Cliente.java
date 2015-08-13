@@ -1,11 +1,17 @@
 package com.login.huntvision.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Cascade;
 
 import br.com.topsys.database.hibernate.TSActiveRecordAb;
 
@@ -22,6 +28,10 @@ public final class Cliente extends TSActiveRecordAb<Cliente> {
 
 	@Column(name = "longitude")
 	private Double longitude;
+
+	@Cascade(org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
+	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
+	private List<Local> locais;
 
 	public Long getId() {
 		return id;
@@ -173,6 +183,14 @@ public final class Cliente extends TSActiveRecordAb<Cliente> {
 
 	public void setLongitude(Double longitude) {
 		this.longitude = longitude;
+	}
+
+	public List<Local> getLocais() {
+		return locais;
+	}
+
+	public void setLocais(List<Local> locais) {
+		this.locais = locais;
 	}
 
 	/*
