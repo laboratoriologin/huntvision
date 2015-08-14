@@ -91,11 +91,18 @@
 
 						<p:dataTable id="gridLocal" emptyMessage="Nenhum local adicionado" value="#{mbeanModel.locais}" var="local">
 
-							<p:column headerText="Nome" styleClass="coluna90">
+							<p:column headerText="Nome" styleClass="coluna75">
 								<p:inputText required="true" label="Local" value="#{local.nomeLocal}" styleClass="coluna95" />
 							</p:column>
 
-							<p:column headerText="Remover" style="text-align: center" styleClass="coluna10">
+							<p:column headerText="Itens" style="text-align: center" styleClass="coluna10">
+								<p:commandLink oncomplete="PF('dialogItem').show()" process="@this">
+									<h:graphicImage value="../resources/images/lupa.png" style="border: 0px" />
+									<f:setPropertyActionListener target="#{mbean.localSelecionado}" value="#{local}" />
+								</p:commandLink>
+							</p:column>
+
+							<p:column headerText="Remover" style="text-align: center" styleClass="coluna15">
 								<p:commandLink action="#{mbean.delLocal}" process="@this" update="gridLocal">
 									<h:graphicImage value="../resources/images/delete16.png" style="border: 0px" />
 									<f:setPropertyActionListener target="#{mbean.localSelecionado}" value="#{local}" />
@@ -125,7 +132,47 @@
 	</ui:define>
 
 
+	<ui:define name="dialogs">
 
+		<p:dialog width="400" modal="true" header="Itens" closable="false" widgetVar="dialogItem" height="400" position="center" appendTo="@(body)">
+
+			<h:form>
+
+				<p:outputPanel autoUpdate="true">
+
+					<h:panelGrid>
+
+						<p:commandButton value="Adicionar Item" process="@form" icon="ui-icon-plus" action="#{mbean.addItem}" style="margin-top: 15px; margin-bottom: 15px;" />
+
+						<p:dataTable rowIndexVar="index" emptyMessage="Nenhum item adicionado" id="gridItem" value="#{mbean.localSelecionado.itensLocais}" var="item">
+
+							<p:column headerText="Item" styleClass="coluna80">
+								<h:selectOneMenu value="#{item.item.id}" styleClass="coluna100">
+									<f:selectItems value="#{mbean.comboItem}" />
+								</h:selectOneMenu>
+							</p:column>
+							
+							<p:column headerText="Remover" style="text-align: center" styleClass="coluna20">
+								<p:commandLink action="#{mbean.delItem(index)}" process="@form">
+									<h:graphicImage value="../resources/images/delete16.png" style="border: 0px" />
+								</p:commandLink>
+							</p:column>
+							
+
+						</p:dataTable>
+						
+						<p:commandButton value="OK" process="@form" icon="ui-icon-disk" oncomplete="PF('dialogItem').hide()" style="margin-top: 15px; margin-bottom: 15px;" />
+
+					</h:panelGrid>
+
+				</p:outputPanel>
+
+			</h:form>
+
+
+		</p:dialog>
+
+	</ui:define>
 
 
 	<ui:define name="pesquisaCampos">
