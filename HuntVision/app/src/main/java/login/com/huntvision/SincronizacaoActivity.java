@@ -527,13 +527,13 @@ public class SincronizacaoActivity extends DefaultActivity {
 
         objConexao = new Conexao();
         objConexao.setId("2");
-        objConexao.setUrl(Constantes.URL_WS_OTIMIZE);
+        objConexao.setUrl(Constantes.URL_WS_GOLD);
 
         conexaos.add(objConexao);
 
         objConexao = new Conexao();
         objConexao.setId("3");
-        objConexao.setUrl(Constantes.URL_WS_LOCAL);
+        objConexao.setUrl(Constantes.URL_WS_GOLD);
 
         conexaos.add(objConexao);
         final ArrayAdapter<Conexao> adapter = new ArrayAdapter<Conexao>(this, android.R.layout.simple_spinner_item, conexaos);
