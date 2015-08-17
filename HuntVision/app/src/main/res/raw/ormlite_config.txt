@@ -1,4 +1,4 @@
-dataClass=login.com.huntvision.models.Usuario
+dataClass=com.login.huntvision.models.Usuario
 tableName=usuario
 fieldName=id
 fieldName=nome
@@ -9,7 +9,7 @@ fieldName=celular
 fieldName=email
 
 ################################################
-dataClass=login.com.huntvision.models.Cliente
+dataClass=com.login.huntvision.models.Cliente
 tableName=cliente
 fieldName=id
 fieldName=nome
@@ -25,14 +25,14 @@ fieldName=pais
 
 ################################################
 
-dataClass=login.com.huntvision.models.GrupoUsuario
+dataClass=com.login.huntvision.models.GrupoUsuario
 tableName=cliente
 fieldName=id;
 fieldName=descricao;
 
 ################################################
 
-dataClass=login.com.huntvision.models.Imagem
+dataClass=com.login.huntvision.models.Imagem
 tableName=imagem
 fieldName=id;
 fieldName=caminho;
@@ -40,7 +40,7 @@ fieldName=vistoriaRespostaId;
 
 ################################################
 
-dataClass=login.com.huntvision.models.Item
+dataClass=com.login.huntvision.models.Item
 tableName=item
 fieldName=id;
 fieldName=descricao;
@@ -48,7 +48,7 @@ fieldName=chave;
 
 ################################################
 
-dataClass=login.com.huntvision.models.ItemLocal
+dataClass=com.login.huntvision.models.ItemLocal
 tableName=item_local
 fieldName=id;
 fieldName=local_id;
@@ -57,7 +57,7 @@ fieldName=item_id;
 
 ################################################
 
-dataClass=login.com.huntvision.models.Local
+dataClass=com.login.huntvision.models.Local
 tableName=local
 fieldName=id;
 fieldName=clienteId;
@@ -66,7 +66,7 @@ fieldName=nomeLocal;
 
 ################################################
 
-dataClass=login.com.huntvision.models.Menu
+dataClass=com.login.huntvision.models.Menu
 tableName=menu
 fieldName=id;
 fieldName=descricao;
@@ -78,7 +78,7 @@ fieldName=menuId;
 
 ################################################
 
-dataClass=login.com.huntvision.models.Permissao
+dataClass=com.login.huntvision.models.Permissao
 tableName=permissao
 fieldName=id;
 fieldName=flag_alterar;
@@ -90,7 +90,7 @@ fieldName=menuId;
 
 ################################################
 
-dataClass=login.com.huntvision.models.Questionario
+dataClass=com.login.huntvision.models.Questionario
 tableName=questionario
 fieldName=id;
 fieldName=imagemId;
@@ -107,7 +107,7 @@ fieldName= procedimentos;
 
 ################################################
 
-dataClass=login.com.huntvision.models.Resposta
+dataClass=com.login.huntvision.models.Resposta
 tableName=resposta
 fieldName=id;
 fieldName=descricao;
@@ -120,7 +120,7 @@ fieldName=questionarioId;
 
 ################################################
 
-dataClass=login.com.huntvision.models.TipoQuestionario
+dataClass=com.login.huntvision.models.TipoQuestionario
 tableName=tipo_questionario
 fieldName=id;
 fieldName=descricao;
@@ -128,7 +128,7 @@ fieldName=descricao;
 
 ################################################
 
-dataClass=login.com.huntvision.models.Vistoria
+dataClass=com.login.huntvision.models.Vistoria
 tableName=vistoria
 fieldName=id;
 fieldName=clienteId;
@@ -139,7 +139,7 @@ fieldName=imagemPendente;
 
 ################################################
 
-dataClass=login.com.huntvision.models.VistoriaResposta
+dataClass=com.login.huntvision.models.VistoriaResposta
 tableName=vistoria_resposta
 fieldName=id;
 fieldName=vistoriaId;
@@ -149,7 +149,7 @@ fieldName=observacao;
 
 ################################################
 
-dataClass=login.com.huntvision.models.Agenda
+dataClass=com.login.huntvision.models.Agenda
 tableName=agenda
 fieldName=id;
 fieldName=clienteId;

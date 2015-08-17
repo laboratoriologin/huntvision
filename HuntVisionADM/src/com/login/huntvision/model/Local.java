@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -39,7 +40,7 @@ public final class Local  extends TSActiveRecordAb<Local> {
 	private String nomeLocal;
 	
 	@Cascade(org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
-	@OneToMany(mappedBy = "local", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "local", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<ItemLocal> itensLocais;
 
 	

@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
 
-    tools:context="login.com.huntvision.ClienteActivity">
+    tools:context="com.login.huntvision.ClienteActivity">
 
     <RelativeLayout
         android:id="@+id/rlBk"

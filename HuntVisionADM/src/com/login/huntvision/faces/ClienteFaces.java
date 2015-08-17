@@ -3,21 +3,27 @@
  */
 package com.login.huntvision.faces;
 
-import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.model.SelectItem;
 
 import org.apache.commons.io.FilenameUtils;
 import org.primefaces.event.FileUploadEvent;
 
 import br.com.topsys.exception.TSApplicationException;
 import br.com.topsys.file.TSFile;
+import br.com.topsys.util.TSUtil;
 
 import com.login.huntvision.model.Cliente;
+import com.login.huntvision.model.Item;
+import com.login.huntvision.model.ItemLocal;
+import com.login.huntvision.model.Local;
 import com.login.huntvision.util.Constantes;
 
 /**
@@ -30,11 +36,57 @@ public class ClienteFaces extends CrudFaces<Cliente> {
 
 	private static final long serialVersionUID = 1L;
 
+	private Local localSelecionado;
+	private List<SelectItem> comboItem;
+
 	@PostConstruct
 	protected void init() {
 		this.clearFields();
-
+		this.comboItem = super.initCombo(new Item().findByModel("descricao"), "id", "descricao");
 		setFieldOrdem("nome");
+	}
+
+	public String addLocal() {
+
+		Local local = new Local();
+
+		local.setCliente(getCrudModel());
+
+		if (TSUtil.isEmpty(getCrudModel().getLocais())) {
+			getCrudModel().setLocais(new ArrayList<Local>());
+		}
+
+		getCrudModel().getLocais().add(local);
+
+		return null;
+	}
+
+	public String addItem() {
+
+		if (TSUtil.isEmpty(this.localSelecionado.getItensLocais())) {
+			this.localSelecionado.setItensLocais(new ArrayList<ItemLocal>());
+		}
+
+		ItemLocal itemLocal = new ItemLocal();
+
+		itemLocal.setItem(new Item());
+
+		itemLocal.setLocal(this.localSelecionado);
+		
+		this.localSelecionado.getItensLocais().add(itemLocal);
+
+		return null;
+
+	}
+
+	public String delLocal() {
+		getCrudModel().getLocais().remove(this.localSelecionado);
+		return null;
+	}
+	
+	public String delItem(Integer position) {
+		this.localSelecionado.getItensLocais().remove(position.intValue());
+		return null;
 	}
 
 	@Override
@@ -65,15 +117,31 @@ public class ClienteFaces extends CrudFaces<Cliente> {
 		this.getCrudModel().setImagem(nomeArquivo);
 
 		try {
-		
+
 			TSFile.inputStreamToFile(event.getFile().getInputstream(), Constantes.CAMINHO_ARQUIVO + this.getCrudModel().getImagem());
-		
+
 		} catch (TSApplicationException | IOException e) {
 			this.addErrorMessage("Ocorreu um erro ao enviar imagem: " + e.getMessage());
 			e.printStackTrace();
-			
+
 		}
-		
+
+	}
+
+	public Local getLocalSelecionado() {
+		return localSelecionado;
+	}
+
+	public void setLocalSelecionado(Local localSelecionado) {
+		this.localSelecionado = localSelecionado;
+	}
+
+	public List<SelectItem> getComboItem() {
+		return comboItem;
+	}
+
+	public void setComboItem(List<SelectItem> comboItem) {
+		this.comboItem = comboItem;
 	}
 
 }
