@@ -34,12 +34,12 @@
 			style="text-align: center; padding: 10px;" align="center">
 
 			<thead>
-				<td><img width="80%"
+				<td><img width="120px;"
 					src="/arquivos_huntvision/#{mbean.crudModel.cliente.imagem}" alt="" /></td>
 
-				<td><img width="20%" src="../../resources/images/logoGold.jpg"
+				<td><img width="150px;" src="../../resources/images/logoGold.jpg"
 					alt="" /></td>
-				<td><img width="30%"
+				<td><img width="150px;"
 					src="../../resources/images/logo_hunt_vision_260px.png" alt="" /></td>
 
 			</thead>
@@ -101,13 +101,15 @@
 			<ui:repeat var="linha" value="#{mbean.lstVistoriaRespostaTratada}">
 
 				<tr>
-					<td><h:outputText style="text-align: center; padding: 10px; font-weight:bold;"
+					<td><h:outputText
+							style="text-align: center; padding: 10px; font-weight:bold;"
 							value="#{linha.resposta.questionario.pergunta}" /></td>
 				</tr>
 
 				<ui:repeat value="#{linha.imagens}" var="imagem">
 					<tr>
-						<td><img width="300px" style="max-height: 200px; margin:5px;"
+						<td><img width="300px"
+							style="max-height: 200px; margin: 5px;"
 							src="/arquivos_huntvision/#{imagem.caminho}"></img></td>
 					</tr>
 

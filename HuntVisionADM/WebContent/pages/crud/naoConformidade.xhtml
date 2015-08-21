@@ -52,7 +52,8 @@
 
 								<div align="center">
 									<p:commandButton action="#{mbean.marcarMapa}"
-										oncomplete="PF('dlgMapa').show();" icon="ic-mapa" style="height: 45px;width: 45px"
+										oncomplete="PF('dlgMapa').show();" icon="ic-mapa"
+										style="height: 45px;width: 45px"
 										update="@parent:@parent:@parent:@parent:@parent:@parent:opMapa">
 										<f:setPropertyActionListener target="#{mbean.crudModel}"
 											value="#{linha}" />

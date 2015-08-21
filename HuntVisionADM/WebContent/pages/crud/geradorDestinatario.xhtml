@@ -20,7 +20,8 @@
 			<p:outputLabel for="local" value="Item Local" />
 			<p:selectOneMenu id="local" value="#{mbeanModel.id}" required="true"
 				requiredMessage="Campo Item Local obrigatório" style="width:55%">
-				<p:ajax event="change" listener="#{geradorDestinatarioFaces.onChangeEvent}" update="@form"/>
+				<p:ajax event="change"
+					listener="#{geradorDestinatarioFaces.onChangeEvent}" update="@form" />
 				<f:selectItem itemLabel="Não selecionado" itemValue="" />
 				<f:selectItems value="#{mbean.comboItemLocal}" />
 			</p:selectOneMenu>

@@ -23,25 +23,22 @@
 		<link type="text/css" rel="stylesheet"
 			href="#{request.contextPath}/resources/css/prime.css" />
 
-		<script>
-			function gerarQRCode() {
-
-				var mesa = document.getElementById('mesa_qr_code').value;
-
-				if (mesa != '') {
-
-					var url = '../qrcode?mesa=' + mesa;
-
-					window.open(url, '_blank');
-
-				}
-
-			}
-		</script>
+		
 	</h:head>
 
 	<h:body style="font-size: 12px">
-<div id="topHunt"  class="topHunt"></div>
+<div id="topHunt"  class="topHunt">	
+		
+
+<h:form id="formUsuario" style="color:#FFF;float:right; margin-top: 4px; margin-right:10px; padding:1px;">
+<h:outputText value="#{autenticacaoFaces.usuario.nome}"  style="position:right; color:#FFF;font-weight: 700; margin:4px; padding:3px;  " />
+|
+	<p:commandLink ajax="false" value="Desconectar X "
+								style="font-weight: 700; text-decoration: none;  color:#FFF; text-align: center; padding:3px; "
+								action="#{autenticacaoFaces.logout}" />
+		</h:form>	
+		
+			</div>
 		<p:growl id="growl" showDetail="true" showSummary="false"
 			sticky="false" autoUpdate="true" globalOnly="false" />
 
@@ -60,27 +57,25 @@
 			
 
 				<ui:include   id="uiMenu" src="/pages/menu.xhtml" />
-		<p:graphicImage id="logoHunt" style="border:inset 0.1em gray;" width="5.9%" height="77px" value="../resources/images/logo_hunt_vision_260px.png" />
+			
+				<div class="divLogo">
+		
+	<h:outputText value="#{autenticacaoFaces.nomeTela}" styleClass="menu"></h:outputText>	
+			<p:graphicImage id="logoHunt"  style="position:relative; float:right; margin-top:-60px;" width="7%;"  value="../resources/images/logo_hunt_vision_260px.png" />
+	
+</div>
 
-
-		<h:outputText value="#{autenticacaoFaces.nomeTela}" styleClass="menu"></h:outputText>
+				
+			<div class="classConteudo">
 		
 				
-		
-				
-				<ui:include id="uiMenu2" src="#{autenticacaoFaces.tela}" />
-				
+				<ui:include id="uiMenu2"  src="#{autenticacaoFaces.tela}" />
+			</div>	
 		
 
 				<h:panelGrid columns="6" width="100%" style="height: 100%;"
 					columnClasses="colunaInformativo40, colunaInformativo20, colunaInformativo20, colunaInformativo10, colunaInformativoVerde10,colunaInformativoVermelho10">
 		
-
-
-
-				
-
-
 
 				</h:panelGrid>
 		
