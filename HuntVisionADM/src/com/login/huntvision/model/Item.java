@@ -1,5 +1,7 @@
 package com.login.huntvision.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -63,6 +65,12 @@ public final class Item extends TSActiveRecordAb<Item> {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+	
+	public List<Item> find(Cliente cliente) {
+		
+		return findBySQL("SELECT * FROM ITENS I WHERE EXISTS(SELECT 1 FROM ITENS_LOCAIS IL, LOCAIS L, CLIENTES C WHERE IL.LOCAL_ID = L.ID AND IL.ITEM_ID = I.ID AND L.CLIENTE_ID = C.ID AND C.ID = ?)", cliente.getId());
+		
 	}
 
 	/*

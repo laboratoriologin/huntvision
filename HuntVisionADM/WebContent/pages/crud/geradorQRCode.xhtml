@@ -1,39 +1,30 @@
-<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:f="http://java.sun.com/jsf/core">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core">
 
 	<ui:param name="mbean" value="${geradorQRCodesFaces}" />
 	<ui:param name="mbeanModel" value="${geradorQRCodesFaces.crudModel}" />
-	<ui:param name="mbeanPesquisaModel"
-		value="${geradorQRCodesFaces.crudPesquisaModel}" />
+	<ui:param name="mbeanPesquisaModel" value="${geradorQRCodesFaces.crudPesquisaModel}" />
 	<ui:param name="reload" value="true" />
 
 	<h:panelGrid>
 		<p:tabView>
-			<p:tab title="Clientes" >
-			
-	
-
-							<p:fieldset legend="Filtro">
+			<p:tab title="Clientes">
 
 
 
-								<h:panelGrid styleClass="coluna100">
-									<h:outputText value="Cliente" />
-									<p:inputText value="#{mbean.cliente.nome}"
-										styleClass="coluna50" />
-
-									<p:commandButton value="Pesquisar" icon="ui-icon-search"
-										action="#{mbean.findEvent}" update="gridPesquisa" />
-								</h:panelGrid>
+				<p:fieldset legend="Filtro">
 
 
-							</p:fieldset>
-				<p:dataTable id="gridPesquisa"
-					emptyMessage="Nenhum registro encontrado" style="width: 100%"
-					paginator="true" paginatorAlwaysVisible="false" rows="10"
-					value="#{mbeanModel.lstCliente}" var="linha" widgetVar="dtPesquisa">
+
+					<h:panelGrid styleClass="coluna100">
+						<h:outputText value="Cliente" />
+						<p:inputText value="#{mbean.cliente.nome}" styleClass="coluna50" />
+
+						<p:commandButton value="Pesquisar" icon="ui-icon-search" action="#{mbean.findEvent}" update="gridPesquisa" />
+					</h:panelGrid>
+
+
+				</p:fieldset>
+				<p:dataTable id="gridPesquisa" emptyMessage="Nenhum registro encontrado" style="width: 100%" paginator="true" paginatorAlwaysVisible="false" rows="10" value="#{mbeanModel.lstCliente}" var="linha" widgetVar="dtPesquisa">
 
 					<p:column headerText="Descrição">
 						<h:outputText value="#{linha.nome}" />
@@ -44,13 +35,9 @@
 
 						<div align="center">
 
-							<p:commandLink icon="qr_code" id="clQrCode"
-								action="#{mbean.geraQrCodeRelatorio}"
-								oncomplete="printRelatorio();">
-								<h:graphicImage value="../resources/images/qr_code.png"
-									style="border: 0px" />
-								<f:setPropertyActionListener target="#{mbean.cliente}"
-									value="#{linha}" />
+							<p:commandLink icon="qr_code" id="clQrCode" action="#{mbean.geraQrCodeRelatorio}" oncomplete="printRelatorio();">
+								<h:graphicImage value="../resources/images/qr_code.png" style="border: 0px" />
+								<f:setPropertyActionListener target="#{mbean.cliente}" value="#{linha}" />
 
 							</p:commandLink>
 
@@ -64,15 +51,13 @@
 		</p:tabView>
 
 	</h:panelGrid>
-	
+
 	<script>
-	
 		function printRelatorio() {
-			
-			window.open('relatorio/relatorioQRCodeImpressao.xhtml', '_blank');	
-			
+
+			window.open('relatorio/relatorioQRCodeImpressao.xhtml', '_blank');
+
 		}
-	
 	</script>
-	
+
 </ui:composition>

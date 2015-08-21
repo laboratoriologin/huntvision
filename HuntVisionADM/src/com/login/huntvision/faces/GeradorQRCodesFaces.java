@@ -44,6 +44,7 @@ public class GeradorQRCodesFaces extends CrudFaces<GeradorQRCode> {
 	private List<SelectItem> comboLocal;
 	private String txtCode;
 	private List<SelectItem> comboGeradorQRCode;
+
 	/**
 	 * @return the lstCliente
 	 */
@@ -52,7 +53,8 @@ public class GeradorQRCodesFaces extends CrudFaces<GeradorQRCode> {
 	}
 
 	/**
-	 * @param lstCliente the lstCliente to set
+	 * @param lstCliente
+	 *            the lstCliente to set
 	 */
 	public void setLstCliente(List<Cliente> lstCliente) {
 		this.lstCliente = lstCliente;
@@ -96,7 +98,6 @@ public class GeradorQRCodesFaces extends CrudFaces<GeradorQRCode> {
 		lstCliente = (new Cliente().findAll("nome"));
 		this.getCrudModel().setLstCliente(lstCliente);
 
-	
 	}
 
 	/**
@@ -174,36 +175,7 @@ public class GeradorQRCodesFaces extends CrudFaces<GeradorQRCode> {
 
 	public void geraQrCodeRelatorio() {
 
-		lstCliente = new ArrayList<Cliente>() ;
-		lstLocalCliente = new ArrayList<Local>() ;
-		pLstItemLocal = new ArrayList<ItemLocal>();
-	    pLstItem= new ArrayList<Item>();
-	    
-		lstLocal = new Local().findAll();
-		lstItemLocal = new ItemLocal().findAll();
-		lstItem = new Item().findAll();
-		
-		for (Local objLocal : lstLocal) {
-			if (objLocal.getCliente().equals(cliente)) {
-				lstLocalCliente.add(objLocal);
-
-				for (ItemLocal itemLocal : lstItemLocal) {
-
-					if (itemLocal.getLocal() == objLocal) {
-						pLstItemLocal.add(itemLocal);
-
-						for (Item item : lstItem) {
-
-							if (item.getId() == itemLocal.getItem().getId()) {
-								pLstItem.add(item);
-							}
-						}
-					}
-				}
-			}
-
-		}
-		
+		pLstItem = new Item().find(this.cliente);
 
 	}
 
@@ -282,8 +254,6 @@ public class GeradorQRCodesFaces extends CrudFaces<GeradorQRCode> {
 		ImageIO.write(image, filetype, qrfile);
 
 	}
-	
-	
 
 	/**
 	 * @return the cliente
@@ -308,12 +278,11 @@ public class GeradorQRCodesFaces extends CrudFaces<GeradorQRCode> {
 	}
 
 	/**
-	 * @param pLstItem the pLstItem to set
+	 * @param pLstItem
+	 *            the pLstItem to set
 	 */
 	public void setpLstItem(List<Item> pLstItem) {
 		this.pLstItem = pLstItem;
 	}
-	
-	
 
 }
