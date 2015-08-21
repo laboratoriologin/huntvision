@@ -1,5 +1,4 @@
-<ui:composition 
-	xmlns:ui="http://java.sun.com/jsf/facelets"
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core">
@@ -11,69 +10,74 @@
 	<ui:param name="reload" value="true" />
 
 	<h:form>
-	    <p:dataTable id="gridPesquisa" var="linha"	value="#{mbeanModel.lstItem}"
-                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
-                 paginator="true" rows="10" style="margin-bottom:20px">
- 
-        <f:facet name="{Exporters}">
-            <h:commandLink>
-                <p:graphicImage value="../resources/images/excel.png" width="24"/>
-                <p:dataExporter type="xls" target="tbl" fileName="cars" />
-            </h:commandLink>
- 
-            <h:commandLink>
-                <p:graphicImage value="../resources/images/pdf.png"  width="24"/>
-                <p:dataExporter type="pdf" target="tbl" fileName="cars"/>
-            </h:commandLink>
- 
-            <h:commandLink>
-                <p:graphicImage value="../resources/images/csv.png"  width="24"/>
-                <p:dataExporter type="csv" target="tbl" fileName="cars" />
-            </h:commandLink>
- 
-            <h:commandLink>
-                <p:graphicImage value="../resources/images/xml.png"width="24"/>
-                <p:dataExporter type="xml" target="tbl" fileName="cars" />
-            </h:commandLink>
-        </f:facet>
-    
-     <p:column>
-            <f:facet name="header">
-                <h:outputText value="Local"/>
-            </f:facet>
-            <h:outputText value="#{linha.descricao}" />
-        </p:column>
- 
-        <p:column>
-            <f:facet name="header">
-                <h:outputText value="Chave" />
-            </f:facet>
-            <h:outputText value="#{linha.chave" />
-        </p:column>
- 
-      
-    </p:dataTable>
- 
-    <h3>Exportar</h3>
-    <h:commandLink>
-        <p:graphicImage value="../resources/images/excel.png" />
-        <p:dataExporter type="xls" target="tbl" fileName="cars" pageOnly="true"/>
-    </h:commandLink>
- 
-    <h:commandLink>
-        <p:graphicImage value="../resources/images/pdf.png" />
-        <p:dataExporter type="pdf" target="tbl" fileName="cars" pageOnly="true" />
-    </h:commandLink>
- 
-    <h:commandLink>
-      <p:graphicImage value="../resources/images/csv.png" />
-        <p:dataExporter type="csv" target="tbl" fileName="cars" pageOnly="true" />
-    </h:commandLink>
- 
-    <h:commandLink>
-    <p:graphicImage value="../resources/images/xml.png" />
-        <p:dataExporter type="xml" target="tbl" fileName="cars" pageOnly="true" />
-    </h:commandLink>
-</h:form>
+		<p:dataTable id="gridPesquisa" var="linha"
+			value="#{mbeanModel.lstItem}"
+			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+			paginator="true" rows="10" style="margin-bottom:20px">
+
+			<f:facet name="{Exporters}">
+				<h:commandLink>
+					<p:graphicImage value="../resources/images/excel.png" width="24" />
+					<p:dataExporter type="xls" target="tbl" fileName="cars" />
+				</h:commandLink>
+
+				<h:commandLink>
+					<p:graphicImage value="../resources/images/pdf.png" width="24" />
+					<p:dataExporter type="pdf" target="tbl" fileName="cars" />
+				</h:commandLink>
+
+				<h:commandLink>
+					<p:graphicImage value="../resources/images/csv.png" width="24" />
+					<p:dataExporter type="csv" target="tbl" fileName="cars" />
+				</h:commandLink>
+
+				<h:commandLink>
+					<p:graphicImage value="../resources/images/xml.png" width="24" />
+					<p:dataExporter type="xml" target="tbl" fileName="cars" />
+				</h:commandLink>
+			</f:facet>
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Local" />
+				</f:facet>
+				<h:outputText value="#{linha.descricao}" />
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Chave" />
+				</f:facet>
+				<h:outputText value="#{linha.chave" />
+			</p:column>
+
+
+		</p:dataTable>
+
+		<h3>Exportar</h3>
+		<h:commandLink>
+			<p:graphicImage value="../resources/images/excel.png" />
+			<p:dataExporter type="xls" target="tbl" fileName="cars"
+				pageOnly="true" />
+		</h:commandLink>
+
+		<h:commandLink>
+			<p:graphicImage value="../resources/images/pdf.png" />
+			<p:dataExporter type="pdf" target="tbl" fileName="cars"
+				pageOnly="true" />
+		</h:commandLink>
+
+		<h:commandLink>
+			<p:graphicImage value="../resources/images/csv.png" />
+			<p:dataExporter type="csv" target="tbl" fileName="cars"
+				pageOnly="true" />
+		</h:commandLink>
+
+		<h:commandLink>
+			<p:graphicImage value="../resources/images/xml.png" />
+			<p:dataExporter type="xml" target="tbl" fileName="cars"
+				pageOnly="true" />
+		</h:commandLink>
+	</h:form>
 
 </ui:composition>

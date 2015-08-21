@@ -22,11 +22,18 @@
 
 						<p:fieldset legend="Filtro">
 
-
-
-							<h:panelGrid styleClass="coluna100">
+							<h:panelGrid columns="1" style="width:50%;"
+								columnClasses="coluna100">
 								<h:outputText value="Cliente" />
-								<p:inputText value="#{mbean.cliente.nome}" styleClass="coluna50" />
+								
+								<p:selectOneMenu style="width:50%;"
+									value="#{mbean.cliente.id}">
+									<f:selectItem itemLabel="Todos" itemValue="" />
+									<f:selectItems value="#{mbean.comboCliente}" />
+								</p:selectOneMenu>
+
+
+							
 
 								<p:commandButton value="Pesquisar" icon="ui-icon-search"
 									action="#{mbean.findEvent}" update="gridPesquisa" />
@@ -44,7 +51,7 @@
 								<h:outputText value="#{linha.cliente.nome}" />
 							</p:column>
 
-							<p:column headerText="Data" styleClass="coluna10">
+							<p:column headerText="Data" styleClass="coluna10" sortBy="#{linha.id}" filterStyle="width:80%" resizable="true" filterBy="#{linha.data}">
 								<h:outputText value="#{linha.data}" />
 							</p:column>
 
@@ -52,7 +59,8 @@
 
 								<div align="center">
 									<p:commandButton action="#{mbean.marcarMapa}"
-										oncomplete="PF('dlgMapa').show();" icon="ic-mapa" style="height: 45px;width: 45px"
+										oncomplete="PF('dlgMapa').show();" icon="ic-mapa"
+										style="height: 45px;width: 45px"
 										update="@parent:@parent:@parent:@parent:@parent:@parent:opMapa">
 										<f:setPropertyActionListener target="#{mbean.crudModel}"
 											value="#{linha}" />
@@ -69,8 +77,14 @@
 									<p:commandButton action="#{mbean.enviarEmail}" id="btEmail"
 										style="height: 45px;width: 45px" icon="ic-email">
 										<f:setPropertyActionListener target="#{mbean.crudModel}"
-											value="#{linha}" />
+											value="#{linha}" update="message" />
+											  <p:confirm header="Confirmação de envio." message="Tem certeza em enviar o email para o cliente?" icon="ui-icon-alert" />
 									</p:commandButton>
+									
+									 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+								        <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+								        <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+								     </p:confirmDialog>
 								</div>
 
 							</p:column>

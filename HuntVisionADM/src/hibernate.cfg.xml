@@ -19,15 +19,15 @@
 		<mapping class="com.login.huntvision.model.Item" />
 		<mapping class="com.login.huntvision.model.Local" />
 		<mapping class="com.login.huntvision.model.Usuario" />
-		
-		 
-		 		<mapping class="com.login.huntvision.model.Menu" />
+
+
+		<mapping class="com.login.huntvision.model.Menu" />
 		<mapping class="com.login.huntvision.model.Permissao" />
 		<mapping class="com.login.huntvision.model.Questionario" />
 		<mapping class="com.login.huntvision.model.Resposta" />
 		<mapping class="com.login.huntvision.model.TipoQuestionario" />
 		<mapping class="com.login.huntvision.model.Protocolo" />
-	    <mapping class="com.login.huntvision.model.ProtocoloAcao" />
+		<mapping class="com.login.huntvision.model.ProtocoloAcao" />
 		<mapping class="com.login.huntvision.model.Acao" />
 		<mapping class="com.login.huntvision.model.VistoriaResposta" />
 		<mapping class="com.login.huntvision.model.Vistoria" />

@@ -9,76 +9,82 @@
 	<title>This content will not be displayed</title>
 
 </h:head>
-<h:body >
+<h:body>
 
-	<composite:interface>	
+	<composite:interface>
 	</composite:interface>
 
 	<composite:implementation>
-		
 
 
-			<div id="topHunt"  class="topHunt"></div>
-				<h:form id="formLogin"  prependId="false">
-					<p:growl id="msgLogin" autoUpdate="true" globalOnly="false"
-						showDetail="true" showSummary="false" />
-					<br />
-					<br />
-					<br />
-					<br />
-					<div align="center" >
 
-						<p:panel id="panelLogin" styleClass="panelLogin" style="padding: 0 !important;
-						"
-							>
+		<div id="topHunt" class="topHunt"></div>
+		<h:form id="formLogin" prependId="false">
+			<p:growl id="msgLogin" autoUpdate="true" globalOnly="false"
+				showDetail="true" showSummary="false" />
+			<br />
+			<br />
+			<br />
+			<br />
+			<div align="center">
 
-							<p:graphicImage
-								value="../resources/images/logo_hunt_vision_260px.png"  style="margin-left:25%;width:150px;z-index: 999;;" />
-							<h:panelGrid style="width: 100% !important; margin: 0 !important; margin-bottom: 0 !important;">
-							<p>
-								<p:inputText id="login"
-								 	value="#{autenticacaoFaces.usuario.login}" onblur="Usuário" style="width: 98%; height:170%; background-color:#FFF;"
-									required="true" requiredMessage="Usuário: Obrigatório" />
-							</p>
-							<p>
-								<p:password id="senha"
-									value="#{autenticacaoFaces.usuario.senha}" onblur="Senha" feedback="false"
-									style="width: 98% ;height:170%; " required="true"
-									requiredMessage="Senha: Obrigatório" />
-							</p>
-							
-				
+				<p:panel id="panelLogin" styleClass="panelLogin"
+					style="padding: 0 !important;
+						">
+
+					<p:graphicImage
+						value="../resources/images/logo_hunt_vision_260px.png"
+						style="margin-left:25%;width:150px;z-index: 999;;" />
+					<h:panelGrid
+						style="width: 100% !important; margin: 0 !important; margin-bottom: 0 !important;">
+						<p>
+							<p:inputText id="login"
+								value="#{autenticacaoFaces.usuario.login}" onblur="Usuário"
+								style="width: 98%; height:170%; background-color:#FFF;"
+								required="true" requiredMessage="Usuário: Obrigatório" />
+						</p>
+						<p>
+							<p:password id="senha" value="#{autenticacaoFaces.usuario.senha}"
+								onblur="Senha" feedback="false"
+								style="width: 98% ;height:170%; " required="true"
+								requiredMessage="Senha: Obrigatório" />
+						</p>
 
 
-							
-								<p:commandButton ajax="false" title="Acessar o HuntVision"
-									id="btnAcessar" value="Entrar"
-									style="height: 35px;width: 100%" icon="cadeado"
-									action="#{autenticacaoFaces.login}" />
-					
+
+
+
+						<p:commandButton ajax="false" title="Acessar o HuntVision"
+							id="btnAcessar" value="Entrar" style="height: 35px;width: 100%"
+							icon="cadeado" action="#{autenticacaoFaces.login}" />
+
 					</h:panelGrid>
-								
-								<div style="height:104px; background-color:rgba(0, 0, 0, 0.2); margin-top:-7%; padding-top:5%;">
-								<p><h:outputLink value="#" style="margin-left:20%;" onclick="PF('dlgNovaSenha').show()">Esqueci a senha </h:outputLink>|
-						
-							
 
-						
-								<h:outputLink value="#" onclick="PF('dlgAlterarSenha').show()">Alterar senha</h:outputLink>
-							</p> 
-						</div>
-					
+					<div
+						style="height: 104px; background-color: rgba(0, 0, 0, 0.2); margin-top: -7%; padding-top: 5%;">
+						<p>
+							<h:outputLink value="#" style="margin-left:20%;"
+								onclick="PF('dlgNovaSenha').show()">Esqueci a senha </h:outputLink>
+							|
 
-						
 
-						</p:panel>
-	
+
+
+							<h:outputLink value="#" onclick="PF('dlgAlterarSenha').show()">Alterar senha</h:outputLink>
+						</p>
 					</div>
-				</h:form>
-						
 
-			
-	
+
+
+
+				</p:panel>
+
+			</div>
+		</h:form>
+
+
+
+
 		<p:dialog header="Nova senha" position="center" modal="true"
 			appendTo="@(body)" width="400" height="300" widgetVar="dlgNovaSenha">
 
@@ -149,7 +155,8 @@
 
 
 		<p:ajaxStatus onstart="PF('statusDialog').show();"
-			onsuccess="PF('statusDialog').hide();" onerror="PF('statusDialog').hide();"
+			onsuccess="PF('statusDialog').hide();"
+			onerror="PF('statusDialog').hide();"
 			oncomplete="PF('statusDialog').hide();" />
 
 		<p:dialog modal="true" widgetVar="statusDialog"

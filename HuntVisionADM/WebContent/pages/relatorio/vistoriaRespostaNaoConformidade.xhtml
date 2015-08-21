@@ -101,13 +101,15 @@
 			<ui:repeat var="linha" value="#{mbean.lstVistoriaRespostaTratada}">
 
 				<tr>
-					<td><h:outputText style="text-align: center; padding: 10px; font-weight:bold;"
+					<td><h:outputText
+							style="text-align: center; padding: 10px; font-weight:bold;"
 							value="#{linha.resposta.questionario.pergunta}" /></td>
 				</tr>
 
 				<ui:repeat value="#{linha.imagens}" var="imagem">
 					<tr>
-						<td><img width="300px" style="max-height: 200px; margin:5px;"
+						<td><img width="300px"
+							style="max-height: 200px; margin: 5px;"
 							src="/arquivos_huntvision/#{imagem.caminho}"></img></td>
 					</tr>
 

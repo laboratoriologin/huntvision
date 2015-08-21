@@ -136,7 +136,9 @@ public final class Vistoria extends TSActiveRecordAb<Vistoria> {
 
 	public List<Vistoria> findAllByCliente(String order) {
 		
-		return find("from Vistoria where cliente.id = coalesce(?,cliente.id) and usuario.id = coalesce(?,usuario.id)", order, TSUtil.tratarLong(cliente.getId()), TSUtil.tratarLong(usuario.getId()));
+		Long usuarioId = TSUtil.isEmpty(this.usuario)?null:TSUtil.tratarLong(usuario.getId());
+		
+		return find("from Vistoria where cliente.id = coalesce(?,cliente.id) and usuario.id = coalesce(?,usuario.id)", order, TSUtil.tratarLong(cliente.getId()), usuarioId);
 		
 	}
 

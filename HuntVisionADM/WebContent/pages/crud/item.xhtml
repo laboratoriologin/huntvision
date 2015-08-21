@@ -57,17 +57,17 @@
 			<h:outputText value="#{linha.chave}" />
 
 		</p:column>
-		
 
-			<p:commandLink action="#{mbean.geraQrCode}" process="@this">
-			
-				<f:setPropertyActionListener target="#{mbeanModel.descricao}"
-					value="#{linha.descricao}" />
-				<f:setPropertyActionListener target="#{mbeanModel.chave}"
-					value="#{linha.chave}" />
-			</p:commandLink>
 
-	
+		<p:commandLink action="#{mbean.geraQrCode}" process="@this">
+
+			<f:setPropertyActionListener target="#{mbeanModel.descricao}"
+				value="#{linha.descricao}" />
+			<f:setPropertyActionListener target="#{mbeanModel.chave}"
+				value="#{linha.chave}" />
+		</p:commandLink>
+
+
 	</ui:define>
 
 </ui:composition>

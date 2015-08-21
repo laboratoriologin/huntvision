@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ui:composition template="/resources/templates/templateCRUD.xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core">
+<ui:composition template="/resources/templates/templateCRUD.xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
 
 	<ui:param name="mbean" value="${acaoFaces}" />
 	<ui:param name="mbeanModel" value="${acaoFaces.crudModel}" />
-	<ui:param name="mbeanPesquisaModel" value="${acaoFaces.crudPesquisaModel}" />
+	<ui:param name="mbeanPesquisaModel"
+		value="${acaoFaces.crudPesquisaModel}" />
 	<ui:param name="reload" value="true" />
 
 	<ui:define name="cadastro">
@@ -11,11 +16,15 @@
 		<h:panelGrid columns="1" style="width:50%">
 
 			<p:outputLabel for="nome" value="Nome" />
-			<p:inputText id="nome" required="true" requiredMessage="Nome campo obrigatório" maxlength="50" value="#{mbeanModel.nome}" styleClass="coluna50" />
+			<p:inputText id="nome" required="true"
+				requiredMessage="Nome campo obrigatório" maxlength="50"
+				value="#{mbeanModel.nome}" styleClass="coluna50" />
 
 
-	<p:outputLabel for="procedimento" value="Procedimento" />
-			  <p:inputTextarea rows="10" cols="50" id="procedimento"   maxlength="4000" value="#{mbeanModel.procedimento}" styleClass="coluna50" />
+			<p:outputLabel for="procedimento" value="Procedimento" />
+			<p:inputTextarea rows="10" cols="50" id="procedimento"
+				maxlength="4000" value="#{mbeanModel.procedimento}"
+				styleClass="coluna50" />
 
 		</h:panelGrid>
 
@@ -26,19 +35,20 @@
 		<h:panelGrid columns="1" style="width:50%">
 
 			<p:outputLabel for="nomePesquisa" value="Descrição" />
-			<p:inputText id="nomePesquisa" value="#{mbeanPesquisaModel.nome}" styleClass="coluna90" />
+			<p:inputText id="nomePesquisa" value="#{mbeanPesquisaModel.nome}"
+				styleClass="coluna90" />
 
 		</h:panelGrid>
 
 	</ui:define>
 
 	<ui:define name="colunasTabela">
- 
+
 		<p:column headerText="Nome">
 			<h:outputText value="#{linha.nome}" />
 		</p:column>
-		
-			<p:column headerText="Procedimento">
+
+		<p:column headerText="Procedimento">
 			<h:outputText value="#{linha.procedimento}" />
 		</p:column>
 

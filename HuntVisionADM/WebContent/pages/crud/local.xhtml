@@ -21,7 +21,7 @@
 				<f:selectItem itemLabel="Não Selecionado" itemValue="" />
 				<f:selectItems value="#{mbean.comboCliente}" />
 			</p:selectOneMenu>
-			
+
 			<h:outputText value="Local:" />
 			<p:inputText id="txtNomeLocal" required="true"
 				requiredMessage="Local obrigatório" maxlength="50"
@@ -54,14 +54,14 @@
 	</ui:define>
 
 	<ui:define name="colunasTabela">
-	<p:column headerText="Cliente">
-		
-		<h:outputText value="#{linha.cliente.nome}" />
-		
+		<p:column headerText="Cliente">
+
+			<h:outputText value="#{linha.cliente.nome}" />
+
 		</p:column>
 		<p:column headerText="Local">
-		
-		
+
+
 			<h:outputText value="#{linha.nomeLocal}" />
 
 		</p:column>

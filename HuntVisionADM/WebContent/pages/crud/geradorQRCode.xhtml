@@ -11,25 +11,24 @@
 
 	<h:panelGrid>
 		<p:tabView>
-			<p:tab title="Clientes" >
-			
-	
-
-							<p:fieldset legend="Filtro">
+			<p:tab title="Clientes">
 
 
 
-								<h:panelGrid styleClass="coluna100">
-									<h:outputText value="Cliente" />
-									<p:inputText value="#{mbean.cliente.nome}"
-										styleClass="coluna50" />
-
-									<p:commandButton value="Pesquisar" icon="ui-icon-search"
-										action="#{mbean.findEvent}" update="gridPesquisa" />
-								</h:panelGrid>
+				<p:fieldset legend="Filtro">
 
 
-							</p:fieldset>
+
+					<h:panelGrid styleClass="coluna100">
+						<h:outputText value="Cliente" />
+						<p:inputText value="#{mbean.cliente.nome}" styleClass="coluna50" />
+
+						<p:commandButton value="Pesquisar" icon="ui-icon-search"
+							action="#{mbean.findEvent}" update="gridPesquisa" />
+					</h:panelGrid>
+
+
+				</p:fieldset>
 				<p:dataTable id="gridPesquisa"
 					emptyMessage="Nenhum registro encontrado" style="width: 100%"
 					paginator="true" paginatorAlwaysVisible="false" rows="10"
@@ -64,7 +63,7 @@
 		</p:tabView>
 
 	</h:panelGrid>
-	
+
 	<script>
 	
 		function printRelatorio() {
@@ -74,5 +73,5 @@
 		}
 	
 	</script>
-	
+
 </ui:composition>

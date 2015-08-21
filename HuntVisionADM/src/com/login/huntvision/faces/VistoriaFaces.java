@@ -8,6 +8,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.model.SelectItem;
 
+import org.primefaces.model.DefaultScheduleEvent;
 import org.primefaces.model.map.DefaultMapModel;
 import org.primefaces.model.map.LatLng;
 import org.primefaces.model.map.MapModel;
@@ -16,6 +17,7 @@ import org.primefaces.model.map.Marker;
 import br.com.topsys.util.TSUtil;
 import br.com.topsys.web.util.TSFacesUtil;
 
+import com.login.huntvision.model.Agenda;
 import com.login.huntvision.model.Cliente;
 import com.login.huntvision.model.ConfiguracaoEmail;
 import com.login.huntvision.model.GeradorQRCode;
@@ -39,8 +41,8 @@ public class VistoriaFaces extends CrudFaces<Vistoria> {
 	private List<Vistoria> lstVistoria;
 	private List<VistoriaResposta> lstVistoriaRespostaTratada;
 	private MapModel mapModel;
-	
-
+	private List<SelectItem> comboCliente;
+	private Vistoria vistoriaPesquisa;
 	@Override
 	@PostConstruct
 	protected void clearFields() {
@@ -68,7 +70,18 @@ public class VistoriaFaces extends CrudFaces<Vistoria> {
 		}
 
 		this.mapModel = new DefaultMapModel();
+		this.comboCliente = super.initCombo(new Cliente().findAll(), "id", "nome");
+		
+	}
 	
+
+
+	public List<SelectItem> getComboCliente() {
+		return comboCliente;
+	}
+
+	public void setComboCliente(List<SelectItem> comboCliente) {
+		this.comboCliente = comboCliente;
 	}
 
 	@Override
@@ -83,6 +96,7 @@ public class VistoriaFaces extends CrudFaces<Vistoria> {
 
 		Vistoria vistoria = new Vistoria();
 
+	
 		if (TSUtil.isEmpty(this.cliente.getNome())) {
 
 			this.cliente.setNome("");
@@ -91,7 +105,7 @@ public class VistoriaFaces extends CrudFaces<Vistoria> {
 
 		vistoria.setCliente(this.cliente);
 
-		lstVistoria = vistoria.findAllByNomeCliente();
+		lstVistoria = vistoria.findAllByCliente("id desc");
 
 		TSFacesUtil.gerarResultadoLista(lstVistoria);
 
