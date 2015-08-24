@@ -153,7 +153,7 @@ public class VistoriaPendenteActivity extends DefaultActivity {
 
         }
 
-        if (vistoriasToSend.size() > 0) {
+        if (!vistoriasToSend.isEmpty()) {
 
             progressDialog = ProgressDialog.show(this, "Aguarde", "Concluindo visitas...");
 

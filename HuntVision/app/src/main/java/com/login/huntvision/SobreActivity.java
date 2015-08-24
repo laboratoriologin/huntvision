@@ -16,32 +16,31 @@ import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
 import com.login.huntvision.R;
+
 @EActivity(R.layout.activity_sobre)
 public class SobreActivity extends DefaultActivity {
 
-;
+    ;
 
     @ViewById(R.id.txtConteudoSobre)
     TextView txtConteudoSobre;
 
     @ViewById(R.id.btnVoltar)
-    Button btnVoltar ;
+    Button btnVoltar;
 
 
     @AfterViews
-    void loadContent()
-    {
-        txtConteudoSobre.setText(LoadConteudo());
+    void loadContent() {
+        txtConteudoSobre.setText(loadConteudo());
     }
 
 
-    private String LoadConteudo()
-    {
+    private String loadConteudo() {
         StringBuilder strConteudo = new StringBuilder();
 
         strConteudo.append("Aplicação para vistorias de condomínios ou qualquer ambiente que necessita uma rotina de auditorias automatizado e dinâmico.");
 
-      return  strConteudo.toString();
+        return strConteudo.toString();
     }
 
 

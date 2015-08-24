@@ -96,7 +96,7 @@ public class QuestionarioActivity extends DefaultActivity {
 
         TextView titulo = (TextView) findViewById(R.id.lblTituloClienteLocal);
 
-        titulo.setText(objCliente.getNome() + " - " + objItem.getDescricao());
+        titulo.setText(objCliente.getNome() + " - " + objLocal.getNomeLocal() + " - " + objItem.getDescricao());
 
         Typeface helveticaRegular = Typeface.createFromAsset(getAssets(), "Agencyr.ttf");
 

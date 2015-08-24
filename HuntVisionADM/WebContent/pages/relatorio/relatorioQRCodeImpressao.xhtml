@@ -58,17 +58,18 @@
 			style="text-align: center; padding: 10px;" align="center">
 			<thead style="font-weight: bold;">
 	
+				<td>Local</td>
 				<td>Item</td>
 				<td>Chave</td>
 				<td>QRCode</td>
 			</thead>
 			<ui:repeat var="linha" value="#{mbean.pLstItem}">
 				<tr>
-				
-					<td><h:outputText value="#{linha.descricao}" /></td>
-					<td><h:outputText value="#{linha.chave}" /></td>
+					<td><h:outputText value="#{linha.local.nomeLocal}" /></td>
+					<td><h:outputText value="#{linha.item.descricao}" /></td>
+					<td><h:outputText value="#{linha.item.chave}" /></td>
 					<td><img
-						src="#{request.contextPath}/qrcode?qrcode=#{linha.chave}" /></td>
+						src="#{request.contextPath}/qrcode?qrcode=#{linha.item.chave}_#{linha.local.id}" /></td>
 				</tr>
 			</ui:repeat>
 		</table>

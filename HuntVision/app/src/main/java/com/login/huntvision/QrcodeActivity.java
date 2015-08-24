@@ -76,25 +76,23 @@ public class QrcodeActivity extends DefaultActivity implements ZBarScannerView.R
 
         if (contents != null) {
 
+            String chave = contents.split("_")[0];
+
+            String localId = contents.split("_")[1];
+
             QueryBuilder<Item, String> builder = getHelper().getItemRuntimeDAO().queryBuilder();
 
             try {
 
-                builder.where().eq("chave", contents.toString());
+                builder.where().eq("chave", chave);
 
                 item = getHelper().getItemRuntimeDAO().queryForFirst(builder.prepare());
 
                 if (item != null) {
 
-                    QueryBuilder<ItemLocal, String> builderItemLocal = getHelper().getItemLocalRuntimeDAO().queryBuilder();
-
-                    builderItemLocal.where().eq("item_id", item.getId().toString());
-
-                    itemLocal = getHelper().getItemLocalRuntimeDAO().queryForFirst(builderItemLocal.prepare());
-
                     QueryBuilder<Local, String> builderLocal = getHelper().getLocalRuntimeDAO().queryBuilder();
 
-                    builderLocal.where().eq("id", itemLocal.getLocal_id().toString());
+                    builderLocal.where().eq("id", localId);
 
                     local = getHelper().getLocalRuntimeDAO().queryForFirst(builderLocal.prepare());
 
