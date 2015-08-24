@@ -53,7 +53,7 @@ import com.login.huntvision.utils.JsonUtil;
 public class SincronizacaoActivity extends DefaultActivity {
     private Conexao objConexao;
     private ProgressDialog progressDialog;
-    private List<Conexao> conexaos;
+    private List<Conexao> conexoes;
 
     @ViewById(R.id.rlConexao)
     RelativeLayout rlConexao;
@@ -517,26 +517,22 @@ public class SincronizacaoActivity extends DefaultActivity {
         txtChave.setTypeface(helveticaRegular);
 
         objConexao = new Conexao();
-        conexaos = new ArrayList<Conexao>();
-
-        objConexao.setId("1");
+        conexoes = new ArrayList<Conexao>();
         objConexao.setUrl(Constantes.URL_WS_GOLD);
 
-        conexaos.add(objConexao);
+        conexoes.add(objConexao);
 
 
         objConexao = new Conexao();
-        objConexao.setId("2");
         objConexao.setUrl(Constantes.URL_WS_GOLD);
 
-        conexaos.add(objConexao);
+        conexoes.add(objConexao);
 
         objConexao = new Conexao();
-        objConexao.setId("3");
-        objConexao.setUrl(Constantes.URL_WS_GOLD);
+        objConexao.setUrl(Constantes.URL_WS_LOCAL);
 
-        conexaos.add(objConexao);
-        final ArrayAdapter<Conexao> adapter = new ArrayAdapter<Conexao>(this, android.R.layout.simple_spinner_item, conexaos);
+        conexoes.add(objConexao);
+        final ArrayAdapter<Conexao> adapter = new ArrayAdapter<Conexao>(this, android.R.layout.simple_spinner_item, conexoes);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
     }

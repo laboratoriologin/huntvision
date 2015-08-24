@@ -15,7 +15,6 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
 import javax.faces.model.SelectItem;
 import javax.imageio.ImageIO;
 
@@ -27,10 +26,8 @@ import com.google.zxing.qrcode.QRCodeWriter;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import com.login.huntvision.model.Cliente;
 import com.login.huntvision.model.GeradorQRCode;
-import com.login.huntvision.model.GeradorQRCode;
 import com.login.huntvision.model.Item;
 import com.login.huntvision.model.ItemLocal;
-import com.login.huntvision.model.Local;
 
 /**
  * @author Ricardo
@@ -45,48 +42,10 @@ public class GeradorQRCodesFaces extends CrudFaces<GeradorQRCode> {
 	private String txtCode;
 	private List<SelectItem> comboGeradorQRCode;
 
-	/**
-	 * @return the lstCliente
-	 */
-	public List<Cliente> getLstCliente() {
-		return lstCliente;
-	}
-
-	/**
-	 * @param lstCliente
-	 *            the lstCliente to set
-	 */
-	public void setLstCliente(List<Cliente> lstCliente) {
-		this.lstCliente = lstCliente;
-	}
-
 	private GeradorQRCode itemSelecionado;
-	private Local local;
 	private List<Cliente> lstCliente;
-	private List<Local> lstLocalCliente;
-	private List<Local> lstLocal;
-	private List<ItemLocal> lstItemLocal;
-	private List<ItemLocal> pLstItemLocal;
-	private List<Item> lstItem;
-	private List<Item> pLstItem;
+	private List<ItemLocal> pLstItem;
 	private Cliente cliente;
-	private ItemLocal itemLocal;
-	private Item item;
-
-	/**
-	 * @return the itemSelecionado
-	 */
-	public GeradorQRCode getGeradorQRCodeSelecionado() {
-		return itemSelecionado;
-	}
-
-	/**
-	 * @param itemSelecionado
-	 *            the itemSelecionado to set
-	 */
-	public void setGeradorQRCodeSelecionado(GeradorQRCode itemSelecionado) {
-		this.itemSelecionado = itemSelecionado;
-	}
 
 	@PostConstruct
 	protected void init() {
@@ -139,43 +98,11 @@ public class GeradorQRCodesFaces extends CrudFaces<GeradorQRCode> {
 		return retorno;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
-	/**
-	 * @return the txtCode
-	 */
-	public String getTxtCode() {
-		return txtCode;
-	}
-
-	/**
-	 * @param txtCode
-	 *            the txtCode to set
-	 */
-	public void setTxtCode(String txtCode) {
-		this.txtCode = txtCode;
-	}
-
-	/**
-	 * @return the comboGeradorQRCode
-	 */
-	public List<SelectItem> getComboGeradorQRCode() {
-		return comboGeradorQRCode;
-	}
-
-	/**
-	 * @param comboGeradorQRCode
-	 *            the comboGeradorQRCode to set
-	 */
-	public void setComboGeradorQRCode(List<SelectItem> comboGeradorQRCode) {
-		this.comboGeradorQRCode = comboGeradorQRCode;
-	}
+	
 
 	public void geraQrCodeRelatorio() {
 
-		pLstItem = new Item().find(this.cliente);
+		pLstItem = new ItemLocal().find(this.cliente);
 
 	}
 
@@ -195,10 +122,11 @@ public class GeradorQRCodesFaces extends CrudFaces<GeradorQRCode> {
 		try {
 			CreateQRImage(qrfile, qrcodetext, size, filetype);
 		} catch (WriterException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
+
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 
@@ -206,9 +134,7 @@ public class GeradorQRCodesFaces extends CrudFaces<GeradorQRCode> {
 
 	}
 
-	private void CreateQRImage(File qrfile, String qrcodetext, int size,
-
-	String filetype) throws WriterException, IOException {
+	private void CreateQRImage(File qrfile, String qrcodetext, int size, String filetype) throws WriterException, IOException {
 
 		// Create the bytematrix for the QR-Code that encodes the given String
 
@@ -273,7 +199,7 @@ public class GeradorQRCodesFaces extends CrudFaces<GeradorQRCode> {
 	/**
 	 * @return the pLstItem
 	 */
-	public List<Item> getpLstItem() {
+	public List<ItemLocal> getpLstItem() {
 		return pLstItem;
 	}
 
@@ -281,8 +207,72 @@ public class GeradorQRCodesFaces extends CrudFaces<GeradorQRCode> {
 	 * @param pLstItem
 	 *            the pLstItem to set
 	 */
-	public void setpLstItem(List<Item> pLstItem) {
+	public void setpLstItem(List<ItemLocal> pLstItem) {
 		this.pLstItem = pLstItem;
+	}
+
+	/**
+	 * @return the lstCliente
+	 */
+	public List<Cliente> getLstCliente() {
+		return lstCliente;
+	}
+
+	/**
+	 * @param lstCliente
+	 *            the lstCliente to set
+	 */
+	public void setLstCliente(List<Cliente> lstCliente) {
+		this.lstCliente = lstCliente;
+	}
+
+	/**
+	 * @return the itemSelecionado
+	 */
+	public GeradorQRCode getGeradorQRCodeSelecionado() {
+		return itemSelecionado;
+	}
+
+	/**
+	 * @param itemSelecionado
+	 *            the itemSelecionado to set
+	 */
+	public void setGeradorQRCodeSelecionado(GeradorQRCode itemSelecionado) {
+		this.itemSelecionado = itemSelecionado;
+	}
+	
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	/**
+	 * @return the txtCode
+	 */
+	public String getTxtCode() {
+		return txtCode;
+	}
+
+	/**
+	 * @param txtCode
+	 *            the txtCode to set
+	 */
+	public void setTxtCode(String txtCode) {
+		this.txtCode = txtCode;
+	}
+
+	/**
+	 * @return the comboGeradorQRCode
+	 */
+	public List<SelectItem> getComboGeradorQRCode() {
+		return comboGeradorQRCode;
+	}
+
+	/**
+	 * @param comboGeradorQRCode
+	 *            the comboGeradorQRCode to set
+	 */
+	public void setComboGeradorQRCode(List<SelectItem> comboGeradorQRCode) {
+		this.comboGeradorQRCode = comboGeradorQRCode;
 	}
 
 }

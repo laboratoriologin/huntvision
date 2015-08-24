@@ -17,8 +17,6 @@ public class Vistoria extends Base {
     @DatabaseField(generatedId = true)
     private Long id;
 
-    private String serviceName;
-
     @DatabaseField
     private String clienteId;
 

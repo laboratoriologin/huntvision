@@ -20,30 +20,31 @@ import br.com.topsys.database.hibernate.TSActiveRecordAb;
 
 @Entity
 @Table(name = "itens_locais")
-public final class ItemLocal extends TSActiveRecordAb<ItemLocal> { 
-	
+public final class ItemLocal extends TSActiveRecordAb<ItemLocal> {
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	
 
-	
 	@ManyToOne
 	@JoinColumn(name = "local_id")
 	private Local local;
-	
-	
+
 	@ManyToOne
 	@JoinColumn(name = "item_id")
 	private Item item;
-	
 
 	@Cascade(org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
 	@OneToMany(mappedBy = "itemLocal", cascade = CascadeType.ALL)
 	private List<Destinatario> destinatarios;
+
+	public List<ItemLocal> find(Cliente cliente) {
+
+		return findBySQL("SELECT * FROM ITENS_LOCAIS IL WHERE EXISTS(SELECT 1 FROM  LOCAIS L, CLIENTES C, ITENS I WHERE IL.LOCAL_ID = L.ID AND IL.ITEM_ID = I.ID AND L.CLIENTE_ID = C.ID AND C.ID = ?)", cliente.getId());
+
+	}
 
 	/**
 	 * @return the item
@@ -53,7 +54,8 @@ public final class ItemLocal extends TSActiveRecordAb<ItemLocal> {
 	}
 
 	/**
-	 * @param item the item to set
+	 * @param item
+	 *            the item to set
 	 */
 	public void setItem(Item item) {
 		this.item = item;
@@ -67,7 +69,8 @@ public final class ItemLocal extends TSActiveRecordAb<ItemLocal> {
 	}
 
 	/**
-	 * @param local the local to set
+	 * @param local
+	 *            the local to set
 	 */
 	public void setLocal(Local local) {
 		this.local = local;
@@ -85,19 +88,20 @@ public final class ItemLocal extends TSActiveRecordAb<ItemLocal> {
 		return serialVersionUID;
 	}
 
-	
-	public ItemLocal(){}
+	public ItemLocal() {
+	}
 
-	public ItemLocal(String id){
+	public ItemLocal(String id) {
 		this.id = Long.valueOf(id);
 	}
-	
-	public String getComboText()
-	{
+
+	public String getComboText() {
 		return local.getCliente().getNome() + " - " + local.getNomeLocal() + " : " + item.getDescricao();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -110,7 +114,9 @@ public final class ItemLocal extends TSActiveRecordAb<ItemLocal> {
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -148,6 +154,4 @@ public final class ItemLocal extends TSActiveRecordAb<ItemLocal> {
 		this.destinatarios = destinatarios;
 	}
 
-	
-	
 }
