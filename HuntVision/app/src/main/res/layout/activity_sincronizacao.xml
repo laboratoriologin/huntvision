@@ -48,7 +48,7 @@
             android:text="Gera chave"
             android:textColor="#FFF"
             android:textSize="18sp"
-            android:visibility="invisible" />
+            android:visibility="visible" />
 
         <RelativeLayout
             android:id="@+id/rlGeraChave"
