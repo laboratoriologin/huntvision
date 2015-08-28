@@ -43,18 +43,20 @@
 			</tr>
 		</table>
 
-		<ui:repeat var="linha" value="#{mbean.respostas}">
 
-			<h2 align="center">#{linha.local.nomeLocal}</h2>
+		<table border="1" width="95%" style="text-align: center; padding: 10px;" align="center">
+			<thead style="font-weight: bold;">
+				<td width="20%">Item</td>
+				<td width="20%">Pergunta</td>
+				<td width="20%">Resposta</td>
+				<td width="20%">Observação</td>
+				<td width="20%">Imagem</td>
+			</thead>
+			<ui:repeat var="linha" value="#{mbean.respostas}">
+				<tr>
+					<td colspan="5"><h3 align="center">#{linha.local.nomeLocal}</h3></td>
+				</tr>
 
-			<table border="1" width="95%" style="text-align: center; padding: 10px;" align="center">
-				<thead style="font-weight: bold;">
-					<td width="20%">Item</td>
-					<td width="20%">Pergunta</td>
-					<td width="20%">Resposta</td>
-					<td width="20%">Observação</td>
-					<td width="20%">Imagem</td>
-				</thead>
 				<ui:repeat var="linha" value="#{linha.respostas}">
 					<tr>
 						<td><p>
@@ -81,9 +83,8 @@
 						</td>
 					</tr>
 				</ui:repeat>
-			</table>
-
-		</ui:repeat>
+			</ui:repeat>
+		</table>
 
 		<div align="center">
 
