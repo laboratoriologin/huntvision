@@ -34,8 +34,12 @@ public final class VistoriaResposta extends TSActiveRecordAb<VistoriaResposta> {
 	@Column(name = "observacao")
 	private String observacao;
 
+	@ManyToOne
+	@JoinColumn(name = "local_id")
+	private Local local;
+
 	@Cascade(org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
-	@OneToMany(mappedBy = "vistoriaResposta", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "vistoriaResposta", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<VistoriaRespostaImagem> imagens;
 
 	/**
@@ -133,6 +137,14 @@ public final class VistoriaResposta extends TSActiveRecordAb<VistoriaResposta> {
 
 	public void setImagens(List<VistoriaRespostaImagem> imagens) {
 		this.imagens = imagens;
+	}
+
+	public Local getLocal() {
+		return local;
+	}
+
+	public void setLocal(Local local) {
+		this.local = local;
 	}
 
 	/*

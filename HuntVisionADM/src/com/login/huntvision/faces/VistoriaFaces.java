@@ -8,7 +8,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.model.SelectItem;
 
-import org.primefaces.model.DefaultScheduleEvent;
+import org.hibernate.Hibernate;
 import org.primefaces.model.map.DefaultMapModel;
 import org.primefaces.model.map.LatLng;
 import org.primefaces.model.map.MapModel;
@@ -17,14 +17,12 @@ import org.primefaces.model.map.Marker;
 import br.com.topsys.util.TSUtil;
 import br.com.topsys.web.util.TSFacesUtil;
 
-import com.login.huntvision.model.Agenda;
 import com.login.huntvision.model.Cliente;
 import com.login.huntvision.model.ConfiguracaoEmail;
 import com.login.huntvision.model.GeradorQRCode;
+import com.login.huntvision.model.Local;
 import com.login.huntvision.model.Vistoria;
 import com.login.huntvision.model.VistoriaResposta;
-import com.login.huntvision.model.VistoriaRespostaImagem;
-import com.login.huntvision.util.Constantes;
 import com.login.huntvision.util.EmailUtil;
 import com.login.huntvision.util.Utilitarios;
 
@@ -39,10 +37,11 @@ public class VistoriaFaces extends CrudFaces<Vistoria> {
 	private Cliente cliente;
 	private GeradorQRCode itemSelecionado;
 	private List<Vistoria> lstVistoria;
-	private List<VistoriaResposta> lstVistoriaRespostaTratada;
+	private List<LocalRespostas> respostas;
 	private MapModel mapModel;
 	private List<SelectItem> comboCliente;
 	private Vistoria vistoriaPesquisa;
+
 	@Override
 	@PostConstruct
 	protected void clearFields() {
@@ -71,10 +70,8 @@ public class VistoriaFaces extends CrudFaces<Vistoria> {
 
 		this.mapModel = new DefaultMapModel();
 		this.comboCliente = super.initCombo(new Cliente().findAll(), "id", "nome");
-		
-	}
-	
 
+	}
 
 	public List<SelectItem> getComboCliente() {
 		return comboCliente;
@@ -96,7 +93,6 @@ public class VistoriaFaces extends CrudFaces<Vistoria> {
 
 		Vistoria vistoria = new Vistoria();
 
-	
 		if (TSUtil.isEmpty(this.cliente.getNome())) {
 
 			this.cliente.setNome("");
@@ -112,8 +108,6 @@ public class VistoriaFaces extends CrudFaces<Vistoria> {
 		return null;
 
 	}
-	
-
 
 	public String marcarMapa() {
 
@@ -135,9 +129,28 @@ public class VistoriaFaces extends CrudFaces<Vistoria> {
 
 		resposta.setVistoria(this.getCrudModel());
 
-		this.lstVistoriaRespostaTratada = resposta.findAllByVistoria();
-	
-		
+		List<VistoriaResposta> vistoriasRespostas = resposta.findAllByVistoria();
+
+		LocalRespostas localResposta = null;
+
+		this.respostas = new ArrayList<VistoriaFaces.LocalRespostas>();
+
+		for (VistoriaResposta vistoriaResposta : vistoriasRespostas) {
+
+			localResposta = new LocalRespostas();
+
+			localResposta.setLocal(vistoriaResposta.getLocal());
+
+			if (!this.respostas.contains(localResposta)) {
+				localResposta.setRespostas(new ArrayList<VistoriaResposta>());
+				this.respostas.add(localResposta);
+			}
+
+			this.respostas.get(this.respostas.indexOf(localResposta)).getRespostas().add(vistoriaResposta);
+			Hibernate.initialize(vistoriaResposta.getImagens());
+
+		}
+
 		return null;
 
 	}
@@ -149,14 +162,14 @@ public class VistoriaFaces extends CrudFaces<Vistoria> {
 		url = url.replaceAll("dashboard.xhtml", "relatorio/vistoriaImpressao.xhtml");
 
 		url = url + "?vistoria_id=" + getCrudModel().getId();
-		
+
 		String context = TSFacesUtil.getRequest().getRequestURL().toString();
-		
+
 		context = context.replaceAll("pages/dashboard.xhtml", "");
-		
+
 		ConfiguracaoEmail configuracao = new ConfiguracaoEmail().findAll().get(0);
 
-		EmailUtil.enviar(getCrudModel().getCliente().getEmail(), Utilitarios.getVistoriaEmailMessage(getCrudModel().getCliente(), url , getCrudModel().getData().toString(),context), configuracao);
+		EmailUtil.enviar(getCrudModel().getCliente().getEmail(), Utilitarios.getVistoriaEmailMessage(getCrudModel().getCliente(), url, getCrudModel().getData().toString(), context), configuracao);
 
 		this.addInfoMessage("E-mail enviado com sucesso!");
 
@@ -164,12 +177,12 @@ public class VistoriaFaces extends CrudFaces<Vistoria> {
 
 	}
 
-	public List<VistoriaResposta> getLstVistoriaRespostaTratada() {
-		return lstVistoriaRespostaTratada;
+	public List<LocalRespostas> getRespostas() {
+		return respostas;
 	}
 
-	public void setLstVistoriaRespostaTratada(List<VistoriaResposta> lstVistoriaRespostaTratada) {
-		this.lstVistoriaRespostaTratada = lstVistoriaRespostaTratada;
+	public void setRespostas(List<LocalRespostas> respostas) {
+		this.respostas = respostas;
 	}
 
 	public List<Vistoria> getLstVistoria() {
@@ -260,5 +273,59 @@ public class VistoriaFaces extends CrudFaces<Vistoria> {
 		this.mapModel = mapModel;
 	}
 
-}
+	public class LocalRespostas {
 
+		private Local local;
+		private List<VistoriaResposta> respostas;
+
+		public Local getLocal() {
+			return local;
+		}
+
+		public void setLocal(Local local) {
+			this.local = local;
+		}
+
+		public List<VistoriaResposta> getRespostas() {
+			return respostas;
+		}
+
+		public void setRespostas(List<VistoriaResposta> respostas) {
+			this.respostas = respostas;
+		}
+
+		@Override
+		public int hashCode() {
+			final int prime = 31;
+			int result = 1;
+			result = prime * result + getOuterType().hashCode();
+			result = prime * result + ((local == null) ? 0 : local.hashCode());
+			return result;
+		}
+
+		@Override
+		public boolean equals(Object obj) {
+			if (this == obj)
+				return true;
+			if (obj == null)
+				return false;
+			if (getClass() != obj.getClass())
+				return false;
+			LocalRespostas other = (LocalRespostas) obj;
+			if (!getOuterType().equals(other.getOuterType()))
+				return false;
+			if (local == null) {
+				if (other.local != null)
+					return false;
+			} else if (!local.equals(other.local))
+				return false;
+			return true;
+		}
+
+		private VistoriaFaces getOuterType() {
+			return VistoriaFaces.this;
+		}
+
+	}
+
+}
