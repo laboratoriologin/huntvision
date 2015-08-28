@@ -48,6 +48,8 @@ public class VistoriaRequest extends ObjectRequest<Vistoria> {
 
                 nameValuePairs.add(new BasicNameValuePair("respostas[" + i + "].resposta", vistoria.getRespostas().get(i).getRespostaId()));
 
+                nameValuePairs.add(new BasicNameValuePair("respostas[" + i + "].local", vistoria.getRespostas().get(i).getLocalId()));
+
                 nameValuePairs.add(new BasicNameValuePair("respostas[" + i + "].vistoria", vistoria.getId().toString()));
 
                 nameValuePairs.add(new BasicNameValuePair("respostas[" + i + "].observacao", vistoria.getRespostas().get(i).getObservacao()));
@@ -74,15 +76,10 @@ public class VistoriaRequest extends ObjectRequest<Vistoria> {
 
     @Override
     protected String getUrlPostMultiFormData(Vistoria object) {
-
         return url + "/" + object.getServiceName() + "/imagens";
     }
 
     @Override
     protected void handleResponse(ServerResponse serverResponse) {
-
-
     }
-
-
 }

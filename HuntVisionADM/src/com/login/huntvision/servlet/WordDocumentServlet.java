@@ -1,4 +1,3 @@
-
 /**
  * 
  */
@@ -7,6 +6,9 @@ package com.login.huntvision.servlet;
 import java.io.File;
 import java.io.IOException;
 import java.math.BigInteger;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -56,19 +58,49 @@ public class WordDocumentServlet extends HttpServlet {
 
 	private void exec(HttpServletRequest request, HttpServletResponse response) {
 
-		String parameter = request.getParameter("vistoria_id");
+		Map<String, Object> parametros = new HashMap<String, Object>();
 
-		if (TSUtil.isNumeric(parameter)) {
+		JasperUtil jasperUtil = new JasperUtil();
 
-			Vistoria vistoria = new Vistoria(parameter);
+		String dataInicial = request.getParameter("data_inicial");
 
-			vistoria = vistoria.getById();
+		String dataFinal = request.getParameter("data_final");
 
-			if (vistoria != null) {
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
 
-				executeJasper(vistoria, request, response);
+		SimpleDateFormat formatterBR = new SimpleDateFormat("dd/MM/yyyy");
 
-			}
+		String cliente = request.getParameter("cliente_id");
+
+		parametros.put("CLIENTE", Long.valueOf(cliente));
+
+		try {
+			parametros.put("DATA_INICIO", formatter.format(formatterBR.parse(dataInicial)));
+		} catch (ParseException e) {
+			parametros.put("DATA_INICIO", formatter.format(new Date()));
+		}
+
+		try {
+			parametros.put("DATA_FIM", formatter.format(formatterBR.parse(dataFinal)));
+		} catch (ParseException e) {
+			parametros.put("DATA_FIM", formatter.format(new Date()));
+		}
+
+		parametros.put("CAMINHO_IMAGEM", Constantes.CAMINHO_ARQUIVO);
+
+		String jasper = request.getServletContext().getRealPath(WEB_INF + File.separator + RELATORIOS + File.separator + "visitas.jasper");
+
+		String subreportDir = request.getServletContext().getRealPath(WEB_INF + File.separator + RELATORIOS) + File.separator;
+
+		parametros.put("SUBREPORT_DIR", subreportDir);
+
+		try {
+
+			jasperUtil.gerarRelatorioDOC(response, cliente, jasper, parametros);
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
 
 		}
 
@@ -83,34 +115,6 @@ public class WordDocumentServlet extends HttpServlet {
 	}
 
 	private void executeJasper(Vistoria vistoria, HttpServletRequest request, HttpServletResponse response) {
-
-		Map<String, Object> parametros = new HashMap<String, Object>();
-
-		JasperUtil jasperUtil = new JasperUtil();
-
-		parametros.put("VISTORIA_ID", vistoria.getId());
-
-		String nomeOrcamento = vistoria.getId() + "_" + vistoria.getCliente().getNome().replaceAll(" ", "_");
-
-		nomeOrcamento = nomeOrcamento.replace(" ", "_");
-
-		parametros.put("CAMINHO_IMAGEM", Constantes.CAMINHO_ARQUIVO);
-
-		String jasper = request.getServletContext().getRealPath(WEB_INF + File.separator + RELATORIOS + File.separator + "visitas.jasper");
-
-		String subreportDir = request.getServletContext().getRealPath(WEB_INF + File.separator + RELATORIOS) + File.separator;
-
-		parametros.put("SUBREPORT_DIR", subreportDir);
-
-		try {
-
-			jasperUtil.gerarRelatorioDOC(response, nomeOrcamento, jasper, parametros);
-
-		} catch (Exception e) {
-
-			e.printStackTrace();
-
-		}
 
 	}
 

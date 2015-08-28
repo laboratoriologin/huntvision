@@ -17,6 +17,9 @@ public final class VistoriaResposta extends RestModel {
 	@FormParam("imagem")
 	private String imagem;
 
+	@FormParam("local")
+	private Local local;
+
 	@FormParam("resposta")
 	private Resposta resposta;
 
@@ -89,6 +92,14 @@ public final class VistoriaResposta extends RestModel {
 
 	public void setImagens(List<Imagem> imagens) {
 		this.imagens = imagens;
+	}
+
+	public Local getLocal() {
+		return local;
+	}
+
+	public void setLocal(Local local) {
+		this.local = local;
 	}
 
 }

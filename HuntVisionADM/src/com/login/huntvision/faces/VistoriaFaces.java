@@ -1,6 +1,9 @@
 package com.login.huntvision.faces;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -41,6 +44,8 @@ public class VistoriaFaces extends CrudFaces<Vistoria> {
 	private MapModel mapModel;
 	private List<SelectItem> comboCliente;
 	private Vistoria vistoriaPesquisa;
+	private Date dataInicial = new Date();
+	private Date dataFinal = new Date();
 
 	@Override
 	@PostConstruct
@@ -64,7 +69,37 @@ public class VistoriaFaces extends CrudFaces<Vistoria> {
 
 			this.setCrudModel(this.getCrudModel().getById());
 
-			geraQrCodeRelatorio();
+			gerarRelatorio();
+
+		}
+
+		String dataInicial = TSFacesUtil.getRequestParameter("data_inicial");
+
+		String dataFinal = TSFacesUtil.getRequestParameter("data_final");
+
+		String cliente = TSFacesUtil.getRequestParameter("cliente_id");
+
+		if (!TSUtil.isEmpty(dataInicial) && !TSUtil.isEmpty(dataFinal) && !TSUtil.isEmpty(cliente)) {
+
+			SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+
+			this.cliente = new Cliente(cliente);
+
+			try {
+
+				this.dataInicial = format.parse(dataInicial);
+
+				this.dataFinal = format.parse(dataFinal);
+
+			} catch (ParseException e) {
+
+				this.dataInicial = new Date();
+
+				this.dataFinal = new Date();
+
+			}
+
+			gerarRelatorioPeriodo();
 
 		}
 
@@ -101,6 +136,10 @@ public class VistoriaFaces extends CrudFaces<Vistoria> {
 
 		vistoria.setCliente(this.cliente);
 
+		vistoria.setDataInicial(dataInicial);
+
+		vistoria.setDataFinal(dataFinal);
+
 		lstVistoria = vistoria.findAllByCliente("id desc");
 
 		TSFacesUtil.gerarResultadoLista(lstVistoria);
@@ -121,7 +160,7 @@ public class VistoriaFaces extends CrudFaces<Vistoria> {
 
 	}
 
-	public String geraQrCodeRelatorio() {
+	public String gerarRelatorio() {
 
 		this.setCrudModel(this.getCrudModel().getById());
 
@@ -155,13 +194,53 @@ public class VistoriaFaces extends CrudFaces<Vistoria> {
 
 	}
 
+	public String gerarRelatorioPeriodo() {
+
+		this.setCrudModel(new Vistoria());
+
+		this.getCrudModel().setCliente(this.cliente.getById());
+
+		VistoriaResposta resposta = new VistoriaResposta();
+
+		this.getCrudModel().setDataInicial(dataInicial);
+
+		this.getCrudModel().setDataFinal(dataFinal);
+
+		resposta.setVistoria(this.getCrudModel());
+
+		List<VistoriaResposta> vistoriasRespostas = resposta.findAllByVistoriaData();
+
+		LocalRespostas localResposta = null;
+
+		this.respostas = new ArrayList<VistoriaFaces.LocalRespostas>();
+
+		for (VistoriaResposta vistoriaResposta : vistoriasRespostas) {
+
+			localResposta = new LocalRespostas();
+
+			localResposta.setLocal(vistoriaResposta.getLocal());
+
+			if (!this.respostas.contains(localResposta)) {
+				localResposta.setRespostas(new ArrayList<VistoriaResposta>());
+				this.respostas.add(localResposta);
+			}
+
+			this.respostas.get(this.respostas.indexOf(localResposta)).getRespostas().add(vistoriaResposta);
+			Hibernate.initialize(vistoriaResposta.getImagens());
+
+		}
+
+		return null;
+
+	}
+
 	public String enviarEmail() {
 
 		String url = TSFacesUtil.getRequest().getRequestURL().toString();
 
 		url = url.replaceAll("dashboard.xhtml", "relatorio/vistoriaImpressao.xhtml");
-
-		url = url + "?vistoria_id=" + getCrudModel().getId();
+	
+		url = url + "?data_inicial=" + getCrudModel().getData() + "&data_final=" + getCrudModel().getData() + "&cliente_id=" + this.cliente.getId();
 
 		String context = TSFacesUtil.getRequest().getRequestURL().toString();
 
@@ -326,6 +405,22 @@ public class VistoriaFaces extends CrudFaces<Vistoria> {
 			return VistoriaFaces.this;
 		}
 
+	}
+
+	public Date getDataInicial() {
+		return dataInicial;
+	}
+
+	public void setDataInicial(Date dataInicial) {
+		this.dataInicial = dataInicial;
+	}
+
+	public Date getDataFinal() {
+		return dataFinal;
+	}
+
+	public void setDataFinal(Date dataFinal) {
+		this.dataFinal = dataFinal;
 	}
 
 }

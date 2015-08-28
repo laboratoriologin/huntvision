@@ -66,7 +66,7 @@
 							</p></td>
 
 						<td><p>
-								<h:outputText value="#{linha.resposta.questionario.pergunta}" />
+								<h:outputText value="#{linha.resposta.questionario.pergunta} em #{linha.vistoria.data}" />
 							</p></td>
 						<td>
 							<p>
@@ -103,7 +103,7 @@
 				<ui:repeat var="resposta2" value="#{linha2.respostas}">
 
 					<tr>
-						<td><h:outputText style="text-align: center; padding: 10px; font-weight:bold;" value="#{resposta2.resposta.questionario.item.descricao} - #{resposta2.resposta.questionario.pergunta}" /></td>
+						<td><h:outputText style="text-align: center; padding: 10px; font-weight:bold;" value="#{resposta2.resposta.questionario.item.descricao} - #{resposta2.resposta.questionario.pergunta} em #{resposta2.vistoria.data}" /></td>
 					</tr>
 
 					<ui:repeat value="#{resposta2.imagens}" var="imagem2">

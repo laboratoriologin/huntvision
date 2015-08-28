@@ -302,6 +302,8 @@ public class QuestionarioActivity extends DefaultActivity {
 
                     vistoriaResposta.setImagens(new ArrayList<Imagem>());
 
+                    vistoriaResposta.setLocalId(objLocal.getId());
+
                     if (questionario.getCaminhosImagens() != null) {
 
                         for (String caminho : questionario.getCaminhosImagens()) {
