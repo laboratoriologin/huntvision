@@ -524,7 +524,7 @@ public class SincronizacaoActivity extends DefaultActivity {
 
 
         objConexao = new Conexao();
-        objConexao.setUrl(Constantes.URL_WS_GOLD);
+        objConexao.setUrl(Constantes.URL_WS_OTIMIZE);
 
         conexoes.add(objConexao);
 
