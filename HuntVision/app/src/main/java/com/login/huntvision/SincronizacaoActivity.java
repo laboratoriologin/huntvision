@@ -488,6 +488,7 @@ public class SincronizacaoActivity extends DefaultActivity {
                     }
 
                     startLoginActivity();
+                    startEnvioEmailResponsavel();
 
                 } else {
 
@@ -586,6 +587,40 @@ public class SincronizacaoActivity extends DefaultActivity {
         {
             Toast.makeText(this, "Chave de segurança incorreta!", Toast.LENGTH_LONG).show();
         }
+    }
+
+    private void startEnvioEmailResponsavel()
+    {
+//        if (agenda.getDataHoraChegada() == null) {
+//
+//            agenda.setDataHoraChegada(new Date());
+//
+//            new AgendaRequest(getUrlWS(), new ResponseListener() {
+//
+//                @Override
+//                public void onResult(ServerResponse serverResponse) {
+//
+//                    if (serverResponse.isOK()) {
+//
+//                        getHelper().getAgendaRuntimeDAO().update(agenda);
+//
+//                        Toast.makeText(AgendaDetalheActivity.this, "Data de chegada registrada com sucesso!", Toast.LENGTH_LONG).show();
+//
+//                        validaHora();
+//
+//                    } else {
+//
+//                        Toast.makeText(AgendaDetalheActivity.this, "É necessária a conexão com a internet! ", Toast.LENGTH_LONG).show();
+//
+//                        agenda.setDataHoraChegada(null);
+//
+//                    }
+//
+//                }
+//
+//
+//            }).updateHoras(agenda);
+//        }
     }
 
 

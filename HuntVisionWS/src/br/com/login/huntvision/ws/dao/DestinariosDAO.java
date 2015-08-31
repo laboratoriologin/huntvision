@@ -31,6 +31,8 @@ public class DestinariosDAO implements RestDAO<Destinatario> {
 		return broker.getCollectionBean(Destinatario.class,  "id", "nome" , "email", "itemLocal.id");
 
 	}
+	
+	
 
 	@Override
 	public Destinatario insert(Destinatario model) throws TSApplicationException {

@@ -126,6 +126,12 @@ public final class VistoriaResposta extends TSActiveRecordAb<VistoriaResposta> {
 		return find("from VistoriaResposta where vistoria.id = ?", null, vistoria.getId());
 
 	}
+	
+	public List<VistoriaResposta> findAllByVistoriaNaoConformidade() {
+
+		return find("from VistoriaResposta where resposta.flagNaoConformidade is true", null);
+
+	}
 
 	public List<VistoriaRespostaImagem> getImagens() {
 		return imagens;

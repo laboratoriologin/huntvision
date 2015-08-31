@@ -121,7 +121,7 @@ public class NaoConformidadeFaces extends CrudFaces<Vistoria> {
 
 		resposta.setVistoria(this.getCrudModel());
 
-		this.lstVistoriaRespostaTratada = resposta.findAllByVistoria();
+		this.lstVistoriaRespostaTratada = resposta.findAllByVistoriaNaoConformidade();
 	
 		
 		return null;

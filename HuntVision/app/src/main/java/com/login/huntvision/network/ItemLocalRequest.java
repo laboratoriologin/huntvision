@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.login.huntvision.models.ItemLocal;
+import com.login.huntvision.models.ServerRequest;
 import com.login.huntvision.models.ServerResponse;
 import com.login.huntvision.network.http.ResponseListener;
 
@@ -76,6 +77,7 @@ public  class ItemLocalRequest extends ObjectRequest<ItemLocal> {
 
         }*/
     }
+
 
 
 }
