@@ -12,7 +12,7 @@ public final class Constantes {
     public static final String SHARED_PREFS = "prefs";
     public static final String URL_WS_GOLD = "http://177.1.212.50:9004/HuntVisionWS";
     public static final String URL_WS_OTIMIZE = "http://177.1.212.50:9004/OtimizeWS";
-    public static final String URL_WS_LOCAL = "http://10.0.0.121:8080/HuntVisionWS";
+    public static final String URL_WS_LOCAL = "http://10.0.0.105:8080/HuntVisionWS";
     public static final String KEYMOBILE = "123";
     public static final String ID_CATEGORIA_HUNTVISION = "id";
     public static final String KEY_HUNTVISION = "keyHuntVision";

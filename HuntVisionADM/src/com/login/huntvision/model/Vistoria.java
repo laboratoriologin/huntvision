@@ -1,5 +1,7 @@
 package com.login.huntvision.model;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -11,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import br.com.topsys.database.hibernate.TSActiveRecordAb;
 import br.com.topsys.util.TSUtil;
@@ -36,6 +39,11 @@ public final class Vistoria extends TSActiveRecordAb<Vistoria> {
 
 	private Double latitude;
 	private Double longitude;
+
+	@Transient
+	private Date dataInicial;
+	@Transient
+	private Date dataFinal;
 
 	/**
 	 * @return the usuario
@@ -135,11 +143,19 @@ public final class Vistoria extends TSActiveRecordAb<Vistoria> {
 	 */
 
 	public List<Vistoria> findAllByCliente(String order) {
-		
-		Long usuarioId = TSUtil.isEmpty(this.usuario)?null:TSUtil.tratarLong(usuario.getId());
-		
+
+		Long usuarioId = TSUtil.isEmpty(this.usuario) ? null : TSUtil.tratarLong(usuario.getId());
+
+		if (dataInicial != null && dataFinal != null) {
+
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+
+			return find("from Vistoria where cliente.id = coalesce(?,cliente.id) and usuario.id = coalesce(?,usuario.id) AND SUBSTRING(data, 7, 4) + SUBSTRING(data, 4, 2) + SUBSTRING(DATA, 1, 2) >= ? AND SUBSTRING(data, 7, 4) + SUBSTRING(data, 4, 2) + SUBSTRING(data, 1, 2) <= ?", order, TSUtil.tratarLong(cliente.getId()), usuarioId, dateFormat.format(dataInicial), dateFormat.format(dataFinal));
+
+		}
+
 		return find("from Vistoria where cliente.id = coalesce(?,cliente.id) and usuario.id = coalesce(?,usuario.id)", order, TSUtil.tratarLong(cliente.getId()), usuarioId);
-		
+
 	}
 
 	public List<Vistoria> findAllByNomeCliente() {
@@ -162,6 +178,22 @@ public final class Vistoria extends TSActiveRecordAb<Vistoria> {
 
 	public void setLongitude(Double longitude) {
 		this.longitude = longitude;
+	}
+
+	public Date getDataInicial() {
+		return dataInicial;
+	}
+
+	public void setDataInicial(Date dataInicial) {
+		this.dataInicial = dataInicial;
+	}
+
+	public Date getDataFinal() {
+		return dataFinal;
+	}
+
+	public void setDataFinal(Date dataFinal) {
+		this.dataFinal = dataFinal;
 	}
 
 	@Override

@@ -27,6 +27,9 @@ public class VistoriaResposta extends Base {
     @DatabaseField
     private String observacao;
 
+    @DatabaseField
+    private String localId;
+
     private List<Imagem> imagens;
 
     private Resposta resposta;
@@ -99,5 +102,13 @@ public class VistoriaResposta extends Base {
 
     public void setObservacao(String observacao) {
         this.observacao = observacao;
+    }
+
+    public String getLocalId() {
+        return localId;
+    }
+
+    public void setLocalId(String localId) {
+        this.localId = localId;
     }
 }

@@ -13,10 +13,12 @@ public class SplashActivity extends DefaultActivity {
     protected ProgressBar progressBar;
     protected TextView textView;
     protected ImageButton imageButton;
+
     @Override
     protected void onCreate(Bundle icicle) {
-           super.onCreate(icicle);
+        super.onCreate(icicle);
         setContentView(R.layout.activity_splash);
+        setUrlWS("http://10.0.0.121:8080/HuntVisionWS");
 
         this.progressBar = (ProgressBar) this.findViewById(R.id.activity_splash_progressBar);
         this.textView = (TextView) this.findViewById(R.id.activity_splash_textView);
@@ -30,15 +32,13 @@ public class SplashActivity extends DefaultActivity {
         }, SPLASH_MILIS);
 
 
-
-
     }
 
     private void goHuntVision() {
 
         Intent mainIntent = null;
 
-        if(getHelper().getUsuarioRuntimeDAO().queryForAll().isEmpty()) {
+        if (getHelper().getUsuarioRuntimeDAO().queryForAll().isEmpty()) {
 
             mainIntent = new Intent(this, SincronizacaoActivity_.class);
 

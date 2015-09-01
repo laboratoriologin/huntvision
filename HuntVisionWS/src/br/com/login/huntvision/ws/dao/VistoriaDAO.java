@@ -42,7 +42,7 @@ public class VistoriaDAO implements RestDAO<Vistoria> {
 			
 			resposta.setId(broker.getSequenceNextValue("dbo.vistorias_respostas"));
 
-			broker.setPropertySQL("vistoriarespostadao.insert", resposta.getResposta().getId(), model.getId(), resposta.getImagem(), resposta.getObservacao());
+			broker.setPropertySQL("vistoriarespostadao.insert", resposta.getResposta().getId(), model.getId(), resposta.getImagem(), resposta.getObservacao(), resposta.getLocal().getId());
 
 			broker.execute();
 

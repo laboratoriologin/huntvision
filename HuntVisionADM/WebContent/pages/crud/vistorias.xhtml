@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:f="http://java.sun.com/jsf/core">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core">
 
 	<ui:param name="mbean" value="${vistoriaFaces}" />
 	<ui:param name="mbeanModel" value="${vistoriaFaces.crudModel}" />
-	<ui:param name="mbeanPesquisaModel"
-		value="${vistoriaFaces.crudPesquisaModel}" />
+	<ui:param name="mbeanPesquisaModel" value="${vistoriaFaces.crudPesquisaModel}" />
 	<ui:param name="reload" value="true" />
 
 
@@ -17,53 +13,50 @@
 			<p:tabView id="tabView">
 				<p:tab title="Vistorias" id="tabVistoria">
 
-
 					<h:panelGrid>
 
 						<p:fieldset legend="Filtro">
 
-							<h:panelGrid columns="1" style="width:50%;"
-								columnClasses="coluna100">
+							<h:panelGrid columns="3" style="width:50%;" columnClasses="coluna60,coluna20,coluna20">
 								<h:outputText value="Cliente" />
-								
-								<p:selectOneMenu style="width:50%;"
-									value="#{mbean.cliente.id}">
-									<f:selectItem itemLabel="Todos" itemValue="" />
+								<h:outputText value="Data Inicial" />
+								<h:outputText value="Data Final" />
+
+								<p:selectOneMenu style="width:100%;" value="#{mbean.cliente.id}">
 									<f:selectItems value="#{mbean.comboCliente}" />
 								</p:selectOneMenu>
 
+								<p:calendar readonlyInput="true" navigator="true" value="#{mbean.dataInicial}" pattern="dd/MM/yyyy" />
 
-							
+								<p:calendar readonlyInput="true" navigator="true" value="#{mbean.dataFinal}" pattern="dd/MM/yyyy" />
+								
+								
+								
+								 
+								 
 
-								<p:commandButton value="Pesquisar" icon="ui-icon-search"
-									action="#{mbean.findEvent}" update="gridPesquisa" />
+
+								<p:commandButton value="Pesquisar" icon="ui-icon-search" action="#{mbean.findEvent}" update="gridPesquisa" />
 							</h:panelGrid>
 
 
 						</p:fieldset>
 
-						<p:dataTable id="gridPesquisa" rendered="true"
-							emptyMessage="Nenhum registro encontrado" style="width: 100%"
-							paginator="true" paginatorAlwaysVisible="false" rows="10"
-							value="#{mbean.lstVistoria}" var="linha" widgetVar="dtPesquisa">
+						<p:dataTable id="gridPesquisa" rendered="true" emptyMessage="Nenhum registro encontrado" style="width: 100%" paginator="true" paginatorAlwaysVisible="false" rows="10" value="#{mbean.lstVistoria}" var="linha" widgetVar="dtPesquisa">
 
 							<p:column headerText="Cliente" styleClass="coluna60">
 								<h:outputText value="#{linha.cliente.nome}" />
 							</p:column>
 
-							<p:column headerText="Data" styleClass="coluna10" sortBy="#{linha.id}" filterStyle="width:80%" resizable="true" filterBy="#{linha.data}">
+							<p:column headerText="Data" styleClass="coluna10" sortBy="#{linha.id}" filterStyle="width:80%" resizable="true">
 								<h:outputText value="#{linha.data}" />
 							</p:column>
 
 							<p:column headerText="Localização" styleClass="coluna10">
 
 								<div align="center">
-									<p:commandButton action="#{mbean.marcarMapa}"
-										oncomplete="PF('dlgMapa').show();" icon="ic-mapa"
-										style="height: 45px;width: 45px"
-										update="@parent:@parent:@parent:@parent:@parent:@parent:opMapa">
-										<f:setPropertyActionListener target="#{mbean.crudModel}"
-											value="#{linha}" />
+									<p:commandButton action="#{mbean.marcarMapa}" oncomplete="PF('dlgMapa').show();" icon="ic-mapa" style="height: 45px;width: 45px" update="@parent:@parent:@parent:@parent:@parent:@parent:opMapa">
+										<f:setPropertyActionListener target="#{mbean.crudModel}" value="#{linha}" />
 									</p:commandButton>
 								</div>
 
@@ -74,17 +67,16 @@
 
 								<div align="center">
 
-									<p:commandButton action="#{mbean.enviarEmail}" id="btEmail"
-										style="height: 45px;width: 45px" icon="ic-email">
-										<f:setPropertyActionListener target="#{mbean.crudModel}"
-											value="#{linha}" update="message" />
-											  <p:confirm header="Confirmação de envio." message="Tem certeza em enviar o email para o cliente?" icon="ui-icon-alert" />
+									<p:commandButton action="#{mbean.enviarEmail}" id="btEmail" style="height: 45px;width: 45px" icon="ic-email">
+										<f:setPropertyActionListener target="#{mbean.crudModel}" value="#{linha}" update="message" />
+										<p:confirm header="Confirmação de envio." message="Tem certeza em enviar o email para o cliente?" icon="ui-icon-alert" />
 									</p:commandButton>
-									
-									 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-								        <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-								        <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-								     </p:confirmDialog>
+
+									<p:confirmDialog message="Deseja enviar o e-mail?" global="true" showEffect="fade" hideEffect="fade">
+										<p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+										<p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+									</p:confirmDialog>
+
 								</div>
 
 							</p:column>
@@ -93,9 +85,7 @@
 
 								<div align="center">
 
-									<p:commandButton type="button" id="btWord"
-										onclick="baixar('#{linha.id}');"
-										style="height: 45px;width: 45px" icon="ic-word" />
+									<p:commandButton type="button" id="btWord" onclick="baixar('#{linha.cliente.id}','#{linha.data}','#{linha.data}');" style="height: 45px;width: 45px" icon="ic-word" />
 
 								</div>
 
@@ -108,31 +98,28 @@
 
 								<div align="center">
 
-									<p:commandButton action="#{mbean.geraQrCodeRelatorio}"
-										id="btRelatorio" oncomplete="printRelatorio();"
-										style="height: 45px;width: 45px" icon="ic-relatorio">
-										<f:setPropertyActionListener target="#{mbean.crudModel}"
-											value="#{linha}" />
+									<p:commandButton action="#{mbean.gerarRelatorio}" id="btRelatorio" oncomplete="printRelatorio();" style="height: 45px;width: 45px" icon="ic-relatorio">
+										<f:setPropertyActionListener target="#{mbean.crudModel}" value="#{linha}" />
 									</p:commandButton>
 
 								</div>
 
 							</p:column>
 						</p:dataTable>
+
+						<p:commandButton value="Gerar relatório do período" icon="ui-icon-note" action="#{mbean.gerarRelatorioPeriodo}" oncomplete="printRelatorio();" />
+
 					</h:panelGrid>
 
 				</p:tab>
 			</p:tabView>
 		</h:panelGrid>
 
-		<p:dialog modal="true" position="center" width="800" height="600"
-			appendTo="@(body)" header="Local da vistoria" widgetVar="dlgMapa">
+		<p:dialog modal="true" position="center" width="800" height="600" appendTo="@(body)" header="Local da vistoria" widgetVar="dlgMapa">
 
 			<p:outputPanel id="opMapa">
 
-				<p:gmap model="#{mbean.mapModel}"
-					center="#{mbean.crudModel.latitude}, #{mbean.crudModel.longitude}"
-					zoom="15" type="HYBRID" style="width:100%;height:590px" />
+				<p:gmap model="#{mbean.mapModel}" center="#{mbean.crudModel.latitude}, #{mbean.crudModel.longitude}" zoom="15" type="HYBRID" style="width:100%;height:590px" />
 
 			</p:outputPanel>
 
@@ -148,10 +135,11 @@
 
 		}
 
-		function baixar(vistoria) {
+		function baixar(cliente_id, data_inicial, data_final) {
 
-			window.open('/HuntVisionADM/word_document?vistoria_id=' + vistoria,
-					'_blank');
+			window.open('/HuntVisionADM/word_document?data_inicial='
+					+ data_inicial + '&amp;data_final=' + data_final
+					+ '&amp;cliente_id=' + cliente_id, '_blank');
 
 		}
 	</script>

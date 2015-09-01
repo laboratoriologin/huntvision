@@ -146,6 +146,7 @@ fieldName=vistoriaId;
 fieldName=respostaId;
 fieldName=imagem;
 fieldName=observacao;
+fieldName=localId;
 
 ################################################
 

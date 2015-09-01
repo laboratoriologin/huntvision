@@ -1,5 +1,6 @@
 package com.login.huntvision.model;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -17,6 +18,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Cascade;
 
 import br.com.topsys.database.hibernate.TSActiveRecordAb;
+import br.com.topsys.util.TSUtil;
 
 @Entity
 @Table(name = "vistorias_respostas")
@@ -34,8 +36,12 @@ public final class VistoriaResposta extends TSActiveRecordAb<VistoriaResposta> {
 	@Column(name = "observacao")
 	private String observacao;
 
+	@ManyToOne
+	@JoinColumn(name = "local_id")
+	private Local local;
+
 	@Cascade(org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
-	@OneToMany(mappedBy = "vistoriaResposta", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "vistoriaResposta", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<VistoriaRespostaImagem> imagens;
 
 	/**
@@ -129,7 +135,15 @@ public final class VistoriaResposta extends TSActiveRecordAb<VistoriaResposta> {
 	
 	public List<VistoriaResposta> findAllByVistoriaNaoConformidade() {
 
-		return find("from VistoriaResposta where resposta.flagNaoConformidade is true", null);
+		return find("from VistoriaResposta where resposta.flagNaoConformidade is true",  null, vistoria.getId());
+
+	}
+
+	public List<VistoriaResposta> findAllByVistoriaData() {
+
+		SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+
+		return find("from VistoriaResposta where vistoria.cliente.id = ? and vistoria.id in (select id from Vistoria v where SUBSTRING(v.data, 7, 4) + SUBSTRING(v.data, 4, 2) + SUBSTRING(v.data, 1, 2) >= ? AND SUBSTRING(v.data, 7, 4) + SUBSTRING(v.data, 4, 2) + SUBSTRING(v.data, 1, 2) <= ?)", "id desc", vistoria.getCliente().getId(), format.format(vistoria.getDataInicial()), format.format(vistoria.getDataFinal()));
 
 	}
 
@@ -139,6 +153,14 @@ public final class VistoriaResposta extends TSActiveRecordAb<VistoriaResposta> {
 
 	public void setImagens(List<VistoriaRespostaImagem> imagens) {
 		this.imagens = imagens;
+	}
+
+	public Local getLocal() {
+		return local;
+	}
+
+	public void setLocal(Local local) {
+		this.local = local;
 	}
 
 	/*
