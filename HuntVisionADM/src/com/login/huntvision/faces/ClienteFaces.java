@@ -44,6 +44,9 @@ public class ClienteFaces extends CrudFaces<Cliente> {
 		this.clearFields();
 		this.comboItem = super.initCombo(new Item().findByModel("descricao"), "id", "descricao");
 		setFieldOrdem("nome");
+
+		
+	
 	}
 
 	public String addLocal() {

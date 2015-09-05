@@ -19,8 +19,7 @@ private Constantes(){
 	public static final String SENHA_GMAIL = "l0g1n.s3n41";
 	public static final String NOME_APP = "E-mail enviado pelo HuntVision";
 	public static final String ASSUNTO_EMAIL = "E-mail enviado pelo HuntVision";	
-	public static final  String CAMINHO_ARQUIVO = "E:\\arquivos_huntvision\\";
+	//public static final  String CAMINHO_ARQUIVO = "E:\\arquivos_huntvision\\";
 	//public static final  String CAMINHO_ARQUIVO = "/Users/login/teste/";
-	
-
+	public static final  String CAMINHO_ARQUIVO = "C:\\arquivos_huntvision\\";
 }

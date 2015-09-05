@@ -13,6 +13,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Cascade;
 
+
 import br.com.topsys.database.hibernate.TSActiveRecordAb;
 
 @Entity
@@ -227,5 +228,10 @@ public final class Cliente extends TSActiveRecordAb<Cliente> {
 			return false;
 		return true;
 	}
+	public List<Cliente> findLocalItem(String codItem) {
 
+		return find("FROM Item INNER JOIN ItemLocal ON ItemLocal.id = Item.id INNER JOIN Local ON ItemLocal.local_id = Local.id WHERE Item.id = ?" , null , codItem);
+
+
+	}
 }
