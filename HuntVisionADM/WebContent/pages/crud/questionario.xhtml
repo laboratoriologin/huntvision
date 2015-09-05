@@ -195,7 +195,9 @@
 
 	</ui:define>
 	<ui:define name="colunasTabela">
-
+<p:column headerText="Item">
+			<h:outputText value="#{linha.item.descricao}" />
+		</p:column>
 		<p:column headerText="Pergunta">
 			<h:outputText value="#{linha.pergunta}" />
 		</p:column>
